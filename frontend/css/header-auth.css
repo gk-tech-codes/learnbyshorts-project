@@ -7,13 +7,66 @@
     padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
+    height: 70px;
+}
+
+.nav-logo {
+    flex-shrink: 0;
+}
+
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand-logo {
+    height: 32px;
+    width: auto;
+}
+
+.brand-text h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.brand-text .tagline {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+    justify-content: center;
+    margin: 0 40px;
+}
+
+.nav-link {
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #4f46e5;
 }
 
 .nav-auth {
     display: flex;
     align-items: center;
-    margin-left: auto;
-    margin-right: 20px;
+    flex-shrink: 0;
 }
 
 .login-btn {
@@ -27,6 +80,7 @@
     transition: all 0.2s ease;
     border: none;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .login-btn:hover {
@@ -127,6 +181,7 @@
     cursor: pointer;
     padding: 4px;
     z-index: 1001;
+    flex-shrink: 0;
 }
 
 .hamburger span {
@@ -172,6 +227,7 @@
 @media (max-width: 768px) {
     .nav-container {
         padding: 0 15px;
+        height: 60px;
     }
 
     .hamburger {
@@ -180,10 +236,10 @@
 
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 60px;
         right: -100%;
         width: 280px;
-        height: calc(100vh - 70px);
+        height: calc(100vh - 60px);
         background: white;
         flex-direction: column;
         align-items: flex-start;
@@ -192,6 +248,9 @@
         z-index: 1000;
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
         overflow-y: auto;
+        margin: 0;
+        gap: 0;
+        justify-content: flex-start;
     }
 
     .nav-menu.active {
@@ -216,6 +275,22 @@
         width: 100%;
         text-align: center;
         padding: 12px 20px;
+    }
+
+    .brand-text h1 {
+        font-size: 16px;
+    }
+
+    .brand-text .tagline {
+        font-size: 10px;
+    }
+
+    .brand-logo {
+        height: 28px;
+    }
+
+    body.menu-open {
+        overflow: hidden;
     }
 
     .user-menu {
@@ -249,10 +324,6 @@
     .dropdown-item {
         padding: 10px 16px;
         border-bottom: 1px solid #e2e8f0;
-    }
-
-    body.menu-open {
-        overflow: hidden;
     }
 }
 
