@@ -274,9 +274,6 @@ class AuthService {
             return;
         }
         
-        // Clear container
-        container.innerHTML = '';
-        
         if (this.currentUser) {
             // Show user profile
             container.innerHTML = `
@@ -287,20 +284,26 @@ class AuthService {
                 </div>
             `;
         } else if (this.googleInitialized && window.google) {
-            // Show sign-in button
+            // Clear loading message and show sign-in button
+            container.innerHTML = '';
             google.accounts.id.renderButton(container, {
                 theme: 'outline',
                 size: 'large',
                 text: 'signin_with',
-                shape: 'rectangular'
+                shape: 'rectangular',
+                width: '100%'
             });
         } else {
-            // Show loading or error
-            container.innerHTML = '<p>Loading Google Sign-In...</p>';
+            // Show loading message
+            container.innerHTML = `
+                <div style="text-align: center; padding: 20px; border: 1px solid #ddd; border-radius: 4px;">
+                    <div style="color: #666; font-size: 14px;">🔄 Loading Google Sign-In...</div>
+                </div>
+            `;
             
             // Retry after a delay
             setTimeout(() => {
-                if (this.googleInitialized) {
+                if (this.googleInitialized && window.google) {
                     this.renderGoogleSignInButton(containerId);
                 }
             }, 1000);
