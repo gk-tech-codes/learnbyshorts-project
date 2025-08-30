@@ -35,8 +35,8 @@ class AuthService {
     }
     
     getApiBaseUrl() {
-        // Use AWS Lambda API Gateway endpoint with prod stage
-        return 'https://x4he2xds46.execute-api.us-east-1.amazonaws.com/prod';
+        // Use Lambda Function URL (will be updated after deployment)
+        return 'https://your-lambda-function-url.lambda-url.us-east-1.on.aws';
     }
     
     async initGoogleSignIn() {

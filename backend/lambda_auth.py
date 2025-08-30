@@ -15,10 +15,11 @@ import os
 from botocore.exceptions import ClientError
 
 # Configuration
-GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID')
-JWT_SECRET = os.environ.get('JWT_SECRET', 'your-jwt-secret-key')
+GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID', '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com')
+JWT_SECRET = os.environ.get('JWT_SECRET', 'learnbyshorts-jwt-secret-2024')
 TABLE_NAME = 'learnbyshorts-data'
 
+# Use existing AWS credentials from environment
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 table = dynamodb.Table(TABLE_NAME)
 
