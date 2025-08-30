@@ -99,29 +99,29 @@ const mockAuth = new MockAuthService();
 if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     console.log('🧪 Development mode: Using mock authentication');
     
-    // Override the renderGoogleSignInButton method
-    if (window.authService) {
-        const originalRender = window.authService.renderGoogleSignInButton.bind(window.authService);
-        window.authService.renderGoogleSignInButton = function(containerId) {
-            // Try real Google Sign-In first, fallback to mock
-            try {
-                originalRender(containerId);
+    // Wait for page to load, then add mock button
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(() => {
+            const googleContainer = document.getElementById('google-signin-btn');
+            if (googleContainer) {
+                // Add mock button below Google button
+                const mockDiv = document.createElement('div');
+                mockDiv.style.marginTop = '15px';
+                mockDiv.style.paddingTop = '15px';
+                mockDiv.style.borderTop = '1px solid #eee';
+                mockDiv.innerHTML = `
+                    <p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 10px;">
+                        Development Mode - OAuth not configured for localhost
+                    </p>
+                `;
                 
-                // Add mock button as fallback
-                setTimeout(() => {
-                    const container = document.getElementById(containerId);
-                    if (container && container.innerHTML.includes('Loading')) {
-                        container.innerHTML += '<div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"></div>';
-                        const mockContainer = document.createElement('div');
-                        mockContainer.id = containerId + '-mock';
-                        container.appendChild(mockContainer);
-                        mockAuth.renderMockSignInButton(containerId + '-mock');
-                    }
-                }, 2000);
-            } catch (error) {
-                console.log('🧪 Google Sign-In failed, using mock');
-                mockAuth.renderMockSignInButton(containerId);
+                const mockContainer = document.createElement('div');
+                mockContainer.id = 'mock-signin-container';
+                mockDiv.appendChild(mockContainer);
+                
+                googleContainer.parentNode.insertBefore(mockDiv, googleContainer.nextSibling);
+                mockAuth.renderMockSignInButton('mock-signin-container');
             }
-        };
-    }
+        }, 2000);
+    });
 }

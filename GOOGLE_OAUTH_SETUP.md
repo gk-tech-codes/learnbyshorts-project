@@ -13,8 +13,10 @@ The error occurs because `http://localhost:8080` is not registered as an authori
 3. Find your OAuth 2.0 Client ID: `1029422633354-g3po2rrk765unqn98fsirmod4muipt4l`
 4. Click **Edit**
 5. Under **Authorized JavaScript origins**, add:
+   - `http://localhost:3000`
+   - `http://localhost:8000`
    - `http://localhost:8080`
-   - `http://127.0.0.1:8080`
+   - `http://127.0.0.1:3000`
 6. Click **Save**
 
 ### Option 2: Create New OAuth Client for Development
