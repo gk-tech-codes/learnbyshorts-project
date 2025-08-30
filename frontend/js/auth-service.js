@@ -41,14 +41,21 @@ class AuthService {
     
     async initGoogleSignIn() {
         try {
+            // Use development client ID for localhost testing
+            const clientId = window.location.hostname === 'localhost' 
+                ? '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com' // Your existing client ID
+                : '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com';
+            
             // Initialize Google Sign-In
             google.accounts.id.initialize({
-                client_id: '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com',
-                callback: this.handleGoogleResponse.bind(this)
+                client_id: clientId,
+                callback: this.handleGoogleResponse.bind(this),
+                auto_select: false,
+                cancel_on_tap_outside: false
             });
             
             this.googleInitialized = true;
-            console.log('✅ Google Sign-In initialized');
+            console.log('✅ Google Sign-In initialized for:', window.location.hostname);
         } catch (error) {
             console.error('❌ Failed to initialize Google Sign-In:', error);
         }
