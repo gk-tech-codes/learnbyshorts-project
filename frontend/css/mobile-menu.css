@@ -1,0 +1,190 @@
+/* Modern Mobile Menu - iOS/Material Design Standards */
+
+/* Hide mobile elements on desktop */
+.menu-overlay {
+    display: none;
+}
+
+/* Hamburger button */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    z-index: 1001;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.hamburger:hover {
+    background: rgba(0, 123, 255, 0.08);
+}
+
+.hamburger span {
+    width: 18px;
+    height: 2px;
+    background: #334155;
+    margin: 2px 0;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+/* Standard hamburger-to-cross animation */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .menu-overlay {
+        display: block;
+    }
+
+    /* Premium overlay */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Compact sidebar with website theme colors - 190px */
+    .nav-menu.active {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 190px;
+        height: 100vh;
+        background: linear-gradient(180deg, #f8faff 0%, #f1f5ff 100%);
+        z-index: 1000;
+        box-shadow: -4px 0 24px rgba(59, 130, 246, 0.15);
+        flex-direction: column;
+        border-left: 1px solid rgba(59, 130, 246, 0.2);
+        animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 3rem 0 2rem;
+    }
+
+    @keyframes slideIn {
+        from { 
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to { 
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* Navigation links with website theme colors */
+    .nav-menu.active .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        color: #1e293b;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 3px solid transparent;
+        margin: 0.2rem 0;
+        position: relative;
+        letter-spacing: 0.01em;
+    }
+
+    /* Hover effect with website blue theme */
+    .nav-menu.active .nav-link:hover {
+        background: linear-gradient(90deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.06) 100%);
+        color: #2563eb;
+        border-left-color: #2563eb;
+        transform: translateX(3px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Active state with stronger blue */
+    .nav-menu.active .nav-link.active {
+        background: linear-gradient(90deg, rgba(59, 130, 246, 0.18) 0%, rgba(59, 130, 246, 0.08) 100%);
+        color: #1d4ed8;
+        border-left-color: #1d4ed8;
+        font-weight: 600;
+    }
+
+    /* Subtle separators with theme colors */
+    .nav-menu.active .nav-link:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 1.25rem;
+        right: 1.25rem;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.15) 50%, transparent 100%);
+    }
+
+    /* First link top spacing */
+    .nav-menu.active .nav-link:first-child {
+        margin-top: 0.5rem;
+    }
+
+    /* Last link bottom spacing */
+    .nav-menu.active .nav-link:last-child {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Add subtle icons to links (optional enhancement) */
+    .nav-menu.active .nav-link::before {
+        content: '';
+        width: 4px;
+        height: 4px;
+        background: currentColor;
+        border-radius: 50%;
+        margin-right: 0.75rem;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .nav-menu.active .nav-link:hover::before,
+    .nav-menu.active .nav-link.active::before {
+        opacity: 0.6;
+    }
+
+    /* Prevent body scroll */
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    /* Add subtle animation delays for staggered effect */
+    .nav-menu.active .nav-link:nth-child(1) { animation-delay: 0.05s; }
+    .nav-menu.active .nav-link:nth-child(2) { animation-delay: 0.1s; }
+    .nav-menu.active .nav-link:nth-child(3) { animation-delay: 0.15s; }
+    .nav-menu.active .nav-link:nth-child(4) { animation-delay: 0.2s; }
+}

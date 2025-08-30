@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnByShorts - Programming Concepts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/shorts.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>LearnByShorts</h1>
+                    <span class="tagline">Programming Concepts</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="shorts.html" class="nav-link active">Shorts</a>
+                    <a href="#categories" class="nav-link">Categories</a>
+                    <button class="btn-login">Login</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Shorts Container -->
+    <div class="shorts-container" id="shortsContainer">
+        <div class="shorts-wrapper" id="shortsWrapper">
+            <!-- Shorts will be loaded dynamically -->
+        </div>
+        
+        <!-- Navigation Dots -->
+        <div class="shorts-navigation" id="shortsNavigation">
+            <!-- Navigation dots will be added dynamically -->
+        </div>
+        
+        <!-- Loading Spinner -->
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <p>Loading concepts...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth-service.js"></script>
+    <script src="js/utils/constants.js"></script>
+    <script src="js/services/ShortsService.js"></script>
+    <script src="js/components/ShortCard.js"></script>
+    <script src="js/pages/ShortsPage.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

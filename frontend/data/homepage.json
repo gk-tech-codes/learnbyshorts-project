@@ -1,0 +1,102 @@
+{
+  "hero": {
+    "title": "Learn Programming Through <span class=\"highlight\">Visual Stories</span>",
+    "description": "Discover a new way to master programming concepts. Our bite-sized visual narratives transform complex technical ideas into engaging, memorable learning experiences that stick.",
+    "stats": {
+      "courses": {
+        "number": 0,
+        "label": "Courses",
+        "visible": false
+      },
+      "categories": {
+        "number": 8,
+        "label": "Learning Paths",
+        "visible": true
+      },
+      "learners": {
+        "number": 0,
+        "label": "Learners",
+        "visible": false
+      }
+    },
+    "buttons": {
+      "primary": {
+        "text": "Start Learning",
+        "action": "scrollToCategories",
+        "visible": true
+      },
+      "secondary": {
+        "text": "View Shorts",
+        "action": "viewShorts",
+        "visible": true
+      }
+    }
+  },
+  "sections": {
+    "categories": {
+      "title": "Choose Your Learning Path",
+      "subtitle": "Select a programming topic and start your journey",
+      "visible": true
+    },
+    "features": {
+      "title": "Why Choose LearnByShorts?",
+      "visible": true,
+      "items": [
+        {
+          "icon": "🎯",
+          "title": "Focused Learning",
+          "description": "Each concept broken into digestible 2-10 second visual stories"
+        },
+        {
+          "icon": "📚",
+          "title": "Story-Based",
+          "description": "Complex programming concepts explained through engaging narratives"
+        },
+        {
+          "icon": "⚡",
+          "title": "Quick Progress",
+          "description": "Learn faster with our scientifically designed micro-learning approach"
+        },
+        {
+          "icon": "🎨",
+          "title": "Visual Learning",
+          "description": "Rich visuals and animations make abstract concepts concrete"
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "visible": true,
+      "steps": [
+        {
+          "number": 1,
+          "title": "Choose Your Path",
+          "description": "Select from our curated programming topics"
+        },
+        {
+          "number": 2,
+          "title": "Watch & Learn",
+          "description": "Follow visual stories that explain concepts step-by-step"
+        },
+        {
+          "number": 3,
+          "title": "Practice & Apply",
+          "description": "Reinforce your learning with hands-on exercises"
+        },
+        {
+          "number": 4,
+          "title": "Track Progress",
+          "description": "Monitor your learning journey and achievements"
+        }
+      ]
+    }
+  },
+  "demo": {
+    "visible": false,
+    "images": [
+      "assets/demo/concept1.jpg",
+      "assets/demo/concept2.jpg",
+      "assets/demo/concept3.jpg"
+    ]
+  }
+}

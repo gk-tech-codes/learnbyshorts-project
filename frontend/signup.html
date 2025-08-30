@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - LearnByShorts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="assets/logo.svg" alt="LearnByShorts" class="auth-logo">
+                <h1>Join LearnByShorts</h1>
+                <p>Start your learning journey today</p>
+            </div>
+
+            <div class="auth-form">
+                <!-- Google Sign-In Button -->
+                <div id="google-signin-btn" class="google-signin-container"></div>
+                
+                <div class="divider">
+                    <span>or</span>
+                </div>
+
+                <!-- Email/Password Form -->
+                <form id="signup-form" class="auth-form-fields">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required minlength="8">
+                        <div class="password-requirements">
+                            <small>At least 8 characters with letters and numbers</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span>I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn primary">Create Account</button>
+                </form>
+            </div>
+
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Creating your account...</p>
+    </div>
+
+    <script src="js/auth-service.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Google Sign-In
+            if (window.authService) {
+                authService.renderGoogleSignInButton('google-signin-btn');
+            }
+
+            // Handle form submission
+            document.getElementById('signup-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData);
+                
+                // Validate passwords match
+                if (data.password !== data.confirmPassword) {
+                    showError('Passwords do not match');
+                    return;
+                }
+                
+                // Validate password strength
+                if (!isValidPassword(data.password)) {
+                    showError('Password must be at least 8 characters with letters and numbers');
+                    return;
+                }
+                
+                showLoading();
+                
+                try {
+                    // Call backend signup API
+                    const response = await fetch('/api/users/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            firstName: data.firstName,
+                            lastName: data.lastName,
+                            email: data.email,
+                            password: data.password
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        localStorage.setItem('auth_token', result.token);
+                        window.location.href = 'onboarding.html';
+                    } else {
+                        showError(result.error || 'Registration failed');
+                    }
+                } catch (error) {
+                    showError('Network error. Please try again.');
+                } finally {
+                    hideLoading();
+                }
+            });
+        });
+
+        // Listen for Google auth success
+        window.addEventListener('authStateChanged', (event) => {
+            const { type, user } = event.detail;
+            if (type === 'login' && user) {
+                window.location.href = 'onboarding.html';
+            }
+        });
+
+        function isValidPassword(password) {
+            return password.length >= 8 && 
+                   /[A-Za-z]/.test(password) && 
+                   /[0-9]/.test(password);
+        }
+
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.add('hidden');
+        }
+
+        function showError(message) {
+            alert(message); // Replace with better error UI
+        }
+    </script>
+</body>
+</html>

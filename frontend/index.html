@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; upgrade-insecure-requests;">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <!-- Cache Control Headers -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="cache-control" content="no-cache, no-store, must-revalidate">
+    <meta name="expires" content="0">
+    <meta name="pragma" content="no-cache">
+    
+    <!-- SEO Meta Tags -->
+    <title>LearnByShorts - Master Design Patterns Through Interactive Stories</title>
+    <meta name="description" content="Learn software design patterns through engaging stories and interactive examples. Master Observer, Strategy, Command, Facade patterns and more with real-world scenarios.">
+    <meta name="keywords" content="design patterns, software engineering, programming, observer pattern, strategy pattern, command pattern, facade pattern, coding tutorials, software architecture, learn programming, design patterns tutorial">
+    <meta name="author" content="LearnByShorts">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="LearnByShorts - Master Design Patterns Through Interactive Stories">
+    <meta property="og:description" content="Learn software design patterns through engaging stories and interactive examples. Master Observer, Strategy, Command, Facade patterns and more.">
+    <meta property="og:image" content="https://www.learnbyshorts.com/assets/og-image.jpg">
+    <meta property="og:url" content="https://www.learnbyshorts.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LearnByShorts">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LearnByShorts - Master Design Patterns Through Interactive Stories">
+    <meta name="twitter:description" content="Learn software design patterns through engaging stories and interactive examples. Master Observer, Strategy, Command, Facade patterns and more.">
+    <meta name="twitter:image" content="https://www.learnbyshorts.com/assets/twitter-card.jpg">
+    <meta name="twitter:site" content="@learnbyshorts">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.learnbyshorts.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "LearnByShorts",
+        "description": "Learn software design patterns through engaging stories and interactive examples",
+        "url": "https://www.learnbyshorts.com",
+        "logo": "https://www.learnbyshorts.com/assets/logo.svg",
+        "sameAs": [
+            "https://twitter.com/learnbyshorts",
+            "https://github.com/learnbyshorts"
+        ],
+        "offers": {
+            "@type": "Course",
+            "name": "Design Patterns Mastery",
+            "description": "Master software design patterns through interactive stories",
+            "provider": {
+                "@type": "Organization",
+                "name": "LearnByShorts"
+            }
+        }
+    }
+    </script>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5413RZXDET"></script>
+    <script src="js/analytics.js"></script>
+    
+    <link rel="stylesheet" href="/css/styles.css?v=1.5.2">
+    <link rel="stylesheet" href="/css/homepage.css?v=1.5.2">
+    <link rel="stylesheet" href="/css/mobile-menu.css?v=1.5.2">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <img src="assets/logo.svg" alt="LearnByShorts" class="brand-logo">
+                        <div class="brand-text">
+                            <h1>LearnByShorts</h1>
+                            <span class="tagline">Master Computer Science Through Stories</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#courses" class="nav-link">Courses</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Premium mobile menu overlay -->
+        <div class="menu-overlay"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            Master Computer Science Through 
+                            <span class="highlight">Visual Stories</span>
+                        </h1>
+                        <p class="hero-description">
+                            Learn complex computer science concepts through engaging visual narratives. 
+                            Transform abstract programming ideas into memorable stories with real-world examples, 
+                            interactive learning, and bite-sized content that makes difficult topics easy to understand.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#courses" class="btn btn-primary btn-large" aria-label="Start learning computer science concepts">
+                                <span class="btn-icon">🚀</span>
+                                Start Learning Now
+                            </a>
+                        </div>
+                    </div>
+                <div class="hero-visual">
+                    <div class="hero-image">
+                        <div class="floating-card card-1">
+                            <div class="card-icon">🏗️</div>
+                            <div class="card-content">
+                                <h4>Design Patterns</h4>
+                                <p>Learn through stories</p>
+                            </div>
+                        </div>
+                        <div class="floating-card card-2">
+                            <div class="card-icon">🧩</div>
+                            <div class="card-content">
+                                <h4>Algorithms</h4>
+                                <p>Visual explanations</p>
+                            </div>
+                        </div>
+                        <div class="floating-card card-3">
+                            <div class="card-icon">💻</div>
+                            <div class="card-content">
+                                <h4>JavaScript</h4>
+                                <p>Interactive learning</p>
+                            </div>
+                        </div>
+                        <div class="hero-main-visual">
+                            <div class="visual-content">
+                                <div class="code-snippet">
+                                    <div class="code-header">
+                                        <div class="code-dots">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                        <span class="code-title">story-learning.js</span>
+                                    </div>
+                                    <div class="code-body">
+                                        <div class="code-line">
+                                            <span class="code-keyword">class</span> 
+                                            <span class="code-class">StoryLearning</span> {
+                                        </div>
+                                        <div class="code-line">
+                                            &nbsp;&nbsp;<span class="code-method">makeItSimple</span>() {
+                                        </div>
+                                        <div class="code-line">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> 
+                                            <span class="code-string">'Complex → Simple'</span>;
+                                        </div>
+                                        <div class="code-line">
+                                            &nbsp;&nbsp;}
+                                        </div>
+                                        <div class="code-line">}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Course Categories</h2>
+                <p class="section-description">
+                    Explore our comprehensive collection of programming courses, 
+                    each designed with engaging stories and visual explanations.
+                </p>
+            </div>
+            
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Course tiles will be populated by JavaScript -->
+                <div class="course-tile" data-category="design-patterns">
+                    <div class="course-tile-header">
+                        <div class="course-icon">🏗️</div>
+                        <div class="course-badge">Popular</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Design Patterns</h3>
+                        <p class="course-description">
+                            Master software design patterns through Sharma Ji's hilarious coding adventures. 
+                            Learn when to use them, common pitfalls, and best practices.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-level">Intermediate</span>
+                            <span class="course-duration">6 courses</span>
+                        </div>
+                        <div class="course-topics">
+                            <span class="topic-tag">Singleton</span>
+                            <span class="topic-tag">Factory</span>
+                            <span class="topic-tag">Observer</span>
+                            <span class="topic-tag">+3 more</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-format">
+                            <span class="format-icon">📖</span>
+                            <span class="format-text">Story-based Learning</span>
+                        </div>
+                        <a href="design-patterns.html" class="course-btn">
+                            Start Learning
+                            <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="course-tile" data-category="algorithms">
+                    <div class="course-tile-header">
+                        <div class="course-icon">🧩</div>
+                        <div class="course-badge">New</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Algorithms & Data Structures</h3>
+                        <p class="course-description">
+                            Visualize complex algorithms through engaging stories. From sorting to 
+                            graph traversal, make algorithmic thinking intuitive and memorable.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-level">Intermediate</span>
+                            <span class="course-duration">Coming Soon</span>
+                            <span class="course-status">In Development</span>
+                        </div>
+                        <div class="course-topics">
+                            <span class="topic-tag">Sorting</span>
+                            <span class="topic-tag">Trees</span>
+                            <span class="topic-tag">Graphs</span>
+                            <span class="topic-tag">+More</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-format">
+                            <span class="format-icon">📖</span>
+                            <span class="format-text">Story-based Learning</span>
+                        </div>
+                        <button class="course-btn disabled" disabled>
+                            Coming Soon
+                            <span class="btn-arrow">⏳</span>
+                        </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="course-tile" data-category="javascript">
+                    <div class="course-tile-header">
+                        <div class="course-icon">🤖</div>
+                        <div class="course-badge new-badge">New</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Prompt Engineering</h3>
+                        <p class="course-description">
+                            Master AI communication through Arjun's journey from ChatGPT chaos to becoming 
+                            the company's AI whisperer and prompt engineering expert.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-level">Beginner</span>
+                            <span class="course-duration">75 minutes</span>
+                            <span class="course-status">8 Chapters</span>
+                        </div>
+                        <div class="course-topics">
+                            <span class="topic-tag">CLEAR Framework</span>
+                            <span class="topic-tag">Chain-of-Thought</span>
+                            <span class="topic-tag">Multi-Model AI</span>
+                            <span class="topic-tag">+More</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-format">
+                            <span class="format-icon">📖</span>
+                            <span class="format-text">Story-based Learning</span>
+                        </div>
+                        <a href="course-detail.html?id=prompt-engineering" class="course-btn">
+                            Start Learning
+                            <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="course-tile" data-category="system-design">
+                    <div class="course-tile-header">
+                        <div class="course-icon">🏢</div>
+                        <div class="course-badge coming-soon-badge">Coming Soon</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">System Design</h3>
+                        <p class="course-description">
+                            Learn to design scalable systems through architectural stories. 
+                            Understand patterns, trade-offs, and best practices for large systems.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-level">Advanced</span>
+                            <span class="course-duration">Coming Soon</span>
+                            <span class="course-status">In Development</span>
+                        </div>
+                        <div class="course-topics">
+                            <span class="topic-tag">Scalability</span>
+                            <span class="topic-tag">Databases</span>
+                            <span class="topic-tag">Caching</span>
+                            <span class="topic-tag">+More</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-format">
+                            <span class="format-icon">📖</span>
+                            <span class="format-text">Story-based Learning</span>
+                        </div>
+                        <button class="course-btn disabled" disabled>
+                            Coming Soon
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-footer">
+                <p class="more-courses-text">Want to see all our courses?</p>
+                <a href="#contact" class="btn btn-outline">
+                    View All Courses
+                    <span class="btn-icon">📚</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Sharing Section -->
+    <section class="social-sharing">
+        <div class="container">
+            <div class="sharing-content">
+                <h3>Share LearnByShorts</h3>
+                <p>Help others discover story-based learning for computer science</p>
+                <div class="social-buttons">
+                    <button class="social-btn whatsapp" onclick="shareToWhatsApp()">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>
+                        </svg>
+                        WhatsApp
+                    </button>
+                    
+                    <button class="social-btn twitter" onclick="shareToTwitter()">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        Twitter
+                    </button>
+                    
+                    <button class="social-btn linkedin" onclick="shareToLinkedIn()">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </button>
+                    
+                    <button class="social-btn facebook" onclick="shareToFacebook()">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Facebook
+                    </button>
+                    
+                    <button class="social-btn copy" onclick="copyToClipboard()">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose LearnByShorts?</h2>
+                <p class="section-description">
+                    Our unique approach transforms complex computer science concepts into 
+                    memorable, engaging learning experiences.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Focused Learning</h3>
+                    <p class="feature-description">
+                        Each concept broken into digestible 2-10 second visual stories 
+                        that make complex ideas simple to understand.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Story-Based Approach</h3>
+                    <p class="feature-description">
+                        Learn through engaging narratives with relatable characters 
+                        that make abstract computer science concepts concrete.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Visual Learning</h3>
+                    <p class="feature-description">
+                        Rich visual elements, diagrams, and interactive examples 
+                        that cater to different learning styles.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Quick Mastery</h3>
+                    <p class="feature-description">
+                        Learn faster with our story-based methodology that aims to reduce 
+                        learning time while improving retention.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3 class="feature-title">Hands-on Practice</h3>
+                    <p class="feature-description">
+                        Interactive code examples and exercises that let you 
+                        practice concepts immediately after learning.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Story-Driven Learning</h3>
+                    <p class="feature-description">
+                        Learn through engaging character adventures like Sharma Ji's office chaos 
+                        and Maya's pizza empire - making complex patterns memorable and fun.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Start Your Learning Journey?</h2>
+                <p class="cta-description">
+                    Experience computer science concepts through engaging stories and memorable characters.
+                </p>
+                <div class="cta-actions">
+                    <a href="#courses" class="btn btn-primary btn-large">
+                        <span class="btn-icon">🚀</span>
+                        Start Learning Now
+                    </a>
+                    <a href="mailto:hello@learnbyshorts.com" class="btn btn-primary btn-large">
+                        <span class="btn-icon">📧</span>
+                        Contact Us
+                    </a>
+                </div>
+                <div class="cta-features">
+                    <div class="cta-feature">
+                        <span class="feature-icon">📚</span>
+                        <span>Story-based learning</span>
+                    </div>
+                    <div class="cta-feature">
+                        <span class="feature-icon">💻</span>
+                        <span>Interactive examples</span>
+                    </div>
+                    <div class="cta-feature">
+                        <span class="feature-icon">⏰</span>
+                        <span>Self-paced courses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">📚</span>
+                        <span class="logo-text">LearnByShorts</span>
+                    </div>
+                    <p class="footer-description">
+                        Making computer science concepts accessible through engaging visual stories and narratives.
+                    </p>
+                </div>
+
+                <!-- Links Sections -->
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
+                    <div class="footer-meta">
+                        <span>Made with ❤️ for learners</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Force HTTPS redirect
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+            location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+        }
+        
+        // Force www redirect for consistency
+        if (location.hostname === 'learnbyshorts.com' && !location.hostname.startsWith('www.')) {
+            const newUrl = 'https://www.' + location.hostname + location.pathname + location.search + location.hash;
+            location.replace(newUrl);
+        }
+    </script>
+    <script src="js/rate-limiter.js"></script>
+    <script src="js/utils/constants.js"></script>
+    <script src="js/services/DataService.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle - removed duplicate code, handled by mobile-menu.js
+
+        // Initialize homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('LearnByShorts Homepage loaded successfully!');
+        });
+    </script>
+    <script src="js/mobile-menu.js?v=1.3.6"></script>
+    <script src="js/social-sharing.js?v=1.3.6"></script>
+</body>
+</html>

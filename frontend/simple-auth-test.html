@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Auth Test</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <h1>Simple Auth Test</h1>
+    <div id="signin-button"></div>
+    <div id="status"></div>
+
+    <script>
+        window.onload = function() {
+            console.log('Page loaded');
+            console.log('Google available:', !!window.google);
+            
+            if (window.google) {
+                initGoogle();
+            } else {
+                setTimeout(() => {
+                    console.log('Google available after delay:', !!window.google);
+                    if (window.google) initGoogle();
+                }, 1000);
+            }
+        };
+
+        function initGoogle() {
+            try {
+                google.accounts.id.initialize({
+                    client_id: '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com',
+                    callback: handleCredentialResponse
+                });
+
+                google.accounts.id.renderButton(
+                    document.getElementById('signin-button'),
+                    { theme: 'outline', size: 'large' }
+                );
+
+                document.getElementById('status').innerHTML = 'Google Sign-In ready';
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('status').innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        function handleCredentialResponse(response) {
+            console.log('Google response:', response);
+            document.getElementById('status').innerHTML = 'Signed in! Token: ' + response.credential.substring(0, 20) + '...';
+            
+            // Test API call
+            fetch('https://x4he2xds46.execute-api.us-east-1.amazonaws.com/prod/auth/google', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ credential: response.credential })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('API response:', data);
+                document.getElementById('status').innerHTML += '<br>API: ' + JSON.stringify(data);
+            })
+            .catch(err => {
+                console.error('API error:', err);
+                document.getElementById('status').innerHTML += '<br>API Error: ' + err.message;
+            });
+        }
+    </script>
+</body>
+</html>

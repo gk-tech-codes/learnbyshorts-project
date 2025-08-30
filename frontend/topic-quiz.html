@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic Quiz - LearnByShorts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/topic-quiz.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h1>LearnByShorts</h1>
+                        <span class="tagline">Master Programming Through Stories</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="quiz-main">
+        <div class="container">
+            <div class="quiz-header">
+                <nav class="quiz-breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <a href="index.html#courses" id="categoryLink">Courses</a>
+                    <span>/</span>
+                    <a href="#" id="courseBreadcrumb">Course</a>
+                    <span>/</span>
+                    <span>Quiz</span>
+                </nav>
+                
+                <div class="quiz-info">
+                    <h1 class="quiz-title" id="quizTitle">Topic Quiz</h1>
+                    <p class="quiz-subtitle">Test your understanding with 4 questions</p>
+                </div>
+            </div>
+
+            <div class="quiz-container" id="quizContainer">
+                <div class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Loading quiz...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        class TopicQuiz {
+            constructor() {
+                this.courseId = new URLSearchParams(window.location.search).get('course');
+                this.questions = [];
+                this.currentQuestion = 0;
+                this.answers = [];
+                this.score = 0;
+                this.init();
+            }
+
+            async init() {
+                if (!this.courseId) {
+                    this.showError('Course not found');
+                    return;
+                }
+
+                // Update breadcrumb for prompt-engineering
+                if (this.courseId === 'prompt-engineering') {
+                    document.getElementById('courseBreadcrumb').textContent = 'Prompt Engineering';
+                    document.getElementById('courseBreadcrumb').href = 'course-detail.html?id=prompt-engineering';
+                    document.getElementById('categoryLink').textContent = 'Courses';
+                    document.getElementById('categoryLink').href = 'index.html#courses';
+                }
+
+                try {
+                    await this.loadQuestions();
+                    this.renderQuiz();
+                } catch (error) {
+                    console.error('Error loading quiz:', error);
+                    this.showError('Failed to load quiz');
+                }
+            }
+
+            async loadQuestions() {
+                const response = await fetch(`data/quiz-questions.json?v=${Date.now()}`);
+                const data = await response.json();
+                const allQuestions = data.quizzes[this.courseId] || [];
+                
+                // Randomly select 4 questions
+                this.questions = this.shuffleArray(allQuestions).slice(0, 4);
+                
+                if (this.questions.length === 0) {
+                    throw new Error('No questions available');
+                }
+            }
+
+            shuffleArray(array) {
+                const shuffled = [...array];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled;
+            }
+
+            renderQuiz() {
+                const container = document.getElementById('quizContainer');
+                container.innerHTML = `
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${((this.currentQuestion) / this.questions.length) * 100}%"></div>
+                        </div>
+                        <span class="progress-text">Question ${this.currentQuestion + 1} of ${this.questions.length}</span>
+                    </div>
+                    
+                    <div class="question-card">
+                        <h2 class="question-text">${this.questions[this.currentQuestion].question}</h2>
+                        <div class="options-list">
+                            ${this.questions[this.currentQuestion].options.map((option, index) => `
+                                <button class="option-btn" onclick="quiz.selectAnswer(${index})" data-index="${index}">
+                                    <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+                                    <span class="option-text">${option}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div class="question-actions">
+                            <button class="btn-next" id="nextBtn" onclick="quiz.nextQuestion()" disabled>
+                                ${this.currentQuestion === this.questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            selectAnswer(answerIndex) {
+                // Remove previous selection
+                document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+                
+                // Mark selected option
+                document.querySelector(`[data-index="${answerIndex}"]`).classList.add('selected');
+                
+                // Store answer
+                this.answers[this.currentQuestion] = answerIndex;
+                
+                // Enable next button
+                document.getElementById('nextBtn').disabled = false;
+            }
+
+            nextQuestion() {
+                if (this.currentQuestion < this.questions.length - 1) {
+                    this.currentQuestion++;
+                    this.renderQuiz();
+                } else {
+                    this.showResults();
+                }
+            }
+
+            showResults() {
+                // Calculate score
+                this.score = 0;
+                this.questions.forEach((question, index) => {
+                    if (this.answers[index] === question.correct) {
+                        this.score++;
+                    }
+                });
+
+                const percentage = Math.round((this.score / this.questions.length) * 100);
+                const container = document.getElementById('quizContainer');
+                
+                container.innerHTML = `
+                    <div class="results-card">
+                        <div class="score-display">
+                            <div class="score-circle ${percentage >= 75 ? 'excellent' : percentage >= 50 ? 'good' : 'needs-improvement'}">
+                                <span class="score-percentage">${percentage}%</span>
+                                <span class="score-label">Score</span>
+                            </div>
+                            <div class="score-details">
+                                <h2>Quiz Complete!</h2>
+                                <p>You got ${this.score} out of ${this.questions.length} questions correct.</p>
+                                <div class="performance-message">
+                                    ${this.getPerformanceMessage(percentage)}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="results-actions">
+                            <button class="btn-review" onclick="quiz.showReview()">
+                                <i class="fas fa-eye"></i>
+                                Review Answers
+                            </button>
+                            <button class="btn-continue" onclick="quiz.continueLearning()">
+                                <i class="fas fa-arrow-right"></i>
+                                Continue Learning
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getPerformanceMessage(percentage) {
+                if (percentage >= 75) {
+                    return '<span class="excellent">🎉 Excellent! You have a strong understanding of this topic.</span>';
+                } else if (percentage >= 50) {
+                    return '<span class="good">👍 Good job! You might want to review a few concepts.</span>';
+                } else {
+                    return '<span class="needs-improvement">📚 Consider reviewing the topic material before continuing.</span>';
+                }
+            }
+
+            showReview() {
+                const container = document.getElementById('quizContainer');
+                const reviewHTML = this.questions.map((question, index) => {
+                    const userAnswer = this.answers[index];
+                    const isCorrect = userAnswer === question.correct;
+                    
+                    return `
+                        <div class="review-question ${isCorrect ? 'correct' : 'incorrect'}">
+                            <h3>Question ${index + 1}</h3>
+                            <p class="question-text">${question.question}</p>
+                            <div class="review-options">
+                                ${question.options.map((option, optIndex) => `
+                                    <div class="review-option ${optIndex === question.correct ? 'correct-answer' : ''} ${optIndex === userAnswer ? 'user-answer' : ''}">
+                                        <span class="option-letter">${String.fromCharCode(65 + optIndex)}</span>
+                                        <span>${option}</span>
+                                        ${optIndex === question.correct ? '<i class="fas fa-check"></i>' : ''}
+                                        ${optIndex === userAnswer && !isCorrect ? '<i class="fas fa-times"></i>' : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="explanation">
+                                <strong>Explanation:</strong> ${question.explanation}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                container.innerHTML = `
+                    <div class="review-container">
+                        <h2>Quiz Review</h2>
+                        ${reviewHTML}
+                        <div class="review-actions">
+                            <button class="btn-continue" onclick="quiz.continueLearning()">
+                                <i class="fas fa-arrow-right"></i>
+                                Continue Learning
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            continueLearning() {
+                window.location.href = `course-detail.html?id=${this.courseId}`;
+            }
+
+            showError(message) {
+                document.getElementById('quizContainer').innerHTML = `
+                    <div class="error-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>${message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        const quiz = new TopicQuiz();
+    </script>
+</body>
+</html>

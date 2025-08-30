@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Player - LearnByShorts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/player.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="player-body">
+    <!-- Header -->
+    <header class="player-header">
+        <div class="player-nav">
+            <button class="back-btn" onclick="goBack()">← Back to Courses</button>
+            <div class="course-info">
+                <h1 id="course-title">Loading Course...</h1>
+                <div class="progress-info">
+                    <span id="current-concept">1</span> of <span id="total-concepts">12</span> concepts
+                </div>
+            </div>
+            <div class="player-controls-header">
+                <button class="speed-btn" id="speed-control">1x</button>
+                <button class="settings-btn">⚙️</button>
+            </div>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-full">
+                <div class="progress-bar-fill" id="course-progress"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Player -->
+    <main class="player-main">
+        <div class="player-container">
+            <!-- Image Display Area -->
+            <div class="image-player">
+                <div class="image-container">
+                    <img id="concept-image" src="assets/demo/concept1.jpg" alt="Concept visualization">
+                    <div class="image-overlay">
+                        <div class="concept-title" id="concept-title">Wave-Particle Duality</div>
+                        <div class="concept-description" id="concept-description">
+                            Understanding how particles can behave as waves
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Player Controls -->
+                <div class="player-controls">
+                    <button class="control-btn" id="prev-btn">⏮️</button>
+                    <button class="control-btn play-pause-btn" id="play-pause-btn">▶️</button>
+                    <button class="control-btn" id="next-btn">⏭️</button>
+                    
+                    <div class="time-controls">
+                        <span class="time-display" id="current-time">0:00</span>
+                        <div class="concept-progress-bar">
+                            <div class="concept-progress-fill" id="concept-progress"></div>
+                        </div>
+                        <span class="time-display" id="total-time">0:08</span>
+                    </div>
+                    
+                    <div class="volume-controls">
+                        <button class="control-btn" id="volume-btn">🔊</button>
+                        <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept Navigation -->
+            <div class="concept-navigation">
+                <h3>Course Concepts</h3>
+                <div class="concepts-list" id="concepts-list">
+                    <!-- Concepts will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Concept Details Panel -->
+        <div class="concept-details">
+            <div class="details-header">
+                <h3>Concept Details</h3>
+                <button class="toggle-details" id="toggle-details">📖</button>
+            </div>
+            <div class="details-content" id="details-content">
+                <div class="concept-explanation">
+                    <h4>What you're learning:</h4>
+                    <p id="detailed-explanation">
+                        This concept explores the fundamental principle in quantum mechanics where particles exhibit both wave and particle characteristics depending on how they are observed.
+                    </p>
+                </div>
+                <div class="key-points">
+                    <h4>Key Points:</h4>
+                    <ul id="key-points-list">
+                        <li>Particles can behave as waves under certain conditions</li>
+                        <li>The observation method affects the behavior</li>
+                        <li>This principle is fundamental to quantum mechanics</li>
+                    </ul>
+                </div>
+                <div class="related-concepts">
+                    <h4>Related Concepts:</h4>
+                    <div class="related-tags" id="related-tags">
+                        <span class="tag">Quantum Superposition</span>
+                        <span class="tag">Uncertainty Principle</span>
+                        <span class="tag">Double-Slit Experiment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal (appears after concept completion) -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quick Check</h3>
+                <button class="close-modal" onclick="closeQuiz()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="question" id="quiz-question">
+                    What is the main characteristic of wave-particle duality?
+                </div>
+                <div class="quiz-options" id="quiz-options">
+                    <button class="quiz-option" data-answer="correct">Particles can exhibit both wave and particle properties</button>
+                    <button class="quiz-option" data-answer="wrong">Particles are always waves</button>
+                    <button class="quiz-option" data-answer="wrong">Particles are always particles</button>
+                    <button class="quiz-option" data-answer="wrong">Waves and particles are unrelated</button>
+                </div>
+                <div class="quiz-feedback" id="quiz-feedback"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeQuiz()">Skip</button>
+                <button class="btn-primary" id="next-concept-btn" onclick="nextConcept()" disabled>Next Concept</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Player Settings</h3>
+                <button class="close-modal" onclick="closeSettings()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label>Playback Speed:</label>
+                    <select id="speed-select">
+                        <option value="0.5">0.5x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2x</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label>Auto-advance:</label>
+                    <input type="checkbox" id="auto-advance" checked>
+                    <span>Automatically move to next concept</span>
+                </div>
+                <div class="setting-group">
+                    <label>Show concept descriptions:</label>
+                    <input type="checkbox" id="show-descriptions" checked>
+                </div>
+                <div class="setting-group">
+                    <label>Quiz after each concept:</label>
+                    <input type="checkbox" id="enable-quiz" checked>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/player.js"></script>
+</body>
+</html>

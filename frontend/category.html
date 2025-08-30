@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category - LearnByShorts</title>
+    <meta name="description" content="Explore programming courses in this category through engaging visual stories">
+    <meta name="keywords" content="programming, learning, visual stories, education, courses">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/category.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h1>LearnByShorts</h1>
+                        <span class="tagline">Master Programming Through Stories</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html#home" class="nav-link">Home</a>
+                    <a href="index.html#courses" class="nav-link">Courses</a>
+                    <a href="index.html#features" class="nav-link">Features</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="index.html">Home</a></li>
+                <li><span id="categoryBreadcrumb">Loading...</span></li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Category Hero -->
+    <section class="category-hero" id="categoryHero">
+        <div class="container">
+            <div class="category-hero-content">
+                <div class="category-icon" id="categoryIcon">📚</div>
+                <h1 id="categoryTitle">Loading Category...</h1>
+                <p id="categoryDescription">Loading description...</p>
+                <div class="category-meta">
+                    <span id="categoryDifficulty">All Levels</span>
+                    <span id="categoryDuration">Self-paced</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Content -->
+    <section class="category-content">
+        <div class="container">
+            <!-- Courses Grid -->
+            <div class="courses-section">
+                <h2>Available Courses</h2>
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- Loading state -->
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Loading courses...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LearnByShorts</h3>
+                    <p>Revolutionizing programming education through visual storytelling</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Categories</h4>
+                    <ul>
+                        <li><a href="design-patterns.html">Design Patterns</a></li>
+                        <li><a href="category.html?id=algorithms">Algorithms</a></li>
+                        <li><a href="category.html?id=system-design">System Design</a></li>
+                        <li><a href="category.html?id=web-development">Web Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LearnByShorts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils/constants.js"></script>
+    <script>
+        class CategoryPage {
+            constructor() {
+                this.categoryId = null;
+                this.categoryData = null;
+                this.coursesData = [];
+                this.init();
+            }
+
+            async init() {
+                this.categoryId = this.getCategoryIdFromUrl();
+                
+                if (this.categoryId === 'design-patterns') {
+                    // Redirect to the specific design patterns page
+                    window.location.href = 'design-patterns.html';
+                    return;
+                }
+
+                await this.loadCategoryData();
+                await this.loadCoursesData();
+                this.renderPage();
+                this.setupEventListeners();
+            }
+
+            getCategoryIdFromUrl() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('id');
+            }
+
+            async loadCategoryData() {
+                try {
+                    const response = await fetch('data/categories.json');
+                    const data = await response.json();
+                    this.categoryData = data.categories.find(cat => cat.id === this.categoryId);
+                    
+                    if (!this.categoryData) {
+                        this.showError('Category not found');
+                    }
+                } catch (error) {
+                    console.error('Error loading category data:', error);
+                    this.showError('Failed to load category data');
+                }
+            }
+
+            async loadCoursesData() {
+                try {
+                    const response = await fetch('data/courses.json');
+                    const data = await response.json();
+                    this.coursesData = data.courses.filter(course => course.categoryId === this.categoryId);
+                } catch (error) {
+                    console.error('Error loading courses data:', error);
+                }
+            }
+
+            renderPage() {
+                if (!this.categoryData) return;
+
+                // Update page title
+                document.title = `${this.categoryData.title} - LearnByShorts`;
+
+                // Update breadcrumb
+                document.getElementById('categoryBreadcrumb').textContent = this.categoryData.title;
+
+                // Update hero section
+                const hero = document.getElementById('categoryHero');
+                hero.style.backgroundColor = this.categoryData.color || '#6366f1';
+
+                document.getElementById('categoryIcon').textContent = this.categoryData.icon || '📚';
+                document.getElementById('categoryTitle').textContent = this.categoryData.title;
+                document.getElementById('categoryDescription').textContent = this.categoryData.description;
+                document.getElementById('categoryDifficulty').textContent = this.categoryData.difficulty || 'All Levels';
+                document.getElementById('categoryDuration').textContent = this.categoryData.duration || 'Self-paced';
+
+                // Render courses
+                this.renderCourses();
+            }
+
+            renderCourses() {
+                const coursesGrid = document.getElementById('coursesGrid');
+                coursesGrid.innerHTML = '';
+
+                if (this.coursesData.length === 0) {
+                    coursesGrid.innerHTML = '<p class="no-courses">No courses available in this category yet.</p>';
+                    return;
+                }
+
+                this.coursesData.forEach(course => {
+                    const courseCard = document.createElement('a');
+                    courseCard.href = `course-detail.html?id=${course.id}`;
+                    courseCard.className = 'course-card';
+                    
+                    courseCard.innerHTML = `
+                        <div class="course-icon" style="background-color: ${course.color || '#6366f1'}">
+                            ${course.icon || '📚'}
+                        </div>
+                        <h3>${course.title}</h3>
+                        <p>${course.description}</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                            <span><i class="fas fa-signal"></i> ${course.difficulty}</span>
+                        </div>
+                    `;
+                    
+                    coursesGrid.appendChild(courseCard);
+                });
+            }
+
+            showError(message) {
+                const coursesGrid = document.getElementById('coursesGrid');
+                coursesGrid.innerHTML = `
+                    <div class="error-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>${message}</p>
+                        <button onclick="location.reload()" class="btn-retry">Try Again</button>
+                    </div>
+                `;
+            }
+
+            setupEventListeners() {
+                // Mobile menu toggle
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+                
+                if (hamburger && navMenu) {
+                    hamburger.addEventListener('click', function() {
+                        hamburger.classList.toggle('active');
+                        navMenu.classList.toggle('active');
+                    });
+                }
+            }
+        }
+
+        // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new CategoryPage();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini TTS Butterfly Reader Demo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/butterfly-reader.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .api-setup {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+        }
+        .api-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: monospace;
+            margin-top: 0.5rem;
+        }
+        .demo-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">🦋 Gemini TTS Butterfly Reader</h1>
+        
+        <div class="api-setup">
+            <h3>🔑 Gemini API Setup</h3>
+            <p>Enter your Gemini API key to enable natural AI voice (like the reference code):</p>
+            <input type="password" id="apiKey" class="api-input" placeholder="Enter your Gemini API key here...">
+            <p><small>Get your free API key at: <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a></small></p>
+        </div>
+
+        <div class="demo-content" id="storyContent">
+            <p>Arjun stared at his computer screen in frustration. For the third time that morning, he had typed "Write marketing copy" into ChatGPT, and for the third time, he got generic content that could apply to any company selling anything.</p>
+
+            <p>"This is supposed to be revolutionary AI," he muttered, deleting another bland paragraph about "innovative solutions" and "customer satisfaction." His deadline was approaching fast, and his boss Rajesh was expecting compelling copy for their new project management software.</p>
+
+            <p>Just then, his colleague Priya walked by his desk. She noticed his frustrated expression and the ChatGPT tab open on his screen. "Having trouble with AI prompts?" she asked with a knowing smile.</p>
+
+            <p>"It's like talking to a robot that doesn't understand context," Arjun complained. "I ask for marketing copy, and it gives me something so generic it could be selling toothpaste or rocket ships."</p>
+
+            <p>Priya pulled up a chair. "That's because you're not speaking its language yet. AI is incredibly powerful, but it needs the right instructions. Let me show you something that changed everything for me."</p>
+        </div>
+    </div>
+
+    <script src="js/butterfly-reader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiKeyInput = document.getElementById('apiKey');
+            const storyContent = document.getElementById('storyContent');
+            
+            // Initialize butterfly reader
+            window.butterflyReader = new ButterflyReader(storyContent, {
+                speed: 180,
+                autoStart: false,
+                showControls: true,
+                showProgress: true,
+                enableVoice: true,
+                voiceRate: 1.0,
+                voicePitch: 1.0,
+                voiceVolume: 0.7
+            });
+            
+            // Update API key when user enters it
+            apiKeyInput.addEventListener('input', function() {
+                if (window.butterflyReader) {
+                    window.butterflyReader.geminiApiKey = this.value;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

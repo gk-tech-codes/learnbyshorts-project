@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singleton Design Pattern - LearnByShorts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/course-story.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="story-body">
+    <!-- Header -->
+    <header class="story-header">
+        <div class="story-nav">
+            <button class="back-btn" onclick="goBack()">← Back to Courses</button>
+            <div class="course-info">
+                <h1>Code Chronicles: Sharma Ji's Saga</h1>
+                <div class="course-meta">
+                    <span class="topic">Singleton Design Pattern</span>
+                    <span class="difficulty">Intermediate</span>
+                    <span class="duration">6 concepts • 8 min</span>
+                </div>
+            </div>
+            <div class="story-controls">
+                <button class="auto-play-btn" id="autoPlayBtn">Auto Play</button>
+                <button class="settings-btn">⚙️</button>
+            </div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="currentConcept">1</span> of <span id="totalConcepts">6</span> concepts
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Story Container -->
+    <main class="story-main">
+        <div class="story-container">
+            <div class="slides-wrapper" id="slidesWrapper">
+                
+                <!-- Concept 1: Introduction -->
+                <div class="slide" data-concept="1">
+                    <div class="concept-header">
+                        <span class="concept-number">01</span>
+                        <h2>🎞️ "Too Many Sharmas" 🤯</h2>
+                        <div class="concept-tags">
+                            <span class="tag">Problem Introduction</span>
+                            <span class="tag">Multiple Instances</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <div class="scene-setting">
+                            <span class="scene-label">Scene:</span>
+                            <span class="scene-text">Bengaluru's bustling startup office 🏢</span>
+                        </div>
+                        
+                        <div class="story-text">
+                            <p>A peculiar problem emerged: every time app configuration was needed, a <strong>new</strong> Sharma Ji appeared. One delivered light mode 💡, another dark mode 🌙.</p>
+                            
+                            <p>HR was bewildered 😵‍💫, developers were in disarray 😡. The chaos was palpable.</p>
+                            
+                            <div class="dialogue">
+                                <div class="speaker">CTO (exasperated):</div>
+                                <div class="quote">"From this moment, only ONE Sharma Ji will ever exist in our system."</div>
+                            </div>
+                            
+                            <p class="conclusion">Thus, the <strong>Singleton Sharma Ji</strong> was conceptualized. ✨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 2: Single Instance -->
+                <div class="slide" data-concept="2">
+                    <div class="concept-header">
+                        <span class="concept-number">02</span>
+                        <h2>👑 "The One and Only Sharma Ji"</h2>
+                        <div class="concept-tags">
+                            <span class="tag">getInstance()</span>
+                            <span class="tag">Single Instance</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <div class="scene-setting">
+                            <span class="scene-label">Scene:</span>
+                            <span class="scene-text">Backend API room, chai in hand ☕</span>
+                        </div>
+                        
+                        <div class="story-text">
+                            <p>A frustrated developer attempted:</p>
+                            
+                            <div class="code-block error">
+                                <code>new SharmaJi()</code>
+                                <span class="code-result">❌ Error: Cannot instantiate directly</span>
+                            </div>
+                            
+                            <div class="dialogue">
+                                <div class="speaker">Sharma Ji (via Slack):</div>
+                                <div class="quote">"Please use <code>getInstance()</code>. I am already present — a single Sharma Ji for the entire application."</div>
+                            </div>
+                            
+                            <div class="code-block success">
+                                <code>SharmaJi.getInstance()</code>
+                                <span class="code-result">✅ Returns the same instance</span>
+                            </div>
+                            
+                            <p class="conclusion">Problem solved. A clear, <strong>single source of truth</strong> was established. ✅</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 3: Protection Against Cloning -->
+                <div class="slide" data-concept="3">
+                    <div class="concept-header">
+                        <span class="concept-number">03</span>
+                        <h2>🛡️ "The Desi Clone Attack"</h2>
+                        <div class="concept-tags">
+                            <span class="tag">Private Constructor</span>
+                            <span class="tag">Clone Protection</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <div class="scene-setting">
+                            <span class="scene-label">Scene:</span>
+                            <span class="scene-text">Midnight hackathon, jugaad mode 💻</span>
+                        </div>
+                        
+                        <div class="story-text">
+                            <p>Ramesh, ever the innovator, tried to bypass the system using Reflection, hoping to create a duplicate Sharma Ji. 😈</p>
+                            
+                            <div class="code-block error">
+                                <code>Constructor.newInstance()</code>
+                                <span class="code-result">🚫 Access Denied: Private constructor enforced!</span>
+                            </div>
+                            
+                            <div class="dialogue">
+                                <div class="speaker">Sharma Ji:</div>
+                                <div class="quote">"I am fully protected, even against clever but risky attempts like yours."</div>
+                            </div>
+                            
+                            <p class="conclusion">The clone operation failed. <strong>Sharma Ji remained the undisputed one.</strong> 💪</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 4: Global Access -->
+                <div class="slide" data-concept="4">
+                    <div class="concept-header">
+                        <span class="concept-number">04</span>
+                        <h2>🌐 "Calling Sharma Ji from Anywhere"</h2>
+                        <div class="concept-tags">
+                            <span class="tag">Global Access</span>
+                            <span class="tag">Consistency</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <div class="scene-setting">
+                            <span class="scene-label">Scene:</span>
+                            <span class="scene-text">Teams from Mumbai, Pune, and Chennai 📞</span>
+                        </div>
+                        
+                        <div class="story-text">
+                            <p>Across geographies, everyone simply invoked:</p>
+                            
+                            <div class="code-block success">
+                                <code>SharmaJi.getInstance()</code>
+                                <span class="code-result">🚀 Same Sharma Ji responds everywhere</span>
+                            </div>
+                            
+                            <div class="benefits-grid">
+                                <div class="benefit">
+                                    <span class="benefit-icon">🎯</span>
+                                    <span class="benefit-text">Identical object</span>
+                                </div>
+                                <div class="benefit">
+                                    <span class="benefit-icon">📊</span>
+                                    <span class="benefit-text">Consistent data</span>
+                                </div>
+                                <div class="benefit">
+                                    <span class="benefit-icon">✨</span>
+                                    <span class="benefit-text">Zero confusion</span>
+                                </div>
+                            </div>
+                            
+                            <div class="dialogue">
+                                <div class="speaker">Sharma Ji:</div>
+                                <div class="quote">"Whether you're in the frontend or backend, I will always be the same reliable Sharma Ji." 😊</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 5: Why Single Instance -->
+                <div class="slide" data-concept="5">
+                    <div class="concept-header">
+                        <span class="concept-number">05</span>
+                        <h2>🤔 "Why Not More Sharma Jis?"</h2>
+                        <div class="concept-tags">
+                            <span class="tag">Design Rationale</span>
+                            <span class="tag">Problem Prevention</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <div class="scene-setting">
+                            <span class="scene-label">Scene:</span>
+                            <span class="scene-text">Coffee machine conversation 🗣️</span>
+                        </div>
+                        
+                        <div class="story-text">
+                            <div class="question-box">
+                                <span class="question-icon">❓</span>
+                                <p>"Why can't we have multiple Sharma Jis? Wouldn't that offer more flexibility?"</p>
+                            </div>
+                            
+                            <div class="dialogue">
+                                <div class="speaker">Sharma Ji (thoughtfully):</div>
+                                <div class="quote">"Imagine multiple loggers writing to different files, creating fragmented records. 📁 Or several database configurations operating independently, leading to inconsistent data. 🤯 That, my friend, is not flexibility — <strong>that is absolute chaos.</strong>"</div>
+                            </div>
+                            
+                            <div class="wisdom-box">
+                                <span class="wisdom-icon">🧠</span>
+                                <p><strong>One Sharma Ji equals one reliable, consistent point of truth.</strong> 🎯</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 6: The Lesson -->
+                <div class="slide" data-concept="6">
+                    <div class="concept-header">
+                        <span class="concept-number">06</span>
+                        <h2>💡 The Singleton Pattern</h2>
+                        <div class="concept-tags">
+                            <span class="tag">Key Takeaways</span>
+                            <span class="tag">Implementation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <div class="lesson-summary">
+                            <h3>Pattern Definition</h3>
+                            <p class="definition">Ensures that only one instance of a class exists and provides a global point of access to it.</p>
+                            
+                            <h3>Perfect Use Cases</h3>
+                            <div class="use-cases">
+                                <div class="use-case">
+                                    <span class="use-case-icon">⚙️</span>
+                                    <div class="use-case-content">
+                                        <h4>Configuration Managers</h4>
+                                        <p>Single source for app settings</p>
+                                    </div>
+                                </div>
+                                <div class="use-case">
+                                    <span class="use-case-icon">📝</span>
+                                    <div class="use-case-content">
+                                        <h4>Loggers</h4>
+                                        <p>Centralized logging system</p>
+                                    </div>
+                                </div>
+                                <div class="use-case">
+                                    <span class="use-case-icon">💾</span>
+                                    <div class="use-case-content">
+                                        <h4>Cache Managers</h4>
+                                        <p>Shared memory management</p>
+                                    </div>
+                                </div>
+                                <div class="use-case">
+                                    <span class="use-case-icon">🔌</span>
+                                    <div class="use-case-content">
+                                        <h4>Database Connections</h4>
+                                        <p>Single connection pool</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="implementation-preview">
+                                <h3>Implementation Pattern</h3>
+                                <div class="code-block">
+                                    <code>
+public class SharmaJi {
+    private static SharmaJi instance;
+    private SharmaJi() {} // Private constructor
+    
+    public static SharmaJi getInstance() {
+        if (instance == null) {
+            instance = new SharmaJi();
+        }
+        return instance;
+    }
+}
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="story-navigation">
+            <button class="nav-btn prev-btn" id="prevBtn">
+                <span class="nav-icon">←</span>
+                <span class="nav-text">Previous</span>
+            </button>
+            
+            <div class="concept-dots" id="conceptDots"></div>
+            
+            <button class="nav-btn next-btn" id="nextBtn">
+                <span class="nav-text">Next</span>
+                <span class="nav-icon">→</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quizModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quick Knowledge Check</h3>
+                <button class="close-modal" onclick="closeQuiz()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="question" id="quizQuestion"></div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <div class="quiz-feedback" id="quizFeedback"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeQuiz()">Skip</button>
+                <button class="btn-primary" id="nextConceptBtn" onclick="nextConcept()" disabled>Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/story-player.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "name": "learnbyshorts",
+  "builds": [
+    {
+      "src": "frontend/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ],
+  "functions": {
+    "backend/server.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}

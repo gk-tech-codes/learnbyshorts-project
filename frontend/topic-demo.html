@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic Detail Demo - LearnByShorts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            padding: 2rem;
+        }
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .demo-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .demo-description {
+            color: #64748b;
+            margin-bottom: 2rem;
+            text-align: center;
+            line-height: 1.6;
+        }
+        .demo-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .demo-link {
+            display: block;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+        .demo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .demo-link h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.25rem;
+        }
+        .demo-link p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 0.875rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            padding: 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+        .feature-description {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">🎯 Topic Detail Page Demo</h1>
+        <p class="demo-description">
+            Experience the new topic detail page with engaging stories, interactive content, and comprehensive learning materials. 
+            Click on any topic below to see the enhanced learning experience.
+        </p>
+        
+        <div class="demo-links">
+            <a href="topic-detail.html?course=singleton-pattern&id=singleton-pattern-intro" class="demo-link">
+                <h3>🏢 The Tale of Sharma Ji's Government Office</h3>
+                <p>How one man solved the chaos of multiple authorities</p>
+            </a>
+            
+            <a href="topic-detail.html?course=singleton-pattern&id=singleton-pattern-implementation" class="demo-link">
+                <h3>💡 Implementing Sharma Ji's Solution</h3>
+                <p>Step-by-step code implementation of the Singleton pattern</p>
+            </a>
+            
+            <a href="topic-detail.html?course=singleton-pattern&id=singleton-pattern-advanced" class="demo-link">
+                <h3>🔄 Thread Safety & Advanced Concepts</h3>
+                <p>Handling concurrent access and advanced implementations</p>
+            </a>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📖</div>
+                <h4 class="feature-title">Story-Driven Learning</h4>
+                <p class="feature-description">Learn through engaging narratives that make complex concepts simple</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h4 class="feature-title">Interactive Code</h4>
+                <p class="feature-description">Copy-paste ready code examples with syntax highlighting</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h4 class="feature-title">Progress Tracking</h4>
+                <p class="feature-description">Visual progress indicators and reading completion tracking</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h4 class="feature-title">Real-World Applications</h4>
+                <p class="feature-description">Understand where and how to apply these concepts in practice</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h4 class="feature-title">Key Takeaways</h4>
+                <p class="feature-description">Summarized learning points for quick reference and review</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h4 class="feature-title">Responsive Design</h4>
+                <p class="feature-description">Perfect experience across desktop, tablet, and mobile devices</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+            <p style="color: #64748b; margin-bottom: 1rem;">Want to go back to the course overview?</p>
+            <a href="course-detail.html?id=singleton-pattern" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background-color: #6366f1; color: white; text-decoration: none; border-radius: 8px; font-weight: 500;">
+                ← Back to Course Detail
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,198 @@
+{
+  "stories": {
+    "singleton-pattern": [
+      {
+        "type": "intro",
+        "icon": "🏢",
+        "title": "Singleton Pattern",
+        "description": "Join Sharma Ji's hilarious office adventure as he solves the printer chaos with the Singleton pattern!",
+        "background": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+      },
+      {
+        "type": "overview",
+        "icon": "📚",
+        "title": "What You'll Learn",
+        "description": "Master the most important creational design pattern through engaging stories and real code examples.",
+        "background": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        "highlights": [
+          "Thread-safe implementation techniques",
+          "Common pitfalls and how to avoid them",
+          "Modern alternatives to Singleton",
+          "Real-world use cases and examples"
+        ]
+      },
+      {
+        "type": "features",
+        "icon": "⚡",
+        "title": "Story-Based Learning",
+        "description": "Learn through Sharma Ji's office adventures - making complex concepts memorable and fun!",
+        "background": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        "highlights": [
+          "6 engaging story chapters",
+          "45 minutes of content",
+          "Interactive quizzes",
+          "Real Java code examples"
+        ]
+      },
+      {
+        "type": "benefits",
+        "icon": "🎯",
+        "title": "Perfect For",
+        "description": "Intermediate developers who want to master design patterns through practical, memorable examples.",
+        "background": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        "highlights": [
+          "Software developers",
+          "Computer science students",
+          "Anyone learning design patterns",
+          "Interview preparation"
+        ]
+      },
+      {
+        "type": "cta",
+        "icon": "🚀",
+        "title": "Ready to Start?",
+        "description": "Join thousands of developers who've mastered Singleton through Sharma Ji's adventures!",
+        "background": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+      }
+    ],
+    "factory-method-pattern": [
+      {
+        "type": "intro",
+        "icon": "🏭",
+        "title": "Factory Method",
+        "description": "Discover the magic of object creation without knowing the exact classes to instantiate!",
+        "background": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+      },
+      {
+        "type": "overview",
+        "icon": "🎨",
+        "title": "Master Object Creation",
+        "description": "Learn to create objects flexibly while following the Open/Closed principle.",
+        "background": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        "highlights": [
+          "Flexible object creation patterns",
+          "Inheritance vs composition",
+          "Real-world factory examples",
+          "Best practices and pitfalls"
+        ]
+      },
+      {
+        "type": "features",
+        "icon": "⚙️",
+        "title": "What's Included",
+        "description": "Comprehensive coverage from basic concepts to advanced implementations.",
+        "background": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        "highlights": [
+          "7 detailed topics",
+          "50 minutes of content",
+          "Interactive examples",
+          "Quiz and assessments"
+        ]
+      },
+      {
+        "type": "cta",
+        "icon": "🎯",
+        "title": "Start Learning",
+        "description": "Master the Factory Method pattern and write more flexible, maintainable code!",
+        "background": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+      }
+    ],
+    "observer-pattern": [
+      {
+        "type": "intro",
+        "icon": "👁️",
+        "title": "Observer Pattern",
+        "description": "Learn to build loosely coupled systems with automatic notifications and event handling!",
+        "background": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+      },
+      {
+        "type": "overview",
+        "icon": "🔔",
+        "title": "Event-Driven Architecture",
+        "description": "Master the publish-subscribe pattern that powers modern applications.",
+        "background": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        "highlights": [
+          "Subject-Observer relationships",
+          "Loose coupling principles",
+          "Event-driven programming",
+          "Real-world implementations"
+        ]
+      },
+      {
+        "type": "features",
+        "icon": "📡",
+        "title": "Course Features",
+        "description": "Learn through practical examples and interactive demonstrations.",
+        "background": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        "highlights": [
+          "5 comprehensive topics",
+          "40 minutes of content",
+          "Live code examples",
+          "Pattern variations"
+        ]
+      },
+      {
+        "type": "cta",
+        "icon": "🚀",
+        "title": "Get Started",
+        "description": "Build reactive applications with the Observer pattern!",
+        "background": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+      }
+    ],
+    "bridge-pattern": [
+      {
+        "type": "intro",
+        "icon": "🌉",
+        "title": "Bridge Pattern",
+        "description": "Join Alex's journey to solve the cross-platform notification nightmare with elegant abstraction!",
+        "background": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+      },
+      {
+        "type": "overview",
+        "icon": "🔗",
+        "title": "What You'll Learn",
+        "description": "Master the structural pattern that separates abstraction from implementation.",
+        "background": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        "highlights": [
+          "Abstraction vs Implementation separation",
+          "Cross-platform development strategies",
+          "Avoiding inheritance explosion",
+          "Runtime implementation switching"
+        ]
+      },
+      {
+        "type": "features",
+        "icon": "⚡",
+        "title": "Story-Based Learning",
+        "description": "Follow Alex's startup adventure as they build a scalable notification system!",
+        "background": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        "highlights": [
+          "6 engaging story chapters",
+          "40 minutes of content",
+          "Cross-platform examples",
+          "Real Java/Python code"
+        ]
+      },
+      {
+        "type": "benefits",
+        "icon": "🎯",
+        "title": "Perfect For",
+        "description": "Developers building cross-platform applications or working with multiple implementations.",
+        "background": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        "highlights": [
+          "Cross-platform developers",
+          "System architects",
+          "Mobile app developers",
+          "API designers"
+        ]
+      },
+      {
+        "type": "cta",
+        "icon": "🚀",
+        "title": "Start Learning",
+        "description": "Master the Bridge pattern and build flexible, maintainable cross-platform systems!",
+        "background": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+      }
+    ]
+  }
+}

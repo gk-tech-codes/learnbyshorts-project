@@ -1,0 +1,24 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <circle cx="20" cy="20" r="20" fill="url(#gradient)"/>
+  
+  <!-- Book/Learning symbol -->
+  <path d="M12 10h16c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H12c-1.1 0-2-.9-2-2V12c0-1.1.9-2 2-2z" fill="white" fill-opacity="0.9"/>
+  
+  <!-- Pages/Layers effect -->
+  <path d="M14 14h12v2H14v-2z" fill="#3b82f6"/>
+  <path d="M14 18h10v2H14v-2z" fill="#60a5fa"/>
+  <path d="M14 22h8v2H14v-2z" fill="#93c5fd"/>
+  
+  <!-- Play button overlay for "shorts" concept -->
+  <circle cx="26" cy="26" r="6" fill="#3b82f6"/>
+  <path d="M24 23l4 3-4 3v-6z" fill="white"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Main Pages -->
+    <url>
+        <loc>https://www.learnbyshorts.com/</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/about.html</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/contact.html</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Category Pages -->
+    <url>
+        <loc>https://www.learnbyshorts.com/design-patterns.html</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Design Pattern Course Pages -->
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=singleton-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=observer-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=strategy-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=command-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=facade-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=bridge-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=chain-of-responsibility-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=factory-method-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=abstract-factory-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=builder-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=adapter-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/course-detail.html?id=decorator-pattern</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Legal Pages -->
+    <url>
+        <loc>https://www.learnbyshorts.com/privacy-policy.html</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.learnbyshorts.com/terms-of-service.html</loc>
+        <lastmod>2025-01-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+</urlset>

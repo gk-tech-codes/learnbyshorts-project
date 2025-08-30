@@ -1,0 +1,69 @@
+{
+  "categories": [
+    {
+      "id": "design-patterns",
+      "title": "Design Patterns",
+      "description": "Master software design patterns through engaging stories and visual narratives",
+      "icon": "🏗️",
+      "color": "#6366f1",
+      "courseCount": 6,
+      "difficulty": "Intermediate",
+      "estimatedTime": "35-55 minutes per pattern",
+      "featured": true,
+      "longDescription": "Design patterns are reusable solutions to common software design problems. They represent best practices evolved over time by experienced software developers. Learning design patterns helps you write more maintainable, flexible, and scalable code. Our visual storytelling approach makes these abstract concepts concrete and memorable.",
+      "subcategories": [
+        {
+          "id": "creational-patterns",
+          "title": "Creational Patterns",
+          "description": "Patterns that deal with object creation mechanisms",
+          "patterns": ["singleton", "factory-method"]
+        },
+        {
+          "id": "structural-patterns",
+          "title": "Structural Patterns",
+          "description": "Patterns that deal with object composition and relationships",
+          "patterns": ["adapter", "decorator"]
+        },
+        {
+          "id": "behavioral-patterns",
+          "title": "Behavioral Patterns",
+          "description": "Patterns that deal with object collaboration and responsibility",
+          "patterns": ["observer", "strategy"]
+        }
+      ]
+    },
+    {
+      "id": "algorithms",
+      "title": "Algorithms & Data Structures",
+      "description": "Learn fundamental algorithms and data structures with interactive visualizations",
+      "icon": "⚡",
+      "color": "#10b981",
+      "courseCount": 0,
+      "difficulty": "Coming Soon",
+      "estimatedTime": "Coming Soon",
+      "featured": false
+    },
+    {
+      "id": "system-design",
+      "title": "System Design",
+      "description": "Understand large-scale system architecture through real-world case studies",
+      "icon": "🏛️",
+      "color": "#f59e0b",
+      "courseCount": 0,
+      "difficulty": "Coming Soon",
+      "estimatedTime": "Coming Soon",
+      "featured": false
+    },
+    {
+      "id": "web-development",
+      "title": "Web Development",
+      "description": "Modern web development concepts from frontend to backend",
+      "icon": "🌐",
+      "color": "#ef4444",
+      "courseCount": 0,
+      "difficulty": "Coming Soon",
+      "estimatedTime": "Coming Soon",
+      "featured": false
+    }
+  ]
+}

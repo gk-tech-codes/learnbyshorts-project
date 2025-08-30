@@ -1,0 +1,74 @@
+{
+  "topic": {
+    "id": "clear-framework",
+    "title": "The CLEAR Framework for Prompt Engineering",
+    "description": "Learn Arjun's transformation using the CLEAR framework"
+  },
+  "content": [
+    {
+      "type": "narrative",
+      "display": "Arjun stared at his computer screen in frustration. For the third time that morning, he had typed 'Write marketing copy' into ChatGPT, and for the third time, he got generic content that could apply to any company selling anything.",
+      "read": "Arjun was frustrated with ChatGPT giving him generic marketing copy instead of specific, useful content."
+    },
+    {
+      "type": "dialogue",
+      "display": "\"This is supposed to be revolutionary AI,\" he muttered, deleting another bland paragraph about \"innovative solutions\" and \"customer satisfaction.\" His deadline was approaching fast, and his boss Rajesh was expecting compelling copy for their new project management software.",
+      "read": "Arjun complained that the AI was giving him bland, generic responses when he needed compelling copy for project management software."
+    },
+    {
+      "type": "narrative",
+      "display": "Just then, his colleague Priya walked by his desk. She noticed his frustrated expression and the ChatGPT tab open on his screen.",
+      "read": "His colleague Priya noticed Arjun's frustration with ChatGPT."
+    },
+    {
+      "type": "dialogue",
+      "display": "\"Having trouble with AI prompts?\" she asked with a knowing smile.",
+      "read": "Priya asked if he was having trouble with AI prompts."
+    },
+    {
+      "type": "dialogue",
+      "display": "\"It's like talking to a robot that doesn't understand context,\" Arjun complained. \"I ask for marketing copy, and it gives me something so generic it could be selling toothpaste or rocket ships.\"",
+      "read": "Arjun explained that the AI didn't understand context and gave generic responses."
+    },
+    {
+      "type": "teaching",
+      "display": "Priya pulled up a chair. \"That's because you're not speaking its language yet. AI is incredibly powerful, but it needs the right instructions. Let me show you the CLEAR framework.\"",
+      "read": "Priya explained that AI needs the right instructions and introduced the CLEAR framework."
+    },
+    {
+      "type": "framework",
+      "display": "<div class='framework-box'><h3>The CLEAR Framework</h3><ul><li><strong>C</strong> - Context: Set the scene</li><li><strong>L</strong> - Length: Specify desired output length</li><li><strong>E</strong> - Examples: Provide sample outputs</li><li><strong>A</strong> - Audience: Define target audience</li><li><strong>R</strong> - Role: Assign AI a specific role</li></ul></div>",
+      "read": "The CLEAR framework has five components: Context to set the scene, Length to specify output size, Examples to show desired format, Audience to define who it's for, and Role to assign the AI a specific persona."
+    },
+    {
+      "type": "demonstration",
+      "display": "\"Watch this,\" Priya said, opening a new ChatGPT window. She began typing:",
+      "read": "Priya demonstrated the framework by typing a new prompt."
+    },
+    {
+      "type": "code-example",
+      "display": "<div class='code-block'><pre>You are a senior marketing copywriter for a B2B SaaS company.\n\nWrite compelling marketing copy for a project management software called 'TaskFlow Pro' that helps remote teams collaborate better.\n\nTarget audience: Project managers at mid-size companies who struggle with team coordination.\n\nFocus on pain points like missed deadlines and poor communication.\n\nUse a professional but approachable tone.\n\nLength: 150 words.</pre></div>",
+      "read": "The improved prompt assigned ChatGPT the role of a senior marketing copywriter, provided context about the software, defined the target audience as project managers, specified pain points, set the tone, and requested 150 words."
+    },
+    {
+      "type": "result",
+      "display": "Within seconds, ChatGPT generated exactly what Arjun needed - specific, targeted copy that spoke directly to their audience's problems and positioned TaskFlow Pro as the solution.",
+      "read": "ChatGPT immediately generated specific, targeted copy that addressed the audience's problems and positioned the software as the solution."
+    },
+    {
+      "type": "dialogue",
+      "display": "\"How did you do that?\" Arjun asked, his eyes wide with realization.",
+      "read": "Arjun was amazed and asked how she achieved such good results."
+    },
+    {
+      "type": "teaching",
+      "display": "\"The difference is structure,\" Priya explained. \"Instead of 'Write marketing copy,' I gave ChatGPT five key pieces of information using CLEAR. Context about our company, Length specification, Examples of pain points, Audience definition, and Role assignment.\"",
+      "read": "Priya explained that the difference was using structure - giving ChatGPT five key pieces of information using the CLEAR framework instead of a vague request."
+    },
+    {
+      "type": "insight",
+      "display": "Arjun realized that prompt engineering wasn't about finding magic words - it was about clear communication. The same principles that made human communication effective also made AI communication powerful.",
+      "read": "Arjun realized that prompt engineering was about clear communication, using the same principles that make human communication effective."
+    }
+  ]
+}

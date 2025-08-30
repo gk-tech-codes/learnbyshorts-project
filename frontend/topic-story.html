@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic Story - LearnByShorts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/topic-story.css">
+    <link rel="stylesheet" href="css/butterfly-reader.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .floating-read-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .floating-read-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .floating-read-btn.reading {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .floating-read-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        
+        .story-butterfly {
+            position: absolute;
+            font-size: 24px;
+            z-index: 100;
+            transition: all 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+            pointer-events: none;
+            display: none;
+        }
+        
+        .story-content.reading-mode p {
+            transition: all 0.5s ease;
+        }
+        
+        .story-content.reading-mode p.reading {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 12px 16px;
+            border-radius: 8px;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h1>LearnByShorts</h1>
+                        <span class="tagline">Master Programming Through Stories</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html#categories" class="nav-link">Categories</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Story Content -->
+    <main class="story-main">
+        <div class="container">
+            <!-- Story Header -->
+            <div class="story-header">
+                <nav class="story-breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <a href="index.html#courses" id="categoryLink">Courses</a>
+                    <span>/</span>
+                    <a href="#" id="courseBreadcrumb">Course</a>
+                    <span>/</span>
+                    <span id="topicBreadcrumb">Topic</span>
+                </nav>
+                
+                <div class="story-meta">
+                    <div class="topic-number" id="topicNumber">1</div>
+                    <div class="story-info">
+                        <h1 class="story-title" id="storyTitle">Loading...</h1>
+                        <div class="story-details">
+                            <span class="story-duration" id="storyDuration">8 min</span>
+                            <span class="story-difficulty" id="storyDifficulty">Beginner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Content -->
+            <div class="story-content">
+                <div class="story-text" id="storyText">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Loading story...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Navigation -->
+            <div class="story-navigation">
+                <button class="nav-btn prev-btn" id="prevBtn" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                    Previous Topic
+                </button>
+                <button class="nav-btn quiz-btn" id="quizBtn">
+                    <i class="fas fa-question-circle"></i>
+                    Take Quiz
+                </button>
+                <button class="nav-btn next-btn" id="nextBtn">
+                    Next Topic
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        class TopicStoryPage {
+            constructor() {
+                this.courseId = null;
+                this.topicIndex = 0;
+                this.topics = [];
+                this.courseData = null;
+                this.init();
+            }
+
+            async init() {
+                const urlParams = new URLSearchParams(window.location.search);
+                this.courseId = urlParams.get('course');
+                this.topicIndex = parseInt(urlParams.get('index')) || 0;
+
+                if (!this.courseId) {
+                    this.showError('Course not found');
+                    return;
+                }
+
+                await this.loadCourseData();
+                await this.loadTopics();
+                this.renderStory();
+                this.setupNavigation();
+                
+                // Initialize butterfly reader after everything is loaded
+                setTimeout(() => {
+                    this.initializeButterflyReader();
+                }, 500);
+            }
+
+            async loadCourseData() {
+                try {
+                    // Add cache busting to ensure fresh data
+                    const cacheBuster = new Date().getTime();
+                    const response = await fetch(`data/courses.json?v=${cacheBuster}`);
+                    const data = await response.json();
+                    this.courseData = data.courses.find(course => course.id === this.courseId);
+                    
+                    console.log('Course data loaded:', this.courseData?.title);
+                    console.log('Full course data:', this.courseData);
+                    console.log('Audio enabled value:', this.courseData?.audioEnabled);
+                    console.log('Audio enabled type:', typeof this.courseData?.audioEnabled);
+                } catch (error) {
+                    console.error('Error loading course data:', error);
+                }
+            }
+
+            initializeButterflyReader() {
+                const audioEnabled = this.courseData?.audioEnabled === true;
+                console.log('Initializing butterfly reader. Audio enabled:', audioEnabled);
+                
+                if (audioEnabled) {
+                    // Initialize butterfly reader
+                    setTimeout(() => {
+                        console.log('Creating StoryButterflyReader instance');
+                        new StoryButterflyReader();
+                    }, 1000);
+                } else {
+                    // Hide the floating button
+                    const floatingBtn = document.getElementById('floatingReadBtn');
+                    if (floatingBtn) {
+                        floatingBtn.style.display = 'none';
+                        console.log('Audio disabled - button hidden');
+                    }
+                }
+            }
+
+            async loadTopics() {
+                try {
+                    const response = await fetch('data/story-content.json');
+                    const data = await response.json();
+                    
+                    // Special handling for prompt-engineering
+                    if (this.courseId === 'prompt-engineering') {
+                        this.topics = [
+                            {
+                                title: "The AI Miscommunication Crisis",
+                                duration: "8 min",
+                                difficulty: "Beginner",
+                                story: "<h2>Chapter 1: Monday Morning AI Disaster</h2><p>Arjun Sharma walked into the Mumbai office on Monday morning, his laptop bag slung over his shoulder, ready to revolutionize the marketing department with AI. As the newly appointed Digital Marketing Manager at TechVista Solutions, he had big plans.</p><p><strong>Today, I'm going to automate everything with ChatGPT!</strong> he declared to his colleague Priya.</p><h3>The First Disaster</h3><p>Arjun opened ChatGPT and typed his first prompt:</p><blockquote><em>Write marketing copy</em></blockquote><p>The AI responded with generic, bland text that could apply to any company selling anything. Arjun frowned.</p><p><strong>Maybe I need to be more specific,</strong> he thought.</p><blockquote><em>Write good marketing copy for our product</em></blockquote><p>Again, the response was vague and unhelpful. The AI had no idea what their product was, who their customers were, or what tone to use.</p><h3>The Email Catastrophe</h3><p>Frustrated but determined, Arjun decided to use AI for customer emails:</p><blockquote><em>Write an email to customers</em></blockquote><p>The AI generated a formal, robotic email that sounded like it came from a 1990s corporate manual. When Arjun sent it to their tech-savvy startup customers, the responses were... not good.</p><ul><li>📧 This sounds like spam</li><li>😕 Are you guys okay? This doesn't sound like you</li><li>🤔 Did you get hacked? This email is weird</li></ul><div class=\"story-insight\"><h4>💡 The Problem</h4><p>Arjun's prompts were:</p><ul><li><strong>Too vague:</strong> No context or specifics</li><li><strong>Missing audience:</strong> Who is this for?</li><li><strong>No tone guidance:</strong> Formal? Casual? Friendly?</li><li><strong>Lacking examples:</strong> What does good look like?</li></ul></div><p><strong>There has to be a better way,</strong> Arjun muttered, staring at his screen. Little did he know, his colleague Priya was about to change everything...</p>"
+                            },
+                            {
+                                title: "The CLEAR Framework Discovery",
+                                duration: "10 min",
+                                difficulty: "Beginner",
+                                story: "<h2>Chapter 2: Priya's Prompt Engineering Wisdom</h2><p>The next morning, Priya Patel walked over to Arjun's desk with a cup of chai and a knowing smile. As TechVista's AI Strategy Consultant, she had seen this exact scenario dozens of times.</p><p><strong>Arjun, let me guess - ChatGPT is giving you terrible responses?</strong> she said, settling into the chair next to him.</p><p>Arjun looked up, frustrated. <em>How did you know? I thought AI was supposed to be smart!</em></p><p><strong>AI is incredibly smart,</strong> Priya replied, <strong>but it's only as good as the instructions you give it. You're speaking to it like a human, but you need to speak to it like an AI.</strong></p><h3>The CLEAR Framework</h3><p>Priya opened her laptop and showed Arjun a framework she had developed:</p><div class=\"story-insight\"><h4>🎯 The CLEAR Framework</h4><ul><li><strong>C</strong>ontext - What's the situation?</li><li><strong>L</strong>ength - How long should the response be?</li><li><strong>E</strong>xamples - Show what good looks like</li><li><strong>A</strong>udience - Who is this for?</li><li><strong>R</strong>ole - What persona should AI adopt?</li></ul></div><h3>The Transformation</h3><p>Priya took Arjun's original prompt and transformed it:</p><p><strong>Before:</strong></p><blockquote><em>Write marketing copy</em></blockquote><p><strong>After (using CLEAR):</strong></p><blockquote><em><strong>Role:</strong> You are a creative marketing copywriter for a B2B SaaS company.<br><strong>Context:</strong> We're launching a project management tool for remote teams in India.<br><strong>Audience:</strong> Tech-savvy startup founders aged 25-40 who struggle with team coordination.<br><strong>Length:</strong> Write a 150-word product description.<br><strong>Examples:</strong> Use a conversational tone like 'Finally, a tool that gets your team on the same page' rather than corporate jargon.</em></blockquote><p>The AI's response was incredible - engaging, specific, and perfectly targeted.</p><p>Arjun's jaw dropped. <strong>This is like magic! The same AI, but completely different results!</strong></p><p>Priya smiled. <em>Welcome to the world of prompt engineering, Arjun. You're about to become very powerful.</em></p>"
+                            },
+                            {
+                                title: "Advanced Prompt Techniques",
+                                duration: "12 min",
+                                difficulty: "Intermediate",
+                                story: "<h2>Chapter 3: The Chain-of-Thought Revolution</h2><p>A week later, Arjun had mastered the CLEAR framework and was feeling confident. But when the CEO asked him to analyze competitor strategies using AI, his prompts hit a wall again.</p><p><strong>I need deeper analysis, not just surface-level responses,</strong> Arjun muttered, staring at ChatGPT's generic competitor comparison.</p><p>Priya appeared at his desk again, this time with a mischievous grin. <strong>Ready for the advanced techniques?</strong></p><h3>Chain-of-Thought Prompting</h3><p>Priya showed Arjun a revolutionary approach:</p><p><strong>Instead of:</strong></p><blockquote><em>Analyze our competitors and suggest improvements</em></blockquote><p><strong>Try this:</strong></p><blockquote><em>Let's analyze our competitors step by step:<br><br>Step 1: First, identify our top 3 competitors in the project management space<br>Step 2: For each competitor, analyze their key features, pricing, and target audience<br>Step 3: Compare their strengths and weaknesses against our product<br>Step 4: Based on this analysis, suggest 3 specific improvements we could make<br><br>Let's work through this systematically:</em></blockquote><p>The AI's response was dramatically different - structured, thorough, and insightful.</p><div class=\"story-insight\"><h4>🧠 Chain-of-Thought Benefits</h4><ul><li><strong>Structured thinking:</strong> AI follows logical steps</li><li><strong>Deeper analysis:</strong> More thorough responses</li><li><strong>Transparency:</strong> You can see the reasoning process</li><li><strong>Better accuracy:</strong> Reduces hallucinations and errors</li></ul></div><h3>Few-Shot Learning Magic</h3><p><strong>But wait, there's more!</strong> Priya said, opening a new ChatGPT window.</p><p><strong>Sometimes you need to show the AI exactly what you want. Watch this:</strong></p><blockquote><em>I need you to write product feature descriptions. Here are some examples of the style I want:<br><br>Example 1:<br>Feature: Real-time collaboration<br>Description: Work together seamlessly, no matter where your team is located. See changes instantly and never lose track of who's working on what.<br><br>Example 2:<br>Feature: Smart notifications<br>Description: Stay informed without being overwhelmed. Get alerts that matter, when they matter, customized to your workflow.<br><br>Now write a description for this feature:<br>Feature: Automated reporting</em></blockquote><p>The AI perfectly matched the tone, structure, and style of the examples.</p><p>Arjun was amazed. <strong>It's like training the AI with examples!</strong></p><div class=\"story-insight\"><h4>📚 Few-Shot Learning Power</h4><ul><li><strong>Style consistency:</strong> AI matches your examples</li><li><strong>Format control:</strong> Perfect structure every time</li><li><strong>Quality improvement:</strong> Better outputs with guidance</li><li><strong>Time saving:</strong> No need to explain style repeatedly</li></ul></div><h3>Role-Playing Mastery</h3><p>For the final technique, Priya showed Arjun role-playing prompts:</p><blockquote><em>You are Ravi Sharma, a 15-year veteran product manager at a Fortune 500 company in Bangalore. You've launched 12 successful products and have deep expertise in the Indian market. You're known for your practical, no-nonsense approach and ability to spot market opportunities others miss.<br><br>A startup founder approaches you with their project management tool. What specific questions would you ask them to evaluate their product-market fit in India?</em></blockquote><p>The AI responded as Ravi, asking insightful, India-specific questions that Arjun never would have thought of.</p><p><strong>This is incredible!</strong> Arjun exclaimed. <strong>I can get expert perspectives from any persona I need!</strong></p><p>Priya nodded. <em>Now you're thinking like a true prompt engineer. You're not just using AI - you're orchestrating it.</em></p>"
+                            },
+                            {
+                                title: "Creative AI Collaboration",
+                                duration: "10 min",
+                                difficulty: "Intermediate",
+                                story: "<h2>Chapter 4: The Content Creation Challenge</h2><p>Two weeks into his prompt engineering journey, Arjun faced his biggest test yet. The marketing director, Kavya, burst into his cubicle with panic in her eyes.</p><p><strong>Arjun! We need a complete content campaign for our product launch - blog posts, social media, email sequences, everything! And we have just 3 days!</strong></p><p>The old Arjun would have panicked. But now, he smiled confidently. <strong>Don't worry, Kavya. I have a secret weapon.</strong></p><h3>The Content Workflow Revolution</h3><p>Arjun opened his laptop and showed Kavya his AI-powered content creation system:</p><p><strong>Step 1: Content Strategy Prompt</strong></p><blockquote><em>You are a content marketing strategist for a B2B SaaS company launching a project management tool in India. Create a comprehensive content strategy including:<br><br>1. Target audience personas (3 different types)<br>2. Key messaging pillars (5 main themes)<br>3. Content calendar for 30 days<br>4. Distribution channels and timing<br><br>Focus on the Indian market, remote work trends, and startup culture.</em></blockquote><p>Within minutes, AI generated a detailed strategy that would have taken Kavya's team days to create.</p><div class=\"story-insight\"><h4>🎯 Content Strategy Benefits</h4><ul><li><strong>Comprehensive planning:</strong> All aspects covered systematically</li><li><strong>Market-specific:</strong> Tailored to Indian audience</li><li><strong>Time-efficient:</strong> Minutes instead of days</li><li><strong>Professional quality:</strong> Strategic depth and clarity</li></ul></div><h3>Blog Post Generation Mastery</h3><p><strong>Now for the actual content,</strong> Arjun said, typing his next prompt:</p><blockquote><em>Write a 1200-word blog post titled 'Why Indian Startups Are Failing at Remote Team Management (And How to Fix It)'<br><br>Target audience: Startup founders and team leads in India<br>Tone: Conversational but authoritative, like a mentor sharing insights<br>Structure: Problem → Statistics → 3 Solutions → Call to Action<br>Include: Real scenarios, Indian context, actionable tips<br>SEO keywords: remote team management, Indian startups, productivity tools</em></blockquote><p>The AI produced a compelling, well-researched blog post that perfectly captured the Indian startup ecosystem's challenges.</p><p>Kavya's jaw dropped. <strong>This is better than what our content agency produces!</strong></p><h3>Social Media Campaign Magic</h3><p>But Arjun wasn't done. He showed Kavya how to create an entire social media campaign:</p><blockquote><em>Create a 7-day LinkedIn campaign for our project management tool launch. For each day, provide:<br><br>1. A LinkedIn post (150-200 words)<br>2. 3 engaging hashtags<br>3. A call-to-action<br>4. Visual description for graphics team<br><br>Day 1: Problem awareness (remote work chaos)<br>Day 2: Statistics and trends<br>Day 3: Solution introduction<br>Day 4: Feature spotlight<br>Day 5: Customer success story<br>Day 6: Comparison with competitors<br>Day 7: Launch announcement<br><br>Tone: Professional but approachable, Indian business context</em></blockquote><p>The AI created a cohesive, engaging campaign that told a complete story across seven days.</p><div class=\"story-insight\"><h4>📱 Social Media Workflow</h4><ul><li><strong>Consistent messaging:</strong> Unified campaign narrative</li><li><strong>Platform optimization:</strong> LinkedIn-specific formatting</li><li><strong>Visual guidance:</strong> Clear direction for design team</li><li><strong>Strategic progression:</strong> Logical content sequence</li></ul></div><h3>Email Sequence Automation</h3><p>For the final piece, Arjun demonstrated email marketing automation:</p><blockquote><em>Create a 5-email welcome sequence for new users of our project management tool:<br><br>Email 1: Welcome + Quick Win (Day 0)<br>Email 2: Feature Deep Dive (Day 2)<br>Email 3: Success Stories (Day 5)<br>Email 4: Advanced Tips (Day 8)<br>Email 5: Community Invitation (Day 12)<br><br>Each email should be 200-300 words, include a clear CTA, and maintain a friendly, helpful tone. Focus on user success and value delivery.</em></blockquote><p>The AI created a nurturing sequence that would guide new users from confusion to mastery.</p><p>Kavya was speechless. In 30 minutes, they had created what would normally take her team weeks.</p><p><strong>Arjun, you've just revolutionized our entire content process!</strong> she exclaimed. <strong>How did you learn to do this?</strong></p><p>Arjun grinned, looking over at Priya who was watching from her desk with a proud smile. <em>I learned that AI isn't just a tool - it's a creative partner. You just need to know how to collaborate with it.</em></p>"
+                            },
+                            {
+                                title: "Business Applications Mastery",
+                                duration: "11 min",
+                                difficulty: "Advanced",
+                                story: "<h2>Chapter 5: The Executive Challenge</h2><p>Word of Arjun's AI mastery had spread throughout TechVista Solutions. Three weeks after the content campaign success, he received an unexpected visitor - Rajesh Gupta, the company's Chief Operating Officer.</p><p><strong>Arjun,</strong> Rajesh said, settling into the chair beside his desk, <strong>I need your help with something critical. Our quarterly business review is next week, and I'm drowning in data analysis, report generation, and strategic planning.</strong></p><p>Arjun straightened up. This was his chance to prove AI could handle C-level business challenges.</p><h3>Data Analysis Revolution</h3><p>Rajesh showed Arjun a spreadsheet with thousands of rows of sales data, customer feedback, and performance metrics.</p><p><strong>I need insights from this chaos,</strong> Rajesh sighed. <strong>Our analysts are overwhelmed.</strong></p><p>Arjun smiled and opened ChatGPT. <strong>Let me show you something amazing.</strong></p><blockquote><em>I'm going to share sales and customer data for Q3 analysis. Please act as a senior business analyst and provide:<br><br>1. Key performance trends and patterns<br>2. Top 3 growth opportunities<br>3. Risk areas requiring immediate attention<br>4. Actionable recommendations for Q4<br>5. Executive summary for C-level presentation<br><br>Focus on: Revenue growth, customer retention, market expansion, operational efficiency<br><br>Data: [Arjun copied the key metrics from the spreadsheet]</em></blockquote><p>Within minutes, the AI produced a comprehensive analysis that identified trends Rajesh's team had missed - including a 23% uptick in enterprise customers and a concerning churn pattern in the SMB segment.</p><div class=\"story-insight\"><h4>📊 Data Analysis Power</h4><ul><li><strong>Pattern recognition:</strong> Spots trends humans miss</li><li><strong>Comprehensive insights:</strong> Multiple perspectives in one analysis</li><li><strong>Executive-ready:</strong> C-level appropriate language and structure</li><li><strong>Actionable recommendations:</strong> Clear next steps provided</li></ul></div><h3>Automated Report Generation</h3><p><strong>This is incredible,</strong> Rajesh said, <strong>but I need this formatted as a proper business report.</strong></p><p>Arjun was ready:</p><blockquote><em>Transform the previous analysis into a professional quarterly business review report with this structure:<br><br>1. Executive Summary (2 paragraphs)<br>2. Key Performance Indicators (bullet points with % changes)<br>3. Market Analysis (opportunities and threats)<br>4. Operational Insights (efficiency metrics)<br>5. Strategic Recommendations (prioritized action items)<br>6. Q4 Forecast and Goals<br><br>Format: Professional business language, include specific metrics, ready for board presentation. Length: 1500 words.</em></blockquote><p>The AI generated a polished, board-ready report that would have taken Rajesh's team days to compile and write.</p><p><strong>Arjun, this is exactly what I needed!</strong> Rajesh exclaimed. <strong>The insights are spot-on, and the presentation is flawless.</strong></p><h3>Strategic Email Communication</h3><p>But the real test came next. Rajesh needed to communicate difficult decisions to various stakeholders.</p><p><strong>I need to send emails about budget cuts to department heads, but each one needs a different approach,</strong> Rajesh explained.</p><p>Arjun demonstrated personalized business communication:</p><blockquote><em>Write 3 different emails about Q4 budget optimization, each tailored to a specific audience:<br><br>Email 1: To Engineering Head (Vikram) - Technical leader, values innovation, concerned about product quality<br>Email 2: To Sales Director (Meera) - Results-driven, worried about targets, needs reassurance<br>Email 3: To HR Manager (Anita) - People-focused, concerned about team morale, values transparency<br><br>Each email should:<br>- Acknowledge their specific concerns<br>- Explain the business rationale<br>- Highlight opportunities within constraints<br>- End with a collaborative tone<br>- Be 200-250 words<br><br>Tone: Respectful, strategic, solution-oriented</em></blockquote><p>The AI crafted three distinct emails, each perfectly tailored to the recipient's personality and concerns. Vikram's email emphasized innovation within constraints, Meera's focused on market opportunities, and Anita's highlighted team development initiatives.</p><div class=\"story-insight\"><h4>💼 Executive Communication Benefits</h4><ul><li><strong>Personalized messaging:</strong> Tailored to each stakeholder</li><li><strong>Emotional intelligence:</strong> Addresses specific concerns</li><li><strong>Strategic framing:</strong> Positions challenges as opportunities</li><li><strong>Professional tone:</strong> Maintains leadership credibility</li></ul></div><h3>Meeting Preparation Mastery</h3><p>For the final challenge, Rajesh needed help preparing for the board meeting.</p><blockquote><em>Help me prepare for a board meeting where I'll present Q3 results and Q4 strategy. Create:<br><br>1. Key talking points for each agenda item<br>2. Anticipated questions from board members and suggested responses<br>3. Supporting data points to reinforce key messages<br>4. Potential objections and how to address them<br>5. Call-to-action for board approval<br><br>Board composition: 2 finance experts, 1 tech veteran, 2 industry outsiders<br>Meeting goal: Secure approval for Q4 strategy and budget allocation</em></blockquote><p>The AI provided a comprehensive meeting preparation guide that covered every angle, including specific responses for different board member personalities.</p><p>Rajesh was amazed. <strong>Arjun, in two hours you've helped me accomplish what usually takes my entire team a week. How is this possible?</strong></p><p>Arjun leaned back in his chair, thinking of his journey from AI disasters to business transformation. <em>It's not about replacing human intelligence, Rajesh. It's about amplifying it. AI handles the heavy lifting so we can focus on strategy, relationships, and innovation.</em></p><p>As Rajesh walked away with his AI-generated materials, Priya appeared at Arjun's desk with two cups of chai.</p><p><strong>Ready for the next level?</strong> she asked with a knowing smile.</p>"
+                            },
+                            {
+                                title: "Multi-Model Expertise",
+                                duration: "9 min",
+                                difficulty: "Advanced",
+                                story: "<h2>Chapter 6: The AI Arsenal Discovery</h2><p>The next morning, Priya sat down at Arjun's desk with her laptop and an excited expression. <strong>You've mastered ChatGPT,</strong> she said, <strong>but there's a whole world of AI models out there. Each one has unique strengths.</strong></p><p>Arjun looked puzzled. <strong>What do you mean? Isn't ChatGPT the best AI?</strong></p><p>Priya smiled. <em>That's like asking if a hammer is the best tool. It depends on what you're building. Let me show you the AI arsenal that will make you unstoppable.</em></p><h3>Claude: The Analytical Powerhouse</h3><p>Priya opened Anthropic's Claude. <strong>Meet your new analytical partner. Claude excels at complex reasoning, document analysis, and nuanced thinking.</strong></p><p>She showed Arjun a legal contract that needed review:</p><blockquote><em>Please analyze this software licensing agreement and identify:<br><br>1. Potential risks or unfavorable terms<br>2. Missing clauses that should be included<br>3. Negotiation points for better terms<br>4. Compliance requirements we need to meet<br>5. Summary of key obligations and rights<br><br>Focus on: Data privacy, liability limitations, termination clauses, intellectual property rights<br><br>[Contract text attached]</em></blockquote><p>Claude's response was remarkably thorough, identifying subtle legal risks that even their legal team had missed, including a problematic data retention clause and missing force majeure provisions.</p><div class=\"story-insight\"><h4>⚖️ Claude's Strengths</h4><ul><li><strong>Complex analysis:</strong> Deep reasoning and critical thinking</li><li><strong>Document review:</strong> Excellent at parsing legal and technical documents</li><li><strong>Nuanced understanding:</strong> Grasps subtle implications and context</li><li><strong>Structured output:</strong> Well-organized, comprehensive responses</li></ul></div><h3>Gemini: The Research Champion</h3><p>Next, Priya introduced Google's Gemini. <strong>When you need real-time information and comprehensive research, Gemini is your go-to.</strong></p><p>Arjun needed competitive intelligence for a client presentation:</p><blockquote><em>Research our top 3 competitors in the Indian project management software market:<br><br>1. Current market positioning and recent developments<br>2. Pricing strategies and new product launches<br>3. Customer reviews and satisfaction ratings<br>4. Funding rounds and expansion plans<br>5. Strengths and weaknesses compared to our offering<br><br>Focus on: Zoho Projects, Asana, Monday.com<br>Include recent news and market trends from 2024</em></blockquote><p>Gemini provided up-to-date market intelligence with recent funding announcements, product updates, and customer sentiment analysis that was current within days.</p><p><strong>This is incredible!</strong> Arjun exclaimed. <strong>ChatGPT couldn't give me this recent information!</strong></p><div class=\"story-insight\"><h4>🔍 Gemini's Advantages</h4><ul><li><strong>Real-time data:</strong> Access to current information and trends</li><li><strong>Comprehensive research:</strong> Pulls from multiple sources</li><li><strong>Market intelligence:</strong> Excellent for competitive analysis</li><li><strong>Multimodal capabilities:</strong> Handles text, images, and data together</li></ul></div><h3>GPT-4: The Creative Strategist</h3><p>Priya then returned to ChatGPT (GPT-4). <strong>Don't underestimate your first love. GPT-4 remains the king of creative strategy and complex problem-solving.</strong></p><p>She demonstrated with a challenging business scenario:</p><blockquote><em>We're launching in 3 new international markets simultaneously. Design a comprehensive go-to-market strategy that addresses:<br><br>1. Market entry approach for each region (Southeast Asia, Middle East, Latin America)<br>2. Localization requirements (cultural, legal, technical)<br>3. Partnership and distribution strategies<br>4. Marketing campaigns tailored to each market<br>5. Risk mitigation and contingency planning<br>6. Success metrics and KPIs<br><br>Consider: Cultural differences, regulatory environments, competitive landscapes, resource constraints</em></blockquote><p>GPT-4 created a sophisticated, multi-layered strategy that balanced global consistency with local adaptation, including specific tactical recommendations for each market.</p><div class=\"story-insight\"><h4>🎯 GPT-4's Excellence</h4><ul><li><strong>Strategic thinking:</strong> Complex, multi-faceted problem solving</li><li><strong>Creative solutions:</strong> Innovative approaches to challenges</li><li><strong>Balanced reasoning:</strong> Considers multiple perspectives and trade-offs</li><li><strong>Comprehensive planning:</strong> Detailed, actionable strategies</li></ul></div><h3>The Multi-Model Workflow</h3><p>Priya then showed Arjun the real magic - using multiple models together:</p><p><strong>Step 1:</strong> Use Gemini to research market conditions and competitor landscape</p><p><strong>Step 2:</strong> Feed that research to Claude for analytical risk assessment</p><p><strong>Step 3:</strong> Use GPT-4 to synthesize everything into a creative strategy</p><p><strong>Step 4:</strong> Return to Claude for implementation planning and risk mitigation</p><blockquote><em>Here's the market research from Gemini and risk analysis from Claude. Now create an integrated go-to-market strategy that addresses the identified opportunities and mitigates the highlighted risks. Focus on practical implementation steps.</em></blockquote><p>The result was a strategy that combined real-time market intelligence, thorough risk analysis, and creative problem-solving - something no single model could have achieved alone.</p><p>Arjun was speechless. <strong>It's like having a team of expert consultants, each with their own specialty!</strong></p><div class=\"story-insight\"><h4>🔄 Multi-Model Benefits</h4><ul><li><strong>Complementary strengths:</strong> Each model's best capabilities combined</li><li><strong>Comprehensive solutions:</strong> Multiple perspectives on complex problems</li><li><strong>Quality enhancement:</strong> Cross-validation and refinement</li><li><strong>Specialized expertise:</strong> Right tool for each specific task</li></ul></div><h3>The Platform Strategy</h3><p>Priya concluded with practical advice: <strong>Here's your AI toolkit strategy:</strong></p><p><em><strong>Use ChatGPT for:</strong> Creative content, strategic planning, general problem-solving<br><strong>Use Claude for:</strong> Document analysis, complex reasoning, detailed research<br><strong>Use Gemini for:</strong> Real-time research, competitive intelligence, current events<br><strong>Use them together for:</strong> Complex projects requiring multiple perspectives</em></p><p>Arjun nodded, understanding dawning in his eyes. <em>I've been using a hammer for everything when I could have had a full toolbox.</em></p><p>Priya grinned. <strong>Now you're thinking like a true AI strategist. Ready for the final lesson?</strong></p>"
+                            },
+                            {
+                                title: "Ethical AI Practices",
+                                duration: "8 min",
+                                difficulty: "Advanced",
+                                story: "<h2>Chapter 7: The Responsibility Awakening</h2><p>The following week, Arjun was riding high on his AI success when an urgent message appeared in the company Slack channel. Dr. Meera Krishnan, TechVista's Chief Ethics Officer, had called an emergency meeting.</p><p><strong>We have a problem,</strong> Dr. Krishnan announced to the assembled team. <strong>Our AI-generated job descriptions have been flagged for potential bias. We may face legal action.</strong></p><p>Arjun's stomach dropped. He had been using AI to streamline HR processes, but he hadn't considered the ethical implications.</p><h3>The Bias Discovery</h3><p>Dr. Krishnan showed the team examples of AI-generated job postings:</p><p><strong>Software Engineer:</strong> <em>\"Looking for a rockstar ninja developer who can work long hours and handle high-pressure situations...\"</em></p><p><strong>Marketing Manager:</strong> <em>\"Seeking an aggressive go-getter who can dominate the market...\"</em></p><p><strong>The problem?</strong> Dr. Krishnan explained, <strong>These descriptions unconsciously favor young, male candidates and exclude diverse talent.</strong></p><p>Arjun realized his mistake. <em>I never thought about who might be excluded by my prompts.</em></p><div class=\"story-insight\"><h4>⚠️ Common AI Biases</h4><ul><li><strong>Gender bias:</strong> Language that favors one gender</li><li><strong>Age discrimination:</strong> Terms like \"digital native\" or \"energetic\"</li><li><strong>Cultural bias:</strong> Assumptions about background or experience</li><li><strong>Socioeconomic bias:</strong> Requirements that exclude certain groups</li></ul></div><h3>The Inclusive Prompting Solution</h3><p>Priya stepped forward. <strong>This is exactly why ethical AI practices matter. Let me show you how to fix this.</strong></p><p>She demonstrated bias-aware prompting:</p><blockquote><em>Create a job description for a Software Engineer position that:<br><br>1. Uses inclusive, gender-neutral language<br>2. Focuses on skills and outcomes, not personality traits<br>3. Avoids age-discriminatory terms<br>4. Welcomes diverse backgrounds and experiences<br>5. Includes accessibility and accommodation statements<br><br>Avoid terms like: rockstar, ninja, aggressive, young, energetic, culture fit<br>Include: collaborative, analytical, problem-solving, diverse perspectives valued<br><br>Company: TechVista Solutions (project management software)<br>Level: Mid-level (3-5 years experience)</em></blockquote><p>The AI generated a professional, inclusive job description that focused on competencies rather than cultural stereotypes.</p><p>Dr. Krishnan nodded approvingly. <strong>This is how responsible AI should work.</strong></p><h3>Building Ethical Prompt Libraries</h3><p>Priya then showed Arjun how to create systematic ethical guidelines:</p><blockquote><em>Help me create an ethical prompt template for HR communications that ensures:<br><br>1. Inclusive language guidelines<br>2. Bias detection checkpoints<br>3. Accessibility considerations<br>4. Cultural sensitivity markers<br>5. Legal compliance reminders<br><br>Create templates for: job descriptions, performance reviews, company communications, policy documents<br><br>Include specific examples of biased vs. inclusive language for each category.</em></blockquote><p>The AI created comprehensive templates that would prevent future bias issues while maintaining professional quality.</p><div class=\"story-insight\"><h4>🛡️ Ethical AI Framework</h4><ul><li><strong>Bias prevention:</strong> Proactive language and perspective checks</li><li><strong>Inclusive design:</strong> Consider all potential users and stakeholders</li><li><strong>Transparency:</strong> Clear about AI involvement in processes</li><li><strong>Accountability:</strong> Human oversight and responsibility</li></ul></div><h3>Responsible AI Governance</h3><p>Dr. Krishnan then introduced the company's new AI governance framework:</p><p><strong>The FAIR Principle:</strong></p><p><em><strong>F</strong>airness - Ensure equitable treatment for all groups<br><strong>A</strong>ccountability - Maintain human oversight and responsibility<br><strong>I</strong>nclusivity - Design for diverse users and perspectives<br><strong>R</strong>esponsibility - Consider long-term societal impact</em></p><p>She showed Arjun how to implement this:</p><blockquote><em>Before using AI for any business process, evaluate using the FAIR framework:<br><br>Fairness Check: Could this exclude or disadvantage any group?<br>Accountability Review: Who is responsible for the AI's decisions?<br>Inclusivity Assessment: Have we considered diverse perspectives?<br>Responsibility Audit: What are the potential negative consequences?<br><br>Create a checklist for AI usage in: hiring, customer communications, product development, marketing campaigns</em></blockquote><h3>The Cultural Sensitivity Challenge</h3><p>As a final test, Dr. Krishnan presented a real scenario:</p><p><strong>We're expanding to 15 countries. How do we ensure our AI-generated marketing respects local cultures?</strong></p><p>Arjun, now thinking ethically, crafted a thoughtful prompt:</p><blockquote><em>Create culturally sensitive marketing guidelines for our project management software across 15 international markets. For each region, consider:<br><br>1. Cultural values and communication styles<br>2. Religious and social sensitivities<br>3. Local business practices and hierarchies<br>4. Language nuances and translation considerations<br>5. Visual and design preferences<br><br>Regions: India, Japan, Germany, Brazil, Nigeria, UAE, Singapore, Mexico, South Africa, Australia, UK, France, Canada, South Korea, Indonesia<br><br>Provide specific do's and don'ts for each market, with examples of respectful vs. problematic messaging.</em></blockquote><p>The AI created a comprehensive cultural guide that would prevent international marketing disasters while respecting local values.</p><p>Dr. Krishnan smiled. <strong>Now you're thinking like a responsible AI practitioner.</strong></p><div class=\"story-insight\"><h4>🌍 Global AI Ethics</h4><ul><li><strong>Cultural awareness:</strong> Respect local values and practices</li><li><strong>Legal compliance:</strong> Understand regional AI regulations</li><li><strong>Social responsibility:</strong> Consider broader societal impact</li><li><strong>Continuous learning:</strong> Stay updated on ethical AI developments</li></ul></div><p>As the meeting ended, Arjun reflected on his journey. <em>I started wanting to automate everything, but I've learned that with great AI power comes great responsibility.</em></p><p>Priya patted his shoulder. <strong>One more chapter to go, Arjun. Ready to see where this all leads?</strong></p>"
+                            },
+                            {
+                                title: "The Prompt Engineering Empire",
+                                duration: "7 min",
+                                difficulty: "Expert",
+                                story: "<h2>Chapter 8: The Transformation Complete</h2><p>Six months after his first ChatGPT disaster, Arjun stood in the TechVista Solutions boardroom, facing the entire executive team. But this time, he wasn't the confused marketing manager struggling with AI - he was presenting as the company's newly appointed Chief AI Officer.</p><p><strong>Ladies and gentlemen,</strong> CEO Vikash Sharma announced, <strong>meet the architect of our AI transformation - Arjun Sharma, our new CAO.</strong></p><p>The journey from AI disasters to C-suite leadership had been remarkable, but Arjun knew it was just the beginning.</p><h3>The Empire Built</h3><p>Arjun opened his presentation with the numbers that told his story:</p><p><strong>TechVista's AI Transformation Results:</strong></p><ul><li>📈 <strong>Content Production:</strong> 300% increase in marketing output</li><li>⚡ <strong>Process Efficiency:</strong> 75% reduction in report generation time</li><li>🎯 <strong>Decision Quality:</strong> 40% improvement in strategic planning accuracy</li><li>🌍 <strong>Global Expansion:</strong> Successfully launched in 12 new markets</li><li>💰 <strong>Cost Savings:</strong> ₹2.5 crore annual savings through AI automation</li></ul><p><strong>But the real transformation,</strong> Arjun continued, <strong>is in how we think about work itself.</strong></p><div class=\"story-insight\"><h4>🏆 The AI-First Organization</h4><ul><li><strong>Strategic advantage:</strong> AI as core business capability</li><li><strong>Human amplification:</strong> Technology enhancing human potential</li><li><strong>Ethical foundation:</strong> Responsible AI practices embedded</li><li><strong>Continuous evolution:</strong> Adaptive learning and improvement</li></ul></div><h3>The Prompt Engineering Academy</h3><p>Arjun's next slide revealed his masterpiece - the internal Prompt Engineering Academy he had built:</p><p><strong>Training Programs Launched:</strong></p><p><em><strong>Level 1 - AI Literacy:</strong> Basic prompt writing for all employees<br><strong>Level 2 - Department Specialists:</strong> Role-specific AI applications<br><strong>Level 3 - AI Champions:</strong> Advanced multi-model expertise<br><strong>Level 4 - Ethics Guardians:</strong> Responsible AI governance</em></p><p>Priya, now Director of AI Strategy, joined him on stage. <strong>We've trained 847 employees across all departments. Every team now has AI capabilities.</strong></p><p>The results spoke for themselves:</p><ul><li>🎓 <strong>Sales Team:</strong> Using AI for personalized proposals and market analysis</li><li>💻 <strong>Engineering:</strong> AI-assisted code review and documentation</li><li>👥 <strong>HR:</strong> Bias-free recruitment and employee development</li><li>📊 <strong>Finance:</strong> Automated reporting and predictive analytics</li></ul><h3>The Industry Recognition</h3><p>CFO Rajesh Gupta stood up with a proud smile. <strong>The results of Arjun's AI transformation have been extraordinary. We've been invited to present at three international conferences.</strong></p><p>Arjun showed the recognition they had received:</p><ul><li>🏅 <strong>\"AI Innovation Leader\"</strong> - Indian Software Association</li><li>🌟 <strong>\"Best AI Implementation\"</strong> - Mumbai Tech Summit</li><li>📰 <strong>Featured Case Study</strong> - Harvard Business Review India</li><li>🎤 <strong>Keynote Speaker</strong> - Global AI Ethics Conference</li></ul><p><strong>But the real measure of success,</strong> Arjun said, <strong>is not the awards - it's the transformation of our people.</strong></p><div class=\"story-insight\"><h4>💡 The Multiplier Effect</h4><ul><li><strong>Individual empowerment:</strong> Every employee becomes more capable</li><li><strong>Organizational intelligence:</strong> Collective AI expertise grows</li><li><strong>Innovation acceleration:</strong> Faster problem-solving and creativity</li><li><strong>Competitive advantage:</strong> Sustainable differentiation through AI mastery</li></ul></div><h3>The Future Vision</h3><p>For his final slide, Arjun presented TechVista's AI roadmap:</p><blockquote><em><strong>Phase 1 (Complete):</strong> AI Literacy and Basic Automation<br><strong>Phase 2 (In Progress):</strong> Advanced AI Integration and Multi-Model Workflows<br><strong>Phase 3 (Next 6 months):</strong> AI-Native Product Development<br><strong>Phase 4 (Vision):</strong> Industry AI Leadership and Consulting Services</em></blockquote><p><strong>We're not just using AI,</strong> Arjun declared, <strong>we're becoming an AI-first organization that helps others transform.</strong></p><h3>The Personal Transformation</h3><p>As the presentation ended and applause filled the room, Arjun reflected on his incredible journey:</p><p><em>Eight months ago, I couldn't write a decent ChatGPT prompt. Today, I'm leading AI transformation for a 2,000-person company.</em></p><p>After the meeting, Priya approached him with two cups of chai - their tradition from the early days.</p><p><strong>Remember when you thought AI was just about automating tasks?</strong> she asked with a smile.</p><p>Arjun laughed. <em>Now I know it's about amplifying human potential. AI doesn't replace us - it makes us superhuman.</em></p><h3>The Ripple Effect</h3><p>The story didn't end there. Within a year:</p><ul><li>🎓 <strong>Arjun launched</strong> an online Prompt Engineering certification program</li><li>📚 <strong>Co-authored</strong> \"The Prompt Engineering Handbook\" with Priya</li><li>🏢 <strong>TechVista</strong> became India's leading AI consulting firm</li><li>🌍 <strong>Trained over 10,000</strong> professionals across 25 countries</li><li>💼 <strong>Founded</strong> the Global Prompt Engineering Alliance</li></ul><p>Standing in his new office with \"Chief AI Officer\" on the door, Arjun looked out at the Mumbai skyline and smiled.</p><p><em>The future belongs to those who can speak to machines as fluently as they speak to humans. And it all started with learning to ask the right questions.</em></p><div class=\"story-insight\"><h4>🚀 The Prompt Engineering Legacy</h4><ul><li><strong>Personal mastery:</strong> From confusion to expertise</li><li><strong>Organizational transformation:</strong> Company-wide AI adoption</li><li><strong>Industry leadership:</strong> Setting standards for responsible AI</li><li><strong>Global impact:</strong> Sharing knowledge across borders</li></ul></div><p><strong>The End... or rather, The Beginning.</strong></p><p><em>Because in the world of AI, every ending is just a new prompt waiting to be written.</em></p>"
+                            }
+                        ];
+                    } else {
+                        // Get topics for other courses
+                        this.topics = data[this.courseId] || [];
+                    }
+                    
+                    if (this.topics.length === 0) {
+                        throw new Error('No topics found for this course');
+                    }
+                } catch (error) {
+                    console.error('Error loading topics:', error);
+                    this.topics = [
+                        {
+                            title: 'Course Content',
+                            duration: '5 min',
+                            difficulty: 'Beginner',
+                            story: '<h2>Content Loading</h2><p>Story content is being prepared...</p>'
+                        }
+                    ];
+                }
+            }
+
+            renderStory() {
+                if (this.topicIndex >= this.topics.length) {
+                    this.showError('Topic not found');
+                    return;
+                }
+
+                const topic = this.topics[this.topicIndex];
+                
+                // Safely update elements with null checks
+                const topicNumber = document.getElementById('topicNumber');
+                const storyTitle = document.getElementById('storyTitle');
+                const storyDuration = document.getElementById('storyDuration');
+                const storyDifficulty = document.getElementById('storyDifficulty');
+                const storyText = document.getElementById('storyText');
+                
+                if (topicNumber) topicNumber.textContent = this.topicIndex + 1;
+                if (storyTitle) storyTitle.textContent = topic.title;
+                if (storyDuration) storyDuration.textContent = topic.duration;
+                if (storyDifficulty) storyDifficulty.textContent = topic.difficulty;
+                if (storyText) storyText.innerHTML = topic.story;
+                
+                // Update breadcrumb
+                if (this.courseId === 'prompt-engineering') {
+                    const courseBreadcrumb = document.getElementById('courseBreadcrumb');
+                    const categoryLink = document.getElementById('categoryLink');
+                    
+                    if (courseBreadcrumb) {
+                        courseBreadcrumb.textContent = 'Prompt Engineering';
+                        courseBreadcrumb.href = 'course-detail.html?id=prompt-engineering';
+                    }
+                    if (categoryLink) {
+                        categoryLink.textContent = 'Courses';
+                        categoryLink.href = 'index.html#courses';
+                    }
+                }
+                
+                // Update navigation
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                
+                if (prevBtn) prevBtn.disabled = this.topicIndex === 0;
+                if (nextBtn) nextBtn.disabled = this.topicIndex >= this.topics.length - 1;
+            }
+
+            setupNavigation() {
+                document.getElementById('prevBtn').addEventListener('click', () => {
+                    if (this.topicIndex > 0) {
+                        window.location.href = `topic-story.html?course=${this.courseId}&index=${this.topicIndex - 1}`;
+                    }
+                });
+
+                document.getElementById('nextBtn').addEventListener('click', () => {
+                    if (this.topicIndex < this.topics.length - 1) {
+                        window.location.href = `topic-story.html?course=${this.courseId}&index=${this.topicIndex + 1}`;
+                    }
+                });
+
+                document.getElementById('quizBtn').addEventListener('click', () => {
+                    window.location.href = `topic-quiz.html?course=${this.courseId}`;
+                });
+            }
+
+            showError(message) {
+                const storyText = document.getElementById('storyText');
+                if (storyText) {
+                    storyText.innerHTML = `
+                        <div class="error-state">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>${message}</p>
+                        </div>
+                    `;
+                } else {
+                    console.error('Story text element not found:', message);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new TopicStoryPage();
+        });
+    </script>
+    
+    <!-- Floating Read Button -->
+    <button class="floating-read-btn" id="floatingReadBtn" title="Read for Me (Double-click to restart)">
+        🔊
+    </button>
+    
+    <!-- Story Butterfly -->
+    <div class="story-butterfly" id="storyButterfly">🦋</div>
+    
+    <script>
+        class StoryButterflyReader {
+            constructor() {
+                this.isReading = false;
+                this.isCurrentlyReading = false; // Prevent multiple instances
+                this.isToggling = false; // Prevent rapid clicks
+                this.currentParagraphIndex = 0;
+                this.paragraphs = [];
+                this.butterfly = document.getElementById('storyButterfly');
+                this.button = document.getElementById('floatingReadBtn');
+                this.storyContent = null;
+                
+                this.init();
+            }
+            
+            init() {
+                this.button.addEventListener('click', () => this.toggleReading());
+                
+                // Double-click to reset to beginning
+                this.button.addEventListener('dblclick', () => this.resetReading());
+                
+                // Stop speech on page unload/refresh
+                window.addEventListener('beforeunload', () => {
+                    speechSynthesis.cancel();
+                });
+                
+                window.addEventListener('unload', () => {
+                    speechSynthesis.cancel();
+                });
+                
+                // Wait for story content to load with better error checking
+                const checkForContent = () => {
+                    this.storyContent = document.querySelector('.story-content');
+                    if (this.storyContent && this.storyContent.children.length > 0) {
+                        this.collectParagraphs();
+                    } else {
+                        // Try again after a short delay
+                        setTimeout(checkForContent, 1000);
+                    }
+                };
+                
+                setTimeout(checkForContent, 2000);
+            }
+            
+            collectParagraphs() {
+                if (!this.storyContent) return;
+                
+                // Only collect paragraphs and extract their text content
+                const paragraphs = this.storyContent.querySelectorAll('p');
+                this.paragraphs = [];
+                
+                paragraphs.forEach((p, index) => {
+                    const textContent = p.textContent || p.innerText || '';
+                    const cleanText = textContent.trim();
+                    
+                    if (cleanText && cleanText.length > 0) {
+                        this.paragraphs.push({
+                            element: p,
+                            text: cleanText
+                        });
+                        console.log(`Paragraph ${index}:`, cleanText.substring(0, 50) + '...');
+                    }
+                });
+                
+                console.log(`Found ${this.paragraphs.length} paragraphs to read`);
+            }
+            
+            async speakText(text) {
+                return new Promise((resolve) => {
+                    if (!this.isReading) {
+                        resolve();
+                        return;
+                    }
+                    
+                    console.log('Speaking text:', typeof text, text);
+                    
+                    // Ensure we have a string
+                    const textToSpeak = String(text).trim();
+                    
+                    if (!textToSpeak) {
+                        console.warn('Empty text to speak');
+                        resolve();
+                        return;
+                    }
+                    
+                    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                    
+                    // Get best voice
+                    const voices = speechSynthesis.getVoices();
+                    const bestVoice = voices.find(v => v.name.includes('Google') && v.lang.startsWith('en')) ||
+                                   voices.find(v => v.name.includes('Microsoft') && v.lang.startsWith('en')) ||
+                                   voices.find(v => v.lang.startsWith('en'));
+                    
+                    if (bestVoice) utterance.voice = bestVoice;
+                    
+                    utterance.rate = 0.9;
+                    utterance.pitch = 1.0;
+                    utterance.volume = 1.0;
+                    
+                    utterance.onend = resolve;
+                    utterance.onerror = resolve;
+                    
+                    speechSynthesis.speak(utterance);
+                });
+            }
+            
+            async toggleReading() {
+                // Prevent rapid clicks
+                if (this.isToggling) {
+                    console.log('Ignoring rapid click');
+                    return;
+                }
+                
+                this.isToggling = true;
+                
+                try {
+                    if (this.isReading) {
+                        // Instant pause
+                        this.isReading = false;
+                        speechSynthesis.cancel();
+                        
+                        // Update button immediately
+                        this.button.innerHTML = '🔊';
+                        this.button.title = 'Continue Reading';
+                        this.button.classList.remove('reading');
+                        this.butterfly.style.display = 'none';
+                        
+                        if (this.storyContent) {
+                            this.storyContent.classList.remove('reading-mode');
+                        }
+                        
+                        // Remove highlights
+                        this.paragraphs.forEach(p => p.element.classList.remove('reading'));
+                        
+                        console.log(`Paused at paragraph ${this.currentParagraphIndex}`);
+                    } else {
+                        // Check content before starting
+                        if (!this.storyContent) {
+                            alert('Story content not found. Please wait for the page to fully load.');
+                            return;
+                        }
+                        
+                        if (this.paragraphs.length === 0) {
+                            this.collectParagraphs();
+                            if (this.paragraphs.length === 0) {
+                                alert('No readable content found. Please wait for the story to load.');
+                                return;
+                            }
+                        }
+                        
+                        // Instant start
+                        this.isReading = true;
+                        
+                        // Update button immediately
+                        this.button.innerHTML = '⏸️';
+                        this.button.title = 'Pause Reading';
+                        this.button.classList.add('reading');
+                        this.butterfly.style.display = 'block';
+                        
+                        if (this.storyContent) {
+                            this.storyContent.classList.add('reading-mode');
+                        }
+                        
+                        console.log(`Starting from paragraph ${this.currentParagraphIndex}`);
+                        
+                        // Start reading (don't await - let it run in background)
+                        this.readParagraphs();
+                    }
+                } finally {
+                    // Allow next click after short delay
+                    setTimeout(() => {
+                        this.isToggling = false;
+                    }, 300);
+                }
+            }
+            
+            async startReading() {
+                // Always stop any existing speech first
+                speechSynthesis.cancel();
+                
+                if (!this.storyContent) {
+                    alert('Story content not found. Please wait for the page to fully load.');
+                    return;
+                }
+                
+                if (this.paragraphs.length === 0) {
+                    this.collectParagraphs();
+                    if (this.paragraphs.length === 0) {
+                        alert('No readable content found. Please wait for the story to load.');
+                        return;
+                    }
+                }
+                
+                this.isReading = true;
+                this.button.innerHTML = '⏸️';
+                this.button.title = 'Stop Reading';
+                this.button.classList.add('reading');
+                this.butterfly.style.display = 'block';
+                
+                if (this.storyContent) {
+                    this.storyContent.classList.add('reading-mode');
+                }
+                
+                console.log(`Resuming from paragraph ${this.currentParagraphIndex}`);
+                await this.readParagraphs();
+            }
+            
+            resetReading() {
+                this.stopReading();
+                this.currentParagraphIndex = 0;
+                console.log('Reset to beginning');
+            }
+            
+            stopReading() {
+                this.isReading = false;
+                
+                // Force stop all speech
+                speechSynthesis.cancel();
+                
+                this.button.innerHTML = '🔊';
+                this.button.title = 'Read for Me';
+                this.button.classList.remove('reading');
+                this.butterfly.style.display = 'none';
+                
+                if (this.storyContent) {
+                    this.storyContent.classList.remove('reading-mode');
+                }
+                
+                // Remove highlights
+                this.paragraphs.forEach(p => p.element.classList.remove('reading'));
+                
+                // DON'T reset currentParagraphIndex - keep position for resume
+                console.log(`Paused at paragraph ${this.currentParagraphIndex}`);
+            }
+            
+            async readParagraphs() {
+                // Prevent multiple instances
+                if (this.isCurrentlyReading) {
+                    console.log('Already reading, skipping duplicate call');
+                    return;
+                }
+                
+                this.isCurrentlyReading = true;
+                
+                try {
+                    for (let i = this.currentParagraphIndex; i < this.paragraphs.length; i++) {
+                        if (!this.isReading) break;
+                        
+                        const paragraphData = this.paragraphs[i];
+                        const element = paragraphData.element;
+                        const text = paragraphData.text;
+                        
+                        console.log(`Reading paragraph ${i}:`, text.substring(0, 50) + '...');
+                        
+                        // Move butterfly to start of paragraph
+                        this.moveButterflyTo(element, 'start');
+                        
+                        // Highlight paragraph
+                        this.highlightParagraph(element);
+                        
+                        // Scroll into view
+                        element.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                        
+                        // Wait for scroll
+                        await this.wait(500);
+                        
+                        // Start horizontal movement while speaking the TEXT, not the element
+                        const speakPromise = this.speakText(text);
+                        const movePromise = this.animateHorizontalMovement(element);
+                        
+                        // Wait for both speaking and movement to complete
+                        await Promise.all([speakPromise, movePromise]);
+                        
+                        // Check if there's code between this paragraph and next
+                        const hasCodeAfter = this.hasCodeBetweenParagraphs(i);
+                        
+                        // Wait between paragraphs (longer if code follows)
+                        await this.wait(hasCodeAfter ? 1500 : 800);
+                        
+                        // Remove highlight
+                        element.classList.remove('reading');
+                        
+                        this.currentParagraphIndex = i + 1;
+                    }
+                } finally {
+                    this.isCurrentlyReading = false;
+                }
+                
+                // If finished reading all paragraphs, reset button
+                if (this.isReading && this.currentParagraphIndex >= this.paragraphs.length) {
+                    this.isReading = false;
+                    this.button.innerHTML = '🔊';
+                    this.button.title = 'Read for Me (Double-click to restart)';
+                    this.button.classList.remove('reading');
+                    this.butterfly.style.display = 'none';
+                    
+                    if (this.storyContent) {
+                        this.storyContent.classList.remove('reading-mode');
+                    }
+                    
+                    console.log('Finished reading all paragraphs');
+                }
+            }
+            
+            hasCodeBetweenParagraphs(currentIndex) {
+                if (currentIndex >= this.paragraphs.length - 1) return false;
+                
+                const currentParagraph = this.paragraphs[currentIndex];
+                const nextParagraph = this.paragraphs[currentIndex + 1];
+                
+                // Check if there are code elements between current and next paragraph
+                let element = currentParagraph.nextElementSibling;
+                while (element && element !== nextParagraph) {
+                    if (element.tagName === 'PRE' || 
+                        element.tagName === 'CODE' || 
+                        element.classList.contains('code-block') ||
+                        element.querySelector('code, pre')) {
+                        return true;
+                    }
+                    element = element.nextElementSibling;
+                }
+                
+                return false;
+            }
+            
+            moveButterflyTo(element, position = 'start') {
+                if (!element || !this.butterfly) return;
+                
+                try {
+                    const rect = element.getBoundingClientRect();
+                    
+                    let x, y;
+                    
+                    if (position === 'start') {
+                        // Start at beginning of paragraph
+                        x = rect.left + 10;
+                        y = rect.top + window.scrollY + (rect.height / 2) - 12;
+                    } else if (position === 'end') {
+                        // End at end of paragraph
+                        x = rect.right - 30;
+                        y = rect.top + window.scrollY + (rect.height / 2) - 12;
+                    } else {
+                        // Default center position
+                        x = rect.left + 20;
+                        y = rect.top + window.scrollY + (rect.height / 2) - 12;
+                    }
+                    
+                    this.butterfly.style.position = 'absolute';
+                    this.butterfly.style.left = `${x}px`;
+                    this.butterfly.style.top = `${y}px`;
+                } catch (error) {
+                    console.warn('Error positioning butterfly:', error);
+                }
+            }
+            
+            async animateHorizontalMovement(element) {
+                if (!element || !this.butterfly) return;
+                
+                return new Promise((resolve) => {
+                    try {
+                        const rect = element.getBoundingClientRect();
+                        const endX = rect.right - 30;
+                        
+                        // Calculate movement duration based on text length
+                        const textLength = element.textContent.length;
+                        const duration = Math.max(2000, textLength * 40); // Min 2s, ~40ms per character
+                        
+                        // Animate horizontal movement
+                        this.butterfly.style.transition = `left ${duration}ms linear`;
+                        this.butterfly.style.left = `${endX}px`;
+                        
+                        // Reset transition after animation
+                        setTimeout(() => {
+                            if (this.butterfly) {
+                                this.butterfly.style.transition = 'all 1.2s cubic-bezier(0.4, 0.0, 0.2, 1)';
+                            }
+                            resolve();
+                        }, duration);
+                        
+                    } catch (error) {
+                        console.warn('Error animating butterfly:', error);
+                        resolve();
+                    }
+                });
+            }
+            
+            highlightParagraph(element) {
+                if (!element) return;
+                
+                try {
+                    // Remove previous highlights
+                    this.paragraphs.forEach(p => {
+                        if (p && p.classList) {
+                            p.classList.remove('reading');
+                        }
+                    });
+                    
+                    // Highlight current
+                    if (element.classList) {
+                        element.classList.add('reading');
+                    }
+                } catch (error) {
+                    console.warn('Error highlighting paragraph:', error);
+                }
+            }
+            
+            wait(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        }
+    </script>
+</body>
+</html>

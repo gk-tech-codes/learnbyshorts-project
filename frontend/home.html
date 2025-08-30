@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnByShorts - Master Technology Through Visual Stories</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>LearnByShorts</h1>
+                    <span class="tagline">Master Technology Through Stories</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#categories" class="nav-link">Categories</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <button class="btn-login">Login</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Master Technology Through <span class="highlight">Visual Stories</span></h1>
+                <p class="hero-description">
+                    Transform your technical skills with engaging narratives. 
+                    Learn complex programming concepts, system design, and software architecture through relatable stories that make abstract concepts concrete and memorable.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Courses</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Students</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.9</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToCategories()">Explore Categories</button>
+                    <button class="btn-secondary" onclick="playDemo()">Watch Demo</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="demo-player">
+                    <div class="player-screen">
+                        <img id="demo-image" src="assets/demo/concept1.jpg" alt="Demo concept">
+                        <div class="player-controls">
+                            <button id="play-pause">▶️</button>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <span class="time">0:03</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Learning Categories</h2>
+                <p class="section-subtitle">Choose your path to mastery</p>
+            </div>
+            <div class="categories-grid" id="categories-grid">
+                <!-- Categories will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses -->
+    <section class="featured-courses">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Courses</h2>
+                <p class="section-subtitle">Start with our most popular content</p>
+            </div>
+            <div class="courses-grid" id="featured-courses-grid">
+                <!-- Featured courses will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How LearnByShorts Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Choose Your Category</h3>
+                        <p>Select from 8 comprehensive categories covering all aspects of modern technology</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Watch Visual Stories</h3>
+                        <p>Each concept is broken into 2-10 second visual narratives with engaging characters</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Build Understanding</h3>
+                        <p>Concepts connect to form complete, deep understanding through progressive learning</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Track Progress</h3>
+                        <p>Monitor your learning journey with detailed analytics and achievement badges</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Students Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The Singleton pattern story with Sharma Ji was hilarious and incredibly educational. I finally understand when and how to use it properly!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍💻</div>
+                        <div class="author-info">
+                            <h4>Rahul Sharma</h4>
+                            <span>Software Engineer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"LearnByShorts made complex algorithms feel like watching a movie. The visual storytelling approach is revolutionary!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩‍💻</div>
+                        <div class="author-info">
+                            <h4>Priya Patel</h4>
+                            <span>Full Stack Developer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"System design concepts that took me weeks to understand were explained in just a few engaging stories. Amazing platform!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍💼</div>
+                        <div class="author-info">
+                            <h4>Amit Kumar</h4>
+                            <span>Tech Lead</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LearnByShorts</h3>
+                    <p>Revolutionizing technical education through visual storytelling and narrative-based learning.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">💼</a>
+                        <a href="#" class="social-link">📺</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="category.html?id=design-patterns">Design Patterns</a></li>
+                        <li><a href="category.html?id=algorithms">Algorithms</a></li>
+                        <li><a href="category.html?id=system-design">System Design</a></li>
+                        <li><a href="category.html?id=web-development">Web Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#tutorials">Tutorials</a></li>
+                        <li><a href="#community">Community</a></li>
+                        <li><a href="#newsletter">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LearnByShorts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data-manager.js"></script>
+    <script src="js/ui-components.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

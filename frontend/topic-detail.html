@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Topic Detail - LearnByShorts</title>
+    <meta name="description" content="Learn programming concepts through engaging visual stories">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/topic-detail.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h1>LearnByShorts</h1>
+                        <span class="tagline">Master Programming Through Stories</span>
+                    </a>
+                </div>
+                <div class="nav-actions">
+                    <button class="nav-btn" id="backBtn" onclick="history.back()">
+                        <span class="btn-icon">←</span>
+                        Back
+                    </button>
+                    <button class="nav-btn" id="bookmarkBtn">
+                        <span class="btn-icon">🔖</span>
+                        Save
+                    </button>
+                    <button class="nav-btn" id="shareBtn">
+                        <span class="btn-icon">📤</span>
+                        Share
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="readingProgress"></div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list" id="breadcrumbList">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" id="categoryBreadcrumb">Category</a></li>
+                <li><a href="#" id="courseBreadcrumb">Course</a></li>
+                <li><span id="topicBreadcrumb">Topic</span></li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-layout">
+                <!-- Topic Hero -->
+                <section class="topic-hero" id="topicHero">
+                    <div class="hero-background" id="heroBackground"></div>
+                    <div class="hero-content">
+                        <div class="topic-meta">
+                            <span class="topic-category" id="topicCategory">Loading...</span>
+                            <span class="topic-difficulty" id="topicDifficulty">Intermediate</span>
+                            <span class="topic-duration" id="topicDuration">8 min read</span>
+                        </div>
+                        <h1 class="topic-title" id="topicTitle">Loading Topic...</h1>
+                        <p class="topic-subtitle" id="topicSubtitle">Loading subtitle...</p>
+                        <div class="topic-character" id="topicCharacter">
+                            <div class="character-avatar" id="characterAvatar">👨‍💼</div>
+                            <div class="character-info">
+                                <span class="character-name" id="characterName">Loading...</span>
+                                <span class="character-role" id="characterRole">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content Sections -->
+                <div class="content-sections">
+                    <!-- Story Introduction -->
+                    <section class="content-section story-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <span class="section-icon">📖</span>
+                                The Story
+                            </h2>
+                        </div>
+                        <div class="story-content">
+                            <div class="story-intro" id="storyIntro">
+                                <p>Loading story introduction...</p>
+                            </div>
+                            <div class="story-quote" id="storyQuote">
+                                <blockquote>
+                                    <p id="quoteText">Loading quote...</p>
+                                    <cite id="quoteCite">- Character</cite>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Story Timeline -->
+                    <section class="content-section timeline-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <span class="section-icon">⏱️</span>
+                                Story Timeline
+                            </h2>
+                            <p class="section-description">Follow the journey step by step</p>
+                        </div>
+                        <div class="timeline-container" id="timelineContainer">
+                            <!-- Timeline items will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Technical Explanation -->
+                    <section class="content-section technical-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <span class="section-icon">⚙️</span>
+                                Technical Deep Dive
+                            </h2>
+                            <p class="section-description">Understanding the technical concepts</p>
+                        </div>
+                        <div class="technical-content">
+                            <div class="definition-card" id="definitionCard">
+                                <h3>Definition</h3>
+                                <p id="technicalDefinition">Loading definition...</p>
+                            </div>
+                            <div class="characteristics-grid" id="characteristicsGrid">
+                                <!-- Characteristics will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Code Examples -->
+                    <section class="content-section code-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <span class="section-icon">💻</span>
+                                Code Examples
+                            </h2>
+                            <p class="section-description">See it in action with real code</p>
+                        </div>
+                        <div class="code-examples" id="codeExamples">
+                            <!-- Code examples will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Real World Applications -->
+                    <section class="content-section applications-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <span class="section-icon">🌍</span>
+                                Real-World Applications
+                            </h2>
+                            <p class="section-description">Where you'll use this in practice</p>
+                        </div>
+                        <div class="applications-grid" id="applicationsGrid">
+                            <!-- Applications will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Key Takeaways -->
+                    <section class="content-section takeaways-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <span class="section-icon">🎯</span>
+                                Key Takeaways
+                            </h2>
+                        </div>
+                        <div class="takeaways-content" id="takeawaysContent">
+                            <!-- Takeaways will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Navigation Footer -->
+                <section class="topic-navigation">
+                    <div class="nav-buttons">
+                        <button class="nav-button prev-button" id="prevTopicBtn">
+                            <span class="nav-icon">←</span>
+                            <div class="nav-content">
+                                <span class="nav-label">Previous</span>
+                                <span class="nav-title" id="prevTopicTitle">Previous Topic</span>
+                            </div>
+                        </button>
+                        <button class="nav-button next-button" id="nextTopicBtn">
+                            <div class="nav-content">
+                                <span class="nav-label">Next</span>
+                                <span class="nav-title" id="nextTopicTitle">Next Topic</span>
+                            </div>
+                            <span class="nav-icon">→</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sidebar (Table of Contents) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="toc-header">
+                <h3>Table of Contents</h3>
+                <button class="toc-toggle" id="tocToggle">
+                    <span class="toggle-icon">📋</span>
+                </button>
+            </div>
+            <nav class="table-of-contents" id="tableOfContents">
+                <!-- TOC will be populated by JavaScript -->
+            </nav>
+            <div class="reading-progress">
+                <div class="progress-circle">
+                    <svg class="progress-ring" width="60" height="60">
+                        <circle class="progress-ring-bg" cx="30" cy="30" r="25"></circle>
+                        <circle class="progress-ring-fill" cx="30" cy="30" r="25" id="progressRing"></circle>
+                    </svg>
+                    <div class="progress-text">
+                        <span id="progressPercent">0%</span>
+                    </div>
+                </div>
+                <p class="progress-label">Reading Progress</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LearnByShorts</h3>
+                    <p>Making programming concepts accessible through engaging stories</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils/constants.js"></script>
+    <script src="js/services/DataService.js"></script>
+    <script src="js/pages/EnhancedTopicDetailPage.js"></script>
+    <script>
+        // Initialize syntax highlighting
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+        
+        // Initialize the enhanced page
+        document.addEventListener('DOMContentLoaded', function() {
+            new EnhancedTopicDetailPage();
+        });
+    </script>
+</body>
+</html>

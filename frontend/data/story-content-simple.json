@@ -1,0 +1,16 @@
+{
+  "prompt-engineering": [
+    {
+      "title": "The AI Miscommunication Crisis",
+      "duration": "8 min",
+      "difficulty": "Beginner",
+      "story": "<h2>Chapter 1: Monday Morning AI Disaster</h2><p>Arjun Sharma walked into the Mumbai office ready to revolutionize marketing with AI.</p><p>He opened ChatGPT and typed: <em>Write marketing copy</em></p><p>The AI gave him generic, useless text. This was going to be harder than he thought...</p>"
+    },
+    {
+      "title": "The CLEAR Framework Discovery", 
+      "duration": "10 min",
+      "difficulty": "Beginner",
+      "story": "<h2>Chapter 2: Priya's Wisdom</h2><p>Priya showed Arjun the CLEAR framework for better prompts.</p><p>Context, Length, Examples, Audience, Role - the magic formula for AI success!</p>"
+    }
+  ]
+}

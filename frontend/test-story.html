@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Story Loading</title>
+</head>
+<body>
+    <div id="result">Loading...</div>
+    
+    <script>
+        async function testLoad() {
+            try {
+                const response = await fetch('data/story-content.json');
+                const data = await response.json();
+                const promptEngineering = data['prompt-engineering'];
+                
+                document.getElementById('result').innerHTML = `
+                    <h3>Test Results:</h3>
+                    <p>Course found: ${promptEngineering ? 'YES' : 'NO'}</p>
+                    <p>Number of topics: ${promptEngineering ? promptEngineering.length : 0}</p>
+                    <p>First topic title: ${promptEngineering && promptEngineering[0] ? promptEngineering[0].title : 'None'}</p>
+                `;
+            } catch (error) {
+                document.getElementById('result').innerHTML = `Error: ${error.message}`;
+            }
+        }
+        
+        testLoad();
+    </script>
+</body>
+</html>

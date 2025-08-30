@@ -1,0 +1,336 @@
+{
+  "quizzes": {
+    "singleton-pattern": [
+      {
+        "id": "sp-1",
+        "question": "What is the main purpose of the Singleton pattern?",
+        "options": [
+          "To create multiple instances of a class",
+          "To ensure a class has only one instance",
+          "To hide the implementation details",
+          "To provide inheritance functionality"
+        ],
+        "correct": 1,
+        "explanation": "The Singleton pattern ensures that a class has only one instance and provides a global point of access to it."
+      },
+      {
+        "id": "sp-2", 
+        "question": "Which method is typically used to get the Singleton instance?",
+        "options": [
+          "createInstance()",
+          "newInstance()",
+          "getInstance()",
+          "makeSingleton()"
+        ],
+        "correct": 2,
+        "explanation": "getInstance() is the conventional method name used to retrieve the single instance of a Singleton class."
+      },
+      {
+        "id": "sp-3",
+        "question": "Why is the Singleton constructor typically private?",
+        "options": [
+          "To improve performance",
+          "To prevent external instantiation",
+          "To enable inheritance",
+          "To reduce memory usage"
+        ],
+        "correct": 1,
+        "explanation": "The private constructor prevents external classes from creating new instances, ensuring only one instance exists."
+      },
+      {
+        "id": "sp-4",
+        "question": "What is the main thread safety concern with basic Singleton implementation?",
+        "options": [
+          "Memory leaks",
+          "Performance issues",
+          "Multiple instances creation",
+          "Compilation errors"
+        ],
+        "correct": 2,
+        "explanation": "Without proper synchronization, multiple threads might create multiple instances simultaneously."
+      },
+      {
+        "id": "sp-5",
+        "question": "Which is the best thread-safe Singleton implementation?",
+        "options": [
+          "Synchronized method",
+          "Double-checked locking",
+          "Enum-based Singleton",
+          "Static initialization"
+        ],
+        "correct": 2,
+        "explanation": "Enum-based Singleton is considered the best as it's thread-safe, serialization-safe, and prevents reflection attacks."
+      },
+      {
+        "id": "sp-6",
+        "question": "What problem can reflection cause with Singleton?",
+        "options": [
+          "Performance degradation",
+          "Memory overflow",
+          "Breaking the single instance guarantee",
+          "Compilation failure"
+        ],
+        "correct": 2,
+        "explanation": "Reflection can access private constructors and create multiple instances, breaking the Singleton pattern."
+      },
+      {
+        "id": "sp-7",
+        "question": "When should you avoid using Singleton pattern?",
+        "options": [
+          "When you need global access",
+          "When you need only one instance",
+          "When you need tight coupling",
+          "When you need dependency injection"
+        ],
+        "correct": 3,
+        "explanation": "Singleton creates tight coupling and makes testing difficult. Dependency injection is often a better alternative."
+      },
+      {
+        "id": "sp-8",
+        "question": "What is lazy initialization in Singleton?",
+        "options": [
+          "Creating instance at class loading",
+          "Creating instance when first requested",
+          "Creating multiple instances",
+          "Delaying method execution"
+        ],
+        "correct": 1,
+        "explanation": "Lazy initialization creates the Singleton instance only when getInstance() is first called."
+      }
+    ],
+    "factory-method-pattern": [
+      {
+        "id": "fm-1",
+        "question": "What is the main purpose of the Factory Method pattern?",
+        "options": [
+          "To create objects without specifying exact classes",
+          "To ensure single instance creation",
+          "To provide data encapsulation",
+          "To implement inheritance"
+        ],
+        "correct": 0,
+        "explanation": "Factory Method creates objects without specifying their concrete classes, delegating instantiation to subclasses."
+      },
+      {
+        "id": "fm-2",
+        "question": "In Factory Method pattern, who decides which concrete class to instantiate?",
+        "options": [
+          "The client code",
+          "The abstract factory",
+          "The concrete subclass",
+          "The base class"
+        ],
+        "correct": 2,
+        "explanation": "Concrete subclasses override the factory method to decide which specific class to instantiate."
+      },
+      {
+        "id": "fm-3",
+        "question": "What is the key difference between Factory Method and Simple Factory?",
+        "options": [
+          "Performance optimization",
+          "Memory usage",
+          "Use of inheritance vs composition",
+          "Thread safety"
+        ],
+        "correct": 2,
+        "explanation": "Factory Method uses inheritance (subclasses), while Simple Factory uses composition (a separate factory class)."
+      },
+      {
+        "id": "fm-4",
+        "question": "Which principle does Factory Method pattern follow?",
+        "options": [
+          "Single Responsibility",
+          "Open/Closed Principle",
+          "Interface Segregation",
+          "Dependency Inversion"
+        ],
+        "correct": 1,
+        "explanation": "Factory Method follows Open/Closed Principle - open for extension (new products) but closed for modification."
+      },
+      {
+        "id": "fm-5",
+        "question": "What is a concrete creator in Factory Method pattern?",
+        "options": [
+          "The product interface",
+          "The abstract factory class",
+          "A subclass that implements the factory method",
+          "The client that uses the factory"
+        ],
+        "correct": 2,
+        "explanation": "Concrete creators are subclasses that override the factory method to create specific product instances."
+      }
+    ],
+    "observer-pattern": [
+      {
+        "id": "op-1",
+        "question": "What is the main purpose of the Observer pattern?",
+        "options": [
+          "To create object hierarchies",
+          "To notify multiple objects about state changes",
+          "To encapsulate algorithms",
+          "To provide object creation"
+        ],
+        "correct": 1,
+        "explanation": "Observer pattern defines a one-to-many dependency so that when one object changes state, all dependents are notified."
+      },
+      {
+        "id": "op-2",
+        "question": "What are the two main components in Observer pattern?",
+        "options": [
+          "Factory and Product",
+          "Subject and Observer",
+          "Strategy and Context",
+          "Command and Receiver"
+        ],
+        "correct": 1,
+        "explanation": "Observer pattern consists of Subject (observable) that maintains observers and Observer (subscriber) that gets notified."
+      },
+      {
+        "id": "op-3",
+        "question": "How does Observer pattern promote loose coupling?",
+        "options": [
+          "By using inheritance",
+          "By hiding implementation details",
+          "Subject only knows observers implement an interface",
+          "By using static methods"
+        ],
+        "correct": 2,
+        "explanation": "Subject only knows that observers implement the Observer interface, not their concrete implementations."
+      },
+      {
+        "id": "op-4",
+        "question": "What method is typically called when subject state changes?",
+        "options": [
+          "update()",
+          "notify()",
+          "observe()",
+          "change()"
+        ],
+        "correct": 1,
+        "explanation": "The subject calls notify() to inform all registered observers about state changes."
+      }
+    ],
+    "prompt-engineering": [
+      {
+        "id": "pe-1",
+        "question": "What was Arjun's main problem with his initial ChatGPT prompts?",
+        "options": [
+          "The AI was too slow to respond",
+          "His prompts were too vague and lacked context",
+          "He was using the wrong AI model",
+          "The AI couldn't understand English"
+        ],
+        "correct": 1,
+        "explanation": "Arjun's prompts like 'Write marketing copy' were too vague, providing no context, audience, or specific requirements for the AI to generate useful responses."
+      },
+      {
+        "id": "pe-2",
+        "question": "What does the 'C' in Priya's CLEAR framework stand for?",
+        "options": [
+          "Creative",
+          "Context",
+          "Clear",
+          "Concise"
+        ],
+        "correct": 1,
+        "explanation": "In the CLEAR framework, 'C' stands for Context - providing the AI with the situational background and specific circumstances for the task."
+      },
+      {
+        "id": "pe-3",
+        "question": "What is the main benefit of Chain-of-Thought prompting?",
+        "options": [
+          "It makes responses shorter",
+          "It helps AI follow logical steps and provide structured thinking",
+          "It reduces the cost of AI usage",
+          "It makes AI respond faster"
+        ],
+        "correct": 1,
+        "explanation": "Chain-of-Thought prompting guides the AI through step-by-step reasoning, leading to more structured, thorough, and accurate responses."
+      },
+      {
+        "id": "pe-4",
+        "question": "In Few-Shot Learning, what do you provide to the AI?",
+        "options": [
+          "Multiple questions at once",
+          "Examples of the desired output format and style",
+          "A list of things to avoid",
+          "Technical specifications only"
+        ],
+        "correct": 1,
+        "explanation": "Few-Shot Learning involves showing the AI 2-3 examples of the desired output format, style, and structure so it can match that pattern in its response."
+      },
+      {
+        "id": "pe-5",
+        "question": "What was Kavya's urgent challenge that Arjun helped solve?",
+        "options": [
+          "Fixing a website bug",
+          "Creating a complete content campaign in 3 days",
+          "Hiring new team members",
+          "Analyzing competitor data"
+        ],
+        "correct": 1,
+        "explanation": "Kavya needed a complete content campaign including blog posts, social media, and email sequences for a product launch, all within just 3 days."
+      },
+      {
+        "id": "pe-6",
+        "question": "What type of business challenge did COO Rajesh bring to Arjun?",
+        "options": [
+          "Marketing campaign creation",
+          "Software development issues",
+          "Quarterly business review and data analysis",
+          "Customer service problems"
+        ],
+        "correct": 2,
+        "explanation": "Rajesh needed help with data analysis, report generation, and strategic planning for the quarterly business review and board presentation."
+      },
+      {
+        "id": "pe-7",
+        "question": "Which AI model does Priya recommend for real-time research and competitive intelligence?",
+        "options": [
+          "ChatGPT",
+          "Claude",
+          "Gemini",
+          "All models are the same"
+        ],
+        "correct": 2,
+        "explanation": "Priya recommends Gemini for real-time research and competitive intelligence because it has access to current information and comprehensive research capabilities."
+      },
+      {
+        "id": "pe-8",
+        "question": "What does the FAIR principle in ethical AI stand for?",
+        "options": [
+          "Fast, Accurate, Intelligent, Reliable",
+          "Fairness, Accountability, Inclusivity, Responsibility",
+          "Functional, Adaptive, Innovative, Robust",
+          "Flexible, Automated, Integrated, Responsive"
+        ],
+        "correct": 1,
+        "explanation": "The FAIR principle stands for Fairness (equitable treatment), Accountability (human oversight), Inclusivity (diverse perspectives), and Responsibility (considering societal impact)."
+      },
+      {
+        "id": "pe-9",
+        "question": "What position did Arjun achieve by the end of his AI journey?",
+        "options": [
+          "Senior Marketing Manager",
+          "AI Consultant",
+          "Chief AI Officer",
+          "Data Analyst"
+        ],
+        "correct": 2,
+        "explanation": "Arjun was promoted to Chief AI Officer (CAO) after successfully transforming TechVista's operations through AI implementation and training 847 employees."
+      },
+      {
+        "id": "pe-10",
+        "question": "What was the key insight Arjun learned about AI's role?",
+        "options": [
+          "AI should replace all human workers",
+          "AI is only useful for simple tasks",
+          "AI amplifies human potential rather than replacing it",
+          "AI is too complex for business use"
+        ],
+        "correct": 2,
+        "explanation": "Arjun's key insight was that 'AI doesn't replace us - it makes us superhuman' by amplifying human capabilities and handling heavy lifting so humans can focus on strategy and relationships."
+      }
+    ]
+  }
+}

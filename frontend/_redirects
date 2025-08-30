@@ -1,0 +1,12 @@
+# Redirect non-www to www (301 permanent redirects)
+https://learnbyshorts.com/* https://www.learnbyshorts.com/:splat 301!
+http://learnbyshorts.com/* https://www.learnbyshorts.com/:splat 301!
+
+# Redirect HTTP to HTTPS for www
+http://www.learnbyshorts.com/* https://www.learnbyshorts.com/:splat 301!
+
+# Specific page redirects (in case Google has indexed specific old URLs)
+/index.html https://www.learnbyshorts.com/ 301!
+/about https://www.learnbyshorts.com/about.html 301!
+/contact https://www.learnbyshorts.com/contact.html 301!
+/design-patterns https://www.learnbyshorts.com/design-patterns.html 301!

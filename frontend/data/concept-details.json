@@ -1,0 +1,440 @@
+{
+  "concepts": {
+    "singleton-pattern-detail": {
+      "id": "singleton-pattern-detail",
+      "title": "The Government Office and the Singleton Pattern",
+      "subtitle": "An Indian Bureaucracy Tale",
+      "backgroundColor": "#667eea",
+      "backgroundPattern": "government",
+      "character": {
+        "name": "Sharma Ji",
+        "role": "Government Office Manager",
+        "image": "assets/characters/sharma-ji.png"
+      },
+      "story": {
+        "introduction": "In every Indian city, there exists a legendary figure known as 'Sharma Ji' — the government office manager who ensures that there's only one official instance of any important government office. Just as there can only be one Prime Minister's Office, some software objects should have only one instance.",
+        "quote": "One office, one authority, no confusion! That's how government works efficiently.",
+        "timeline": [
+          {
+            "title": "The Chaos of Multiple Offices",
+            "description": "Initially, different departments tried to create their own 'official' offices, leading to confusion and conflicting decisions."
+          },
+          {
+            "title": "Sharma Ji's Solution",
+            "description": "Sharma Ji implemented a system where only one instance of each critical office could exist, with controlled access for all departments."
+          },
+          {
+            "title": "The Single Point of Truth",
+            "description": "Now, everyone knows exactly where to go for official decisions, and there's no confusion about which office is the 'real' one."
+          },
+          {
+            "title": "Handling Concurrent Visitors",
+            "description": "Sharma Ji ensures that even when multiple people try to access the office simultaneously, they all get directed to the same instance."
+          },
+          {
+            "title": "Lazy Initialization",
+            "description": "The office is only set up when someone actually needs it, saving government resources until the office is required."
+          }
+        ]
+      },
+      "technicalExplanation": {
+        "definition": "The Singleton pattern ensures that a class has only one instance and provides a global point of access to that instance.",
+        "keyCharacteristics": [
+          "Only one instance of the class can exist",
+          "Global access point to the instance",
+          "Lazy or eager initialization options",
+          "Thread-safe implementation considerations",
+          "Private constructor to prevent direct instantiation",
+          "Static method to get the instance"
+        ],
+        "whenToUse": [
+          "Database connection pools",
+          "Logger classes",
+          "Configuration settings",
+          "Cache implementations",
+          "Thread pools",
+          "Device drivers",
+          "File managers"
+        ],
+        "advantages": [
+          "Controlled access to sole instance",
+          "Reduced memory footprint",
+          "Global access point",
+          "Lazy initialization possible",
+          "Avoids variable pollution in global scope"
+        ],
+        "disadvantages": [
+          "Difficult to unit test",
+          "Can create tight coupling",
+          "Threading issues if not implemented correctly",
+          "Violates Single Responsibility Principle",
+          "Can hide dependencies"
+        ]
+      },
+      "codeExamples": [
+        {
+          "language": "java",
+          "title": "Thread-Safe Singleton Implementation",
+          "filename": "GovernmentOffice.java",
+          "code": "public class GovernmentOffice {\n    private static volatile GovernmentOffice instance;\n    private String officeName;\n    private List<String> documents;\n    \n    private GovernmentOffice() {\n        this.officeName = \"Central Government Office\";\n        this.documents = new ArrayList<>();\n        System.out.println(\"Sharma Ji: Government office is now established!\");\n    }\n    \n    public static GovernmentOffice getInstance() {\n        if (instance == null) {\n            synchronized (GovernmentOffice.class) {\n                if (instance == null) {\n                    instance = new GovernmentOffice();\n                }\n            }\n        }\n        return instance;\n    }\n    \n    public void processDocument(String document) {\n        documents.add(document);\n        System.out.println(\"Sharma Ji processed: \" + document);\n    }\n    \n    public void showStatus() {\n        System.out.println(\"Office: \" + officeName);\n        System.out.println(\"Documents processed: \" + documents.size());\n    }\n}"
+        },
+        {
+          "language": "javascript",
+          "title": "Modern JavaScript Singleton",
+          "filename": "governmentOffice.js",
+          "code": "class GovernmentOffice {\n    constructor() {\n        if (GovernmentOffice.instance) {\n            return GovernmentOffice.instance;\n        }\n        \n        this.officeName = 'Central Government Office';\n        this.documents = [];\n        console.log('Sharma Ji: Government office is now established!');\n        \n        GovernmentOffice.instance = this;\n        return this;\n    }\n    \n    processDocument(document) {\n        this.documents.push(document);\n        console.log(`Sharma Ji processed: ${document}`);\n    }\n    \n    showStatus() {\n        console.log(`Office: ${this.officeName}`);\n        console.log(`Documents processed: ${this.documents.length}`);\n    }\n}\n\n// Usage\nconst office1 = new GovernmentOffice();\nconst office2 = new GovernmentOffice();\n\nconsole.log(office1 === office2); // true - same instance!"
+        },
+        {
+          "language": "python",
+          "title": "Python Singleton Implementation",
+          "filename": "government_office.py",
+          "code": "class GovernmentOffice:\n    _instance = None\n    \n    def __new__(cls):\n        if cls._instance is None:\n            print(\"Sharma Ji: Government office is now established!\")\n            cls._instance = super(GovernmentOffice, cls).__new__(cls)\n            cls._instance.office_name = \"Central Government Office\"\n            cls._instance.documents = []\n        return cls._instance\n    \n    def process_document(self, document):\n        self.documents.append(document)\n        print(f\"Sharma Ji processed: {document}\")\n    \n    def show_status(self):\n        print(f\"Office: {self.office_name}\")\n        print(f\"Documents processed: {len(self.documents)}\")\n\n# Usage\noffice1 = GovernmentOffice()\noffice2 = GovernmentOffice()\n\nprint(office1 is office2)  # True - same instance"
+        }
+      ],
+      "realWorldApplications": [
+        {
+          "title": "Database Connection Pool",
+          "description": "Just like Sharma Ji's office, database connections are expensive resources that should be managed centrally."
+        },
+        {
+          "title": "Application Configuration",
+          "description": "Configuration settings should have one source of truth, like government policies from one official office."
+        },
+        {
+          "title": "Logging Service",
+          "description": "All application logs should go through one central logging service, maintaining consistency."
+        },
+        {
+          "title": "Cache Manager",
+          "description": "A single cache manager ensures consistent caching behavior across the application."
+        }
+      ],
+      "comparisons": [
+        {
+          "pattern": "Factory Pattern",
+          "difference": "Factory creates multiple instances of different types, while Singleton ensures only one instance of the same type."
+        },
+        {
+          "pattern": "Static Class",
+          "difference": "Singleton can implement interfaces and be passed as parameters, static classes cannot."
+        },
+        {
+          "pattern": "Monostate Pattern",
+          "difference": "Singleton has one instance, while Monostate allows multiple instances that share the same state."
+        }
+      ]
+    },
+    "factory-method-pattern-detail": {
+      "id": "factory-method-pattern-detail",
+      "title": "The Magical Toy Workshop and the Factory Method Pattern",
+      "subtitle": "A Tale of Toy Creation",
+      "backgroundColor": "#3b82f6",
+      "backgroundPattern": "workshop",
+      "character": {
+        "name": "Master Toymaker Gupta",
+        "role": "Chief Toy Creator",
+        "image": "assets/characters/toymaker-gupta.png"
+      },
+      "story": {
+        "introduction": "In a bustling market in Old Delhi, there exists a magical toy workshop run by Master Toymaker Gupta. While ordinary toy shops sell pre-made toys, Gupta's workshop creates custom toys based on each child's personality. The workshop doesn't need to know exactly what toy it will create until the child arrives, just as the Factory Method pattern lets subclasses decide which objects to create.",
+        "quote": "I don't make toys; I create joy. Each child deserves a toy that matches their spirit!",
+        "timeline": [
+          {
+            "title": "The Challenge of Custom Toys",
+            "description": "Master Gupta faced a problem: how to create different toys for different children without rewriting his entire workshop process each time."
+          },
+          {
+            "title": "The Workshop Framework",
+            "description": "Gupta designed a standard workshop process (the abstract creator) that defined all the steps for toy creation but left the specific toy creation to specialized craftsmen (concrete creators)."
+          },
+          {
+            "title": "Specialized Craftsmen",
+            "description": "Different craftsmen (concrete creators) joined the workshop, each specializing in creating different types of toys (concrete products) like musical toys, puzzle toys, or action figures."
+          },
+          {
+            "title": "The Magic of Customization",
+            "description": "When a child enters the workshop, Gupta assesses their personality and assigns the appropriate craftsman, who then creates the perfect toy using their specialized factory method."
+          },
+          {
+            "title": "Expanding the Workshop",
+            "description": "As new toy types became popular, Gupta simply hired new specialized craftsmen without changing the overall workshop process."
+          }
+        ]
+      },
+      "technicalExplanation": {
+        "definition": "The Factory Method pattern defines an interface for creating an object, but lets subclasses decide which class to instantiate. It lets a class defer instantiation to subclasses.",
+        "keyCharacteristics": [
+          "Creates objects through inheritance",
+          "Encapsulates object creation in a method",
+          "Subclasses implement the factory method to create specific objects",
+          "Connects parallel class hierarchies",
+          "Follows the dependency inversion principle"
+        ],
+        "whenToUse": [
+          "When a class can't anticipate the type of objects it needs to create",
+          "When a class wants its subclasses to specify the objects it creates",
+          "When you want to localize the knowledge of which class gets created",
+          "When you need to create different products depending on context",
+          "When you have a hierarchy of creators that parallels a hierarchy of products"
+        ],
+        "advantages": [
+          "Eliminates the need to bind application-specific classes into your code",
+          "Provides hooks for subclasses to extend the factory",
+          "Connects parallel class hierarchies",
+          "Follows the Single Responsibility Principle",
+          "Follows the Open/Closed Principle"
+        ],
+        "disadvantages": [
+          "May lead to many small subclasses",
+          "Can become complex if there are many product types",
+          "Requires inheritance which can be limiting in some languages",
+          "Can be overkill for simple object creation scenarios"
+        ]
+      },
+      "codeExamples": [
+        {
+          "language": "java",
+          "title": "Toy Workshop Implementation",
+          "filename": "ToyWorkshop.java",
+          "code": "// Product interface\npublic interface Toy {\n    void play();\n}\n\n// Concrete Products\npublic class PuzzleToy implements Toy {\n    @Override\n    public void play() {\n        System.out.println(\"Solving the puzzle challenge!\");\n    }\n}\n\npublic class MusicalToy implements Toy {\n    @Override\n    public void play() {\n        System.out.println(\"Playing a beautiful melody!\");\n    }\n}\n\npublic class ActionFigureToy implements Toy {\n    @Override\n    public void play() {\n        System.out.println(\"Saving the world with action moves!\");\n    }\n}\n\n// Creator - Abstract Factory\npublic abstract class ToyMaker {\n    // Factory Method\n    public abstract Toy createToy();\n    \n    // Template method that uses the factory method\n    public Toy deliverToy() {\n        Toy toy = createToy();\n        System.out.println(\"Wrapping the toy in colorful paper...\");\n        return toy;\n    }\n}\n\n// Concrete Creators\npublic class PuzzleToyMaker extends ToyMaker {\n    @Override\n    public Toy createToy() {\n        return new PuzzleToy();\n    }\n}\n\npublic class MusicalToyMaker extends ToyMaker {\n    @Override\n    public Toy createToy() {\n        return new MusicalToy();\n    }\n}\n\npublic class ActionFigureToyMaker extends ToyMaker {\n    @Override\n    public Toy createToy() {\n        return new ActionFigureToy();\n    }\n}\n\n// Client code\npublic class ToyWorkshop {\n    public static void main(String[] args) {\n        // Assess the child's personality\n        String childPersonality = \"creative\";\n        \n        // Select the appropriate toy maker\n        ToyMaker toyMaker;\n        switch (childPersonality) {\n            case \"logical\":\n                toyMaker = new PuzzleToyMaker();\n                break;\n            case \"musical\":\n                toyMaker = new MusicalToyMaker();\n                break;\n            case \"active\":\n                toyMaker = new ActionFigureToyMaker();\n                break;\n            default:\n                toyMaker = new PuzzleToyMaker();\n        }\n        \n        // Create and deliver the toy\n        Toy toy = toyMaker.deliverToy();\n        toy.play();\n    }\n}"
+        },
+        {
+          "language": "python",
+          "title": "Python Toy Workshop",
+          "filename": "toy_workshop.py",
+          "code": "from abc import ABC, abstractmethod\n\n# Product interface\nclass Toy(ABC):\n    @abstractmethod\n    def play(self):\n        pass\n\n# Concrete Products\nclass PuzzleToy(Toy):\n    def play(self):\n        print(\"Solving the puzzle challenge!\")\n\nclass MusicalToy(Toy):\n    def play(self):\n        print(\"Playing a beautiful melody!\")\n\nclass ActionFigureToy(Toy):\n    def play(self):\n        print(\"Saving the world with action moves!\")\n\n# Creator - Abstract Factory\nclass ToyMaker(ABC):\n    # Factory Method\n    @abstractmethod\n    def create_toy(self):\n        pass\n    \n    # Template method that uses the factory method\n    def deliver_toy(self):\n        toy = self.create_toy()\n        print(\"Wrapping the toy in colorful paper...\")\n        return toy\n\n# Concrete Creators\nclass PuzzleToyMaker(ToyMaker):\n    def create_toy(self):\n        return PuzzleToy()\n\nclass MusicalToyMaker(ToyMaker):\n    def create_toy(self):\n        return MusicalToy()\n\nclass ActionFigureToyMaker(ToyMaker):\n    def create_toy(self):\n        return ActionFigureToy()\n\n# Client code\ndef toy_workshop():\n    # Assess the child's personality\n    child_personality = \"creative\"\n    \n    # Select the appropriate toy maker\n    if child_personality == \"logical\":\n        toy_maker = PuzzleToyMaker()\n    elif child_personality == \"musical\":\n        toy_maker = MusicalToyMaker()\n    elif child_personality == \"active\":\n        toy_maker = ActionFigureToyMaker()\n    else:\n        toy_maker = PuzzleToyMaker()\n    \n    # Create and deliver the toy\n    toy = toy_maker.deliver_toy()\n    toy.play()\n\nif __name__ == \"__main__\":\n    toy_workshop()"
+        }
+      ],
+      "realWorldApplications": [
+        {
+          "title": "UI Framework Button Creation",
+          "description": "Different operating systems create different types of buttons, but the application code remains the same."
+        },
+        {
+          "title": "Document Generators",
+          "description": "A document framework might use factory methods to create different document types (PDF, Word, HTML) based on user selection."
+        },
+        {
+          "title": "Database Connectors",
+          "description": "Applications can use factory methods to create the appropriate database connection based on configuration."
+        },
+        {
+          "title": "Payment Processing Systems",
+          "description": "E-commerce platforms use factory methods to create different payment processors based on the customer's payment method choice."
+        }
+      ],
+      "comparisons": [
+        {
+          "pattern": "Abstract Factory Pattern",
+          "difference": "Factory Method creates one product using inheritance, while Abstract Factory creates families of related products using composition."
+        },
+        {
+          "pattern": "Simple Factory",
+          "difference": "Simple Factory uses a single class with a static method, while Factory Method uses inheritance and polymorphism."
+        },
+        {
+          "pattern": "Builder Pattern",
+          "difference": "Factory Method focuses on creating different product types, while Builder focuses on constructing complex objects step by step."
+        }
+      ]
+    },
+    "builder-pattern-detail": {
+      "id": "builder-pattern-detail",
+      "title": "Patel Uncle and the Builder Pattern",
+      "subtitle": "An Indian Wedding Tale",
+      "backgroundColor": "#D80032",
+      "backgroundPattern": "wedding",
+      "character": {
+        "name": "Patel Uncle",
+        "role": "Master Wedding Planner",
+        "image": "assets/characters/patel-uncle.png"
+      },
+      "story": {
+        "introduction": "In every Indian community, there exists a legendary figure known as 'Patel Uncle' — the ultimate wedding planner who can orchestrate the most elaborate wedding celebrations with precision and flair. Just as Indian weddings are complex, multi-day affairs with countless moving parts, software systems often require complex objects built from many components.",
+        "quote": "Building perfect wedding is like building perfect object — you need right steps, right order, and plenty of patience!",
+        "timeline": [
+          {
+            "title": "The Complex Wedding Challenge",
+            "description": "The Sharma and Patel families wanted to arrange a wedding but were overwhelmed by the complexity involving venue, catering, music, ceremonies, and more."
+          },
+          {
+            "title": "Enter Patel Uncle: The Master Builder",
+            "description": "Patel Uncle promised to build their wedding step by step, handling all complexities while giving families exactly what they wanted."
+          },
+          {
+            "title": "The Building Process",
+            "description": "Rather than asking families to coordinate with dozens of vendors, Patel Uncle had a systematic approach with clear methods for each aspect."
+          },
+          {
+            "title": "The Big Reveal",
+            "description": "When all elements were configured, Patel Uncle brought everything together into a magnificent celebration that exceeded expectations."
+          }
+        ]
+      },
+      "technicalExplanation": {
+        "definition": "The Builder pattern allows you to create complex objects step by step, separating the construction of a complex object from its representation.",
+        "keyCharacteristics": [
+          "Separates object construction from representation",
+          "Provides better control over construction process",
+          "Allows creating different representations using same process",
+          "Creates objects step by step",
+          "Hides complex construction details from client"
+        ],
+        "whenToUse": [
+          "Objects with many optional parameters",
+          "When object creation is complex",
+          "To avoid telescoping constructors",
+          "When you want immutable objects",
+          "When parts must be built in specific sequence"
+        ],
+        "advantages": [
+          "Better control over construction process",
+          "Code is more readable and maintainable",
+          "Can create different representations",
+          "Isolates complex construction code"
+        ],
+        "disadvantages": [
+          "Increases code complexity",
+          "Requires creating multiple new classes",
+          "May impact performance due to additional objects"
+        ]
+      },
+      "codeExamples": [
+        {
+          "language": "java",
+          "title": "Indian Wedding Builder",
+          "filename": "IndianWedding.java",
+          "code": "public class IndianWedding {\n    private final String bride;\n    private final String groom;\n    private final LocalDate weddingDate;\n    private String venue;\n    private String decoration;\n    private String catering;\n    private boolean mehendi;\n    private boolean sangeet;\n    private int guestCount;\n    \n    private IndianWedding(WeddingBuilder builder) {\n        this.bride = builder.bride;\n        this.groom = builder.groom;\n        this.weddingDate = builder.weddingDate;\n        this.venue = builder.venue;\n        this.decoration = builder.decoration;\n        this.catering = builder.catering;\n        this.mehendi = builder.mehendi;\n        this.sangeet = builder.sangeet;\n        this.guestCount = builder.guestCount;\n    }\n    \n    public static class WeddingBuilder {\n        private final String bride;\n        private final String groom;\n        private final LocalDate weddingDate;\n        private String venue = \"Traditional Hall\";\n        private String decoration = \"Standard\";\n        private String catering = \"Gujarati Menu\";\n        private boolean mehendi = false;\n        private boolean sangeet = false;\n        private int guestCount = 100;\n        \n        public WeddingBuilder(String bride, String groom, LocalDate date) {\n            this.bride = bride;\n            this.groom = groom;\n            this.weddingDate = date;\n        }\n        \n        public WeddingBuilder withVenue(String venue) {\n            this.venue = venue;\n            return this;\n        }\n        \n        public WeddingBuilder withDecoration(String decoration) {\n            this.decoration = decoration;\n            return this;\n        }\n        \n        public WeddingBuilder includeMehendi(boolean mehendi) {\n            this.mehendi = mehendi;\n            return this;\n        }\n        \n        public IndianWedding build() {\n            return new IndianWedding(this);\n        }\n    }\n}"
+        }
+      ],
+      "realWorldApplications": [
+        {
+          "title": "StringBuilder in Java",
+          "description": "Builds strings incrementally with methods like append() and insert(), just like Patel Uncle builds weddings piece by piece."
+        },
+        {
+          "title": "HTTP Request Builders",
+          "description": "Libraries like Retrofit use builders to construct complex API requests with headers, parameters, and configurations."
+        },
+        {
+          "title": "UI Component Libraries",
+          "description": "Many UI libraries use Builder patterns to construct complex components with many configuration options."
+        }
+      ]
+    }
+,
+    "observer-pattern-detail": {
+      "id": "observer-pattern-detail",
+      "title": "The Village Crier and the Observer Pattern",
+      "subtitle": "A Tale of News Distribution",
+      "backgroundColor": "#10b981",
+      "backgroundPattern": "village",
+      "character": {
+        "name": "Pandit Ramesh",
+        "role": "Village News Announcer",
+        "image": "assets/characters/pandit-ramesh.png"
+      },
+      "story": {
+        "introduction": "In a small village in rural India, Pandit Ramesh serves as the village crier, responsible for keeping everyone informed about important events. Instead of going door to door with news, villagers subscribe to his announcements by hanging a special flag outside their homes. Whenever there's news, Pandit Ramesh walks through the village and announces it only to those who have subscribed, just as the Observer pattern notifies interested objects about state changes.",
+        "quote": "Information is like water - it should flow freely to those who thirst for it, but not flood those who don't!",
+        "timeline": [
+          {
+            "title": "The Communication Problem",
+            "description": "The village was growing, and Pandit Ramesh couldn't efficiently inform everyone about every piece of news, especially since not everyone was interested in all types of announcements."
+          },
+          {
+            "title": "The Subscription System",
+            "description": "Pandit Ramesh introduced colored flags (the observer registration) that villagers could hang outside their homes to indicate which types of news they wanted to receive."
+          },
+          {
+            "title": "News Categories",
+            "description": "Different news types were established: red flags for emergencies, blue for weather forecasts, green for agricultural updates, and yellow for social events."
+          },
+          {
+            "title": "The Notification Process",
+            "description": "When news arrived (state change), Pandit Ramesh would walk through the village and announce it only to houses displaying the corresponding colored flag."
+          },
+          {
+            "title": "Dynamic Subscriptions",
+            "description": "Villagers could change their subscriptions at any time by simply changing the flags outside their homes, without disrupting the overall system."
+          }
+        ]
+      },
+      "technicalExplanation": {
+        "definition": "The Observer pattern defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.",
+        "keyCharacteristics": [
+          "Defines a one-to-many relationship between objects",
+          "Loose coupling between subject and observers",
+          "Subject notifies all registered observers automatically",
+          "Observers can be added or removed dynamically",
+          "Implements the 'push' or 'pull' model for updates"
+        ],
+        "whenToUse": [
+          "When changes to one object require changing others, and you don't know how many objects need to change",
+          "When an object should be able to notify other objects without making assumptions about who these objects are",
+          "When a change to one object requires changing others, but the number of objects that need to change is unknown or dynamic",
+          "For implementing distributed event handling systems",
+          "For implementing the MVC pattern (Model-View-Controller)"
+        ],
+        "advantages": [
+          "Loose coupling between subject and observers",
+          "Support for broadcast communication",
+          "Dynamic relationships between objects at runtime",
+          "Follows the Open/Closed Principle",
+          "Establishes good object-oriented design relationships"
+        ],
+        "disadvantages": [
+          "Unexpected updates if observers are unaware of each other",
+          "Memory leaks if observers aren't properly unregistered",
+          "Notification order is not guaranteed",
+          "Potential performance issues with many observers",
+          "Possible cascading updates"
+        ]
+      },
+      "codeExamples": [
+        {
+          "language": "java",
+          "title": "Village News System Implementation",
+          "filename": "VillageNewsSystem.java",
+          "code": "import java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\n\n// News Type Enum\nenum NewsType {\n    EMERGENCY,\n    WEATHER,\n    AGRICULTURE,\n    SOCIAL\n}\n\n// Observer Interface\ninterface Villager {\n    void receiveNews(NewsType type, String news);\n}\n\n// Concrete Observer\nclass VillageHouse implements Villager {\n    private String familyName;\n    \n    public VillageHouse(String familyName) {\n        this.familyName = familyName;\n    }\n    \n    @Override\n    public void receiveNews(NewsType type, String news) {\n        System.out.println(familyName + \" received \" + type + \" news: \" + news);\n    }\n}\n\n// Subject\nclass VillageCrier {\n    private Map<NewsType, List<Villager>> subscribers = new HashMap<>();\n    private String name;\n    \n    public VillageCrier(String name) {\n        this.name = name;\n        // Initialize lists for each news type\n        for (NewsType type : NewsType.values()) {\n            subscribers.put(type, new ArrayList<>());\n        }\n    }\n    \n    // Subscribe to a news type\n    public void subscribe(NewsType type, Villager villager) {\n        List<Villager> villagers = subscribers.get(type);\n        if (!villagers.contains(villager)) {\n            villagers.add(villager);\n            System.out.println(name + \": New subscriber for \" + type + \" news!\");\n        }\n    }\n    \n    // Unsubscribe from a news type\n    public void unsubscribe(NewsType type, Villager villager) {\n        List<Villager> villagers = subscribers.get(type);\n        if (villagers.remove(villager)) {\n            System.out.println(name + \": Subscriber removed from \" + type + \" news.\");\n        }\n    }\n    \n    // Notify all subscribers of a specific news type\n    public void announceNews(NewsType type, String news) {\n        System.out.println(name + \" announces \" + type + \" news: \" + news);\n        \n        List<Villager> villagers = subscribers.get(type);\n        for (Villager villager : villagers) {\n            villager.receiveNews(type, news);\n        }\n    }\n}\n\n// Client code\npublic class VillageNewsSystem {\n    public static void main(String[] args) {\n        // Create the village crier\n        VillageCrier panditRamesh = new VillageCrier(\"Pandit Ramesh\");\n        \n        // Create some villagers\n        Villager sharmaHouse = new VillageHouse(\"Sharma Family\");\n        Villager patelHouse = new VillageHouse(\"Patel Family\");\n        Villager singhHouse = new VillageHouse(\"Singh Family\");\n        \n        // Subscribe villagers to different news types\n        panditRamesh.subscribe(NewsType.EMERGENCY, sharmaHouse);\n        panditRamesh.subscribe(NewsType.EMERGENCY, patelHouse);\n        panditRamesh.subscribe(NewsType.EMERGENCY, singhHouse);\n        \n        panditRamesh.subscribe(NewsType.WEATHER, sharmaHouse);\n        panditRamesh.subscribe(NewsType.AGRICULTURE, patelHouse);\n        panditRamesh.subscribe(NewsType.SOCIAL, singhHouse);\n        \n        // Announce some news\n        panditRamesh.announceNews(NewsType.EMERGENCY, \"Heavy rainfall expected tonight. Secure your homes!\");\n        panditRamesh.announceNews(NewsType.AGRICULTURE, \"The rice harvest will begin next week.\");\n        \n        // Unsubscribe and then announce again\n        panditRamesh.unsubscribe(NewsType.EMERGENCY, patelHouse);\n        panditRamesh.announceNews(NewsType.EMERGENCY, \"The flood warning has been lifted.\");\n    }\n}"
+        },
+        {
+          "language": "python",
+          "title": "Python Village News System",
+          "filename": "village_news_system.py",
+          "code": "from enum import Enum\nfrom abc import ABC, abstractmethod\n\n# News Type Enum\nclass NewsType(Enum):\n    EMERGENCY = 1\n    WEATHER = 2\n    AGRICULTURE = 3\n    SOCIAL = 4\n\n# Observer Interface\nclass Villager(ABC):\n    @abstractmethod\n    def receive_news(self, news_type, news):\n        pass\n\n# Concrete Observer\nclass VillageHouse(Villager):\n    def __init__(self, family_name):\n        self.family_name = family_name\n    \n    def receive_news(self, news_type, news):\n        print(f\"{self.family_name} received {news_type.name} news: {news}\")\n\n# Subject\nclass VillageCrier:\n    def __init__(self, name):\n        self.name = name\n        self.subscribers = {news_type: [] for news_type in NewsType}\n    \n    # Subscribe to a news type\n    def subscribe(self, news_type, villager):\n        if villager not in self.subscribers[news_type]:\n            self.subscribers[news_type].append(villager)\n            print(f\"{self.name}: New subscriber for {news_type.name} news!\")\n    \n    # Unsubscribe from a news type\n    def unsubscribe(self, news_type, villager):\n        if villager in self.subscribers[news_type]:\n            self.subscribers[news_type].remove(villager)\n            print(f\"{self.name}: Subscriber removed from {news_type.name} news.\")\n    \n    # Notify all subscribers of a specific news type\n    def announce_news(self, news_type, news):\n        print(f\"{self.name} announces {news_type.name} news: {news}\")\n        \n        for villager in self.subscribers[news_type]:\n            villager.receive_news(news_type, news)\n\n# Client code\ndef main():\n    # Create the village crier\n    pandit_ramesh = VillageCrier(\"Pandit Ramesh\")\n    \n    # Create some villagers\n    sharma_house = VillageHouse(\"Sharma Family\")\n    patel_house = VillageHouse(\"Patel Family\")\n    singh_house = VillageHouse(\"Singh Family\")\n    \n    # Subscribe villagers to different news types\n    pandit_ramesh.subscribe(NewsType.EMERGENCY, sharma_house)\n    pandit_ramesh.subscribe(NewsType.EMERGENCY, patel_house)\n    pandit_ramesh.subscribe(NewsType.EMERGENCY, singh_house)\n    \n    pandit_ramesh.subscribe(NewsType.WEATHER, sharma_house)\n    pandit_ramesh.subscribe(NewsType.AGRICULTURE, patel_house)\n    pandit_ramesh.subscribe(NewsType.SOCIAL, singh_house)\n    \n    # Announce some news\n    pandit_ramesh.announce_news(NewsType.EMERGENCY, \"Heavy rainfall expected tonight. Secure your homes!\")\n    pandit_ramesh.announce_news(NewsType.AGRICULTURE, \"The rice harvest will begin next week.\")\n    \n    # Unsubscribe and then announce again\n    pandit_ramesh.unsubscribe(NewsType.EMERGENCY, patel_house)\n    pandit_ramesh.announce_news(NewsType.EMERGENCY, \"The flood warning has been lifted.\")\n\nif __name__ == \"__main__\":\n    main()"
+        }
+      ],
+      "realWorldApplications": [
+        {
+          "title": "Event Handling Systems",
+          "description": "GUI frameworks use the Observer pattern for event handling, where UI elements notify listeners when a user interacts with them."
+        },
+        {
+          "title": "Model-View-Controller (MVC)",
+          "description": "In MVC architecture, the model uses the Observer pattern to notify views when data changes, allowing multiple views to stay in sync."
+        },
+        {
+          "title": "Publish-Subscribe Systems",
+          "description": "Message brokers and event buses implement the Observer pattern to distribute messages to multiple subscribers."
+        },
+        {
+          "title": "Social Media Notifications",
+          "description": "When users post content, their followers (observers) receive notifications about the new content."
+        }
+      ],
+      "comparisons": [
+        {
+          "pattern": "Mediator Pattern",
+          "difference": "Observer defines a one-to-many relationship, while Mediator defines a many-to-many relationship with centralized control."
+        },
+        {
+          "pattern": "Command Pattern",
+          "difference": "Observer focuses on notification of state changes, while Command encapsulates a request as an object."
+        },
+        {
+          "pattern": "Publish-Subscribe Pattern",
+          "difference": "Observer typically involves direct references between subject and observers, while Publish-Subscribe often uses a message broker as an intermediary."
+        }
+      ]
+    }

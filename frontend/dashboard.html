@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LearnByShorts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Navigation -->
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <img src="assets/logo.svg" alt="LearnByShorts" class="nav-logo">
+                <span>LearnByShorts</span>
+            </div>
+            
+            <div class="nav-user">
+                <div class="user-info">
+                    <img id="user-avatar" src="" alt="User" class="user-avatar">
+                    <div class="user-details">
+                        <span id="user-name">Loading...</span>
+                        <small id="user-email">Loading...</small>
+                    </div>
+                </div>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h1>Welcome back, <span id="welcome-name">User</span>!</h1>
+                <p>Continue your learning journey</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-content">
+                        <h3 id="courses-completed">0</h3>
+                        <p>Courses Completed</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-content">
+                        <h3 id="time-spent">0h</h3>
+                        <p>Time Spent Learning</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-content">
+                        <h3 id="streak-days">0</h3>
+                        <p>Day Streak</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <h3 id="achievements">0</h3>
+                        <p>Achievements</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Grid -->
+            <section class="courses-section">
+                <div class="section-header">
+                    <h2>Your Courses</h2>
+                    <a href="courses.html" class="view-all-btn">View All</a>
+                </div>
+                
+                <div id="courses-grid" class="courses-grid">
+                    <!-- Courses will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <h2>Recent Activity</h2>
+                <div id="recent-activity" class="activity-list">
+                    <!-- Activity items will be loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/auth-service.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Check authentication
+            if (!authService.isAuthenticated()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load user data
+            await loadUserData();
+            await loadDashboardData();
+
+            // Setup logout
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                authService.logout();
+                window.location.href = 'login.html';
+            });
+        });
+
+        async function loadUserData() {
+            try {
+                const user = authService.getCurrentUser();
+                if (user) {
+                    document.getElementById('user-name').textContent = user.name;
+                    document.getElementById('user-email').textContent = user.email;
+                    document.getElementById('user-avatar').src = user.avatar || 'assets/default-avatar.png';
+                    document.getElementById('welcome-name').textContent = user.name.split(' ')[0];
+                }
+            } catch (error) {
+                console.error('Error loading user data:', error);
+            }
+        }
+
+        async function loadDashboardData() {
+            try {
+                // Load user progress
+                const progress = await authService.getUserProgress();
+                
+                // Update stats
+                document.getElementById('courses-completed').textContent = progress.coursesCompleted || 0;
+                document.getElementById('time-spent').textContent = `${progress.timeSpent || 0}h`;
+                document.getElementById('streak-days').textContent = progress.streakDays || 0;
+                document.getElementById('achievements').textContent = progress.achievements || 0;
+
+                // Load courses
+                await loadCourses();
+                
+                // Load recent activity
+                await loadRecentActivity();
+                
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        async function loadCourses() {
+            const coursesGrid = document.getElementById('courses-grid');
+            
+            // Sample courses data (replace with actual API call)
+            const courses = [
+                {
+                    id: 1,
+                    title: 'JavaScript Fundamentals',
+                    progress: 75,
+                    thumbnail: 'assets/course-js.jpg',
+                    lessons: 24,
+                    duration: '4h 30m'
+                },
+                {
+                    id: 2,
+                    title: 'React Basics',
+                    progress: 45,
+                    thumbnail: 'assets/course-react.jpg',
+                    lessons: 18,
+                    duration: '3h 15m'
+                },
+                {
+                    id: 3,
+                    title: 'CSS Grid & Flexbox',
+                    progress: 90,
+                    thumbnail: 'assets/course-css.jpg',
+                    lessons: 12,
+                    duration: '2h 45m'
+                }
+            ];
+
+            coursesGrid.innerHTML = courses.map(course => `
+                <div class="course-card" onclick="openCourse(${course.id})">
+                    <div class="course-thumbnail">
+                        <img src="${course.thumbnail}" alt="${course.title}" onerror="this.src='assets/default-course.png'">
+                        <div class="course-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${course.progress}%"></div>
+                            </div>
+                            <span>${course.progress}%</span>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <h3>${course.title}</h3>
+                        <div class="course-meta">
+                            <span>${course.lessons} lessons</span>
+                            <span>${course.duration}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function loadRecentActivity() {
+            const activityList = document.getElementById('recent-activity');
+            
+            // Sample activity data
+            const activities = [
+                {
+                    type: 'completed',
+                    title: 'Completed "Variables and Data Types"',
+                    course: 'JavaScript Fundamentals',
+                    time: '2 hours ago'
+                },
+                {
+                    type: 'started',
+                    title: 'Started "React Components"',
+                    course: 'React Basics',
+                    time: '1 day ago'
+                },
+                {
+                    type: 'achievement',
+                    title: 'Earned "Quick Learner" badge',
+                    course: 'CSS Grid & Flexbox',
+                    time: '2 days ago'
+                }
+            ];
+
+            activityList.innerHTML = activities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-icon ${activity.type}">
+                        ${activity.type === 'completed' ? '✅' : activity.type === 'started' ? '▶️' : '🏆'}
+                    </div>
+                    <div class="activity-content">
+                        <p>${activity.title}</p>
+                        <small>${activity.course} • ${activity.time}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openCourse(courseId) {
+            window.location.href = `course.html?id=${courseId}`;
+        }
+    </script>
+</body>
+</html>

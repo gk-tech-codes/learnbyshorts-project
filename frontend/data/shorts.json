@@ -1,0 +1,64 @@
+{
+  "shorts": [
+    {
+      "id": "singleton-pattern",
+      "title": "Singleton Pattern",
+      "subtitle": "One Instance to Rule Them All",
+      "category": "design-patterns",
+      "thumbnail": "assets/shorts/singleton-thumb.jpg",
+      "backgroundImage": "assets/shorts/singleton-bg.jpg",
+      "backgroundColor": "#667eea",
+      "duration": "3 min read",
+      "difficulty": "Beginner",
+      "tags": ["Design Patterns", "Creational", "Java", "JavaScript"],
+      "description": "Learn the Singleton pattern through the story of a unique government office that can only have one instance.",
+      "story": {
+        "character": "Government Office",
+        "setting": "Indian Bureaucracy",
+        "problem": "Multiple instances causing chaos",
+        "solution": "Single point of control"
+      },
+      "detailPageId": "singleton-detail"
+    },
+    {
+      "id": "builder-pattern",
+      "title": "Builder Pattern",
+      "subtitle": "Patel Uncle's Wedding Magic",
+      "category": "design-patterns",
+      "thumbnail": "assets/shorts/builder-thumb.jpg",
+      "backgroundImage": "assets/shorts/builder-bg.jpg",
+      "backgroundColor": "#D80032",
+      "duration": "5 min read",
+      "difficulty": "Intermediate",
+      "tags": ["Design Patterns", "Creational", "Java", "JavaScript"],
+      "description": "Master the Builder pattern through Patel Uncle's systematic approach to planning Indian weddings.",
+      "story": {
+        "character": "Patel Uncle",
+        "setting": "Indian Wedding",
+        "problem": "Complex object creation",
+        "solution": "Step-by-step building"
+      },
+      "detailPageId": "builder-detail"
+    },
+    {
+      "id": "observer-pattern",
+      "title": "Observer Pattern",
+      "subtitle": "The Neighborhood WhatsApp Group",
+      "category": "design-patterns",
+      "thumbnail": "assets/shorts/observer-thumb.jpg",
+      "backgroundImage": "assets/shorts/observer-bg.jpg",
+      "backgroundColor": "#10b981",
+      "duration": "4 min read",
+      "difficulty": "Intermediate",
+      "tags": ["Design Patterns", "Behavioral", "Java", "JavaScript"],
+      "description": "Understand the Observer pattern through the dynamics of an Indian neighborhood WhatsApp group.",
+      "story": {
+        "character": "WhatsApp Admin",
+        "setting": "Neighborhood Group",
+        "problem": "Information broadcasting",
+        "solution": "Automatic notifications"
+      },
+      "detailPageId": "observer-detail"
+    }
+  ]
+}

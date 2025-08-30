@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <title>Course Story - LearnByShorts</title>
+    <meta name="description" content="Learn programming concepts through engaging visual stories that make complex ideas simple and memorable.">
+    <meta name="keywords" content="programming, learning, visual stories, education, software development">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/course-story.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <h1>LearnByShorts</h1>
+                        <span class="tagline">Master Programming Through Stories</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html#home" class="nav-link">Home</a>
+                    <a href="index.html#courses" class="nav-link">Courses</a>
+                    <a href="index.html#features" class="nav-link">Features</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Story Container -->
+    <main class="story-container">
+        <div class="story-sidebar">
+            <div class="course-info">
+                <h2 id="courseTitle">Loading Course...</h2>
+                <div class="course-meta">
+                    <span class="course-category" id="courseCategory">Category</span>
+                    <span class="course-difficulty" id="courseDifficulty">Difficulty</span>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-header">
+                    <h3>Your Progress</h3>
+                    <span class="progress-percentage" id="progressPercentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+            </div>
+            
+            <div class="chapters-container">
+                <h3>Chapters</h3>
+                <ul class="chapters-list" id="chaptersList">
+                    <!-- Will be populated dynamically -->
+                    <li class="loading-placeholder">
+                        <div class="loading-line"></div>
+                    </li>
+                    <li class="loading-placeholder">
+                        <div class="loading-line"></div>
+                    </li>
+                    <li class="loading-placeholder">
+                        <div class="loading-line"></div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-actions">
+                <button class="btn-outline btn-full" id="backToCourseBtn">
+                    <span class="btn-icon">←</span> Back to Course
+                </button>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-header">
+                <div class="story-navigation">
+                    <button class="nav-btn" id="prevBtn" disabled>
+                        <span class="nav-icon">←</span> Previous
+                    </button>
+                    <button class="nav-btn" id="nextBtn">
+                        Next <span class="nav-icon">→</span>
+                    </button>
+                </div>
+                
+                <div class="chapter-info">
+                    <span class="chapter-number" id="currentChapterNumber">Chapter 1</span>
+                    <h1 class="chapter-title" id="currentChapterTitle">Loading Chapter...</h1>
+                </div>
+            </div>
+            
+            <div class="story-body" id="storyContent">
+                <!-- Loading placeholder -->
+                <div class="loading-placeholder">
+                    <div class="loading-character"></div>
+                    <div class="loading-paragraph">
+                        <div class="loading-line"></div>
+                        <div class="loading-line"></div>
+                        <div class="loading-line"></div>
+                        <div class="loading-line"></div>
+                    </div>
+                    <div class="loading-paragraph">
+                        <div class="loading-line"></div>
+                        <div class="loading-line"></div>
+                        <div class="loading-line"></div>
+                    </div>
+                    <div class="loading-code"></div>
+                </div>
+            </div>
+            
+            <div class="story-footer">
+                <div class="story-navigation">
+                    <button class="nav-btn" id="prevBtnBottom" disabled>
+                        <span class="nav-icon">←</span> Previous
+                    </button>
+                    <button class="nav-btn" id="nextBtnBottom">
+                        Next <span class="nav-icon">→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">📚</span>
+                        <span class="logo-text">LearnByShorts</span>
+                    </div>
+                    <p class="footer-description">
+                        Making computer science concepts accessible through engaging visual stories and narratives.
+                    </p>
+                </div>
+
+                <!-- Links Sections -->
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
+                    <div class="footer-meta">
+                        <span>Made with ❤️ for learners</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils/constants.js"></script>
+    <script src="js/services/DataService.js"></script>
+    <script src="js/pages/CourseStoryPage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

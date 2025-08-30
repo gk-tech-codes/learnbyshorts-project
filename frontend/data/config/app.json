@@ -1,0 +1,47 @@
+{
+  "app": {
+    "name": "LearnByShorts",
+    "version": "1.0.0",
+    "description": "Master Programming Through Visual Stories",
+    "baseUrl": "/",
+    "apiUrl": "/api"
+  },
+  "api": {
+    "endpoints": {
+      "categories": "/data/categories.json",
+      "courses": "/data/courses.json",
+      "courseDetail": "/data/courses/{id}.json",
+      "user": "/api/users/profile"
+    },
+    "timeout": 10000,
+    "retryAttempts": 3
+  },
+  "cache": {
+    "enabled": true,
+    "expiryTime": 300000,
+    "maxSize": 50
+  },
+  "ui": {
+    "animationDuration": 300,
+    "debounceDelay": 300,
+    "itemsPerPage": 12,
+    "breakpoints": {
+      "mobile": 768,
+      "tablet": 1024,
+      "desktop": 1200
+    }
+  },
+  "features": {
+    "darkMode": true,
+    "offlineSupport": false,
+    "analytics": true,
+    "userProgress": true,
+    "notifications": false
+  },
+  "seo": {
+    "defaultTitle": "LearnByShorts - Master Programming Through Visual Stories",
+    "defaultDescription": "Transform your software development skills with engaging narratives and visual stories.",
+    "defaultKeywords": "programming, learning, visual stories, education, software development",
+    "titleTemplate": "%s | LearnByShorts"
+  }
+}

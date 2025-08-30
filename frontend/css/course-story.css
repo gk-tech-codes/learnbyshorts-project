@@ -1,0 +1,647 @@
+/* Course Story Page Specific Styles */
+
+/* Layout */
+.story-container {
+    display: flex;
+    min-height: calc(100vh - 60px); /* Subtract header height */
+    background-color: #f8fafc;
+}
+
+/* Sidebar */
+.story-sidebar {
+    width: 300px;
+    background-color: white;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.course-info {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.course-info h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem;
+    color: #1e293b;
+}
+
+.course-meta {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.course-category {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.course-difficulty {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background-color: #f1f5f9;
+    color: #475569;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.progress-container {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.progress-header h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: #1e293b;
+}
+
+.progress-percentage {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.progress-bar {
+    height: 6px;
+    background-color: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.chapters-container {
+    padding: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chapters-container h3 {
+    font-size: 1rem;
+    margin: 0 0 1rem;
+    color: #1e293b;
+}
+
+.chapters-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chapter-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chapter-item:hover {
+    background-color: #f1f5f9;
+}
+
+.chapter-item.active {
+    background-color: #eff6ff;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.chapter-item.completed {
+    color: #64748b;
+}
+
+.chapter-number {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e2e8f0;
+    color: #475569;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.chapter-item.active .chapter-number {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.chapter-item.completed .chapter-number {
+    background-color: #10b981;
+    color: white;
+}
+
+.chapter-title {
+    flex: 1;
+    font-size: 0.875rem;
+}
+
+.chapter-status {
+    color: #10b981;
+    font-size: 1rem;
+}
+
+.sidebar-actions {
+    padding: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* Story Content */
+.story-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story-header {
+    margin-bottom: 2rem;
+}
+
+.story-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.nav-btn {
+    padding: 0.5rem 1rem;
+    background-color: #f1f5f9;
+    border: none;
+    border-radius: 4px;
+    color: #475569;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background-color: #e2e8f0;
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.nav-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.chapter-info {
+    text-align: center;
+}
+
+.chapter-number {
+    display: block;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+.chapter-title {
+    font-size: 1.75rem;
+    color: #1e293b;
+    margin: 0;
+}
+
+.story-body {
+    margin-bottom: 3rem;
+}
+
+.chapter-content {
+    line-height: 1.7;
+    color: #334155;
+}
+
+.story-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Character Section */
+.character-section {
+    margin-bottom: 2rem;
+}
+
+.character-info {
+    display: flex;
+    align-items: center;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.character-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+}
+
+.character-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.character-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.character-details h3 {
+    margin: 0 0 0.5rem;
+    color: #1e293b;
+    font-size: 1.25rem;
+}
+
+.character-details p {
+    margin: 0;
+    color: #64748b;
+}
+
+/* Story Content Styles */
+.intro-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #1e293b;
+}
+
+.story-quote {
+    padding: 1.5rem;
+    background-color: #f8fafc;
+    border-left: 4px solid var(--primary-color);
+    margin: 2rem 0;
+    font-style: italic;
+    color: #334155;
+}
+
+.story-quote p {
+    margin-bottom: 0.5rem;
+}
+
+.story-quote cite {
+    font-style: normal;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.story-illustration {
+    margin-bottom: 1.5rem;
+}
+
+.illustration-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration-icon {
+    font-size: 3rem;
+    color: #64748b;
+}
+
+/* Technical Chapter */
+.tech-header {
+    margin-bottom: 2rem;
+}
+
+.tech-definition {
+    font-size: 1.125rem;
+    color: #1e293b;
+    line-height: 1.8;
+}
+
+.tech-section {
+    margin-bottom: 2rem;
+}
+
+.tech-section h4 {
+    font-size: 1.125rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.tech-list {
+    padding-left: 1.5rem;
+}
+
+.tech-list li {
+    margin-bottom: 0.75rem;
+}
+
+.advantages li {
+    color: #047857;
+}
+
+.disadvantages li {
+    color: #b91c1c;
+}
+
+/* Code Chapter */
+.code-header {
+    margin-bottom: 2rem;
+}
+
+.code-example {
+    margin-bottom: 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.code-example-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.code-example-header h4 {
+    margin: 0;
+    color: #1e293b;
+}
+
+.code-language {
+    padding: 0.25rem 0.5rem;
+    background-color: #e2e8f0;
+    color: #475569;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.code-filename {
+    padding: 0.5rem 1rem;
+    background-color: #f1f5f9;
+    color: #64748b;
+    font-family: monospace;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+pre {
+    margin: 0;
+    padding: 1rem;
+    background-color: #1e293b;
+    color: #f8fafc;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+code {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* Applications Chapter */
+.applications-header {
+    margin-bottom: 2rem;
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.application-card {
+    padding: 1.5rem;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.application-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #1e293b;
+}
+
+.application-card p {
+    margin-bottom: 0;
+    color: #475569;
+}
+
+/* Conclusion Chapter */
+.conclusion {
+    text-align: center;
+    padding: 2rem;
+}
+
+.conclusion-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.conclusion h3 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.conclusion p {
+    font-size: 1.125rem;
+    color: #334155;
+    margin-bottom: 2rem;
+}
+
+.conclusion-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Error Message */
+.error-message {
+    background-color: #fee2e2;
+    border-left: 4px solid #ef4444;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.error-message h3 {
+    color: #b91c1c;
+    margin-bottom: 0.75rem;
+}
+
+.error-message p {
+    color: #7f1d1d;
+    margin-bottom: 1.5rem;
+}
+
+.btn-retry {
+    padding: 0.5rem 1rem;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-retry:hover {
+    background-color: #dc2626;
+}
+
+/* Loading Placeholders */
+.loading-placeholder {
+    width: 100%;
+    animation: pulse 1.5s infinite;
+}
+
+.loading-character {
+    width: 100%;
+    height: 120px;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.loading-paragraph {
+    margin-bottom: 1.5rem;
+}
+
+.loading-line {
+    height: 12px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+}
+
+.loading-line:last-child {
+    width: 80%;
+}
+
+.loading-code {
+    height: 200px;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .story-container {
+        flex-direction: column;
+    }
+    
+    .story-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .chapters-container {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .story-content {
+        padding: 1.5rem;
+    }
+    
+    .chapter-title {
+        font-size: 1.5rem;
+    }
+    
+    .applications-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .conclusion-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-navigation {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .nav-btn {
+        width: 100%;
+    }
+    
+    .character-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .character-avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}

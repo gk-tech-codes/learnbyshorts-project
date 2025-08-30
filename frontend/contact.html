@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://api.emailjs.com; upgrade-insecure-requests;">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <!-- Cache Control Headers -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Contact Us - Get Help with Design Patterns | LearnByShorts</title>
+    <meta name="description" content="Contact LearnByShorts for questions about design patterns, feedback, or support. We're here to help you master software architecture through interactive learning.">
+    <meta name="keywords" content="contact learnbyshorts, design patterns help, programming support, software architecture questions, learning support">
+    <meta name="author" content="LearnByShorts">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contact Us - LearnByShorts">
+    <meta property="og:description" content="Get in touch with LearnByShorts for questions about design patterns, feedback, or support.">
+    <meta property="og:image" content="https://www.learnbyshorts.com/assets/contact-og.jpg">
+    <meta property="og:url" content="https://www.learnbyshorts.com/contact.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.learnbyshorts.com/contact.html">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5413RZXDET"></script>
+    <script src="js/analytics.js"></script>
+    
+    <link rel="stylesheet" href="css/styles.css?v=1.5.1">
+    <link rel="stylesheet" href="css/contact.css?v=1.5.1">
+    <link rel="stylesheet" href="css/mobile-menu.css?v=1.5.1">
+    <link rel="stylesheet" href="css/homepage.css?v=1.5.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="assets/logo.svg" alt="LearnByShorts" class="brand-logo">
+                    <div class="brand-text">
+                        <h1>LearnByShorts</h1>
+                        <span class="tagline">Master Computer Science Through Stories</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#courses" class="nav-link">Courses</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Premium mobile menu overlay -->
+    <div class="menu-overlay"></div>
+
+    <main class="contact-main">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h1>Get in Touch</h1>
+                <p>Have questions, feedback, or suggestions? We'd love to hear from you!</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-form-section">
+                    <form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true" action="/contact-success.html">
+                        <input type="hidden" name="form-name" value="contact" />
+                        
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="feedback">General Feedback</option>
+                                <option value="bug">Bug Report</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="content">Content Suggestion</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Tell us what's on your mind..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                    
+                    <!-- Alternative Contact Methods -->
+                    <div class="contact-alternatives">
+                        <h3>Alternative Contact Methods</h3>
+                        <p>You can also reach us through these channels:</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">📧</div>
+                                <div class="method-info">
+                                    <h4>Email Us Directly</h4>
+                                    <p>Send us an email at: <a href="mailto:learningbyshorts@gmail.com">learningbyshorts@gmail.com</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">💬</div>
+                                <div class="method-info">
+                                    <h4>Quick Response</h4>
+                                    <p>We typically respond within 24 hours during business days.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">🚀</div>
+                                <div class="method-info">
+                                    <h4>Feature Requests</h4>
+                                    <p>Have ideas for new courses or features? We'd love to hear them!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-info-section">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
+                                <p>learningbyshorts@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icon">⏰</span>
+                            <div>
+                                <strong>Response Time</strong>
+                                <p>We typically respond within 24-48 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icon">👥</span>
+                            <div>
+                                <strong>Community</strong>
+                                <p>Join our growing community of developers learning design patterns</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-section">
+                        <h3>Quick Questions?</h3>
+                        <div class="faq-item">
+                            <strong>Q: How often do you add new patterns?</strong>
+                            <p>We're constantly expanding! New patterns are added weekly.</p>
+                        </div>
+                        <div class="faq-item">
+                            <strong>Q: Can I suggest a pattern story theme?</strong>
+                            <p>Absolutely! We love creative suggestions for making patterns more engaging.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">📚</span>
+                        <span class="logo-text">LearnByShorts</span>
+                    </div>
+                    <p class="footer-description">
+                        Making computer science concepts accessible through engaging visual stories and narratives.
+                    </p>
+                </div>
+
+                <!-- Links Sections -->
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
+                    <div class="footer-meta">
+                        <span>Made with ❤️ for learners</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Force HTTPS redirect
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+            location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+        }
+        
+        // Force www redirect for consistency
+        if (location.hostname === 'learnbyshorts.com' && !location.hostname.startsWith('www.')) {
+            const newUrl = 'https://www.' + location.hostname + location.pathname + location.search + location.hash;
+            location.replace(newUrl);
+        }
+    </script>
+    <script src="js/emailjs-contact.js"></script>
+    <script src="js/mobile-menu.js?v=1.3.6"></script>
+</body>
+</html>

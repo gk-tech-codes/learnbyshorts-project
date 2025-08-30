@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Natural TTS Butterfly Reader</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/butterfly-reader.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ResponsiveVoice.js - Free TTS Library -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE"></script>
+    
+    <style>
+        .demo-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .demo-title {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 2rem;
+        }
+        .demo-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        .demo-instructions {
+            background: #f7fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #48bb78;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">🦋 Free Natural Voice Butterfly Reader</h1>
+        
+        <div class="demo-instructions">
+            <h3>🎵 Natural Voice Features:</h3>
+            <ul>
+                <li>🆓 <strong>Free ResponsiveVoice.js</strong> - No API key needed!</li>
+                <li>🎭 <strong>Natural human-like voices</strong> - Much better than browser TTS</li>
+                <li>🌍 <strong>Multiple voice options</strong> - US English, UK English, Australian</li>
+                <li>⚡ <strong>Fast and reliable</strong> - Works offline after loading</li>
+                <li>🦋 <strong>Smooth butterfly animation</strong> - Synced with natural speech</li>
+            </ul>
+            <button id="testAudio" style="background: #48bb78; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+                🔊 Test Audio First
+            </button>
+        </div>
+
+        <div class="demo-content" id="storyContent">
+            <p>Arjun stared at his computer screen in frustration. For the third time that morning, he had typed "Write marketing copy" into ChatGPT, and for the third time, he got generic content that could apply to any company selling anything.</p>
+
+            <p>"This is supposed to be revolutionary AI," he muttered, deleting another bland paragraph about "innovative solutions" and "customer satisfaction." His deadline was approaching fast, and his boss Rajesh was expecting compelling copy for their new project management software.</p>
+
+            <p>Just then, his colleague Priya walked by his desk. She noticed his frustrated expression and the ChatGPT tab open on his screen. "Having trouble with AI prompts?" she asked with a knowing smile.</p>
+
+            <p>"It's like talking to a robot that doesn't understand context," Arjun complained. "I ask for marketing copy, and it gives me something so generic it could be selling toothpaste or rocket ships."</p>
+
+            <p>Priya pulled up a chair. "That's because you're not speaking its language yet. AI is incredibly powerful, but it needs the right instructions. Let me show you something that changed everything for me."</p>
+
+            <p>She opened a new ChatGPT window and began typing: "You are a senior marketing copywriter for a B2B SaaS company. Write compelling marketing copy for a project management software called 'TaskFlow Pro' that helps remote teams collaborate better."</p>
+
+            <p>Arjun watched in amazement as ChatGPT generated exactly what he needed - specific, targeted copy that spoke directly to their audience's problems and positioned TaskFlow Pro as the solution.</p>
+
+            <p>"How did you do that?" Arjun asked, his eyes wide with realization.</p>
+
+            <p>"Welcome to the world of prompt engineering," Priya said with a grin. "It's not magic - it's a skill. And I'm going to teach you the CLEAR framework that will transform how you work with AI forever."</p>
+        </div>
+    </div>
+
+    <script src="js/butterfly-reader-free.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const testAudioBtn = document.getElementById('testAudio');
+            
+            // Test audio button
+            testAudioBtn.addEventListener('click', function() {
+                if (typeof responsiveVoice !== 'undefined') {
+                    responsiveVoice.speak("Hello! Audio is working perfectly.", "US English Female", {
+                        rate: 0.8,
+                        pitch: 1,
+                        volume: 1,
+                        onstart: () => {
+                            testAudioBtn.innerHTML = '🔊 Speaking...';
+                            testAudioBtn.disabled = true;
+                        },
+                        onend: () => {
+                            testAudioBtn.innerHTML = '✅ Audio Works!';
+                            setTimeout(() => {
+                                testAudioBtn.innerHTML = '🔊 Test Audio First';
+                                testAudioBtn.disabled = false;
+                            }, 2000);
+                        }
+                    });
+                } else {
+                    alert('ResponsiveVoice not loaded yet. Please wait a moment and try again.');
+                }
+            });
+            
+            // Wait for ResponsiveVoice to load
+            function initButterflyReader() {
+                if (typeof responsiveVoice !== 'undefined' && responsiveVoice.voiceSupport()) {
+                    const storyContent = document.getElementById('storyContent');
+                    window.butterflyReader = new ButterflyReader(storyContent, {
+                        speed: 180,
+                        autoStart: false,
+                        showControls: true,
+                        showProgress: true,
+                        enableVoice: true,
+                        voiceType: 'free'
+                    });
+                    console.log('ButterflyReader initialized with ResponsiveVoice');
+                } else {
+                    console.log('Waiting for ResponsiveVoice...');
+                    setTimeout(initButterflyReader, 500);
+                }
+            }
+            
+            // Start initialization
+            setTimeout(initButterflyReader, 1000);
+        });
+    </script>
+</body>
+</html>

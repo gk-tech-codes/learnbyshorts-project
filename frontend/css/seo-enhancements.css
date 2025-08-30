@@ -1,0 +1,261 @@
+/* SEO Enhancement Styles */
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    padding: 1rem 0;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.breadcrumb-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: "›";
+    margin: 0 0.5rem;
+    color: #6c757d;
+}
+
+.breadcrumb-link {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.breadcrumb-current {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Skip to main content for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Structured data styling */
+.pattern-card {
+    position: relative;
+}
+
+.pattern-difficulty {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.difficulty-beginner {
+    background: #d4edda;
+    color: #155724;
+}
+
+.difficulty-intermediate {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.difficulty-advanced {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Reading time indicator */
+.reading-time {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.reading-time::before {
+    content: "🕒";
+}
+
+/* Table of contents */
+.table-of-contents {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.table-of-contents h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin-bottom: 0.5rem;
+}
+
+.toc-link {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    padding: 0.25rem 0;
+    transition: color 0.2s ease;
+}
+
+.toc-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* FAQ Schema styling */
+.faq-section {
+    margin: 3rem 0;
+}
+
+.faq-item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.faq-question {
+    background: #f8f9fa;
+    padding: 1rem;
+    margin: 0;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question::after {
+    content: "+";
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.faq-question.active::after {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 1rem;
+    display: none;
+    line-height: 1.6;
+}
+
+.faq-answer.active {
+    display: block;
+}
+
+/* Social sharing buttons */
+.social-share {
+    display: flex;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid #e9ecef;
+}
+
+.share-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.share-button:hover {
+    background: #f8f9fa;
+    transform: translateY(-1px);
+}
+
+.share-twitter {
+    color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.share-linkedin {
+    color: #0077b5;
+    border-color: #0077b5;
+}
+
+.share-facebook {
+    color: #1877f2;
+    border-color: #1877f2;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .breadcrumb-nav {
+        padding: 0 1rem;
+    }
+    
+    .breadcrumb-list {
+        font-size: 0.8rem;
+    }
+    
+    .table-of-contents {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+    
+    .social-share {
+        flex-wrap: wrap;
+    }
+    
+    .share-button {
+        flex: 1;
+        justify-content: center;
+        min-width: 120px;
+    }
+}

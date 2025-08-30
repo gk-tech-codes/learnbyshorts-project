@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Sharma Ji and the Singleton Pattern: An Indian Tech Tale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fc;
+        }
+        
+        .code-section {
+            position: relative;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            background-color: #343a40;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .code-block {
+            margin: 0;
+            padding: 1.25rem;
+            overflow-x: auto;
+        }
+        
+        .highlight-container {
+            background-color: #282c34;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+        
+        .concept-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .title-gradient {
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .indian-accent {
+            color: #FF6B6B;
+        }
+        
+        .sharma-quote {
+            border-left: 4px solid #FF6B6B;
+            font-style: italic;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #FF6B6B, #FF8E53);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -3rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background-color: #FF6B6B;
+            top: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+            
+            .code-section {
+                margin: 1rem -1rem;
+                border-radius: 0;
+            }
+
+            .timeline-container {
+                padding-left: 2rem;
+            }
+
+            .timeline-dot {
+                left: -2rem;
+            }
+
+            .back-btn {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-btn">← Back to Courses</a>
+    
+    <div class="main-container max-w-5xl mx-auto px-4 py-8">
+        <header class="text-center mb-12 py-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                <span class="title-gradient">Sharma Ji</span> and the Singleton Pattern
+            </h1>
+            <h2 class="text-xl md:text-2xl text-gray-600">An Indian Tech Tale</h2>
+            <div class="mt-4 flex justify-center gap-4 text-sm">
+                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full">Design Patterns</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Intermediate</span>
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">6 Concepts</span>
+            </div>
+        </header>
+        
+        <div class="concept-card">
+            <div class="flex flex-col md:flex-row items-center gap-8 mb-8">
+                <div class="md:w-1/2">
+                    <div class="bg-gradient-to-br from-orange-100 to-red-100 p-8 rounded-lg text-center">
+                        <div class="text-6xl mb-4">👨‍💻</div>
+                        <h3 class="text-2xl font-bold text-gray-800">Sharma Ji</h3>
+                        <p class="text-gray-600">The One and Only</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-3">The Legend of Sharma Ji</h3>
+                    <p class="text-gray-700 mb-3">
+                        In the chaotic world of Indian startups, there exists a legendary figure known as "Sharma Ji" - the ultimate source of truth, the keeper of configurations, and the one person everyone turns to for consistent information.
+                    </p>
+                    <p class="text-gray-700">
+                        Just as mothers across India compare their children to the ever-perfect "Sharma Ji ka beta" (Sharma Ji's son), developers found themselves wishing for a singular, reliable source of information amidst the chaos of startup life.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="sharma-quote text-lg text-gray-600">
+                "Why create many Sharma Jis when one Sharma Ji is enough trouble?" — Frustrated CTO
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h2 class="text-2xl font-bold mb-6">🎞️ The Sharma Ji Singleton Story</h2>
+            
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <h3 class="text-xl font-semibold mb-2">🤯 "Too Many Sharmas"</h3>
+                    <div class="bg-yellow-50 p-4 rounded-lg mb-3">
+                        <p class="text-sm text-yellow-800 font-medium">Scene: Bengaluru's bustling startup office 🏢</p>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        In our fictional startup "CodeKirana," chaos reigned supreme. A peculiar problem emerged: every time app configuration was needed, a <strong>new</strong> Sharma Ji appeared. One delivered light mode 💡, another dark mode 🌙.
+                    </p>
+                    <p class="text-gray-700 mb-3">
+                        HR was bewildered 😵‍💫, developers were in disarray 😡. Different teams created their own "Sharma Ji" instances - each with different configurations, different data, and different behaviors.
+                    </p>
+                    <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded">
+                        <p class="text-red-700 font-medium">💬 CTO (exasperated): "From this moment, only ONE Sharma Ji will ever exist in our system!"</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <h3 class="text-xl font-semibold mb-2">👑 "The One and Only Sharma Ji"</h3>
+                    <div class="bg-blue-50 p-4 rounded-lg mb-3">
+                        <p class="text-sm text-blue-800 font-medium">Scene: Backend API room, chai in hand ☕</p>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        A frustrated developer attempted: <code class="bg-red-100 text-red-600 px-2 py-1 rounded">new SharmaJi()</code>
+                    </p>
+                    <p class="text-gray-700 mb-3">
+                        🚫 ❗ The system immediately responded: <strong>"Error: You cannot instantiate a new Sharma Ji directly."</strong>
+                    </p>
+                    <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded mb-3">
+                        <p class="text-green-700">
+                            <strong>Sharma Ji (via Slack):</strong> "Please use <code class="bg-green-200 px-2 py-1 rounded">getInstance()</code>. I am already present — a single Sharma Ji for the entire application."
+                        </p>
+                    </div>
+                    <p class="text-gray-700">
+                        ☕ Problem solved. A clear, <strong>single source of truth</strong> was established. ✅
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <h3 class="text-xl font-semibold mb-2">🛡️ "The Desi Clone Attack"</h3>
+                    <div class="bg-purple-50 p-4 rounded-lg mb-3">
+                        <p class="text-sm text-purple-800 font-medium">Scene: Midnight hackathon, jugaad mode 💻</p>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        Ramesh, ever the innovator, tried to bypass the system using Reflection, hoping to create a duplicate Sharma Ji. 😈
+                    </p>
+                    <p class="text-gray-700 mb-3">
+                        ⚠️ The system vehemently rejected: <strong>"Access Denied: Private constructor enforced!"</strong>
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded mb-3">
+                        <p class="text-blue-700">
+                            <strong>Sharma Ji:</strong> "I am fully protected, even against clever but risky attempts like yours."
+                        </p>
+                    </div>
+                    <p class="text-gray-700">
+                        💥 The clone operation failed. <strong>Sharma Ji remained the undisputed one.</strong> 💪
+                    </p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <h3 class="text-xl font-semibold mb-2">🌐 "Calling Sharma Ji from Anywhere"</h3>
+                    <div class="bg-green-50 p-4 rounded-lg mb-3">
+                        <p class="text-sm text-green-800 font-medium">Scene: Teams from Mumbai, Pune, and Chennai 📞</p>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        Across geographies, everyone simply invoked: <code class="bg-blue-100 text-blue-600 px-2 py-1 rounded">SharmaJi.getInstance()</code>
+                    </p>
+                    <p class="text-gray-700 mb-3">
+                        Like magic, the <strong>same Sharma Ji</strong> responded to every request. 🚀
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
+                        <div class="bg-gray-50 p-3 rounded text-center">
+                            <div class="text-2xl mb-1">🎯</div>
+                            <p class="text-sm font-medium">Identical object</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded text-center">
+                            <div class="text-2xl mb-1">📊</div>
+                            <p class="text-sm font-medium">Consistent data</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded text-center">
+                            <div class="text-2xl mb-1">✨</div>
+                            <p class="text-sm font-medium">Zero confusion</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                        <p class="text-green-700">
+                            <strong>Sharma Ji:</strong> "Whether you're in the frontend or backend, I will always be the same reliable Sharma Ji." 😊
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">5</div>
+                    <h3 class="text-xl font-semibold mb-2">🤔 "Why Not More Sharma Jis?"</h3>
+                    <div class="bg-orange-50 p-4 rounded-lg mb-3">
+                        <p class="text-sm text-orange-800 font-medium">Scene: Coffee machine conversation 🗣️</p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded mb-3">
+                        <p class="text-yellow-800">
+                            <strong>Question:</strong> "Why can't we have multiple Sharma Jis? Wouldn't that offer more flexibility?"
+                        </p>
+                    </div>
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded mb-3">
+                        <p class="text-blue-700">
+                            <strong>Sharma Ji (thoughtfully):</strong> "Imagine multiple loggers writing to different files, creating fragmented records. 📁 Or several database configurations operating independently, leading to inconsistent data. 🤯 That, my friend, is not flexibility — <strong>that is absolute chaos.</strong>"
+                        </p>
+                    </div>
+                    <div class="bg-purple-50 border-l-4 border-purple-400 p-4 rounded">
+                        <p class="text-purple-700 font-medium">
+                            🧠 <strong>Wisdom:</strong> One Sharma Ji equals one reliable, consistent point of truth. 🎯
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">6</div>
+                    <h3 class="text-xl font-semibold mb-2">💡 "The Singleton Pattern"</h3>
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold mb-3 indian-accent">Pattern Definition</h4>
+                        <p class="text-gray-700 mb-4">
+                            <strong>Ensures that only one instance of a class exists and provides a global point of access to it.</strong>
+                        </p>
+                        <h4 class="text-lg font-semibold mb-3 indian-accent">Perfect Use Cases</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="text-center">
+                                <div class="text-2xl mb-1">⚙️</div>
+                                <p class="text-sm font-medium">Configuration</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl mb-1">📝</div>
+                                <p class="text-sm font-medium">Loggers</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl mb-1">💾</div>
+                                <p class="text-sm font-medium">Cache</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl mb-1">🔌</div>
+                                <p class="text-sm font-medium">Database</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="concept-card">
+            <h2 class="text-2xl font-bold mb-6">💻 Sharma Ji in Code</h2>
+            
+            <h3 class="text-xl font-semibold mb-4">Java Implementation</h3>
+            <div class="code-section">
+                <div class="code-header">
+                    <span>SharmaJi.java</span>
+                    <span class="text-xs bg-green-600 px-2 py-1 rounded">Thread-Safe</span>
+                </div>
+                <div class="highlight-container">
+                    <pre class="code-block"><code class="language-java">public class SharmaJi {
+    // The single instance of SharmaJi
+    private static SharmaJi instance;
+    
+    // App configurations
+    private final Map&lt;String, String&gt; configurations;
+    
+    // Private constructor prevents instantiation from outside
+    private SharmaJi() {
+        System.out.println("Namaste! SharmaJi is being created!");
+        configurations = new HashMap&lt;&gt;();
+        loadDefaultConfigurations();
+    }
+    
+    // The global access point to get the same SharmaJi instance
+    public static synchronized SharmaJi getInstance() {
+        // Lazy initialization
+        if (instance == null) {
+            instance = new SharmaJi();
+        }
+        return instance;
+    }
+    
+    private void loadDefaultConfigurations() {
+        configurations.put("databaseUrl", "jdbc:mysql://localhost:3306/codekirana");
+        configurations.put("apiEndpoint", "https://api.codekirana.com/v1");
+        configurations.put("maxConnections", "100");
+    }
+    
+    public String getConfiguration(String key) {
+        return configurations.get(key);
+    }
+    
+    public void setConfiguration(String key, String value) {
+        configurations.put(key, value);
+    }
+    
+    // This prevents cloning of SharmaJi
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Arre bhai, there can be only one SharmaJi!");
+    }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="my-6">
+                <h4 class="text-lg font-semibold mb-2">Using SharmaJi in Java</h4>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span>Main.java</span>
+                        <span class="text-xs bg-blue-600 px-2 py-1 rounded">Demo</span>
+                    </div>
+                    <div class="highlight-container">
+                        <pre class="code-block"><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        // Get the SharmaJi instance
+        SharmaJi sharmaJi = SharmaJi.getInstance();
+        
+        // Frontend team uses SharmaJi
+        String apiUrl = sharmaJi.getConfiguration("apiEndpoint");
+        System.out.println("Frontend team using API: " + apiUrl);
+        
+        // Backend team changes a configuration
+        sharmaJi.setConfiguration("maxConnections", "200");
+        
+        // DevOps team gets the updated configuration
+        SharmaJi sameSharmaJi = SharmaJi.getInstance();
+        String maxConnections = sameSharmaJi.getConfiguration("maxConnections");
+        System.out.println("DevOps team sees maxConnections: " + maxConnections);
+        
+        // Attempting to create a new SharmaJi directly would fail
+        // SharmaJi anotherSharmaJi = new SharmaJi(); // Compilation error!
+        
+        // Attempting to clone SharmaJi would fail
+        try {
+            Object clonedSharmaJi = sharmaJi.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="text-xl font-semibold mb-4 mt-8">JavaScript Implementation</h3>
+            <div class="code-section">
+                <div class="code-header">
+                    <span>SharmaJi.js</span>
+                    <span class="text-xs bg-yellow-600 px-2 py-1 rounded">ES6 Class</span>
+                </div>
+                <div class="highlight-container">
+                    <pre class="code-block"><code class="language-javascript">class SharmaJi {
+    constructor() {
+        if (SharmaJi._instance) {
+            throw new Error("Arre bhai, can't create another SharmaJi! Use getInstance() instead.");
+        }
+        
+        console.log("Namaste! SharmaJi is being created!");
+        this.configurations = {
+            apiBaseUrl: 'https://api.codekirana.com',
+            theme: 'light',
+            maxRetries: 3,
+            timeout: 30000
+        };
+        
+        SharmaJi._instance = this;
+    }
+    
+    static getInstance() {
+        if (!SharmaJi._instance) {
+            SharmaJi._instance = new SharmaJi();
+        }
+        return SharmaJi._instance;
+    }
+    
+    getConfig(key) {
+        return this.configurations[key];
+    }
+    
+    setConfig(key, value) {
+        this.configurations[key] = value;
+    }
+}
+
+// Initialize the static instance property
+SharmaJi._instance = null;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h2 class="text-2xl font-bold mb-6">🌟 Real-World Applications of Sharma Ji</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow border-l-4 border-orange-400">
+                    <h3 class="text-xl font-semibold mb-3 indian-accent">⚙️ Configuration Management</h3>
+                    <p class="text-gray-700">
+                        Just like Sharma Ji keeps track of everyone's configurations, real-world applications use Singletons for centralized configuration management.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-400">
+                    <h3 class="text-xl font-semibold mb-3 indian-accent">📝 Logging</h3>
+                    <p class="text-gray-700">
+                        A single logging service throughout an application ensures consistent log formats and behaviors. All logs come from one Sharma Ji!
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-400">
+                    <h3 class="text-xl font-semibold mb-3 indian-accent">🔌 Database Connections</h3>
+                    <p class="text-gray-700">
+                        Connection pools are perfect candidates for the Singleton pattern. Single pool manager prevents resource exhaustion.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h2 class="text-2xl font-bold mb-6">⚠️ Caution: When Not to Use Sharma Ji</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                    <h4 class="font-semibold text-red-800 mb-2">🧪 Testing Difficulties</h4>
+                    <p class="text-red-700 text-sm">Singletons can make unit testing challenging due to shared state between tests.</p>
+                </div>
+                
+                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                    <h4 class="font-semibold text-yellow-800 mb-2">🔗 Hidden Dependencies</h4>
+                    <p class="text-yellow-700 text-sm">Code that uses Singletons has hidden dependencies that aren't obvious.</p>
+                </div>
+            </div>
+            
+            <div class="sharma-quote text-lg text-gray-600">
+                "Even Sharma Ji needs a vacation sometimes. Don't make him do everything!" — Wise Senior Developer
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h2 class="text-2xl font-bold mb-6">🎓 Conclusion: The Wisdom of Sharma Ji</h2>
+            
+            <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-lg">
+                <p class="text-gray-700 text-center font-medium">
+                    Just as there's only one Sharma Ji that everyone in the neighborhood respects and refers to, there's only one instance of a Singleton class that the entire application consults. This cultural analogy helps make a complex design pattern more relatable and memorable for Indian developers.
+                </p>
+            </div>
+        </div>
+        
+        <div class="concept-card text-center">
+            <h2 class="text-2xl font-bold mb-4">🚀 Ready for More Design Patterns?</h2>
+            <p class="text-gray-700 mb-6">
+                Now that you've mastered the Singleton pattern with Sharma Ji, explore more design patterns and programming concepts!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                    Explore More Courses
+                </a>
+                <a href="/course-player.html?id=2" class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                    Next: Machine Learning
+                </a>
+            </div>
+        </div>
+        
+        <footer class="text-center py-8 text-gray-600 text-sm">
+            <p>Created with ❤️ for design patterns and Indian tech culture</p>
+            <p class="mt-2">© 2025 LearnByShorts - Making Complex Concepts Simple</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+            
+            // Add smooth scrolling for timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            timelineItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
