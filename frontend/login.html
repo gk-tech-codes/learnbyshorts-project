@@ -11,6 +11,7 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/header-auth.css">
     <style>
         * {
             margin: 0;
@@ -22,10 +23,17 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #f8fafc;
             min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .login-container {
@@ -286,6 +294,37 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <img src="assets/logo.svg" alt="LearnByShorts" class="brand-logo">
+                        <div class="brand-text">
+                            <h1>LearnByShorts</h1>
+                            <span class="tagline">Master Computer Science Through Stories</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html#home" class="nav-link">Home</a>
+                    <a href="index.html#courses" class="nav-link">Courses</a>
+                    <a href="index.html#features" class="nav-link">Features</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+        <div class="menu-overlay"></div>
+    </header>
+
+    <!-- Login Content -->
+    <main style="padding: 40px 0;">
     <div class="login-container">
         <div class="login-header">
             <div class="logo">
@@ -339,6 +378,54 @@
             </form>
         </div>
     </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">📚</span>
+                        <span class="logo-text">LearnByShorts</span>
+                    </div>
+                    <p class="footer-description">
+                        Making computer science concepts accessible through engaging visual stories and narratives.
+                    </p>
+                </div>
+
+                <!-- Links Sections -->
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
+                    <div class="footer-meta">
+                        <span>Made with ❤️ for learners</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     
     <!-- Loading Overlay -->
     <div id="loading" class="loading">
@@ -350,6 +437,7 @@
 
     <!-- Scripts -->
     <script src="js/auth-service.js"></script>
+    <script src="js/header-auth.js"></script>
     <script>
         // Form submission
         document.getElementById('login-form').addEventListener('submit', function(e) {

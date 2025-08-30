@@ -45,9 +45,8 @@
     display: flex;
     align-items: center;
     gap: 32px;
-    flex: 1;
-    justify-content: center;
-    margin: 0 40px;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .nav-link {
@@ -63,29 +62,17 @@
     color: #4f46e5;
 }
 
-.nav-auth {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
 .login-btn {
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
+    color: #374151;
     text-decoration: none;
     font-weight: 500;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
+    font-size: 15px;
+    transition: color 0.2s ease;
     white-space: nowrap;
 }
 
 .login-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    color: #4f46e5;
 }
 
 /* User Menu Styles */
@@ -264,17 +251,16 @@
         font-size: 16px;
     }
 
-    .nav-auth {
-        width: 100%;
-        margin: 20px 0 0 0;
-        padding-top: 20px;
-        border-top: 1px solid #f1f5f9;
-    }
-
     .login-btn {
         width: 100%;
-        text-align: center;
-        padding: 12px 20px;
+        padding: 15px 0;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 16px;
+        color: #374151;
+    }
+
+    .login-btn:hover {
+        color: #4f46e5;
     }
 
     .brand-text h1 {

@@ -29,36 +29,37 @@ class HeaderAuth {
     }
 
     createAuthElements() {
-        // Find nav menu and add auth section
+        // Find nav menu and add auth link
         const navMenu = document.querySelector('.nav-menu');
         if (!navMenu) return;
 
-        // Create auth container
-        const authContainer = document.createElement('div');
-        authContainer.className = 'nav-auth';
-        authContainer.innerHTML = `
-            <div class="auth-guest" id="auth-guest">
-                <a href="login.html" class="login-btn">Sign In</a>
-            </div>
-            <div class="auth-user" id="auth-user" style="display: none;">
-                <div class="user-menu">
-                    <button class="user-btn" id="user-btn">
-                        <span class="user-name" id="user-name">User</span>
-                        <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M7 10l5 5 5-5z"/>
-                        </svg>
-                    </button>
-                    <div class="user-dropdown" id="user-dropdown">
-                        <a href="dashboard.html" class="dropdown-item">Dashboard</a>
-                        <a href="#" class="dropdown-item" id="logout-btn">Sign Out</a>
-                    </div>
-                </div>
+        // Create auth elements
+        const authGuest = document.createElement('a');
+        authGuest.href = 'login.html';
+        authGuest.className = 'nav-link login-btn';
+        authGuest.id = 'auth-guest';
+        authGuest.textContent = 'Login';
+
+        const authUser = document.createElement('div');
+        authUser.className = 'user-menu';
+        authUser.id = 'auth-user';
+        authUser.style.display = 'none';
+        authUser.innerHTML = `
+            <button class="user-btn" id="user-btn">
+                <span class="user-name" id="user-name">User</span>
+                <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7 10l5 5 5-5z"/>
+                </svg>
+            </button>
+            <div class="user-dropdown" id="user-dropdown">
+                <a href="dashboard.html" class="dropdown-item">Dashboard</a>
+                <a href="#" class="dropdown-item" id="logout-btn">Sign Out</a>
             </div>
         `;
 
-        // Insert before hamburger menu
-        const hamburger = document.querySelector('.hamburger');
-        navMenu.parentNode.insertBefore(authContainer, hamburger);
+        // Add to nav menu
+        navMenu.appendChild(authGuest);
+        navMenu.appendChild(authUser);
 
         // Setup event listeners
         this.setupAuthEvents();
@@ -144,7 +145,7 @@ class HeaderAuth {
         if (!guestAuth || !userAuth || !userName) return;
 
         if (this.currentUser) {
-            // Show user menu
+            // Show user menu, hide login link
             guestAuth.style.display = 'none';
             userAuth.style.display = 'block';
             
@@ -152,7 +153,7 @@ class HeaderAuth {
             const displayName = this.currentUser.email.split('@')[0];
             userName.textContent = displayName;
         } else {
-            // Show login button
+            // Show login link, hide user menu
             guestAuth.style.display = 'block';
             userAuth.style.display = 'none';
         }
