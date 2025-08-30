@@ -124,4 +124,6 @@ if (window.location.hostname === 'localhost' || window.location.hostname === '12
             }
         }, 2000);
     });
+} else {
+    console.log('🌐 Production mode: Google OAuth should work normally');
 }
