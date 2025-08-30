@@ -1,3 +1,6 @@
+# Scripts and tools directory (contains AWS credentials and deployment scripts)
+scripts/
+
 # Dependencies
 node_modules/
 npm-debug.log*
