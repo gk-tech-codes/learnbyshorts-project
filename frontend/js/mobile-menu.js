@@ -1,10 +1,19 @@
 // Standard Mobile Menu - Hamburger transforms to Cross
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🍔 Mobile menu script loaded');
+    
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const menuOverlay = document.querySelector('.menu-overlay');
     
+    console.log('🍔 Elements found:', {
+        hamburger: !!hamburger,
+        navMenu: !!navMenu,
+        menuOverlay: !!menuOverlay
+    });
+    
     function openMenu() {
+        console.log('🍔 Opening menu');
         hamburger.classList.add('active');
         navMenu.classList.add('active');
         menuOverlay.classList.add('active');
@@ -12,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function closeMenu() {
+        console.log('🍔 Closing menu');
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         menuOverlay.classList.remove('active');
@@ -21,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Toggle menu on hamburger click (hamburger becomes cross when active)
     if (hamburger) {
         hamburger.addEventListener('click', function(e) {
+            console.log('🍔 Hamburger clicked');
             e.preventDefault();
             e.stopPropagation();
             
@@ -30,6 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 openMenu();
             }
         });
+        console.log('🍔 Hamburger click listener added');
+    } else {
+        console.error('🍔 Hamburger element not found!');
     }
     
     // Close menu on overlay click

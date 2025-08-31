@@ -11,6 +11,7 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/mobile-menu.css">
     <link rel="stylesheet" href="css/header-auth.css">
     <style>
         * {
@@ -436,6 +437,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="js/mobile-menu.js"></script>
     <script src="js/auth-service.js"></script>
     <script src="js/header-auth.js"></script>
     <script>
@@ -462,10 +464,50 @@
 
         // Google Sign-In fallback button
         document.getElementById('google-signin-fallback').addEventListener('click', function() {
+            // For localhost, directly trigger mock authentication
+            if (window.location.hostname === 'localhost') {
+                showLoading();
+                
+                // Simulate Google Sign-In response with mock data
+                setTimeout(() => {
+                    if (window.authService) {
+                        // Trigger mock authentication directly
+                        window.authService.handleGoogleResponse({
+                            credential: 'mock_google_credential_token'
+                        });
+                    } else {
+                        hideLoading();
+                        alert('Authentication service not available. Please refresh the page.');
+                    }
+                }, 500);
+                return;
+            }
+            
+            // For production, try Google Sign-In
             if (window.authService && window.authService.googleInitialized) {
                 showLoading();
+                
+                // Set timeout to hide loading if Google Sign-In doesn't respond
+                const loadingTimeout = setTimeout(() => {
+                    hideLoading();
+                    alert('Google Sign-In is taking too long. Please try again or check your internet connection.');
+                }, 10000); // 10 second timeout
+                
+                // Clear timeout if auth state changes
+                const authListener = (event) => {
+                    clearTimeout(loadingTimeout);
+                    window.removeEventListener('authStateChanged', authListener);
+                };
+                window.addEventListener('authStateChanged', authListener);
+                
                 // Trigger Google Sign-In
-                google.accounts.id.prompt();
+                try {
+                    google.accounts.id.prompt();
+                } catch (error) {
+                    clearTimeout(loadingTimeout);
+                    hideLoading();
+                    alert('Google Sign-In failed to load. Please refresh the page and try again.');
+                }
             } else {
                 alert('Google Sign-In is not available. Please try again later.');
             }
@@ -493,7 +535,7 @@
                             size: 'large',
                             text: 'continue_with',
                             shape: 'rectangular',
-                            width: '100%'
+                            width: 320 // Fixed width instead of 100%
                         });
                     }
                 }, 2000);
@@ -513,6 +555,18 @@
                 alert('Login failed. Please try again.');
             }
         });
+
+        // Hide loading on page errors or if Google Sign-In fails to initialize
+        window.addEventListener('error', function() {
+            hideLoading();
+        });
+
+        // Check if Google Sign-In is available after page load
+        setTimeout(() => {
+            if (!window.google || !window.authService?.googleInitialized) {
+                console.warn('Google Sign-In may not be available. Check network connection or OAuth configuration.');
+            }
+        }, 5000);
     </script>
 </body>
 </html>

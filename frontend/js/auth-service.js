@@ -136,8 +136,29 @@ class AuthService {
     }
     
     async loginWithGoogle(googleToken) {
+        console.log('🔐 Attempting Google login...');
+        
+        // For localhost testing, use mock authentication
+        if (window.location.hostname === 'localhost') {
+            console.log('🔐 Using mock authentication for localhost');
+            
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Mock successful response
+            return {
+                success: true,
+                token: 'mock_token_' + Date.now(),
+                user: {
+                    email: 'gaurav4ever98@gmail.com',
+                    name: 'Gaurav Kumar',
+                    id: 'mock_user_id'
+                }
+            };
+        }
+        
+        // For production, use real API
         try {
-            console.log('🔐 Attempting Google login...');
             const response = await fetch(`${this.apiBaseUrl}/auth/google`, {
                 method: 'POST',
                 headers: {

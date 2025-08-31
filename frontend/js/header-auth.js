@@ -12,7 +12,6 @@ class HeaderAuth {
 
     init() {
         this.createAuthElements();
-        this.setupMobileMenu();
         this.checkAuthState();
         
         // Listen for auth state changes
@@ -52,7 +51,6 @@ class HeaderAuth {
                 </svg>
             </button>
             <div class="user-dropdown" id="user-dropdown">
-                <a href="dashboard.html" class="dropdown-item">Dashboard</a>
                 <a href="#" class="dropdown-item" id="logout-btn">Sign Out</a>
             </div>
         `;
@@ -89,33 +87,6 @@ class HeaderAuth {
                 e.preventDefault();
                 this.logout();
             });
-        }
-    }
-
-    setupMobileMenu() {
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        const menuOverlay = document.querySelector('.menu-overlay');
-
-        if (hamburger && navMenu) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                if (menuOverlay) {
-                    menuOverlay.classList.toggle('active');
-                }
-                document.body.classList.toggle('menu-open');
-            });
-
-            // Close menu when clicking overlay
-            if (menuOverlay) {
-                menuOverlay.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    document.body.classList.remove('menu-open');
-                });
-            }
         }
     }
 
@@ -170,11 +141,6 @@ class HeaderAuth {
             detail: { type: 'logout', user: null }
         });
         window.dispatchEvent(event);
-        
-        // Redirect to home if on protected page
-        if (window.location.pathname.includes('dashboard')) {
-            window.location.href = 'index.html';
-        }
     }
 }
 
