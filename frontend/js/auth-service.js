@@ -94,17 +94,21 @@ class AuthService {
                 
                 console.log('✅ Login successful:', this.currentUser.name);
                 
-                // Redirect after successful login
-                this.redirectAfterLogin();
+                // Small delay to show success message, then redirect
+                setTimeout(() => {
+                    this.redirectAfterLogin();
+                }, 1000);
                 
                 return true;
             } else {
                 console.error('❌ Login failed:', result.error);
+                this.triggerAuthEvent('error', { message: result.error });
                 return false;
             }
             
         } catch (error) {
             console.error('❌ Google sign-in error:', error);
+            this.triggerAuthEvent('error', { message: error.message });
             return false;
         }
     }

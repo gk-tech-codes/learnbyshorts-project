@@ -463,6 +463,7 @@
         // Google Sign-In fallback button
         document.getElementById('google-signin-fallback').addEventListener('click', function() {
             if (window.authService && window.authService.googleInitialized) {
+                showLoading();
                 // Trigger Google Sign-In
                 google.accounts.id.prompt();
             } else {
@@ -503,7 +504,13 @@
         window.addEventListener('authStateChanged', (event) => {
             const { type, user } = event.detail;
             if (type === 'login' && user) {
-                window.location.href = 'dashboard.html';
+                // Show success message briefly before redirect
+                document.querySelector('.loading-text').textContent = 'Login successful! Redirecting...';
+                // Let auth service handle redirect (already implemented)
+                // This will redirect to index.html from login page
+            } else if (type === 'error') {
+                hideLoading();
+                alert('Login failed. Please try again.');
             }
         });
     </script>
