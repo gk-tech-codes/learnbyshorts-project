@@ -93,6 +93,10 @@ class AuthService {
                 this.triggerAuthEvent('login', this.currentUser);
                 
                 console.log('✅ Login successful:', this.currentUser.name);
+                
+                // Redirect after successful login
+                this.redirectAfterLogin();
+                
                 return true;
             } else {
                 console.error('❌ Login failed:', result.error);
@@ -103,6 +107,28 @@ class AuthService {
             console.error('❌ Google sign-in error:', error);
             return false;
         }
+    }
+    
+    redirectAfterLogin() {
+        // Get the current page
+        const currentPath = window.location.pathname;
+        
+        // If on login page, redirect to home
+        if (currentPath.includes('login.html')) {
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        // If there's a redirect parameter, use it
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectTo = urlParams.get('redirect');
+        if (redirectTo) {
+            window.location.href = redirectTo;
+            return;
+        }
+        
+        // Default: stay on current page (just update UI)
+        // The header will automatically update to show user info
     }
     
     async loginWithGoogle(googleToken) {
