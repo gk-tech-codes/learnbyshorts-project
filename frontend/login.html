@@ -256,6 +256,13 @@
             display: flex;
         }
 
+        .loading-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
         .spinner {
             width: 40px;
             height: 40px;
@@ -274,6 +281,7 @@
             color: white;
             margin-top: 20px;
             font-size: 16px;
+            text-align: center;
         }
 
         @media (max-width: 480px) {
@@ -430,7 +438,7 @@
     
     <!-- Loading Overlay -->
     <div id="loading" class="loading">
-        <div>
+        <div class="loading-content">
             <div class="spinner"></div>
             <div class="loading-text">Signing you in...</div>
         </div>
@@ -483,15 +491,15 @@
                 return;
             }
             
-            // For production, try Google Sign-In
-            if (window.authService && window.authService.googleInitialized) {
+            // For production (learnbyshorts.com), use Google Sign-In
+            if (window.authService && window.authService.googleInitialized && window.google) {
                 showLoading();
                 
-                // Set timeout to hide loading if Google Sign-In doesn't respond
+                // Set timeout for production
                 const loadingTimeout = setTimeout(() => {
                     hideLoading();
-                    alert('Google Sign-In is taking too long. Please try again or check your internet connection.');
-                }, 10000); // 10 second timeout
+                    alert('Google Sign-In is taking too long. Please check your internet connection and try again.');
+                }, 15000); // 15 second timeout for production
                 
                 // Clear timeout if auth state changes
                 const authListener = (event) => {
@@ -506,10 +514,12 @@
                 } catch (error) {
                     clearTimeout(loadingTimeout);
                     hideLoading();
-                    alert('Google Sign-In failed to load. Please refresh the page and try again.');
+                    console.error('Google Sign-In error:', error);
+                    alert('Google Sign-In is not available. Please ensure you have an internet connection and try again.');
                 }
             } else {
-                alert('Google Sign-In is not available. Please try again later.');
+                // If Google Sign-In is not initialized, show helpful message
+                alert('Google Sign-In is loading. Please wait a moment and try again, or refresh the page.');
             }
         });
 

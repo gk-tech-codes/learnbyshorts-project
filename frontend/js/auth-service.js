@@ -41,10 +41,8 @@ class AuthService {
     
     async initGoogleSignIn() {
         try {
-            // Use development client ID for localhost testing
-            const clientId = window.location.hostname === 'localhost' 
-                ? '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com' // Your existing client ID
-                : '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com';
+            // Use same client ID but ensure proper domain handling
+            const clientId = '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com';
             
             // Initialize Google Sign-In
             google.accounts.id.initialize({
@@ -56,6 +54,12 @@ class AuthService {
             
             this.googleInitialized = true;
             console.log('✅ Google Sign-In initialized for:', window.location.hostname);
+            
+            // For production, check if domain is whitelisted
+            if (window.location.hostname.includes('learnbyshorts.com')) {
+                console.log('🌐 Production domain detected - ensure learnbyshorts.com is whitelisted in Google Cloud Console');
+            }
+            
         } catch (error) {
             console.error('❌ Failed to initialize Google Sign-In:', error);
         }
