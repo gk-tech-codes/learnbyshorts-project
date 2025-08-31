@@ -491,7 +491,7 @@
                 return;
             }
             
-            // For production (learnbyshorts.com), use Google Sign-In
+            // For production, use real Google Sign-In
             if (window.authService && window.authService.googleInitialized && window.google) {
                 showLoading();
                 
@@ -499,7 +499,7 @@
                 const loadingTimeout = setTimeout(() => {
                     hideLoading();
                     alert('Google Sign-In is taking too long. Please check your internet connection and try again.');
-                }, 15000); // 15 second timeout for production
+                }, 15000);
                 
                 // Clear timeout if auth state changes
                 const authListener = (event) => {
@@ -515,11 +515,10 @@
                     clearTimeout(loadingTimeout);
                     hideLoading();
                     console.error('Google Sign-In error:', error);
-                    alert('Google Sign-In is not available. Please ensure you have an internet connection and try again.');
+                    alert('Google Sign-In failed. Please refresh the page and try again.');
                 }
             } else {
-                // If Google Sign-In is not initialized, show helpful message
-                alert('Google Sign-In is loading. Please wait a moment and try again, or refresh the page.');
+                alert('Google Sign-In is not available. Please refresh the page and try again.');
             }
         });
 
