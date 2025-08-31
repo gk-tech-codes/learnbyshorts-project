@@ -64,7 +64,7 @@ class VideoService {
         return `
             <div class="video-tile" data-video-id="${videoData.id}">
                 <div class="video-thumbnail">
-                    <video class="tile-video" preload="metadata" muted>
+                    <video class="tile-video" preload="metadata" muted controls>
                         <source src="${videoData.videoUrl}" type="video/mp4">
                     </video>
                     <div class="play-overlay">
@@ -101,19 +101,29 @@ class VideoService {
     }
 
     addVideoEventListeners() {
+        console.log('🔧 Adding video event listeners...');
+        
         document.querySelectorAll('.video-tile').forEach(tile => {
             const videoId = tile.dataset.videoId;
             const video = tile.querySelector('.tile-video');
             const overlay = tile.querySelector('.play-overlay');
             const expandBtn = tile.querySelector('.expand-button');
             
+            console.log('🎥 Setting up tile:', videoId);
+            
             // Play video when overlay is clicked
-            overlay.addEventListener('click', () => {
+            overlay.addEventListener('click', (e) => {
+                console.log('🎯 Overlay clicked for:', videoId);
+                e.preventDefault();
+                e.stopPropagation();
                 this.playTileVideo(videoId);
             });
             
             // Play video when video element is clicked
-            video.addEventListener('click', () => {
+            video.addEventListener('click', (e) => {
+                console.log('🎯 Video clicked for:', videoId);
+                e.preventDefault();
+                e.stopPropagation();
                 if (video.paused) {
                     this.playTileVideo(videoId);
                 } else {
@@ -123,36 +133,87 @@ class VideoService {
             
             // Expand button click
             expandBtn.addEventListener('click', (e) => {
+                console.log('🎯 Expand clicked for:', videoId);
+                e.preventDefault();
                 e.stopPropagation();
                 openVideoModal(videoId);
             });
         });
+        
+        console.log('✅ Event listeners added to', document.querySelectorAll('.video-tile').length, 'tiles');
     }
 
     playTileVideo(videoId) {
+        console.log('🎬 Attempting to play video:', videoId);
+        
         const tile = document.querySelector(`[data-video-id="${videoId}"]`);
+        if (!tile) {
+            console.error('❌ Tile not found for:', videoId);
+            return;
+        }
+        
         const video = tile.querySelector('.tile-video');
         const overlay = tile.querySelector('.play-overlay');
         const expandBtn = tile.querySelector('.expand-button');
         
+        if (!video) {
+            console.error('❌ Video element not found');
+            return;
+        }
+        
+        console.log('🎬 Video element found, attempting play...');
+        
+        // Unmute video when user explicitly clicks play
+        video.muted = false;
+        video.volume = 0.8; // Set to 80% volume
+        
+        // Try to load the video first
+        if (video.readyState === 0) {
+            console.log('🔄 Loading video...');
+            video.load();
+        }
+        
         // Play video inline
-        video.play().then(() => {
-            overlay.classList.add('hidden');
-            expandBtn.classList.add('visible');
-            console.log('✅ Video playing:', videoId);
-        }).catch(e => {
-            console.error('❌ Play failed:', e);
-            alert('Video failed to play. Please try again.');
-        });
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                console.log('✅ Video playing successfully with sound:', videoId);
+                overlay.classList.add('hidden');
+                expandBtn.classList.add('visible');
+            }).catch(e => {
+                console.error('❌ Play failed:', e);
+                
+                // If unmuted play fails, try muted first then unmute
+                video.muted = true;
+                video.play().then(() => {
+                    console.log('✅ Playing muted, will unmute after start');
+                    // Unmute after a short delay
+                    setTimeout(() => {
+                        video.muted = false;
+                        video.volume = 0.8;
+                        console.log('🔊 Video unmuted');
+                    }, 500);
+                    overlay.classList.add('hidden');
+                    expandBtn.classList.add('visible');
+                }).catch(retryError => {
+                    console.error('❌ Even muted play failed:', retryError);
+                    alert('Video failed to play: ' + retryError.message);
+                });
+            });
+        }
         
         // Show expand button when video ends
         video.addEventListener('ended', () => {
+            console.log('🏁 Video ended:', videoId);
             overlay.classList.remove('hidden');
             expandBtn.classList.remove('visible');
+            video.muted = true; // Mute again for next play
         });
         
         // Show overlay when video is paused
         video.addEventListener('pause', () => {
+            console.log('⏸️ Video paused:', videoId);
             if (!video.ended) {
                 overlay.classList.remove('hidden');
                 expandBtn.classList.remove('visible');
@@ -293,10 +354,15 @@ function openVideoModal(videoId) {
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
     
-    // Get current time from tile video
+    // Get current time from tile video and pause it
     const tile = document.querySelector(`[data-video-id="${videoId}"]`);
     const tileVideo = tile.querySelector('.tile-video');
     const currentTime = tileVideo.currentTime || 0;
+    const wasPlaying = !tileVideo.paused;
+    
+    // Pause tile video to prevent double audio
+    tileVideo.pause();
+    console.log('⏸️ Paused tile video at:', currentTime);
     
     // Update modal content
     modalVideoSource.src = video.videoUrl;
@@ -311,7 +377,11 @@ function openVideoModal(videoId) {
     // Continue from where tile video left off
     modalVideo.addEventListener('loadedmetadata', () => {
         modalVideo.currentTime = currentTime;
-        modalVideo.play().catch(e => console.log('Auto-play prevented:', e));
+        modalVideo.volume = 0.8; // Set volume for modal
+        if (wasPlaying) {
+            modalVideo.play().catch(e => console.log('Auto-play prevented:', e));
+        }
+        console.log('🎬 Modal video ready at:', currentTime);
     }, { once: true });
 }
 
@@ -323,9 +393,11 @@ function closeVideoModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
     
-    // Pause and reset video
+    // Pause and reset modal video
     modalVideo.pause();
     modalVideo.currentTime = 0;
+    
+    console.log('🚪 Modal closed, video reset');
 }
 
 // Initialize video service
