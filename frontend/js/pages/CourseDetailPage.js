@@ -1,7 +1,12 @@
+console.log('CourseDetailPage.js script loaded!');
+
 // Simple CourseDetailPage that works immediately
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('CourseDetailPage loaded');
     const urlParams = new URLSearchParams(window.location.search);
     const courseId = urlParams.get('id');
+    
+    console.log('Course ID from URL:', courseId);
     
     if (!courseId) {
         showError('Course not found');
@@ -14,9 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function loadCourseData(courseId) {
     try {
+        console.log('Loading course data for:', courseId);
         const response = await fetch('data/courses.json');
         const data = await response.json();
+        console.log('Courses data loaded:', data);
         const course = data.courses.find(c => c.id === courseId);
+        
+        console.log('Found course:', course);
         
         if (!course) {
             showError('Course not found');
@@ -48,25 +57,44 @@ function renderCourse(course) {
 }
 
 function updateBreadcrumbs(course) {
+    console.log('Updating breadcrumbs for course:', course);
+    
     const categoryBreadcrumb = document.getElementById('categoryBreadcrumb');
     const courseBreadcrumb = document.getElementById('courseBreadcrumb');
     
-    // Category mapping
-    const categoryNames = {
-        'design-patterns': 'Design Patterns',
-        'algorithms': 'Algorithms',
-        'javascript': 'JavaScript',
-        'system-design': 'System Design'
+    console.log('Category element:', categoryBreadcrumb);
+    console.log('Course element:', courseBreadcrumb);
+    
+    // Category mapping with URLs
+    const categoryData = {
+        'design-patterns': {
+            name: 'Design Patterns',
+            url: 'index.html#courses'
+        },
+        'algorithms': {
+            name: 'Algorithms',
+            url: 'index.html#courses'
+        },
+        'javascript': {
+            name: 'JavaScript',
+            url: 'index.html#courses'
+        },
+        'system-design': {
+            name: 'System Design',
+            url: 'index.html#courses'
+        }
     };
     
-    if (categoryBreadcrumb) {
-        const categoryName = categoryNames[course.categoryId] || 'Courses';
-        categoryBreadcrumb.textContent = categoryName;
-        categoryBreadcrumb.href = 'index.html#courses';
+    if (categoryBreadcrumb && course.categoryId) {
+        const category = categoryData[course.categoryId] || { name: 'Courses', url: 'index.html#courses' };
+        console.log('Setting category to:', category.name);
+        categoryBreadcrumb.textContent = category.name;
+        categoryBreadcrumb.href = category.url;
     }
     
-    if (courseBreadcrumb) {
-        courseBreadcrumb.textContent = course.title || 'Course';
+    if (courseBreadcrumb && course.title) {
+        console.log('Setting course title to:', course.title);
+        courseBreadcrumb.textContent = course.title;
     }
 }
 

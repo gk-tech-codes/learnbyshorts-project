@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
@@ -19,6 +19,7 @@
     <meta name="description" content="Master programming concepts through engaging visual stories and interactive learning">
     <meta name="keywords" content="programming, learning, visual stories, education, software development, courses">
     <link rel="stylesheet" href="css/styles.css?v=1.5.2">
+    <link rel="stylesheet" href="css/homepage.css?v=1.5.2">
     <link rel="stylesheet" href="css/course-detail.css?v=1.5.2">
     <link rel="stylesheet" href="css/mobile-menu.css?v=1.3.6">
     <link rel="stylesheet" href="css/header-auth.css?v=1.5.2">
@@ -240,11 +241,59 @@
             location.replace(newUrl);
         }
     </script>
+    <script>
+        // Configurable breadcrumb update for all courses
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Breadcrumb script running');
+            
+            // Get course ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseId = urlParams.get('id');
+            console.log('Course ID:', courseId);
+            
+            if (!courseId) return;
+            
+            // Category mapping
+            const categoryNames = {
+                'design-patterns': 'Design Patterns',
+                'algorithms': 'Algorithms',
+                'javascript': 'JavaScript',
+                'system-design': 'System Design'
+            };
+            
+            // Load course data and update breadcrumbs
+            fetch('data/courses.json')
+                .then(response => response.json())
+                .then(data => {
+                    const course = data.courses.find(c => c.id === courseId);
+                    console.log('Found course:', course);
+                    
+                    if (course) {
+                        const categoryBreadcrumb = document.getElementById('categoryBreadcrumb');
+                        const courseBreadcrumb = document.getElementById('courseBreadcrumb');
+                        
+                        if (categoryBreadcrumb) {
+                            const categoryName = categoryNames[course.categoryId] || 'Courses';
+                            categoryBreadcrumb.textContent = categoryName;
+                            categoryBreadcrumb.href = 'index.html#courses';
+                        }
+                        
+                        if (courseBreadcrumb) {
+                            courseBreadcrumb.textContent = course.title;
+                        }
+                        
+                        console.log('Breadcrumbs updated for:', course.title);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading course data:', error);
+                });
+        });
+    </script>
     <script src="js/utils/constants.js?v=2.0.1"></script>
     <script src="js/services/DataService.js?v=2.0.1"></script>
     <script src="js/pages/CourseDetailPage.js?v=2.0.1"></script>
     <script src="js/mobile-menu.js?v=1.3.6"></script>
     <script src="js/header-auth.js"></script>
-    <script src="js/butterfly-reader.js"></script>
 </body>
 </html>
