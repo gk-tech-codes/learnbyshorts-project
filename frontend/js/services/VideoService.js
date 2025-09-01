@@ -5,22 +5,10 @@ class VideoService {
     constructor() {
         this.videoBucket = 'learnbyshorts-videos-464994449735';
         this.cdnUrl = `https://${this.videoBucket}.s3.amazonaws.com`;
+        this.videoConfig = null;
         
-        // Popular videos section
-        this.popularVideos = [
-            {
-                id: 'singleton-pattern',
-                title: 'Singleton Pattern: Taming Chaos',
-                description: 'Master the Singleton design pattern through an engaging story that shows how to control chaos in your code architecture.',
-                course: 'Design Patterns',
-                duration: '6:42',
-                thumbnail: `${this.cdnUrl}/thumbnails/singleton-pattern.jpg`,
-                videoUrl: `${this.cdnUrl}/previews/singleton-pattern.mp4`,
-                level: 'Intermediate',
-                views: '12.5K',
-                featured: true
-            }
-        ];
+        // Load video configuration
+        this.loadVideoConfig();
         
         this.previewVideos = [
             {
@@ -56,48 +44,231 @@ class VideoService {
         ];
     }
 
-    getPopularVideos() {
-        return this.popularVideos;
+    async loadVideoConfig() {
+        return new Promise((resolve, reject) => {
+            try {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '/data/youtube-videos.json', true);
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            this.videoConfig = JSON.parse(xhr.responseText);
+                            console.log('✅ Video config loaded:', this.videoConfig.videos.length, 'videos');
+                            resolve(this.videoConfig);
+                        } else {
+                            console.error('❌ Failed to load video config:', xhr.status);
+                            this.videoConfig = { videos: [], config: {} };
+                            resolve(this.videoConfig);
+                        }
+                    }
+                };
+                xhr.onerror = () => {
+                    console.error('❌ Failed to load video config: Network error');
+                    this.videoConfig = { videos: [], config: {} };
+                    resolve(this.videoConfig);
+                };
+                xhr.send();
+            } catch (error) {
+                console.error('❌ Failed to load video config:', error);
+                this.videoConfig = { videos: [], config: {} };
+                resolve(this.videoConfig);
+            }
+        });
     }
 
+    getPopularVideos() {
+        if (!this.videoConfig || !this.videoConfig.videos) {
+            return [];
+        }
+        
+        return this.videoConfig.videos.map(video => ({
+            id: video.id,
+            youtubeId: video.youtubeId,
+            title: video.title,
+            description: video.description,
+            author: video.author,
+            duration: video.duration,
+            thumbnail: video.thumbnail || this.videoConfig.config.fallbackThumbnail?.replace('{videoId}', video.youtubeId),
+            videoUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
+            category: video.category,
+            level: video.level,
+            views: video.views,
+            featured: video.featured,
+            isYouTube: true,
+            tags: video.tags || []
+        }));
+    }
+
+
+
     createVideoTile(videoData) {
+        const utmParams = this.videoConfig?.config?.enableAnalytics ? 
+            `&utm_source=${this.videoConfig.config.utmSource}&utm_medium=${this.videoConfig.config.utmMedium}&utm_campaign=${this.videoConfig.config.utmCampaign}&utm_content=${videoData.id}` : '';
+        
+        const videoElement = videoData.isYouTube ? 
+            `<iframe 
+                class="tile-video youtube-embed" 
+                src="${videoData.videoUrl}?enablejsapi=1&rel=0&modestbranding=1&playsinline=1&fs=1&cc_load_policy=1&iv_load_policy=3&controls=1&showinfo=0&theme=dark&color=white${utmParams}"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen
+                title="${videoData.title}"
+                loading="lazy">
+            </iframe>` :
+            `<video class="tile-video" preload="metadata" muted controls>
+                <source src="${videoData.videoUrl}" type="video/mp4">
+            </video>`;
+
         return `
-            <div class="video-tile" data-video-id="${videoData.id}">
+            <div class="video-tile" data-video-id="${videoData.id}" data-is-youtube="${videoData.isYouTube || false}">
                 <div class="video-thumbnail">
-                    <video class="tile-video" preload="metadata" muted controls>
-                        <source src="${videoData.videoUrl}" type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-icon">
-                            <svg viewBox="0 0 24 24">
-                                <polygon points="5,3 19,12 5,21" fill="currentColor"/>
-                            </svg>
+                    ${videoElement}
+                    ${!videoData.isYouTube ? `
+                        <div class="play-overlay">
+                            <div class="play-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" fill="currentColor"/>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                    <div class="duration-badge">${videoData.duration}</div>
-                    <button class="expand-button" title="Expand">⛶</button>
+                    ` : ''}
+                    ${videoData.duration ? `<div class="duration-badge">${videoData.duration}</div>` : ''}
+                    <button class="expand-button" title="Expand to full screen" aria-label="Expand video">⛶</button>
                 </div>
                 <div class="video-tile-info">
                     <h3 class="video-tile-title">${videoData.title}</h3>
                     <p class="video-tile-description">${videoData.description}</p>
+                    <div class="video-meta">
+                        ${videoData.category ? `<span class="course-badge">${videoData.category}</span>` : ''}
+                        ${videoData.level ? `<span class="level level-${videoData.level.toLowerCase()}">${videoData.level}</span>` : ''}
+                        ${videoData.views ? `<span class="views">${videoData.views} views</span>` : ''}
+                    </div>
                 </div>
             </div>
         `;
     }
 
-    createVideoSlider(container) {
-        const popularVideos = this.getPopularVideos();
+    async createVideoSlider(container) {
+        // Show loading state
+        container.innerHTML = '<div class="loading-state">Loading videos...</div>';
         
-        const sliderHTML = `
-            <div class="video-slider">
-                ${popularVideos.map(video => this.createVideoTile(video)).join('')}
-            </div>
-        `;
+        try {
+            // Wait for config to load if not already loaded
+            if (!this.videoConfig) {
+                await this.loadVideoConfig();
+            }
+            
+            const popularVideos = this.getPopularVideos();
+            
+            if (popularVideos.length === 0) {
+                container.innerHTML = '<div class="error-state">No videos configured</div>';
+                return;
+            }
+            
+            const videoTiles = popularVideos.map(video => this.createVideoTile(video)).join('');
+            
+            // Create slider with navigation
+            container.innerHTML = `
+                <button class="slider-nav prev" onclick="videoSlider.scrollPrev()">‹</button>
+                <button class="slider-nav next" onclick="videoSlider.scrollNext()">›</button>
+                <div class="video-slider" id="video-slider">
+                    ${videoTiles}
+                </div>
+                <div class="auto-scroll-indicator">
+                    ${popularVideos.map((_, i) => `<div class="scroll-dot ${i === 0 ? 'active' : ''}" onclick="videoSlider.scrollToIndex(${i})"></div>`).join('')}
+                    <button class="auto-scroll-toggle active" onclick="videoSlider.toggleAutoScroll()">Auto</button>
+                </div>
+            `;
+            
+            // Initialize slider functionality
+            this.initializeSlider();
+            
+            // Add event listeners after creating tiles
+            this.addVideoEventListeners();
+        } catch (error) {
+            console.error('Failed to load videos:', error);
+            container.innerHTML = '<div class="error-state">Failed to load videos</div>';
+        }
+    }
+
+    initializeSlider() {
+        const slider = document.getElementById('video-slider');
+        const dots = document.querySelectorAll('.scroll-dot');
+        const prevBtn = document.querySelector('.slider-nav.prev');
+        const nextBtn = document.querySelector('.slider-nav.next');
+        const autoToggle = document.querySelector('.auto-scroll-toggle');
         
-        container.innerHTML = sliderHTML;
+        let currentIndex = 0;
+        let autoScrollInterval = null;
+        let isAutoScrolling = true;
         
-        // Add event listeners after creating tiles
-        this.addVideoEventListeners();
+        // Auto-scroll functionality
+        const startAutoScroll = () => {
+            if (autoScrollInterval) clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(() => {
+                if (isAutoScrolling) {
+                    currentIndex = (currentIndex + 1) % dots.length;
+                    scrollToIndex(currentIndex);
+                }
+            }, 4000); // Change every 4 seconds
+        };
+        
+        const scrollToIndex = (index) => {
+            const scrollAmount = index * 320; // 300px width + 20px gap
+            slider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+            
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === dots.length - 1;
+            
+            currentIndex = index;
+        };
+        
+        // Global slider controls
+        window.videoSlider = {
+            scrollPrev: () => {
+                if (currentIndex > 0) {
+                    scrollToIndex(currentIndex - 1);
+                }
+            },
+            scrollNext: () => {
+                if (currentIndex < dots.length - 1) {
+                    scrollToIndex(currentIndex + 1);
+                }
+            },
+            scrollToIndex: scrollToIndex,
+            toggleAutoScroll: () => {
+                isAutoScrolling = !isAutoScrolling;
+                autoToggle.classList.toggle('active', isAutoScrolling);
+                autoToggle.textContent = isAutoScrolling ? 'Auto' : 'Manual';
+                
+                if (isAutoScrolling) {
+                    startAutoScroll();
+                } else {
+                    clearInterval(autoScrollInterval);
+                }
+            }
+        };
+        
+        // Start auto-scroll
+        startAutoScroll();
+        
+        // Pause auto-scroll on hover
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoScrollInterval);
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            if (isAutoScrolling) startAutoScroll();
+        });
+        
+        // Initialize first state
+        scrollToIndex(0);
     }
 
     addVideoEventListeners() {
@@ -105,38 +276,67 @@ class VideoService {
         
         document.querySelectorAll('.video-tile').forEach(tile => {
             const videoId = tile.dataset.videoId;
-            const video = tile.querySelector('.tile-video');
-            const overlay = tile.querySelector('.play-overlay');
+            const isYouTube = tile.dataset.isYoutube === 'true';
             const expandBtn = tile.querySelector('.expand-button');
             
-            console.log('🎥 Setting up tile:', videoId);
+            console.log('🎥 Setting up tile:', videoId, isYouTube ? '(YouTube)' : '(Native)');
             
-            // Play video when overlay is clicked
-            overlay.addEventListener('click', (e) => {
-                console.log('🎯 Overlay clicked for:', videoId);
-                e.preventDefault();
-                e.stopPropagation();
-                this.playTileVideo(videoId);
-            });
-            
-            // Play video when video element is clicked
-            video.addEventListener('click', (e) => {
-                console.log('🎯 Video clicked for:', videoId);
-                e.preventDefault();
-                e.stopPropagation();
-                if (video.paused) {
+            if (!isYouTube) {
+                // Handle native video tiles
+                const video = tile.querySelector('.tile-video');
+                const overlay = tile.querySelector('.play-overlay');
+                
+                // Play video when overlay is clicked
+                overlay?.addEventListener('click', (e) => {
+                    console.log('🎯 Overlay clicked for:', videoId);
+                    e.preventDefault();
+                    e.stopPropagation();
                     this.playTileVideo(videoId);
-                } else {
-                    video.pause();
-                }
-            });
+                });
+                
+                // Play video when video element is clicked
+                video?.addEventListener('click', (e) => {
+                    console.log('🎯 Video clicked for:', videoId);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (video.paused) {
+                        this.playTileVideo(videoId);
+                    } else {
+                        video.pause();
+                    }
+                });
+            } else {
+                // Handle YouTube videos - track interactions
+                const iframe = tile.querySelector('.youtube-embed');
+                iframe?.addEventListener('load', () => {
+                    console.log('📺 YouTube video loaded:', videoId);
+                    // Track YouTube video load
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'video_load', {
+                            'video_id': videoId,
+                            'video_title': tile.querySelector('.video-tile-title')?.textContent,
+                            'source': 'homepage_tile',
+                            'platform': 'youtube'
+                        });
+                    }
+                });
+            }
             
-            // Expand button click
-            expandBtn.addEventListener('click', (e) => {
+            // Expand button click for both types
+            expandBtn?.addEventListener('click', (e) => {
                 console.log('🎯 Expand clicked for:', videoId);
                 e.preventDefault();
                 e.stopPropagation();
-                openVideoModal(videoId);
+                this.openVideoModal(videoId);
+                
+                // Track expand button click
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'video_expand', {
+                        'video_id': videoId,
+                        'source': 'homepage_tile',
+                        'platform': isYouTube ? 'youtube' : 'native'
+                    });
+                }
             });
         });
         
@@ -339,65 +539,95 @@ class VideoService {
             }
         });
     }
+
+    async openVideoModal(videoId) {
+        const videos = this.getPopularVideos();
+        const video = videos.find(v => v.id === videoId);
+        
+        if (!video) return;
+        
+        const modal = document.getElementById('video-modal');
+        const modalContent = modal.querySelector('.video-modal-player');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        
+        // Update modal content
+        modalTitle.textContent = video.title;
+        modalDescription.textContent = video.description;
+        
+        // Create appropriate video element
+        if (video.isYouTube) {
+            const youtubeUrl = `${video.videoUrl}?autoplay=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&rel=0&modestbranding=1&playsinline=1&fs=1&cc_load_policy=1&iv_load_policy=3&controls=1&showinfo=0&theme=dark&color=white&utm_source=learnbyshorts&utm_medium=homepage&utm_campaign=video_modal&utm_content=${video.id}`;
+            
+            modalContent.innerHTML = `
+                <iframe 
+                    id="modal-video" 
+                    class="youtube-modal-embed"
+                    src="${youtubeUrl}"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen
+                    title="${video.title}"
+                    width="100%" 
+                    height="100%">
+                </iframe>
+            `;
+            
+            // Track YouTube modal open
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'video_modal_open', {
+                    'video_id': videoId,
+                    'video_title': video.title,
+                    'source': 'homepage_modal',
+                    'platform': 'youtube'
+                });
+            }
+        } else {
+            modalContent.innerHTML = `
+                <video id="modal-video" controls preload="metadata" width="100%" height="100%">
+                    <source id="modal-video-source" src="${video.videoUrl}" type="video/mp4">
+                </video>
+            `;
+            
+            const modalVideo = document.getElementById('modal-video');
+            modalVideo.volume = 0.8;
+            modalVideo.play().catch(e => console.log('Auto-play prevented:', e));
+        }
+        
+        // Show modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        console.log('🎬 Modal opened for:', videoId, video.isYouTube ? '(YouTube)' : '(Native)');
+    }
 }
 
 // Global video functions
 function openVideoModal(videoId) {
-    const videoService = window.videoService;
-    const video = videoService.getPopularVideos().find(v => v.id === videoId);
-    
-    if (!video) return;
-    
-    const modal = document.getElementById('video-modal');
-    const modalVideo = document.getElementById('modal-video');
-    const modalVideoSource = document.getElementById('modal-video-source');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    
-    // Get current time from tile video and pause it
-    const tile = document.querySelector(`[data-video-id="${videoId}"]`);
-    const tileVideo = tile.querySelector('.tile-video');
-    const currentTime = tileVideo.currentTime || 0;
-    const wasPlaying = !tileVideo.paused;
-    
-    // Pause tile video to prevent double audio
-    tileVideo.pause();
-    console.log('⏸️ Paused tile video at:', currentTime);
-    
-    // Update modal content
-    modalVideoSource.src = video.videoUrl;
-    modalVideo.load();
-    modalTitle.textContent = video.title;
-    modalDescription.textContent = video.description;
-    
-    // Show modal
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    // Continue from where tile video left off
-    modalVideo.addEventListener('loadedmetadata', () => {
-        modalVideo.currentTime = currentTime;
-        modalVideo.volume = 0.8; // Set volume for modal
-        if (wasPlaying) {
-            modalVideo.play().catch(e => console.log('Auto-play prevented:', e));
-        }
-        console.log('🎬 Modal video ready at:', currentTime);
-    }, { once: true });
+    if (window.videoService) {
+        window.videoService.openVideoModal(videoId);
+    }
 }
 
 function closeVideoModal() {
     const modal = document.getElementById('video-modal');
-    const modalVideo = document.getElementById('modal-video');
+    const modalContent = modal.querySelector('.video-modal-player');
     
     // Hide modal
     modal.classList.remove('active');
     document.body.style.overflow = '';
     
-    // Pause and reset modal video
-    modalVideo.pause();
-    modalVideo.currentTime = 0;
+    // Clear modal content to stop any playing videos
+    modalContent.innerHTML = '';
     
-    console.log('🚪 Modal closed, video reset');
+    // Track modal close
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'video_modal_close', {
+            'source': 'homepage_modal'
+        });
+    }
+    
+    console.log('🚪 Modal closed, content cleared');
 }
 
 // Initialize video service

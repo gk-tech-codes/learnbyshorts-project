@@ -23,14 +23,98 @@
     padding: 0 20px;
 }
 
+/* Navigation arrows */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 10;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.slider-nav:hover {
+    background: rgba(0, 0, 0, 0.9);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+    left: -20px;
+}
+
+.slider-nav.next {
+    right: -20px;
+}
+
+.slider-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Auto-scroll indicator */
+.auto-scroll-indicator {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.scroll-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.scroll-dot.active {
+    background: #4f46e5;
+    transform: scale(1.2);
+}
+
+.auto-scroll-toggle {
+    margin-left: 12px;
+    background: none;
+    border: 1px solid #cbd5e1;
+    color: #64748b;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auto-scroll-toggle.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
 .video-slider {
     display: flex;
     gap: 20px;
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding: 10px 0;
+    padding: 10px 0 40px 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
 }
 
 .video-slider::-webkit-scrollbar {
@@ -44,6 +128,7 @@
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    scroll-snap-align: start;
 }
 
 .video-tile:hover {
@@ -60,10 +145,75 @@
     cursor: pointer;
 }
 
-.video-thumbnail video {
+.video-thumbnail video,
+.video-thumbnail iframe {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* YouTube embed specific styles */
+.youtube-embed {
+    border: none;
+    background: #000;
+}
+
+.video-tile[data-is-youtube="true"] .video-thumbnail {
+    cursor: default;
+}
+
+.video-tile[data-is-youtube="true"] .expand-button {
+    display: flex;
+    background: rgba(255, 0, 0, 0.8);
+}
+
+.video-tile[data-is-youtube="true"] .expand-button:hover {
+    background: rgba(255, 0, 0, 1);
+}
+
+/* Video meta information */
+.video-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.course-badge {
+    background: #4f46e5;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.level {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.level-beginner {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.level-intermediate {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.level-advanced {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.views {
+    color: #64748b;
+    font-size: 0.7rem;
 }
 
 .play-overlay {
@@ -206,10 +356,15 @@
     aspect-ratio: 16/9;
 }
 
-.video-modal-player video {
+.video-modal-player video,
+.video-modal-player iframe {
     width: 100%;
     height: 100%;
     display: block;
+}
+
+.youtube-modal-embed {
+    border: none;
 }
 
 .video-modal-info {
@@ -251,7 +406,26 @@
     background: rgba(0, 0, 0, 0.9);
 }
 
-/* Mobile Responsive */
+/* Loading and Error States */
+.loading-state, .error-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.loading-state {
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 2px dashed #cbd5e1;
+}
+
+.error-state {
+    background: #fef2f2;
+    border-radius: 8px;
+    border: 2px dashed #fca5a5;
+    color: #dc2626;
+}
 @media (max-width: 768px) {
     .video-slider-container {
         padding: 0 15px;
@@ -272,4 +446,25 @@
     .video-modal-title {
         font-size: 1.25rem;
     }
+}
+
+/* Loading and Error States */
+.loading-state, .error-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.loading-state {
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 2px dashed #cbd5e1;
+}
+
+.error-state {
+    background: #fef2f2;
+    border-radius: 8px;
+    border: 2px dashed #fca5a5;
+    color: #dc2626;
 }

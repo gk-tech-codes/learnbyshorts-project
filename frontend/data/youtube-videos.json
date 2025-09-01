@@ -1,0 +1,53 @@
+{
+  "videos": [
+    {
+      "id": "command-pattern-journey",
+      "youtubeId": "fGdU68J-FsA",
+      "url": "https://www.youtube.com/watch?v=fGdU68J-FsA",
+      "title": "The Secret of Binary Search | Learn with Story & Code",
+      "description": "Video by LearnByShorts",
+      "author": "LearnByShorts",
+      "thumbnail": "https://i.ytimg.com/vi/fGdU68J-FsA/hqdefault.jpg",
+      "lastUpdated": "2025-09-01T04:51:50.428Z"
+    },
+    {
+      "id": "second-video",
+      "youtubeId": "vAPwxZRCLPg",
+      "url": "https://www.youtube.com/watch?v=vAPwxZRCLPg",
+      "title": "The Singleton Master: From Printer Chaos to Design Pattern Mastery | Complete Story",
+      "description": "Video by LearnByShorts",
+      "author": "LearnByShorts",
+      "thumbnail": "https://i.ytimg.com/vi/vAPwxZRCLPg/hqdefault.jpg",
+      "lastUpdated": "2025-09-01T04:51:50.449Z"
+    },
+    {
+      "id": "third-video",
+      "youtubeId": "ta55hKmIhvM",
+      "url": "https://www.youtube.com/watch?v=ta55hKmIhvM",
+      "title": "The Abstract Factory Master: From Gaming Chaos to Cross-Platform Empire | Component Families",
+      "description": "Video by LearnByShorts",
+      "author": "LearnByShorts",
+      "thumbnail": "https://i.ytimg.com/vi/ta55hKmIhvM/hqdefault.jpg",
+      "lastUpdated": "2025-09-01T04:51:50.471Z"
+    },
+    {
+      "id": "fourth-video",
+      "youtubeId": "0m0xu8Hyrgk",
+      "url": "https://www.youtube.com/watch?v=0m0xu8Hyrgk",
+      "title": "The Pizza Factory Master: From Coding Chaos to Global Empire | Factory Method Pattern",
+      "description": "Video by LearnByShorts",
+      "author": "LearnByShorts",
+      "thumbnail": "https://i.ytimg.com/vi/0m0xu8Hyrgk/hqdefault.jpg",
+      "lastUpdated": "2025-09-01T04:51:50.486Z"
+    }
+  ],
+  "config": {
+    "autoFetch": true,
+    "fallbackThumbnail": "https://img.youtube.com/vi/{videoId}/maxresdefault.jpg",
+    "maxVideosOnHomepage": 10,
+    "enableAnalytics": true,
+    "utmSource": "learnbyshorts",
+    "utmMedium": "homepage",
+    "utmCampaign": "video_tile"
+  }
+}
