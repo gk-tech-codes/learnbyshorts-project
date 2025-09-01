@@ -31,6 +31,9 @@ async function loadCourseData(courseId) {
 }
 
 function renderCourse(course) {
+    // Update breadcrumbs
+    updateBreadcrumbs(course);
+    
     // Render slider
     renderCourseSlider(course);
     
@@ -42,6 +45,29 @@ function renderCourse(course) {
     
     // Render prerequisites
     renderPrerequisites(course);
+}
+
+function updateBreadcrumbs(course) {
+    const categoryBreadcrumb = document.getElementById('categoryBreadcrumb');
+    const courseBreadcrumb = document.getElementById('courseBreadcrumb');
+    
+    // Category mapping
+    const categoryNames = {
+        'design-patterns': 'Design Patterns',
+        'algorithms': 'Algorithms',
+        'javascript': 'JavaScript',
+        'system-design': 'System Design'
+    };
+    
+    if (categoryBreadcrumb) {
+        const categoryName = categoryNames[course.categoryId] || 'Courses';
+        categoryBreadcrumb.textContent = categoryName;
+        categoryBreadcrumb.href = 'index.html#courses';
+    }
+    
+    if (courseBreadcrumb) {
+        courseBreadcrumb.textContent = course.title || 'Course';
+    }
 }
 
 function renderCourseSlider(course) {
