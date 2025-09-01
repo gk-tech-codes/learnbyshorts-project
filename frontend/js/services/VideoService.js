@@ -167,10 +167,8 @@ class VideoService {
             
             const videoTiles = popularVideos.map(video => this.createVideoTile(video)).join('');
             
-            // Create slider with navigation
+            // Create slider without navigation buttons
             container.innerHTML = `
-                <button class="slider-nav prev" onclick="videoSlider.scrollPrev()">‹</button>
-                <button class="slider-nav next" onclick="videoSlider.scrollNext()">›</button>
                 <div class="video-slider" id="video-slider">
                     ${videoTiles}
                 </div>
@@ -193,8 +191,6 @@ class VideoService {
     initializeSlider() {
         const slider = document.getElementById('video-slider');
         const dots = document.querySelectorAll('.scroll-dot');
-        const prevBtn = document.querySelector('.slider-nav.prev');
-        const nextBtn = document.querySelector('.slider-nav.next');
         
         let currentIndex = 0;
         let autoScrollInterval = null;
@@ -216,10 +212,6 @@ class VideoService {
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
-            
-            // Update navigation buttons
-            prevBtn.disabled = index === 0;
-            nextBtn.disabled = index === dots.length - 1;
             
             currentIndex = index;
         };
