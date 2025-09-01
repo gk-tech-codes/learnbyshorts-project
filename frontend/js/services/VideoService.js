@@ -176,7 +176,6 @@ class VideoService {
                 </div>
                 <div class="auto-scroll-indicator">
                     ${popularVideos.map((_, i) => `<div class="scroll-dot ${i === 0 ? 'active' : ''}" onclick="videoSlider.scrollToIndex(${i})"></div>`).join('')}
-                    <button class="auto-scroll-toggle active" onclick="videoSlider.toggleAutoScroll()">Auto</button>
                 </div>
             `;
             
@@ -196,21 +195,17 @@ class VideoService {
         const dots = document.querySelectorAll('.scroll-dot');
         const prevBtn = document.querySelector('.slider-nav.prev');
         const nextBtn = document.querySelector('.slider-nav.next');
-        const autoToggle = document.querySelector('.auto-scroll-toggle');
         
         let currentIndex = 0;
         let autoScrollInterval = null;
-        let isAutoScrolling = true;
         
         // Auto-scroll functionality
         const startAutoScroll = () => {
             if (autoScrollInterval) clearInterval(autoScrollInterval);
             autoScrollInterval = setInterval(() => {
-                if (isAutoScrolling) {
-                    currentIndex = (currentIndex + 1) % dots.length;
-                    scrollToIndex(currentIndex);
-                }
-            }, 4000); // Change every 4 seconds
+                currentIndex = (currentIndex + 1) % dots.length;
+                scrollToIndex(currentIndex);
+            }, 5000); // Change every 5 seconds
         };
         
         const scrollToIndex = (index) => {
@@ -241,18 +236,7 @@ class VideoService {
                     scrollToIndex(currentIndex + 1);
                 }
             },
-            scrollToIndex: scrollToIndex,
-            toggleAutoScroll: () => {
-                isAutoScrolling = !isAutoScrolling;
-                autoToggle.classList.toggle('active', isAutoScrolling);
-                autoToggle.textContent = isAutoScrolling ? 'Auto' : 'Manual';
-                
-                if (isAutoScrolling) {
-                    startAutoScroll();
-                } else {
-                    clearInterval(autoScrollInterval);
-                }
-            }
+            scrollToIndex: scrollToIndex
         };
         
         // Start auto-scroll
@@ -264,7 +248,7 @@ class VideoService {
         });
         
         slider.addEventListener('mouseleave', () => {
-            if (isAutoScrolling) startAutoScroll();
+            startAutoScroll();
         });
         
         // Initialize first state
