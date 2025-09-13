@@ -1,157 +1,6 @@
 {
   "courses": [
     {
-      "id": "singleton-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "creational-patterns",
-      "title": "Singleton Design Pattern",
-      "description": "Master the Singleton pattern through engaging stories. Learn when to use it, common pitfalls, and best practices.",
-      "difficulty": "Intermediate",
-      "duration": "45 minutes",
-      "concepts": 6,
-      "type": "story",
-      "storyUrl": "course-story.html?id=singleton-pattern",
-      "tags": ["Creational Pattern", "Thread Safety", "Best Practices"],
-      "prerequisites": ["Basic OOP concepts", "Understanding of classes"],
-      "learningOutcomes": [
-        "Understand the Singleton pattern structure",
-        "Implement thread-safe Singleton",
-        "Identify when to use Singleton",
-        "Avoid common Singleton pitfalls"
-      ],
-      "featured": true,
-      "published": true,
-      "audioEnabled": true,
-      "audioEnabled": true,
-      "icon": "🏢",
-      "color": "#667eea"
-    },
-    {
-      "id": "factory-method-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "creational-patterns",
-      "title": "Factory Method Pattern",
-      "description": "Learn to create objects without specifying their exact classes through the Factory Method pattern.",
-      "difficulty": "Intermediate",
-      "duration": "50 minutes",
-      "concepts": 7,
-      "type": "story",
-      "storyUrl": "course-story.html?id=factory-method-pattern",
-      "tags": ["Creational Pattern", "Object Creation", "Flexibility"],
-      "prerequisites": ["Basic OOP concepts", "Inheritance understanding"],
-      "learningOutcomes": [
-        "Understand Factory Method structure",
-        "Implement flexible object creation",
-        "Apply Factory Method in real scenarios",
-        "Compare with other creational patterns"
-      ],
-      "featured": true,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "🏭",
-      "color": "#3b82f6"
-    },
-    {
-      "id": "observer-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "behavioral-patterns",
-      "title": "Observer Pattern",
-      "description": "Implement the Observer pattern to create loosely coupled systems with automatic notifications.",
-      "difficulty": "Intermediate",
-      "duration": "40 minutes",
-      "concepts": 5,
-      "type": "story",
-      "storyUrl": "course-story.html?id=observer-pattern",
-      "tags": ["Behavioral Pattern", "Event Handling", "Loose Coupling"],
-      "prerequisites": ["Basic OOP concepts", "Event handling basics"],
-      "learningOutcomes": [
-        "Understand Observer pattern mechanics",
-        "Implement subject-observer relationships",
-        "Handle event-driven architectures",
-        "Avoid common Observer pitfalls"
-      ],
-      "featured": true,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "👁️",
-      "color": "#10b981"
-    },
-    {
-      "id": "strategy-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "behavioral-patterns",
-      "title": "Strategy Pattern",
-      "description": "Master the Strategy pattern to make algorithms interchangeable and systems more flexible.",
-      "difficulty": "Beginner",
-      "duration": "35 minutes",
-      "concepts": 4,
-      "type": "story",
-      "storyUrl": "course-story.html?id=strategy-pattern",
-      "tags": ["Behavioral Pattern", "Algorithm Selection", "Flexibility"],
-      "prerequisites": ["Basic programming concepts"],
-      "learningOutcomes": [
-        "Understand Strategy pattern benefits",
-        "Implement interchangeable algorithms",
-        "Apply Strategy in real applications",
-        "Compare with conditional logic"
-      ],
-      "featured": false,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "♟️",
-      "color": "#7c3aed"
-    },
-    {
-      "id": "adapter-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "structural-patterns",
-      "title": "Adapter Pattern",
-      "description": "Learn to integrate incompatible interfaces using the Adapter pattern for seamless system integration.",
-      "difficulty": "Intermediate",
-      "duration": "38 minutes",
-      "concepts": 5,
-      "type": "story",
-      "storyUrl": "course-story.html?id=adapter-pattern",
-      "tags": ["Structural Pattern", "Interface Integration", "Legacy Systems"],
-      "prerequisites": ["Interface concepts", "Basic OOP"],
-      "learningOutcomes": [
-        "Understand Adapter pattern purpose",
-        "Integrate incompatible systems",
-        "Handle legacy code integration",
-        "Choose between object and class adapters"
-      ],
-      "featured": false,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "🔌",
-      "color": "#10b981"
-    },
-    {
-      "id": "decorator-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "structural-patterns",
-      "title": "Decorator Pattern",
-      "description": "Add new functionality to objects dynamically without altering their structure using the Decorator pattern.",
-      "difficulty": "Advanced",
-      "duration": "55 minutes",
-      "concepts": 6,
-      "type": "story",
-      "storyUrl": "course-story.html?id=decorator-pattern",
-      "tags": ["Structural Pattern", "Dynamic Behavior", "Composition"],
-      "prerequisites": ["Composition vs Inheritance", "Advanced OOP"],
-      "learningOutcomes": [
-        "Master Decorator pattern implementation",
-        "Add behavior dynamically",
-        "Avoid inheritance explosion",
-        "Build flexible object hierarchies"
-      ],
-      "featured": false,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "🎭",
-      "color": "#0ea5e9"
-    },
-    {
       "id": "abstract-factory-pattern",
       "categoryId": "design-patterns",
       "subcategoryId": "creational-patterns",
@@ -162,8 +11,15 @@
       "concepts": 6,
       "type": "story",
       "storyUrl": "course-story.html?id=abstract-factory-pattern",
-      "tags": ["Creational Pattern", "Object Families", "Cross-Platform"],
-      "prerequisites": ["Factory Method Pattern", "Interface concepts"],
+      "tags": [
+        "Creational Pattern",
+        "Object Families",
+        "Cross-Platform"
+      ],
+      "prerequisites": [
+        "Factory Method Pattern",
+        "Interface concepts"
+      ],
       "learningOutcomes": [
         "Understand Abstract Factory structure",
         "Create families of related objects",
@@ -177,179 +33,36 @@
       "color": "#0ea5e9"
     },
     {
-      "id": "builder-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "creational-patterns",
-      "title": "Builder Pattern",
-      "description": "Master step-by-step object construction through the story of Sofia's custom computer empire and complex configuration challenges.",
-      "difficulty": "Intermediate",
-      "duration": "50 minutes",
-      "concepts": 6,
-      "type": "story",
-      "storyUrl": "course-story.html?id=builder-pattern",
-      "tags": ["Creational Pattern", "Complex Objects", "Step-by-Step Construction"],
-      "prerequisites": ["Basic OOP concepts", "Method chaining"],
-      "learningOutcomes": [
-        "Understand Builder pattern structure",
-        "Handle complex object construction",
-        "Implement fluent interfaces",
-        "Compare with other creational patterns"
-      ],
-      "featured": false,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "👷",
-      "color": "#f59e0b"
-    },
-    {
       "id": "adapter-pattern",
       "categoryId": "design-patterns",
       "subcategoryId": "structural-patterns",
       "title": "Adapter Pattern",
-      "description": "Master connecting incompatible systems through the story of Maya's integration challenges and legacy system nightmares.",
+      "description": "Learn to integrate incompatible interfaces using the Adapter pattern for seamless system integration.",
       "difficulty": "Intermediate",
-      "duration": "45 minutes",
-      "concepts": 6,
+      "duration": "38 minutes",
+      "concepts": 5,
       "type": "story",
       "storyUrl": "course-story.html?id=adapter-pattern",
-      "tags": ["Structural Pattern", "Integration", "Legacy Systems"],
-      "prerequisites": ["Basic OOP concepts", "Interface understanding"],
+      "tags": [
+        "Structural Pattern",
+        "Interface Integration",
+        "Legacy Systems"
+      ],
+      "prerequisites": [
+        "Interface concepts",
+        "Basic OOP"
+      ],
       "learningOutcomes": [
-        "Understand Adapter pattern structure",
-        "Handle legacy system integration",
-        "Implement object and class adapters",
-        "Solve interface incompatibility issues"
+        "Understand Adapter pattern purpose",
+        "Integrate incompatible systems",
+        "Handle legacy code integration",
+        "Choose between object and class adapters"
       ],
       "featured": false,
       "published": true,
       "audioEnabled": true,
       "icon": "🔌",
       "color": "#10b981"
-    },
-    {
-      "id": "decorator-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "structural-patterns",
-      "title": "Decorator Pattern",
-      "description": "Master dynamic behavior enhancement through the story of Emma's coffee shop customization challenges and feature explosion.",
-      "difficulty": "Intermediate",
-      "duration": "42 minutes",
-      "concepts": 6,
-      "type": "story",
-      "storyUrl": "course-story.html?id=decorator-pattern",
-      "tags": ["Structural Pattern", "Dynamic Behavior", "Composition"],
-      "prerequisites": ["Basic OOP concepts", "Interface understanding"],
-      "learningOutcomes": [
-        "Understand Decorator pattern structure",
-        "Add behavior dynamically without inheritance",
-        "Implement flexible feature combinations",
-        "Avoid class explosion with composition"
-      ],
-      "featured": false,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "☕",
-      "color": "#8b5cf6"
-    },
-    {
-      "id": "observer-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "behavioral-patterns",
-      "title": "Observer Pattern",
-      "description": "Master event-driven programming through Sarah's startup journey from manual chaos to automated notifications that scale.",
-      "difficulty": "Beginner",
-      "duration": "38 minutes",
-      "concepts": 6,
-      "type": "story",
-      "storyUrl": "course-story.html?id=observer-pattern",
-      "tags": ["Behavioral Pattern", "Event-Driven", "Notifications"],
-      "prerequisites": ["Basic OOP concepts", "Interface understanding"],
-      "learningOutcomes": [
-        "Understand Observer pattern structure",
-        "Implement event-driven systems",
-        "Handle one-to-many dependencies",
-        "Build scalable notification systems"
-      ],
-      "featured": true,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "📢",
-      "color": "#f59e0b"
-    },
-    {
-      "id": "strategy-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "behavioral-patterns",
-      "title": "Strategy Pattern",
-      "description": "Master flexible algorithms through Alex's e-commerce journey from payment chaos to seamless checkout experiences.",
-      "difficulty": "Beginner",
-      "duration": "35 minutes",
-      "concepts": 6,
-      "type": "story",
-      "storyUrl": "course-story.html?id=strategy-pattern",
-      "tags": ["Behavioral Pattern", "Algorithm Selection", "Flexibility"],
-      "prerequisites": ["Basic OOP concepts", "Interface understanding"],
-      "learningOutcomes": [
-        "Understand Strategy pattern structure",
-        "Implement interchangeable algorithms",
-        "Build flexible payment systems",
-        "Avoid complex conditional logic"
-      ],
-      "featured": true,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "💳",
-      "color": "#10b981"
-    },
-    {
-      "id": "command-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "behavioral-patterns",
-      "title": "Command Pattern",
-      "description": "Master request encapsulation through Maya's smart home journey from remote control chaos to voice-activated automation bliss.",
-      "difficulty": "Intermediate",
-      "duration": "42 minutes",
-      "concepts": 6,
-      "type": "story",
-      "storyUrl": "course-story.html?id=command-pattern",
-      "tags": ["Behavioral Pattern", "Request Encapsulation", "Undo/Redo"],
-      "prerequisites": ["Basic OOP concepts", "Interface understanding"],
-      "learningOutcomes": [
-        "Understand Command pattern structure",
-        "Implement undo/redo functionality",
-        "Build flexible automation systems",
-        "Decouple invokers from receivers"
-      ],
-      "featured": true,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "🏠",
-      "color": "#8b5cf6"
-    },
-    {
-      "id": "facade-pattern",
-      "categoryId": "design-patterns",
-      "subcategoryId": "structural-patterns",
-      "title": "Facade Pattern",
-      "description": "Master API simplification through Ryan's journey from complex microservice chaos to elegant unified interfaces.",
-      "difficulty": "Beginner",
-      "duration": "32 minutes",
-      "concepts": 6,
-      "type": "story",
-      "storyUrl": "course-story.html?id=facade-pattern",
-      "tags": ["Structural Pattern", "API Simplification", "Complexity Hiding"],
-      "prerequisites": ["Basic OOP concepts", "API understanding"],
-      "learningOutcomes": [
-        "Understand Facade pattern structure",
-        "Simplify complex subsystem interfaces",
-        "Build unified API gateways",
-        "Hide implementation complexity from clients"
-      ],
-      "featured": true,
-      "published": true,
-      "audioEnabled": true,
-      "icon": "🏛️",
-      "color": "#06b6d4"
     },
     {
       "id": "bridge-pattern",
@@ -362,8 +75,15 @@
       "concepts": 6,
       "type": "story",
       "storyUrl": "course-detail.html?id=bridge-pattern",
-      "tags": ["Structural Pattern", "Abstraction", "Implementation Separation"],
-      "prerequisites": ["Basic OOP concepts", "Inheritance understanding"],
+      "tags": [
+        "Structural Pattern",
+        "Abstraction",
+        "Implementation Separation"
+      ],
+      "prerequisites": [
+        "Basic OOP concepts",
+        "Inheritance understanding"
+      ],
       "learningOutcomes": [
         "Understand Bridge pattern structure",
         "Separate abstraction from implementation",
@@ -377,6 +97,38 @@
       "color": "#f59e0b"
     },
     {
+      "id": "builder-pattern",
+      "categoryId": "design-patterns",
+      "subcategoryId": "creational-patterns",
+      "title": "Builder Pattern",
+      "description": "Master step-by-step object construction through the story of Sofia's custom computer empire and complex configuration challenges.",
+      "difficulty": "Intermediate",
+      "duration": "50 minutes",
+      "concepts": 6,
+      "type": "story",
+      "storyUrl": "course-story.html?id=builder-pattern",
+      "tags": [
+        "Creational Pattern",
+        "Complex Objects",
+        "Step-by-Step Construction"
+      ],
+      "prerequisites": [
+        "Basic OOP concepts",
+        "Method chaining"
+      ],
+      "learningOutcomes": [
+        "Understand Builder pattern structure",
+        "Handle complex object construction",
+        "Implement fluent interfaces",
+        "Compare with other creational patterns"
+      ],
+      "featured": false,
+      "published": true,
+      "audioEnabled": true,
+      "icon": "👷",
+      "color": "#f59e0b"
+    },
+    {
       "id": "chain-of-responsibility-pattern",
       "categoryId": "design-patterns",
       "subcategoryId": "behavioral-patterns",
@@ -387,8 +139,15 @@
       "concepts": 6,
       "type": "story",
       "storyUrl": "course-story.html?id=chain-of-responsibility-pattern",
-      "tags": ["Behavioral Pattern", "Request Handling", "Decoupling"],
-      "prerequisites": ["Basic OOP concepts", "Interface understanding"],
+      "tags": [
+        "Behavioral Pattern",
+        "Request Handling",
+        "Decoupling"
+      ],
+      "prerequisites": [
+        "Basic OOP concepts",
+        "Interface understanding"
+      ],
       "learningOutcomes": [
         "Understand Chain of Responsibility structure",
         "Build flexible request handling systems",
@@ -402,6 +161,255 @@
       "color": "#ef4444"
     },
     {
+      "id": "command-pattern",
+      "categoryId": "design-patterns",
+      "subcategoryId": "behavioral-patterns",
+      "title": "Command Pattern",
+      "description": "Master request encapsulation through Maya's smart home journey from remote control chaos to voice-activated automation bliss.",
+      "difficulty": "Intermediate",
+      "duration": "42 minutes",
+      "concepts": 6,
+      "type": "story",
+      "storyUrl": "course-story.html?id=command-pattern",
+      "tags": [
+        "Behavioral Pattern",
+        "Request Encapsulation",
+        "Undo/Redo"
+      ],
+      "prerequisites": [
+        "Basic OOP concepts",
+        "Interface understanding"
+      ],
+      "learningOutcomes": [
+        "Understand Command pattern structure",
+        "Implement undo/redo functionality",
+        "Build flexible automation systems",
+        "Decouple invokers from receivers"
+      ],
+      "featured": true,
+      "published": true,
+      "audioEnabled": true,
+      "icon": "🏠",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "decorator-pattern",
+      "categoryId": "design-patterns",
+      "subcategoryId": "structural-patterns",
+      "title": "Decorator Pattern",
+      "description": "Add new functionality to objects dynamically without altering their structure using the Decorator pattern.",
+      "difficulty": "Advanced",
+      "duration": "55 minutes",
+      "concepts": 6,
+      "type": "story",
+      "storyUrl": "course-story.html?id=decorator-pattern",
+      "tags": [
+        "Structural Pattern",
+        "Dynamic Behavior",
+        "Composition"
+      ],
+      "prerequisites": [
+        "Composition vs Inheritance",
+        "Advanced OOP"
+      ],
+      "learningOutcomes": [
+        "Master Decorator pattern implementation",
+        "Add behavior dynamically",
+        "Avoid inheritance explosion",
+        "Build flexible object hierarchies"
+      ],
+      "featured": false,
+      "published": true,
+      "audioEnabled": true,
+      "icon": "🎭",
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "facade-pattern",
+      "categoryId": "design-patterns",
+      "subcategoryId": "structural-patterns",
+      "title": "Facade Pattern",
+      "description": "Master API simplification through Ryan's journey from complex microservice chaos to elegant unified interfaces.",
+      "difficulty": "Beginner",
+      "duration": "32 minutes",
+      "concepts": 6,
+      "type": "story",
+      "storyUrl": "course-story.html?id=facade-pattern",
+      "tags": [
+        "Structural Pattern",
+        "API Simplification",
+        "Complexity Hiding"
+      ],
+      "prerequisites": [
+        "Basic OOP concepts",
+        "API understanding"
+      ],
+      "learningOutcomes": [
+        "Understand Facade pattern structure",
+        "Simplify complex subsystem interfaces",
+        "Build unified API gateways",
+        "Hide implementation complexity from clients"
+      ],
+      "featured": true,
+      "published": true,
+      "audioEnabled": true,
+      "icon": "🏛️",
+      "color": "#06b6d4"
+    },
+    {
+      "id": "factory-method-pattern",
+      "categoryId": "design-patterns",
+      "subcategoryId": "creational-patterns",
+      "title": "Factory Method Pattern",
+      "description": "Learn to create objects without specifying their exact classes through the Factory Method pattern.",
+      "difficulty": "Intermediate",
+      "duration": "50 minutes",
+      "concepts": 7,
+      "type": "story",
+      "storyUrl": "course-story.html?id=factory-method-pattern",
+      "tags": [
+        "Creational Pattern",
+        "Object Creation",
+        "Flexibility"
+      ],
+      "prerequisites": [
+        "Basic OOP concepts",
+        "Inheritance understanding"
+      ],
+      "learningOutcomes": [
+        "Understand Factory Method structure",
+        "Implement flexible object creation",
+        "Apply Factory Method in real scenarios",
+        "Compare with other creational patterns"
+      ],
+      "featured": true,
+      "published": true,
+      "audioEnabled": true,
+      "icon": "🏭",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "microsoft",
+      "title": "Microsoft Interview Preparation", 
+      "description": "Excel in Microsoft interviews with proven strategies and real scenarios.",
+      "difficulty": "Progressive",
+      "duration": "8-12 hours", 
+      "categoryId": "interview-prep",
+      "published": true,
+      "featured": true,
+      "icon": "🏢",
+      "tags": ["Microsoft", "Interview", "Coding", "System Design", "Behavioral"],
+      "prerequisites": ["Programming fundamentals", "Problem-solving skills"],
+      "learningOutcomes": [
+        "Navigate Microsoft's interview process successfully",
+        "Master technical and behavioral interview techniques", 
+        "Learn from real candidate experiences and outcomes"
+      ]
+    },
+    {
+      "id": "google",
+      "title": "Google Interview Preparation",
+      "description": "Master Google interviews through real candidate stories and coding challenges.",
+      "difficulty": "Progressive",
+      "duration": "8-12 hours",
+      "categoryId": "interview-prep",
+      "published": true,
+      "featured": true,
+      "icon": "🎯",
+      "tags": ["Google", "Interview", "Coding", "Algorithms", "Data Structures"],
+      "prerequisites": ["Basic programming knowledge", "Understanding of data structures"],
+      "learningOutcomes": [
+        "Solve Google-style coding problems with confidence",
+        "Master hash maps, stacks, and other key data structures",
+        "Learn interview strategies from successful candidates"
+      ]
+    },
+    {
+      "id": "networking-fundamentals",
+      "title": "Modern Networking Fundamentals",
+      "description": "Master networking through Elena's team solving real connectivity challenges.",
+      "difficulty": "Progressive",
+      "duration": "10-14 hours",
+      "categoryId": "infrastructure",
+      "published": true,
+      "featured": true,
+      "icon": "🌐",
+      "tags": [
+        "Networking",
+        "TCP/IP",
+        "Routing",
+        "Security",
+        "Cloud Infrastructure"
+      ],
+      "prerequisites": [
+        "Basic computer literacy",
+        "Understanding of internet basics"
+      ],
+      "learningOutcomes": [
+        "Design and troubleshoot network architectures for modern applications",
+        "Implement network security best practices for cloud and on-premises environments",
+        "Optimize network performance for high-traffic applications and services"
+      ]
+    },
+    {
+      "id": "observer-pattern",
+      "categoryId": "design-patterns",
+      "subcategoryId": "behavioral-patterns",
+      "title": "Observer Pattern",
+      "description": "Implement the Observer pattern to create loosely coupled systems with automatic notifications.",
+      "difficulty": "Intermediate",
+      "duration": "40 minutes",
+      "concepts": 5,
+      "type": "story",
+      "storyUrl": "course-story.html?id=observer-pattern",
+      "tags": [
+        "Behavioral Pattern",
+        "Event Handling",
+        "Loose Coupling"
+      ],
+      "prerequisites": [
+        "Basic OOP concepts",
+        "Event handling basics"
+      ],
+      "learningOutcomes": [
+        "Understand Observer pattern mechanics",
+        "Implement subject-observer relationships",
+        "Handle event-driven architectures",
+        "Avoid common Observer pitfalls"
+      ],
+      "featured": true,
+      "published": true,
+      "audioEnabled": true,
+      "icon": "👁️",
+      "color": "#10b981"
+    },
+    {
+      "id": "operating-systems",
+      "title": "Modern Operating Systems Fundamentals",
+      "description": "Master operating system concepts through engaging stories of system administrators and engineers solving real-world infrastructure challenges.",
+      "difficulty": "Progressive",
+      "duration": "10-14 hours",
+      "categoryId": "system-design",
+      "published": true,
+      "featured": false,
+      "icon": "🖥️",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "prerequisites": [
+        "Basic programming knowledge",
+        "Command line familiarity"
+      ],
+      "learningOutcomes": [
+        "Design and optimize system processes for high-performance applications",
+        "Implement memory management strategies for scalable cloud applications",
+        "Debug and troubleshoot system-level performance issues in production"
+      ]
+    },
+    {
       "id": "prompt-engineering",
       "categoryId": "ai-skills",
       "subcategoryId": "prompt-design",
@@ -412,8 +420,16 @@
       "concepts": 8,
       "type": "story",
       "storyUrl": "course-story.html?id=prompt-engineering",
-      "tags": ["AI Communication", "Prompt Design", "ChatGPT", "LLM Optimization"],
-      "prerequisites": ["Basic understanding of AI tools", "Familiarity with ChatGPT or similar AI"],
+      "tags": [
+        "AI Communication",
+        "Prompt Design",
+        "ChatGPT",
+        "LLM Optimization"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI tools",
+        "Familiarity with ChatGPT or similar AI"
+      ],
       "learningOutcomes": [
         "Master the CLEAR framework for effective prompts",
         "Design advanced chain-of-thought prompts",
@@ -427,9 +443,71 @@
       "featured": true,
       "published": true,
       "audioEnabled": true,
-      "audioEnabled": true,
       "icon": "🤖",
       "color": "#8b5cf6"
+    },
+    {
+      "id": "singleton-pattern",
+      "categoryId": "design-patterns",
+      "subcategoryId": "creational-patterns",
+      "title": "Singleton Design Pattern",
+      "description": "Master the Singleton pattern through engaging stories. Learn when to use it, common pitfalls, and best practices.",
+      "difficulty": "Intermediate",
+      "duration": "45 minutes",
+      "concepts": 6,
+      "type": "story",
+      "storyUrl": "course-story.html?id=singleton-pattern",
+      "tags": [
+        "Creational Pattern",
+        "Thread Safety",
+        "Best Practices"
+      ],
+      "prerequisites": [
+        "Basic OOP concepts",
+        "Understanding of classes"
+      ],
+      "learningOutcomes": [
+        "Understand the Singleton pattern structure",
+        "Implement thread-safe Singleton",
+        "Identify when to use Singleton",
+        "Avoid common Singleton pitfalls"
+      ],
+      "featured": true,
+      "published": true,
+      "audioEnabled": true,
+      "icon": "🏢",
+      "color": "#667eea"
+    },
+    {
+      "id": "strategy-pattern",
+      "categoryId": "design-patterns",
+      "subcategoryId": "behavioral-patterns",
+      "title": "Strategy Pattern",
+      "description": "Master the Strategy pattern to make algorithms interchangeable and systems more flexible.",
+      "difficulty": "Beginner",
+      "duration": "35 minutes",
+      "concepts": 4,
+      "type": "story",
+      "storyUrl": "course-story.html?id=strategy-pattern",
+      "tags": [
+        "Behavioral Pattern",
+        "Algorithm Selection",
+        "Flexibility"
+      ],
+      "prerequisites": [
+        "Basic programming concepts"
+      ],
+      "learningOutcomes": [
+        "Understand Strategy pattern benefits",
+        "Implement interchangeable algorithms",
+        "Apply Strategy in real applications",
+        "Compare with conditional logic"
+      ],
+      "featured": false,
+      "published": true,
+      "audioEnabled": true,
+      "icon": "♟️",
+      "color": "#7c3aed"
     }
   ]
 }

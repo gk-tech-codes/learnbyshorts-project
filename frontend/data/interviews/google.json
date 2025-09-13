@@ -1,0 +1,52 @@
+{
+  "company": "Google",
+  "logo": "/assets/google-logo.png",
+  "overview": {
+    "process": "4 rounds: Phone Screen → Technical → System Design → Behavioral",
+    "duration": "4-6 weeks",
+    "successRate": "15%",
+    "focusAreas": ["Data Structures", "Algorithms", "System Design", "Googleyness"]
+  },
+  "rounds": [
+    {
+      "id": "phone-screen",
+      "title": "Phone Screen Round",
+      "duration": "45 mins",
+      "description": "Initial technical screening with a Google engineer",
+      "questions": [
+        {
+          "id": "two-sum-google",
+          "title": "Two Sum - Array Problem",
+          "difficulty": "Easy",
+          "pattern": "Hash Map",
+          "tags": ["Array", "Hash Table"],
+          "story": "Meet Alex, a software engineer interviewing at Google. In this phone screen, Alex faces the classic Two Sum problem and demonstrates optimal hash map solution."
+        },
+        {
+          "id": "valid-parentheses",
+          "title": "Valid Parentheses",
+          "difficulty": "Easy", 
+          "pattern": "Stack",
+          "tags": ["Stack", "String"],
+          "story": "During Sarah's Google phone screen, she encounters the Valid Parentheses problem and uses stack data structure to solve it efficiently."
+        }
+      ]
+    },
+    {
+      "id": "technical-round",
+      "title": "Technical Interview",
+      "duration": "60 mins",
+      "description": "Deep dive into algorithms and data structures",
+      "questions": [
+        {
+          "id": "binary-tree-traversal",
+          "title": "Binary Tree Level Order Traversal",
+          "difficulty": "Medium",
+          "pattern": "BFS",
+          "tags": ["Tree", "BFS", "Queue"],
+          "story": "In the Google office, Maria faces a tree problem..."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // Redirect to course-detail.html with company parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const company = urlParams.get('company');
+        if (company) {
+            window.location.replace(`course-detail.html?id=${company}`);
+        } else {
+            window.location.replace('interview-companies.html');
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>

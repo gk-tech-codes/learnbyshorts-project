@@ -1,0 +1,305 @@
+{
+  "courseId": "operating-systems",
+  "topicOutlines": [
+    {
+      "id": "operating-systems-introduction-architecture",
+      "title": "Maya's First Crisis: When Servers Go Silent",
+      "sequenceNumber": 1,
+      "difficulty": "Beginner",
+      "duration": "75 min",
+      "prerequisites": {
+        "fromPreviousTopics": [],
+        "external": ["Basic understanding of computer systems", "Command line familiarity"]
+      },
+      "learningObjectives": [
+        "Understand operating system architecture and core components",
+        "Distinguish between kernel space and user space operations",
+        "Identify system calls and their role in OS functionality",
+        "Apply OS troubleshooting concepts to real production issues"
+      ],
+      "storyOutline": {
+        "setting": "CloudScale office, Maya's first day as SRE, production monitoring room",
+        "initialSituation": "Maya starts her new role, gets introduced to the team and monitoring systems",
+        "challenge": "Critical payment processing system goes down, affecting customer transactions",
+        "characters": ["Maya (protagonist)", "David (mentor)", "Alex (operations support)"],
+        "characterRoles": "Maya learns while troubleshooting, David guides her through OS concepts, Alex provides operational context",
+        "resolution": "Team identifies kernel-level issue, fixes it, and Maya understands OS architecture",
+        "learningMoments": ["OS layers and responsibilities", "System calls in action", "Kernel vs user space", "Modern OS design principles"]
+      },
+      "technicalContent": {
+        "coreConcepts": ["OS architecture", "kernel vs user space", "system calls", "hardware abstraction"],
+        "technologies": ["Linux kernel", "system monitoring tools", "process viewers", "system call tracers"],
+        "codeExamples": ["system call tracing", "process monitoring", "kernel module basics"],
+        "bestPractices": ["system monitoring", "incident response", "OS-level debugging"],
+        "commonPitfalls": ["ignoring kernel logs", "misunderstanding system call overhead", "poor monitoring setup"],
+        "realWorldApplications": ["production incident response", "system performance monitoring", "capacity planning"]
+      },
+      "businessContext": {
+        "scenario": "Payment processing outage affecting customer transactions and revenue",
+        "impact": "Potential revenue loss, customer trust issues, SLA violations",
+        "metrics": "System uptime, transaction throughput, response times",
+        "stakeholders": "Customers, business operations, compliance team"
+      },
+      "connectionToPrevious": "Foundation topic - establishes OS fundamentals",
+      "setupForNext": "Introduces process concepts that will be explored in depth in topic 2"
+    },
+    {
+      "id": "operating-systems-process-management",
+      "title": "David's Container Conundrum: The Multi-Tasking Mystery",
+      "sequenceNumber": 2,
+      "difficulty": "Intermediate",
+      "duration": "85 min",
+      "prerequisites": {
+        "fromPreviousTopics": ["OS architecture", "system calls", "kernel concepts"],
+        "external": ["Basic containerization concepts", "Understanding of application deployment"]
+      },
+      "learningObjectives": [
+        "Master process lifecycle, states, and transitions",
+        "Understand process scheduling algorithms and their trade-offs",
+        "Implement inter-process communication mechanisms",
+        "Apply process management to container orchestration scenarios"
+      ],
+      "storyOutline": {
+        "setting": "CloudScale's Kubernetes cluster, microservices experiencing performance issues",
+        "initialSituation": "David notices container applications are slower than expected, CPU utilization is uneven",
+        "challenge": "Microservices are experiencing high latency and resource contention in containers",
+        "characters": ["David (lead)", "Maya (learning)", "Sarah (performance expert)"],
+        "characterRoles": "David investigates container issues, Maya learns process concepts, Sarah provides performance insights",
+        "resolution": "Team optimizes process scheduling and resource allocation, improving container performance",
+        "learningMoments": ["Process creation and lifecycle", "Scheduling algorithms", "Context switching overhead", "Container process isolation"]
+      },
+      "technicalContent": {
+        "coreConcepts": ["process lifecycle", "scheduling algorithms", "context switching", "inter-process communication"],
+        "technologies": ["Docker", "Kubernetes", "cgroups", "namespaces", "process schedulers"],
+        "codeExamples": ["process creation", "IPC mechanisms", "scheduling priority adjustment", "container resource limits"],
+        "bestPractices": ["process resource management", "container optimization", "scheduling tuning"],
+        "commonPitfalls": ["ignoring context switch overhead", "poor resource allocation", "inefficient IPC"],
+        "realWorldApplications": ["container orchestration", "microservices optimization", "resource planning"]
+      },
+      "businessContext": {
+        "scenario": "Microservices architecture experiencing latency issues affecting user experience",
+        "impact": "Slower response times, poor user experience, potential customer churn",
+        "metrics": "Response time, CPU utilization, container resource usage",
+        "stakeholders": "Product team, customers, infrastructure costs"
+      },
+      "connectionToPrevious": "Builds on OS architecture knowledge, applies system calls to process management",
+      "setupForNext": "Process memory usage leads naturally to memory management concepts"
+    },
+    {
+      "id": "operating-systems-memory-management",
+      "title": "Sarah's Memory Leak Hunt: The Case of the Vanishing RAM",
+      "sequenceNumber": 3,
+      "difficulty": "Intermediate",
+      "duration": "90 min",
+      "prerequisites": {
+        "fromPreviousTopics": ["OS architecture", "process management", "system calls"],
+        "external": ["Basic memory concepts", "Understanding of application memory usage"]
+      },
+      "learningObjectives": [
+        "Understand virtual memory systems and address translation",
+        "Master memory allocation strategies and heap management",
+        "Implement memory leak detection and prevention techniques",
+        "Optimize memory usage for high-performance applications"
+      ],
+      "storyOutline": {
+        "setting": "CloudScale's data processing pipeline, high-memory usage alerts firing",
+        "initialSituation": "Sarah's data processing application is consuming increasing amounts of memory over time",
+        "challenge": "Memory usage grows continuously, threatening system stability and performance",
+        "characters": ["Sarah (lead)", "Maya (assistant)", "David (infrastructure context)"],
+        "characterRoles": "Sarah debugs memory issues, Maya learns memory concepts, David provides infrastructure perspective",
+        "resolution": "Team identifies and fixes memory leaks, implements better memory management practices",
+        "learningMoments": ["Virtual memory mechanics", "Memory allocation strategies", "Leak detection techniques", "Performance optimization"]
+      },
+      "technicalContent": {
+        "coreConcepts": ["virtual memory", "paging", "memory allocation", "garbage collection", "memory leaks"],
+        "technologies": ["valgrind", "memory profilers", "heap analyzers", "virtual memory systems"],
+        "codeExamples": ["memory allocation patterns", "leak detection", "memory mapping", "performance optimization"],
+        "bestPractices": ["memory profiling", "leak prevention", "allocation optimization"],
+        "commonPitfalls": ["ignoring memory fragmentation", "poor allocation patterns", "inadequate monitoring"],
+        "realWorldApplications": ["application optimization", "system capacity planning", "performance tuning"]
+      },
+      "businessContext": {
+        "scenario": "Data processing pipeline consuming excessive memory, threatening system stability",
+        "impact": "System crashes, data processing delays, infrastructure cost increases",
+        "metrics": "Memory usage, processing throughput, system stability",
+        "stakeholders": "Data team, operations, cost management"
+      },
+      "connectionToPrevious": "Builds on process management, explores how processes use memory",
+      "setupForNext": "Memory usage connects to file system and storage management"
+    },
+    {
+      "id": "operating-systems-file-systems",
+      "title": "Alex's Storage Saga: The Great Data Migration",
+      "sequenceNumber": 4,
+      "difficulty": "Intermediate",
+      "duration": "80 min",
+      "prerequisites": {
+        "fromPreviousTopics": ["OS architecture", "process management", "memory management"],
+        "external": ["Basic storage concepts", "Understanding of file operations"]
+      },
+      "learningObjectives": [
+        "Understand file system architecture and operations",
+        "Master storage device characteristics and I/O optimization",
+        "Implement file system performance tuning strategies",
+        "Apply storage concepts to modern cloud environments"
+      ],
+      "storyOutline": {
+        "setting": "CloudScale's data center and cloud migration project",
+        "initialSituation": "Alex leads migration of critical data from on-premises to cloud storage",
+        "challenge": "Data migration must maintain performance while ensuring data integrity and availability",
+        "characters": ["Alex (lead)", "Maya (learning)", "David (cloud architecture)"],
+        "characterRoles": "Alex manages migration, Maya learns file system concepts, David provides cloud context",
+        "resolution": "Successful migration with optimized file system configuration and performance",
+        "learningMoments": ["File system internals", "I/O optimization", "Storage hierarchy", "Cloud storage integration"]
+      },
+      "technicalContent": {
+        "coreConcepts": ["file system architecture", "I/O operations", "storage devices", "caching strategies"],
+        "technologies": ["ext4", "XFS", "cloud storage", "I/O schedulers", "caching systems"],
+        "codeExamples": ["file system operations", "I/O optimization", "storage benchmarking", "caching implementation"],
+        "bestPractices": ["file system tuning", "I/O optimization", "storage planning"],
+        "commonPitfalls": ["ignoring I/O patterns", "poor caching strategies", "inadequate monitoring"],
+        "realWorldApplications": ["cloud migration", "storage optimization", "performance tuning"]
+      },
+      "businessContext": {
+        "scenario": "Critical data migration to cloud while maintaining performance and reliability",
+        "impact": "Business continuity, data availability, operational efficiency",
+        "metrics": "Migration speed, data integrity, system performance",
+        "stakeholders": "Business operations, compliance, cost management"
+      },
+      "connectionToPrevious": "Builds on memory management, explores persistent storage",
+      "setupForNext": "File access patterns lead to synchronization and concurrency challenges"
+    },
+    {
+      "id": "operating-systems-synchronization-concurrency",
+      "title": "Team Crisis: The Deadlock Detective Story",
+      "sequenceNumber": 5,
+      "difficulty": "Advanced",
+      "duration": "95 min",
+      "prerequisites": {
+        "fromPreviousTopics": ["process management", "memory management", "file systems"],
+        "external": ["Understanding of concurrent programming", "Multi-threading concepts"]
+      },
+      "learningObjectives": [
+        "Master synchronization primitives and their appropriate usage",
+        "Understand deadlock detection, prevention, and recovery",
+        "Implement concurrent programming patterns safely",
+        "Apply synchronization concepts to distributed systems"
+      ],
+      "storyOutline": {
+        "setting": "CloudScale's production environment, mysterious system freezes occurring",
+        "initialSituation": "Production system experiencing intermittent deadlocks affecting critical services",
+        "challenge": "Complex deadlock involving multiple processes and resources, requiring team collaboration",
+        "characters": ["All team members collaborating", "Maya (coordination)", "David (architecture)", "Sarah (analysis)", "Alex (monitoring)"],
+        "characterRoles": "Team works together, each contributing their expertise to solve the deadlock mystery",
+        "resolution": "Team identifies deadlock pattern, implements proper synchronization, prevents future occurrences",
+        "learningMoments": ["Synchronization primitives", "Deadlock detection", "Concurrent design patterns", "Distributed synchronization"]
+      },
+      "technicalContent": {
+        "coreConcepts": ["synchronization primitives", "deadlock", "race conditions", "concurrent programming"],
+        "technologies": ["mutexes", "semaphores", "condition variables", "distributed locks"],
+        "codeExamples": ["synchronization patterns", "deadlock detection", "lock-free programming", "distributed coordination"],
+        "bestPractices": ["synchronization design", "deadlock prevention", "concurrent debugging"],
+        "commonPitfalls": ["lock ordering issues", "race conditions", "performance bottlenecks"],
+        "realWorldApplications": ["distributed systems", "database systems", "concurrent applications"]
+      },
+      "businessContext": {
+        "scenario": "Critical business application experiencing intermittent freezes",
+        "impact": "Service disruptions, customer impact, revenue loss",
+        "metrics": "System availability, response times, error rates",
+        "stakeholders": "Customers, business operations, support team"
+      },
+      "connectionToPrevious": "Builds on all previous concepts, addresses concurrent access to resources",
+      "setupForNext": "Synchronization challenges lead to deeper kernel and system call understanding"
+    },
+    {
+      "id": "operating-systems-system-calls-kernel",
+      "title": "Maya's Deep Dive: Journey to the Kernel's Heart",
+      "sequenceNumber": 6,
+      "difficulty": "Advanced",
+      "duration": "85 min",
+      "prerequisites": {
+        "fromPreviousTopics": ["All previous topics"],
+        "external": ["Advanced system programming", "Performance analysis experience"]
+      },
+      "learningObjectives": [
+        "Understand system call mechanisms and performance implications",
+        "Master kernel architecture and internal data structures",
+        "Implement system call optimization techniques",
+        "Apply kernel knowledge to advanced performance tuning"
+      ],
+      "storyOutline": {
+        "setting": "CloudScale's performance optimization project, deep system analysis required",
+        "initialSituation": "Maya leads investigation into system performance bottlenecks at the kernel level",
+        "challenge": "System performance issues require deep understanding of kernel internals and system calls",
+        "characters": ["Maya (lead expert)", "team members (supporting roles)"],
+        "characterRoles": "Maya has become the kernel expert, teaching others while solving complex performance issues",
+        "resolution": "Maya successfully optimizes system performance through kernel-level understanding",
+        "learningMoments": ["System call internals", "Kernel data structures", "Performance optimization", "Advanced debugging"]
+      },
+      "technicalContent": {
+        "coreConcepts": ["system call interface", "kernel internals", "performance optimization", "advanced debugging"],
+        "technologies": ["kernel debugging tools", "performance profilers", "system call tracers", "kernel modules"],
+        "codeExamples": ["system call implementation", "kernel programming", "performance optimization", "advanced profiling"],
+        "bestPractices": ["kernel debugging", "performance analysis", "system optimization"],
+        "commonPitfalls": ["kernel space errors", "performance bottlenecks", "debugging complexity"],
+        "realWorldApplications": ["system optimization", "performance tuning", "advanced troubleshooting"]
+      },
+      "businessContext": {
+        "scenario": "System performance optimization project requiring deep OS knowledge",
+        "impact": "System efficiency, cost optimization, competitive advantage",
+        "metrics": "System performance, resource utilization, cost savings",
+        "stakeholders": "Engineering team, business operations, cost management"
+      },
+      "connectionToPrevious": "Synthesizes all previous learning into advanced kernel understanding",
+      "setupForNext": "Kernel expertise enables comprehensive system design and optimization"
+    },
+    {
+      "id": "operating-systems-performance-optimization",
+      "title": "The Team's Triumph: Building the Ultimate System",
+      "sequenceNumber": 7,
+      "difficulty": "Advanced",
+      "duration": "100 min",
+      "prerequisites": {
+        "fromPreviousTopics": ["All previous topics"],
+        "external": ["System architecture experience", "Performance engineering background"]
+      },
+      "learningObjectives": [
+        "Integrate all OS concepts into comprehensive system design",
+        "Master performance monitoring and optimization strategies",
+        "Implement capacity planning and scalability principles",
+        "Apply OS knowledge to modern cloud-native architectures"
+      ],
+      "storyOutline": {
+        "setting": "CloudScale's next-generation system architecture project",
+        "initialSituation": "Company expansion requires completely new, highly optimized system architecture",
+        "challenge": "Design and implement a system that can handle 10x growth while maintaining performance",
+        "characters": ["All team members as experts", "collaborative leadership"],
+        "characterRoles": "Team combines all learned knowledge, each contributing their specialized expertise",
+        "resolution": "Successful deployment of optimized system architecture, team recognition as OS experts",
+        "learningMoments": ["System architecture design", "Performance optimization", "Scalability planning", "Team leadership"]
+      },
+      "technicalContent": {
+        "coreConcepts": ["system architecture", "performance optimization", "scalability", "capacity planning"],
+        "technologies": ["cloud platforms", "monitoring systems", "optimization tools", "architecture patterns"],
+        "codeExamples": ["system design patterns", "performance optimization", "monitoring implementation", "scalability solutions"],
+        "bestPractices": ["architecture design", "performance engineering", "capacity planning"],
+        "commonPitfalls": ["over-optimization", "scalability bottlenecks", "monitoring gaps"],
+        "realWorldApplications": ["system architecture", "performance engineering", "scalability planning"]
+      },
+      "businessContext": {
+        "scenario": "Company expansion requiring next-generation system architecture",
+        "impact": "Business growth enablement, competitive advantage, operational efficiency",
+        "metrics": "System scalability, performance, cost efficiency",
+        "stakeholders": "Executive team, engineering organization, customers"
+      },
+      "connectionToPrevious": "Culminates all previous learning into comprehensive system mastery",
+      "setupForNext": "Graduates students as OS experts ready for advanced system challenges"
+    }
+  ],
+  "overallNarrative": {
+    "storyArc": "Team grows from individual contributors to OS experts, Maya's journey from SRE newcomer to kernel expert",
+    "characterDevelopment": "Each character develops expertise in their domain while learning from others, collaborative growth",
+    "businessJourney": "CloudScale grows from startup scaling challenges to enterprise-level system architecture",
+    "technicalProgression": "From basic OS concepts to advanced kernel programming and system optimization"
+  }
+}

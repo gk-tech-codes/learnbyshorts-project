@@ -81,7 +81,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5413RZXDET"></script>
     <script src="js/analytics.js"></script>
     
-    <link rel="stylesheet" href="/css/styles.css?v=1.5.2">
+    <link rel="stylesheet" href="/css/styles.css?v=1.5.9">
     <link rel="stylesheet" href="/css/homepage.css?v=1.5.2">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1.5.2">
     <link rel="stylesheet" href="css/header-auth.css">
@@ -261,7 +261,7 @@
             </div>
             
             <div class="courses-grid" id="coursesGrid">
-                <!-- Course tiles will be populated by JavaScript -->
+                <!-- Main Course Categories -->
                 <div class="course-tile" data-category="design-patterns">
                     <div class="course-tile-header">
                         <div class="course-icon">🏗️</div>
@@ -296,6 +296,40 @@
                     </div>
                 </div>
 
+                <div class="course-tile" data-category="interview-prep">
+                    <div class="course-tile-header">
+                        <div class="course-icon">🎯</div>
+                        <div class="course-badge">Popular</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Tech Giants Interview Prep</h3>
+                        <p class="course-description">
+                            Master interviews at top tech companies through real experiences and story-based learning. 
+                            Google, Microsoft, Amazon, and Meta interview questions with detailed solutions.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-level">All Levels</span>
+                            <span class="course-duration">4 companies</span>
+                        </div>
+                        <div class="course-topics">
+                            <span class="topic-tag">Google</span>
+                            <span class="topic-tag">Microsoft</span>
+                            <span class="topic-tag">Amazon</span>
+                            <span class="topic-tag">+1 more</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-format">
+                            <span class="format-icon">📖</span>
+                            <span class="format-text">Story-based Learning</span>
+                        </div>
+                        <a href="interview-companies.html" class="course-btn">
+                            Start Learning
+                            <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="course-tile" data-category="algorithms">
                     <div class="course-tile-header">
                         <div class="course-icon">🧩</div>
@@ -310,7 +344,6 @@
                         <div class="course-meta">
                             <span class="course-level">Intermediate</span>
                             <span class="course-duration">Coming Soon</span>
-                            <span class="course-status">In Development</span>
                         </div>
                         <div class="course-topics">
                             <span class="topic-tag">Sorting</span>
@@ -328,6 +361,73 @@
                             Coming Soon
                             <span class="btn-arrow">⏳</span>
                         </button>
+                    </div>
+                </div>
+
+                <div class="course-tile" data-category="system-design">
+                    <div class="course-tile-header">
+                        <div class="course-icon">🖥️</div>
+                        <div class="course-badge">New</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Operating Systems</h3>
+                        <p class="course-description">
+                            Master OS concepts through Maya's SRE journey solving real infrastructure challenges. 
+                            Learn process management, memory systems, and performance optimization.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-level">Progressive</span>
+                            <span class="course-duration">7 topics</span>
+                        </div>
+                        <div class="course-topics">
+                            <span class="topic-tag">Processes</span>
+                            <span class="topic-tag">Memory</span>
+                            <span class="topic-tag">File Systems</span>
+                            <span class="topic-tag">+4 more</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-format">
+                            <span class="format-icon">📖</span>
+                            <span class="format-text">Story-based Learning</span>
+                        </div>
+                        <a href="course-detail.html?id=operating-systems" class="course-btn">
+                            Start Learning
+                            <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="course-tile" data-category="infrastructure">
+                    <div class="course-tile-header">
+                        <div class="course-icon">🌐</div>
+                        <div class="course-badge">New</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Networking Fundamentals</h3>
+                        <p class="course-description">
+                            Master networking concepts through Elena's team solving real connectivity challenges. 
+                            Learn TCP/IP, routing, security, and cloud networking.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-level">Progressive</span>
+                            <span class="course-duration">7 topics</span>
+                        </div>
+                        <div class="course-topics">
+                            <span class="topic-tag">TCP/IP</span>
+                            <span class="topic-tag">Routing</span>
+                            <span class="topic-tag">Security</span>
+                            <span class="topic-tag">+4 more</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-format">
+                            <span class="format-icon">📖</span>
+                            <span class="format-text">Story-based Learning</span>
+                        </div>
+                        <a href="course-detail.html?id=networking-fundamentals" class="course-btn">
+                            Start Learning
+                            <span class="btn-arrow">→</span>
                         </a>
                     </div>
                 </div>
@@ -335,7 +435,7 @@
                 <div class="course-tile" data-category="javascript">
                     <div class="course-tile-header">
                         <div class="course-icon">🤖</div>
-                        <div class="course-badge new-badge">New</div>
+                        <div class="course-badge">New</div>
                     </div>
                     <div class="course-content">
                         <h3 class="course-title">Prompt Engineering</h3>
@@ -346,7 +446,6 @@
                         <div class="course-meta">
                             <span class="course-level">Beginner</span>
                             <span class="course-duration">75 minutes</span>
-                            <span class="course-status">8 Chapters</span>
                         </div>
                         <div class="course-topics">
                             <span class="topic-tag">CLEAR Framework</span>
@@ -366,44 +465,9 @@
                         </a>
                     </div>
                 </div>
-
-                <div class="course-tile" data-category="system-design">
-                    <div class="course-tile-header">
-                        <div class="course-icon">🏢</div>
-                        <div class="course-badge coming-soon-badge">Coming Soon</div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">System Design</h3>
-                        <p class="course-description">
-                            Learn to design scalable systems through architectural stories. 
-                            Understand patterns, trade-offs, and best practices for large systems.
-                        </p>
-                        <div class="course-meta">
-                            <span class="course-level">Advanced</span>
-                            <span class="course-duration">Coming Soon</span>
-                            <span class="course-status">In Development</span>
-                        </div>
-                        <div class="course-topics">
-                            <span class="topic-tag">Scalability</span>
-                            <span class="topic-tag">Databases</span>
-                            <span class="topic-tag">Caching</span>
-                            <span class="topic-tag">+More</span>
-                        </div>
-                    </div>
-                    <div class="course-footer">
-                        <div class="course-format">
-                            <span class="format-icon">📖</span>
-                            <span class="format-text">Story-based Learning</span>
-                        </div>
-                        <button class="course-btn disabled" disabled>
-                            Coming Soon
-                        </button>
-                    </div>
-                </div>
             </div>
             
-            <div class="section-footer">
-                <p class="more-courses-text">Want to see all our courses?</p>
+            <div class="section-footer">                <p class="more-courses-text">Want to see all our courses?</p>
                 <a href="#contact" class="btn btn-outline">
                     View All Courses
                     <span class="btn-icon">📚</span>

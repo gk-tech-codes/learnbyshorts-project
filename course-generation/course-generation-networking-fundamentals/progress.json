@@ -1,0 +1,35 @@
+{
+  "courseId": "networking-fundamentals",
+  "courseTopic": "networking-fundamentals",
+  "startTime": "2025-09-13T12:43:14-07:00",
+  "currentChain": 4.7,
+  "completedChains": [
+    "3"
+  ],
+  "chainStatus": {
+    "1": "pending",
+    "2": "pending",
+    "3": "completed",
+    "4": "pending",
+    "5": "pending",
+    "6": "pending",
+    "6.5": "pending",
+    "7": "pending",
+    "4.1": "ready_for_completion",
+    "4.2": "ready_for_completion",
+    "4.3": "ready_for_completion",
+    "4.4": "ready_for_completion",
+    "4.5": "ready_for_completion",
+    "4.6": "ready_for_completion",
+    "4.7": "ready_for_completion"
+  },
+  "files": {
+    "courseArchitecture": null,
+    "characterProfiles": null,
+    "topicOutlines": null,
+    "generatedTopics": [],
+    "integrationFiles": [],
+    "validationReport": null,
+    "coursePage": null
+  }
+}

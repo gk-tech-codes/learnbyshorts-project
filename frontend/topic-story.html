@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/header-auth.css">
     <link rel="stylesheet" href="css/topic-story.css">
-    <link rel="stylesheet" href="css/butterfly-reader.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -70,6 +69,138 @@
             border-radius: 8px;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Quiz Modal Styles */
+        .quiz-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quiz-modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .quiz-header h3 {
+            margin: 0;
+            color: #1f2937;
+        }
+        
+        .quiz-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        
+        .quiz-body {
+            padding: 1.5rem;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-question h4 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .quiz-option {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+        }
+        
+        .quiz-option.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .quiz-option.correct {
+            border-color: #10b981;
+            background: #ecfdf5;
+        }
+        
+        .quiz-option.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+        
+        .quiz-explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .quiz-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-btn.primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .quiz-btn.primary:hover {
+            background: #2563eb;
+        }
+        
+        .quiz-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -147,6 +278,19 @@
         </div>
     </main>
 
+    <!-- Quiz Modal -->
+    <div class="quiz-modal" id="quizModal" style="display: none;">
+        <div class="quiz-modal-content">
+            <div class="quiz-header">
+                <h3>Quick Quiz</h3>
+                <button class="quiz-close" id="quizClose">&times;</button>
+            </div>
+            <div class="quiz-body" id="quizBody">
+                <!-- Quiz content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <script>
         class TopicStoryPage {
             constructor() {
@@ -217,6 +361,37 @@
 
             async loadTopics() {
                 try {
+                    // Special handling for Google, Microsoft, and Operating Systems courses
+                    if (this.courseId === 'google' || this.courseId === 'microsoft' || this.courseId === 'operating-systems' || this.courseId === 'networking-fundamentals') {
+                        const response = await fetch(`data/topic-details.json?v=${Date.now() + Math.random()}`);
+                        const data = await response.json();
+                        
+                        // Find interview topics for the specific company
+                        const companyTopics = [];
+                        console.log('All topics in data:', Object.keys(data.topics));
+                        for (const [topicId, topic] of Object.entries(data.topics)) {
+                            console.log('Checking topic:', topicId, 'starts with:', `${this.courseId}-`, topicId.startsWith(`${this.courseId}-`));
+                            if (topicId.startsWith(`${this.courseId}-`)) {
+                                companyTopics.push({
+                                    title: topic.title,
+                                    duration: topic.estimatedTime || '15 min',
+                                    difficulty: topic.difficulty,
+                                    story: this.convertContentToStory(topic.content),
+                                    quiz: topic.quiz || []
+                                });
+                            }
+                        }
+                        
+                        this.topics = companyTopics;
+                        console.log(`Loaded ${this.courseId} interview topics:`, this.topics.length);
+                        
+                        if (this.topics.length === 0) {
+                            throw new Error(`No ${this.courseId} topics found in topic-details.json`);
+                        }
+                        return;
+                    }
+                    
+                    // Handle other courses with story-content.json
                     const response = await fetch('data/story-content.json');
                     const data = await response.json();
                     
@@ -293,6 +468,58 @@
                 }
             }
 
+            async updateBreadcrumb() {
+                try {
+                    // Get course data from courses.json
+                    const response = await fetch('data/courses.json');
+                    const data = await response.json();
+                    const course = data.courses.find(c => c.id === this.courseId);
+                    
+                    const courseBreadcrumb = document.getElementById('courseBreadcrumb');
+                    const categoryLink = document.getElementById('categoryLink');
+                    
+                    if (course && courseBreadcrumb) {
+                        // Use the actual course title from courses.json
+                        courseBreadcrumb.textContent = course.title;
+                        courseBreadcrumb.href = `course-detail.html?id=${this.courseId}`;
+                    } else if (courseBreadcrumb) {
+                        // Fallback: format course ID as title
+                        const formattedTitle = this.courseId
+                            .split('-')
+                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                            .join(' ');
+                        courseBreadcrumb.textContent = formattedTitle;
+                        courseBreadcrumb.href = `course-detail.html?id=${this.courseId}`;
+                    }
+                    
+                    // Set category based on course type
+                    if (categoryLink) {
+                        if (this.courseId === 'google' || this.courseId === 'microsoft') {
+                            categoryLink.textContent = 'Interview Prep';
+                            categoryLink.href = 'interview-companies.html';
+                        } else if (this.courseId.includes('-pattern')) {
+                            categoryLink.textContent = 'Design Patterns';
+                            categoryLink.href = 'design-patterns.html';
+                        } else {
+                            categoryLink.textContent = 'Courses';
+                            categoryLink.href = 'index.html#courses';
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error updating breadcrumb:', error);
+                    // Fallback breadcrumb
+                    const courseBreadcrumb = document.getElementById('courseBreadcrumb');
+                    if (courseBreadcrumb) {
+                        const formattedTitle = this.courseId
+                            .split('-')
+                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                            .join(' ');
+                        courseBreadcrumb.textContent = formattedTitle;
+                        courseBreadcrumb.href = `course-detail.html?id=${this.courseId}`;
+                    }
+                }
+            }
+
             renderStory() {
                 if (this.topicIndex >= this.topics.length) {
                     this.showError('Topic not found');
@@ -314,20 +541,8 @@
                 if (storyDifficulty) storyDifficulty.textContent = topic.difficulty;
                 if (storyText) storyText.innerHTML = topic.story;
                 
-                // Update breadcrumb
-                if (this.courseId === 'prompt-engineering') {
-                    const courseBreadcrumb = document.getElementById('courseBreadcrumb');
-                    const categoryLink = document.getElementById('categoryLink');
-                    
-                    if (courseBreadcrumb) {
-                        courseBreadcrumb.textContent = 'Prompt Engineering';
-                        courseBreadcrumb.href = 'course-detail.html?id=prompt-engineering';
-                    }
-                    if (categoryLink) {
-                        categoryLink.textContent = 'Courses';
-                        categoryLink.href = 'index.html#courses';
-                    }
-                }
+                // Update breadcrumb - universal function for all courses
+                this.updateBreadcrumb();
                 
                 // Update navigation
                 const prevBtn = document.getElementById('prevBtn');
@@ -351,8 +566,89 @@
                 });
 
                 document.getElementById('quizBtn').addEventListener('click', () => {
-                    window.location.href = `topic-quiz.html?course=${this.courseId}`;
+                    this.showQuiz();
                 });
+                
+                document.getElementById('quizClose').addEventListener('click', () => {
+                    document.getElementById('quizModal').style.display = 'none';
+                });
+            }
+            
+            showQuiz() {
+                const currentTopic = this.topics[this.topicIndex];
+                if (!currentTopic || !currentTopic.quiz) {
+                    alert('No quiz available for this topic');
+                    return;
+                }
+                
+                const quizBody = document.getElementById('quizBody');
+                const quiz = currentTopic.quiz[0]; // Get first quiz question
+                
+                quizBody.innerHTML = `
+                    <div class="quiz-question">
+                        <h4>${quiz.question}</h4>
+                        <div class="quiz-options" id="quizOptions">
+                            ${quiz.options.map((option, index) => `
+                                <div class="quiz-option" data-index="${index}" onclick="this.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected')); this.classList.add('selected');">
+                                    ${option}
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="quiz-explanation" id="quizExplanation" style="display: none;">
+                            <strong>Explanation:</strong> ${quiz.explanation}
+                        </div>
+                    </div>
+                    <div class="quiz-actions">
+                        <div></div>
+                        <button class="quiz-btn primary" onclick="topicStoryPage.checkAnswer(${quiz.correct})">
+                            Check Answer
+                        </button>
+                    </div>
+                `;
+                
+                document.getElementById('quizModal').style.display = 'flex';
+            }
+            
+            checkAnswer(correctIndex) {
+                const selectedOption = document.querySelector('.quiz-option.selected');
+                if (!selectedOption) {
+                    alert('Please select an answer');
+                    return;
+                }
+                
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const options = document.querySelectorAll('.quiz-option');
+                
+                // Show correct/incorrect styling
+                options.forEach((option, index) => {
+                    if (index === correctIndex) {
+                        option.classList.add('correct');
+                    } else if (index === selectedIndex && index !== correctIndex) {
+                        option.classList.add('incorrect');
+                    }
+                    option.style.pointerEvents = 'none';
+                });
+                
+                // Show explanation
+                document.getElementById('quizExplanation').style.display = 'block';
+                
+                // Update button
+                event.target.textContent = selectedIndex === correctIndex ? 'Correct! 🎉' : 'Try Again Next Time';
+                event.target.disabled = true;
+            }
+
+            convertContentToStory(content) {
+                if (!content || !Array.isArray(content)) {
+                    return '<p>Story content is being prepared...</p>';
+                }
+                
+                return content.map(section => {
+                    if (section.type === 'code_solution') {
+                        return `<h3>${section.title}</h3><pre><code>${section.content}</code></pre>`;
+                    } else {
+                        return `<h3>${section.title}</h3><p>${section.content}</p>`;
+                    }
+                }).join('');
             }
 
             showError(message) {
@@ -371,7 +667,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            new TopicStoryPage();
+            window.topicStoryPage = new TopicStoryPage();
         });
     </script>
     

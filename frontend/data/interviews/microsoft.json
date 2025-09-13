@@ -1,0 +1,44 @@
+{
+  "company": "Microsoft",
+  "logo": "/assets/microsoft-logo.png",
+  "overview": {
+    "process": "3 rounds: Phone Screen → Technical → Final Round",
+    "duration": "3-4 weeks",
+    "successRate": "20%",
+    "focusAreas": ["Problem Solving", "Coding", "Design", "Culture Fit"]
+  },
+  "rounds": [
+    {
+      "id": "phone-screen",
+      "title": "Phone Screen",
+      "duration": "45 mins",
+      "description": "Technical screening with focus on problem-solving",
+      "questions": [
+        {
+          "id": "reverse-string",
+          "title": "Reverse String In-Place",
+          "difficulty": "Easy",
+          "pattern": "Two Pointers",
+          "tags": ["String", "Two Pointers"],
+          "story": "John's Microsoft interview begins with a simple question..."
+        }
+      ]
+    },
+    {
+      "id": "technical-round",
+      "title": "Technical Round",
+      "duration": "60 mins", 
+      "description": "Comprehensive technical assessment",
+      "questions": [
+        {
+          "id": "merge-intervals",
+          "title": "Merge Intervals",
+          "difficulty": "Medium",
+          "pattern": "Intervals",
+          "tags": ["Array", "Sorting"],
+          "story": "At Microsoft's Redmond campus, Lisa tackles intervals..."
+        }
+      ]
+    }
+  ]
+}
