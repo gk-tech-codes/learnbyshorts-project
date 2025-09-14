@@ -1,0 +1,66 @@
+{
+  "sources": [
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/category/artificial-intelligence/",
+      "selectors": {
+        "articles": ".post-block",
+        "title": ".post-block__title__link",
+        "link": ".post-block__title__link",
+        "image": ".post-block__media img",
+        "summary": ".post-block__content"
+      }
+    },
+    {
+      "name": "VentureBeat",
+      "url": "https://venturebeat.com/ai/",
+      "selectors": {
+        "articles": ".ArticleListing",
+        "title": ".ArticleListing__title a",
+        "link": ".ArticleListing__title a",
+        "image": ".ArticleListing__image img",
+        "summary": ".ArticleListing__excerpt"
+      }
+    },
+    {
+      "name": "MIT Technology Review",
+      "url": "https://www.technologyreview.com/topic/artificial-intelligence/",
+      "selectors": {
+        "articles": ".contentItem",
+        "title": ".contentItem__title a",
+        "link": ".contentItem__title a",
+        "image": ".contentItem__image img",
+        "summary": ".contentItem__summary"
+      }
+    },
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/ai/",
+      "selectors": {
+        "articles": "article",
+        "title": "h2 a",
+        "link": "h2 a",
+        "image": ".listing-image img",
+        "summary": ".excerpt"
+      }
+    }
+  ],
+  "keywords": [
+    "artificial intelligence",
+    "machine learning",
+    "deep learning",
+    "neural network",
+    "AI model",
+    "GPT",
+    "LLM",
+    "generative AI",
+    "computer vision",
+    "natural language processing",
+    "robotics",
+    "automation",
+    "cloud computing",
+    "quantum computing",
+    "blockchain",
+    "cryptocurrency"
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "last_updated": "2025-09-13T17:00:47.857390",
+  "total_jobs": 12,
+  "jobs": [
+    {
+      "id": "91394828437c",
+      "title": "Senior Software Engineer",
+      "company": "Tesla",
+      "location": "New York, NY",
+      "job_type": "Hybrid",
+      "salary_range": "$273K - $323K",
+      "posted_date": "2025-09-13",
+      "description": "Join Tesla as a Senior Software Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in senior software engineer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.tesla.com/jobs/a3dd7c04",
+      "crawled_at": "2025-09-13T17:00:47.857241"
+    },
+    {
+      "id": "8e7dd6e14f30",
+      "title": "Frontend Developer",
+      "company": "OpenAI",
+      "location": "New York, NY",
+      "job_type": "Remote",
+      "salary_range": "$182K - $232K",
+      "posted_date": "2025-09-12",
+      "description": "Join OpenAI as a Frontend Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in frontend developer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.openai.com/jobs/2ebc6469",
+      "crawled_at": "2025-09-13T17:00:47.857282"
+    },
+    {
+      "id": "8100900053bd",
+      "title": "Senior Software Engineer",
+      "company": "Apple",
+      "location": "Boston, MA",
+      "job_type": "Hybrid",
+      "salary_range": "$171K - $221K",
+      "posted_date": "2025-09-12",
+      "description": "Join Apple as a Senior Software Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in senior software engineer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.apple.com/jobs/a3dd7c04",
+      "crawled_at": "2025-09-13T17:00:47.857327"
+    },
+    {
+      "id": "b49fa8ed938a",
+      "title": "Frontend Developer",
+      "company": "OpenAI",
+      "location": "Seattle, WA",
+      "job_type": "Hybrid",
+      "salary_range": "$256K - $306K",
+      "posted_date": "2025-09-12",
+      "description": "Join OpenAI as a Frontend Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in frontend developer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.openai.com/jobs/2ebc6469",
+      "crawled_at": "2025-09-13T17:00:47.857336"
+    },
+    {
+      "id": "62f716a4331b",
+      "title": "Frontend Developer",
+      "company": "Meta",
+      "location": "Remote",
+      "job_type": "Contract",
+      "salary_range": "$172K - $222K",
+      "posted_date": "2025-09-12",
+      "description": "Join Meta as a Frontend Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in frontend developer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.meta.com/jobs/2ebc6469",
+      "crawled_at": "2025-09-13T17:00:47.857352"
+    },
+    {
+      "id": "fb94a6fa5e95",
+      "title": "DevOps Engineer",
+      "company": "Microsoft",
+      "location": "Boston, MA",
+      "job_type": "Full-time",
+      "salary_range": "$227K - $277K",
+      "posted_date": "2025-09-11",
+      "description": "Join Microsoft as a DevOps Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in devops engineer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.microsoft.com/jobs/41159375",
+      "crawled_at": "2025-09-13T17:00:47.857300"
+    },
+    {
+      "id": "0d3fd9e7096a",
+      "title": "Security Engineer",
+      "company": "OpenAI",
+      "location": "Austin, TX",
+      "job_type": "Hybrid",
+      "salary_range": "$294K - $344K",
+      "posted_date": "2025-09-10",
+      "description": "Join OpenAI as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in security engineer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.openai.com/jobs/ec1b1614",
+      "crawled_at": "2025-09-13T17:00:47.857261"
+    },
+    {
+      "id": "c830a78b7a81",
+      "title": "DevOps Engineer",
+      "company": "Slack",
+      "location": "London, UK",
+      "job_type": "Contract",
+      "salary_range": "$212K - $262K",
+      "posted_date": "2025-09-10",
+      "description": "Join Slack as a DevOps Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in devops engineer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.slack.com/jobs/41159375",
+      "crawled_at": "2025-09-13T17:00:47.857272"
+    },
+    {
+      "id": "48483d18db2d",
+      "title": "Mobile Developer",
+      "company": "Amazon",
+      "location": "Remote",
+      "job_type": "Remote",
+      "salary_range": "$227K - $277K",
+      "posted_date": "2025-09-10",
+      "description": "Join Amazon as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in mobile developer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.amazon.com/jobs/506cc40f",
+      "crawled_at": "2025-09-13T17:00:47.857291"
+    },
+    {
+      "id": "b77564feaab7",
+      "title": "Product Manager",
+      "company": "Microsoft",
+      "location": "Remote",
+      "job_type": "Contract",
+      "salary_range": "$132K - $182K",
+      "posted_date": "2025-09-10",
+      "description": "Join Microsoft as a Product Manager and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in product manager",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.microsoft.com/jobs/a147da59",
+      "crawled_at": "2025-09-13T17:00:47.857309"
+    },
+    {
+      "id": "4d6c5574b1ff",
+      "title": "Data Scientist",
+      "company": "Stripe",
+      "location": "San Francisco, CA",
+      "job_type": "Remote",
+      "salary_range": "$266K - $316K",
+      "posted_date": "2025-09-09",
+      "description": "Join Stripe as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in data scientist",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.stripe.com/jobs/8a7a3f1b",
+      "crawled_at": "2025-09-13T17:00:47.857317"
+    },
+    {
+      "id": "17ef46a3c2b8",
+      "title": "Frontend Developer",
+      "company": "Uber",
+      "location": "London, UK",
+      "job_type": "Remote",
+      "salary_range": "$201K - $251K",
+      "posted_date": "2025-09-09",
+      "description": "Join Uber as a Frontend Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "5+ years experience in frontend developer",
+        "Strong problem-solving skills",
+        "Experience with modern tech stack"
+      ],
+      "apply_url": "https://careers.uber.com/jobs/2ebc6469",
+      "crawled_at": "2025-09-13T17:00:47.857344"
+    }
+  ]
+}

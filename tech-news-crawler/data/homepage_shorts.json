@@ -1,0 +1,176 @@
+{
+  "featuredShorts": [
+    {
+      "id": "short_7e14b3dd2c6e",
+      "title": "\ud83e\udd16 AI Update: California lawmakers pass AI safety bill SB 53 \u2014 b...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "California lawmakers pass AI safety bill SB 53 \u2014 but Newsom could still veto...",
+      "sourceUrl": "https://techcrunch.com/2025/09/13/california-lawmakers-pass-ai-safety-bill-sb-53-but-newsom-could-still-veto/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_0485b11ace5e",
+      "title": "\ud83e\udd16 AI Update: xAI reportedly lays off 500 workers from data anno...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "xAI reportedly lays off 500 workers from data annotation team...",
+      "sourceUrl": "https://techcrunch.com/2025/09/13/xai-reportedly-lays-off-500-workers-from-data-annotation-team/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_d6effab1fb16",
+      "title": "\ud83e\udd16 AI Update: Why the Oracle-OpenAI deal caught Wall Street by surprise",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Why the Oracle-OpenAI deal caught Wall Street by surprise...",
+      "sourceUrl": "https://techcrunch.com/2025/09/12/why-the-oracle-openai-deal-caught-wall-street-by-surprise/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_372da010122a",
+      "title": "\ud83d\udcf1 Tech News: Google is a \u2018bad actor\u2019 says People CEO, accusing ...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Google is a \u2018bad actor\u2019 says People CEO, accusing the company of stealing content...",
+      "sourceUrl": "https://techcrunch.com/2025/09/12/google-is-a-bad-actor-says-people-ceo-accusing-the-company-of-stealing-content/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_f16fec166fc8",
+      "title": "\ud83e\udd16 AI Update: Micro1, a competitor to Scale AI, raises funds at ...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Micro1, a competitor to Scale AI, raises funds at $500M valuation...",
+      "sourceUrl": "https://techcrunch.com/2025/09/12/micro1-a-competitor-to-scale-ai-raises-funds-at-500m-valuation/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_f5e03d747ddd",
+      "title": "\ud83d\udcf1 Tech News: Last day to amplify your brand: Host your Side Eve...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Last day to amplify your brand: Host your Side Event at TechCrunch Disrupt 2025...",
+      "sourceUrl": "https://techcrunch.com/2025/09/12/last-day-to-amplify-your-brand-host-your-side-event-at-disrupt-2025/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_8cab37191ad4",
+      "title": "\ud83e\udd16 AI Update: We are entering a golden age of robotics startups ...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "We are entering a golden age of robotics startups \u2014\u00a0and not just because of AI...",
+      "sourceUrl": "https://techcrunch.com/2025/09/12/we-are-entering-a-golden-age-of-robotics-startups-and-not-just-because-of-ai/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_85a7845f06c3",
+      "title": "\ud83e\udd16 AI Update: A California bill that would regulate AI companion...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "A California bill that would regulate AI companion chatbots is close to becoming law...",
+      "sourceUrl": "https://techcrunch.com/2025/09/11/a-california-bill-that-would-regulate-ai-companion-chatbots-is-close-to-becoming-law/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_fb9784a4b871",
+      "title": "\ud83e\udd16 AI Update: OpenAI secures Microsoft\u2019s blessing to transition ...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "OpenAI secures Microsoft\u2019s blessing to transition its for-profit arm...",
+      "sourceUrl": "https://techcrunch.com/2025/09/11/openai-secures-microsofts-blessing-to-transition-its-for-profit-arm/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_b20d82827431",
+      "title": "\ud83e\udd16 AI Update: FTC launches inquiry into AI chatbot companions fr...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "FTC launches inquiry into AI chatbot companions from Meta, OpenAI, and others...",
+      "sourceUrl": "https://techcrunch.com/2025/09/11/ftc-launches-inquiry-into-ai-chatbot-companions-from-meta-openai-and-others/",
+      "sourceName": "TechCrunch AI"
+    }
+  ],
+  "lastUpdated": "2025-09-13T16:11:35.220582",
+  "totalShorts": 31
+}

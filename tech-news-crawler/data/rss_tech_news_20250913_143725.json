@@ -1,0 +1,353 @@
+{
+  "crawled_at": "2025-09-13T14:37:25.266945",
+  "total_articles": 31,
+  "sources": [
+    "Ars Technica",
+    "MIT Technology Review",
+    "TechCrunch AI",
+    "The Verge"
+  ],
+  "articles": [
+    {
+      "id": "7e14b3dd2c6e",
+      "title": "California lawmakers pass AI safety bill SB 53 \u2014 but Newsom could still veto",
+      "link": "https://techcrunch.com/2025/09/13/california-lawmakers-pass-ai-safety-bill-sb-53-but-newsom-could-still-veto/",
+      "summary": "The state's landmark safety bill sets new transparency requirements for large AI companies.",
+      "published": "Sat, 13 Sep 2025 18:56:50 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640152",
+      "image_url": null
+    },
+    {
+      "id": "0485b11ace5e",
+      "title": "xAI reportedly lays off 500 workers from data annotation team",
+      "link": "https://techcrunch.com/2025/09/13/xai-reportedly-lays-off-500-workers-from-data-annotation-team/",
+      "summary": "Elon Musk's AI startup says it's shifting focus from generalist AI tutors to specialists.",
+      "published": "Sat, 13 Sep 2025 15:50:50 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640181",
+      "image_url": null
+    },
+    {
+      "id": "d6effab1fb16",
+      "title": "Why the Oracle-OpenAI deal caught Wall Street by surprise",
+      "link": "https://techcrunch.com/2025/09/12/why-the-oracle-openai-deal-caught-wall-street-by-surprise/",
+      "summary": "The $300B deal is a reminder that despite Oracle\u2019s legacy status, it shouldn\u2019t be overlooked when it comes to AI infrastructure. But key questions around power and how OpenAI will pay for this remain.",
+      "published": "Fri, 12 Sep 2025 20:01:41 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640191",
+      "image_url": null
+    },
+    {
+      "id": "372da010122a",
+      "title": "Google is a \u2018bad actor\u2019 says People CEO, accusing the company of stealing content",
+      "link": "https://techcrunch.com/2025/09/12/google-is-a-bad-actor-says-people-ceo-accusing-the-company-of-stealing-content/",
+      "summary": "People CEO Neil Vogel says Google's AI crawler can't be blocked because it would block the web crawler too. This lets the search giant steal its content for AI.",
+      "published": "Fri, 12 Sep 2025 18:53:26 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640201",
+      "image_url": null
+    },
+    {
+      "id": "f16fec166fc8",
+      "title": "Micro1, a competitor to Scale AI, raises funds at $500M valuation",
+      "link": "https://techcrunch.com/2025/09/12/micro1-a-competitor-to-scale-ai-raises-funds-at-500m-valuation/",
+      "summary": "A three-year-old startup providing data for AI labs is trying to fill the gap in the market left by Scale AI.",
+      "published": "Fri, 12 Sep 2025 17:00:00 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640212",
+      "image_url": null
+    },
+    {
+      "id": "f5e03d747ddd",
+      "title": "Last day to amplify your brand: Host your Side Event at TechCrunch Disrupt 2025",
+      "link": "https://techcrunch.com/2025/09/12/last-day-to-amplify-your-brand-host-your-side-event-at-disrupt-2025/",
+      "summary": "The application to host a Side Event at TechCrunch Disrupt 2025 closes tonight at 11:59 p.m. PT. Boost your brand during Disrupt Week in October. Apply now.",
+      "published": "Fri, 12 Sep 2025 15:00:00 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640221",
+      "image_url": null
+    },
+    {
+      "id": "8cab37191ad4",
+      "title": "We are entering a golden age of robotics startups \u2014\u00a0and not just because of AI",
+      "link": "https://techcrunch.com/2025/09/12/we-are-entering-a-golden-age-of-robotics-startups-and-not-just-because-of-ai/",
+      "summary": "The robotics startup market has matured over the last decade and the cost to produce robots has gone down significantly.",
+      "published": "Fri, 12 Sep 2025 13:00:00 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640231",
+      "image_url": null
+    },
+    {
+      "id": "85a7845f06c3",
+      "title": "A California bill that would regulate AI companion chatbots is close to becoming law",
+      "link": "https://techcrunch.com/2025/09/11/a-california-bill-that-would-regulate-ai-companion-chatbots-is-close-to-becoming-law/",
+      "summary": "If SB 243 is enacted, California would become the first state to require operators to implement safety protocols for AI companions and hold companies legally accountable if their chatbots fail to meet those standards.",
+      "published": "Thu, 11 Sep 2025 22:23:09 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640241",
+      "image_url": null
+    },
+    {
+      "id": "fb9784a4b871",
+      "title": "OpenAI secures Microsoft\u2019s blessing to transition its for-profit arm",
+      "link": "https://techcrunch.com/2025/09/11/openai-secures-microsofts-blessing-to-transition-its-for-profit-arm/",
+      "summary": "OpenAI and Microsoft say they reached a nonbinding agreement on a revised partnership.",
+      "published": "Thu, 11 Sep 2025 22:18:29 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640252",
+      "image_url": null
+    },
+    {
+      "id": "b20d82827431",
+      "title": "FTC launches inquiry into AI chatbot companions from Meta, OpenAI, and others",
+      "link": "https://techcrunch.com/2025/09/11/ftc-launches-inquiry-into-ai-chatbot-companions-from-meta-openai-and-others/",
+      "summary": "The federal consumer regulator seeks to learn about how AI companies evaluate the safety of their chatbots.",
+      "published": "Thu, 11 Sep 2025 18:06:15 +0000",
+      "source": "TechCrunch AI",
+      "category": "AI",
+      "crawled_at": "2025-09-13T14:37:24.640261",
+      "image_url": null
+    },
+    {
+      "id": "2c59451ca41b",
+      "title": "The Download: America\u2019s gun crisis, and how AI video models work",
+      "link": "https://www.technologyreview.com/2025/09/12/1123577/the-download-americas-gun-crisis-and-how-ai-video-models-work/",
+      "summary": "This is today&#8217;s edition of\u00a0The Download,\u00a0our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. We can\u2019t \u201cmake American children healthy again\u201d without tackling the gun crisis This week, the Trump administration released a strategy for improving the health and well-being of American children. The report was titled\u2014you&#8230;",
+      "published": "Fri, 12 Sep 2025 12:10:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790723",
+      "image_url": null
+    },
+    {
+      "id": "8961a205cd74",
+      "title": "How do AI models generate videos?",
+      "link": "https://www.technologyreview.com/2025/09/12/1123562/how-do-ai-models-generate-videos/",
+      "summary": "MIT Technology Review Explains: Let our writers untangle the complex, messy world of technology to help you understand what\u2019s coming next. You can read more from the series here. It\u2019s been a big year for video generation. In the last nine months OpenAI made Sora public, Google DeepMind launched Veo 3, the video startup Runway&#8230;",
+      "published": "Fri, 12 Sep 2025 10:01:44 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790747",
+      "image_url": null
+    },
+    {
+      "id": "57148457dabe",
+      "title": "We can\u2019t \u201cmake American children healthy again\u201d without tackling the gun crisis",
+      "link": "https://www.technologyreview.com/2025/09/11/1123553/maha-report-gun-violence-checkup/",
+      "summary": "Note for readers: This newsletter discusses gun violence, a raw and tragic issue in America. It was already in progress on Wednesday when a school shooting occurred at Evergreen High School in Colorado and Charlie Kirk was shot and killed at Utah Valley University.&#160; Earlier this week, the Trump administration\u2019s Make America Healthy Again movement&#8230;",
+      "published": "Thu, 11 Sep 2025 16:57:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790760",
+      "image_url": null
+    },
+    {
+      "id": "44b62628129d",
+      "title": "Partnering with generative AI in the finance function",
+      "link": "https://www.technologyreview.com/2025/09/11/1123508/partnering-with-generative-ai-in-the-finance-function/",
+      "summary": "Generative AI has the potential to transform the finance function. By taking on some of the more mundane tasks that can occupy a lot of time, generative AI tools can help free up capacity for more high-value strategic work. For chief financial officers, this could mean spending more time and energy on proactively advising the&#8230;",
+      "published": "Thu, 11 Sep 2025 13:00:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790771",
+      "image_url": null
+    },
+    {
+      "id": "7fb08ca82e32",
+      "title": "The Download: Trump\u2019s impact on science, and meet our climate and energy honorees",
+      "link": "https://www.technologyreview.com/2025/09/11/1123534/the-download-trumps-impact-on-science-and-meet-our-climate-and-energy-honorees/",
+      "summary": "This is today&#8217;s edition of\u00a0The Download,\u00a0our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. How Trump\u2019s policies are affecting early-career scientists\u2014in their own words Every year MIT Technology Review celebrates accomplished young scientists, entrepreneurs, and inventors from around the world in our Innovators Under 35 list. We\u2019ve&#8230;",
+      "published": "Thu, 11 Sep 2025 12:10:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790781",
+      "image_url": null
+    },
+    {
+      "id": "d4818ba3e7f2",
+      "title": "Texas banned lab-grown meat. What\u2019s next for the industry?",
+      "link": "https://www.technologyreview.com/2025/09/11/1123512/texas-lab-grown-meat/",
+      "summary": "Last week, a legal battle over lab-grown meat kicked off in Texas. On September 1, a two-year ban on the technology went into effect across the state; the following day, two companies filed a lawsuit against state officials. The two companies, Wildtype Foods and Upside Foods, are part of a growing industry that aims to&#8230;",
+      "published": "Thu, 11 Sep 2025 08:00:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790792",
+      "image_url": null
+    },
+    {
+      "id": "4b7fab27d9e4",
+      "title": "The Download: AI\u2019s energy future",
+      "link": "https://www.technologyreview.com/2025/09/10/1123489/the-download-ais-energy-future/",
+      "summary": "This is today&#8217;s edition of\u00a0The Download,\u00a0our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. Video: AI and our energy future In May, MIT Technology Review published an unprecedented and comprehensive look at how much energy the AI industry uses\u2014down to a single query. Our reporters and editors&#8230;",
+      "published": "Wed, 10 Sep 2025 12:10:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790803",
+      "image_url": null
+    },
+    {
+      "id": "a1f68dc2fdc3",
+      "title": "Adapting to new threats with proactive risk management",
+      "link": "https://www.technologyreview.com/2025/09/09/1123083/adapting-to-new-threats-with-proactive-risk-management/",
+      "summary": "In July 2024, a botched update to the software defenses managed by cybersecurity firm CrowdStrike caused more than 8 million Windows systems to fail. From hospitals to manufacturers, stock markets to retail stores, the outage caused parts of the global economy to grind to a halt. Payment systems were disrupted, broadcasters went off the air,&#8230;",
+      "published": "Tue, 09 Sep 2025 15:00:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790813",
+      "image_url": null
+    },
+    {
+      "id": "af847059eb80",
+      "title": "The Download: meet our AI innovators, and what happens when therapists use AI covertly",
+      "link": "https://www.technologyreview.com/2025/09/09/1123447/the-download-meet-our-ai-innovators-and-what-happens-when-therapists-use-ai-covertly/",
+      "summary": "This is today&#8217;s edition of\u00a0The Download,\u00a0our weekday newsletter that provides a daily dose of what&#8217;s going on in the world of technology. Meet the AI honorees on our 35 Innovators Under 35 list for 2025 Each year, we select 35 outstanding individuals under the age of 35 who are using technology to tackle tough problems&#8230;",
+      "published": "Tue, 09 Sep 2025 12:10:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790822",
+      "image_url": null
+    },
+    {
+      "id": "5de00ddfcf95",
+      "title": "Help! My therapist is secretly using ChatGPT",
+      "link": "https://www.technologyreview.com/2025/09/09/1123386/help-my-therapist-is-secretly-using-chatgpt/",
+      "summary": "In Silicon Valley\u2019s imagined future, AI models are so empathetic that we\u2019ll use them as therapists. They\u2019ll provide mental-health care for millions, unimpeded by the pesky requirements for human counselors, like the need for graduate degrees, malpractice insurance, and sleep. Down here on Earth, something very different has been happening.&#160; Last week, we published a&#8230;",
+      "published": "Tue, 09 Sep 2025 09:00:00 +0000",
+      "source": "MIT Technology Review",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:24.790833",
+      "image_url": null
+    },
+    {
+      "id": "d4b631d2fa0c",
+      "title": "The US is trying to kick-start a \u201cnuclear energy renaissance\u201d",
+      "link": "https://arstechnica.com/science/2025/09/the-us-is-trying-to-kick-start-a-nuclear-energy-renaissance/",
+      "summary": "Push to revive nuclear energy relies on deregulation; experts say strategy is misplaced.",
+      "published": "Sat, 13 Sep 2025 11:23:03 +0000",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.118683",
+      "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2018/09/GettyImages-978392268-1152x648.jpg"
+    },
+    {
+      "id": "efc0d02fca3a",
+      "title": "60 years after Gemini, newly processed images reveal incredible details",
+      "link": "https://arstechnica.com/space/2025/09/60-years-after-gemini-newly-processed-images-reveal-incredible-details/",
+      "summary": "\"It's that level of risk that they were taking. I think that's what really hit home.\"",
+      "published": "Sat, 13 Sep 2025 11:15:47 +0000",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.118713",
+      "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2025/09/01-Aldrin-Selfie-Before-After_NASA_ASU_Andy-Saunders-1152x648.jpg"
+    },
+    {
+      "id": "580fc3c8346f",
+      "title": "RFK Jr.\u2019s CDC may limit COVID shots to 75 and up, claim they killed kids",
+      "link": "https://arstechnica.com/health/2025/09/covid-shot-access-could-tighten-rfk-jr-may-claim-they-cause-child-deaths/",
+      "summary": "A battle is brewing over mRNA vaccines, which could intensify backlash against Kennedy.",
+      "published": "Fri, 12 Sep 2025 22:00:53 +0000",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.118739",
+      "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2025/03/GettyImages-2203339270-1152x648.jpg"
+    },
+    {
+      "id": "238f73e680f5",
+      "title": "Modder injects AI dialogue into 2002\u2019s Animal Crossing using memory hack",
+      "link": "https://arstechnica.com/gaming/2025/09/animal-crossing-mod-uses-ai-to-orchestrate-anti-tom-nook-villager-revolt/",
+      "summary": "Unofficial mod lets classic Nintendo GameCube title use AI chatbots with amusing results.",
+      "published": "Fri, 12 Sep 2025 21:36:48 +0000",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.118750",
+      "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2025/09/the_real_tom_nook_2-1152x648.jpg"
+    },
+    {
+      "id": "bf951746b16f",
+      "title": "Feds try to dodge lawsuit against their bogus climate report",
+      "link": "https://arstechnica.com/science/2025/09/department-of-energy-gets-rid-of-climate-skeptics-group-to-dodge-lawsuit/",
+      "summary": "Meanwhile, Congress is trying to keep serious scientists from weighing in.",
+      "published": "Fri, 12 Sep 2025 20:58:03 +0000",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.118761",
+      "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2025/09/GettyImages-1558526744.jpg"
+    },
+    {
+      "id": "d6a06680e782",
+      "title": "California bill lets renters escape exclusive deals between ISPs and landlords",
+      "link": "https://arstechnica.com/tech-policy/2025/09/california-snubs-cable-lobby-with-bill-to-boost-isp-competition-in-rental-housing/",
+      "summary": "Bill author says law \"gives this industry an opportunity to treat people fairly.\"",
+      "published": "Fri, 12 Sep 2025 18:33:47 +0000",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.118796",
+      "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2024/04/getty-network-1152x648.jpg"
+    },
+    {
+      "id": "ad4387793327",
+      "title": "Education report calling for ethical AI use contains over 15 fake sources",
+      "link": "https://arstechnica.com/ai/2025/09/education-report-calling-for-ethical-ai-use-contains-over-15-fake-sources/",
+      "summary": "Experts find fake sources in Canadian government report that took 18 months to complete.",
+      "published": "Fri, 12 Sep 2025 16:01:27 +0000",
+      "source": "Ars Technica",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.118805",
+      "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2025/09/newfoudnland_lighthouse-1152x648.jpg"
+    },
+    {
+      "id": "6f81ce200772",
+      "title": "Spotify Lossless is an inconvenient improvement",
+      "link": "https://www.theverge.com/hands-on/777691/spotify-lossless-flac-audio-inconvenient-improvement",
+      "summary": "If you listen to music the way a lot of people do these days - with a pair of wireless earbuds, from a Bluetooth speaker, or just blaring directly out of your phone - you will never notice a difference between Spotify's high-quality 320Kbps streams and its lossless audio. But, if you usually listen with [&#8230;]",
+      "published": "2025-09-13T11:00:00-04:00",
+      "source": "The Verge",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.266461",
+      "image_url": null
+    },
+    {
+      "id": "f3d9bc92bda7",
+      "title": "Tucker Carlson asks Sam Altman if an OpenAI employee was murdered &#8216;on your orders&#8217;",
+      "link": "https://www.theverge.com/news/777666/tucker-carlson-altman-openai-interview",
+      "summary": "While interviewing OpenAI CEO Sam Altman this week, former Fox News host Tucker Carlson brought up his belief in a conspiracy theory that former OpenAI researcher Suchir Balaji was \u201cdefinitely murdered.\u201d The researcher\u2019s death in November 2024, which was ruled a suicide by the San Francisco police, followed his release of statements online and in [&#8230;]",
+      "published": "2025-09-12T20:19:28-04:00",
+      "source": "The Verge",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.266518",
+      "image_url": null
+    },
+    {
+      "id": "e8d51c99c68f",
+      "title": "Elon Musk is trying to silence Microsoft employees who criticize Charlie Kirk",
+      "link": "https://www.theverge.com/news/777664/elon-musk-charlie-kirk-satya-nadella-fire",
+      "summary": "Elon Musk is pressing Microsoft CEO Satya Nadella to look into Blizzard employees who criticized Charlie Kirk after his death. Musk\u2019s post quotes an X thread listing names and screenshots of the developers. \u201cWhat\u2019s going on here, @satyanadella?\u201d Musk said. \u201cThese are Microsoft employees,\u201d he added in another post. Musk\u2019s direct question to Nadella follows [&#8230;]",
+      "published": "2025-09-12T20:11:57-04:00",
+      "source": "The Verge",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.266533",
+      "image_url": null
+    },
+    {
+      "id": "a61ea62e5fca",
+      "title": "Stellantis cancels Ram 1500 REV as electric truck demand dims",
+      "link": "https://www.theverge.com/news/777574/stellantis-cancels-ram-1500-ev-ramcharger",
+      "summary": "Stellantis announced that it was discontinuing its Ram 1500 REV electric truck, citing slowing sales of heavy-duty electric trucks. The name plate, however, will live on. Stellantis said that it was renaming its Range-Extended Electric Vehicle (REEV) Ramcharger pickup to Ram 1500 REV. \u201cThis vehicle will set a new benchmark in the half-ton segment, offering [&#8230;]",
+      "published": "2025-09-12T16:17:51-04:00",
+      "source": "The Verge",
+      "category": "Tech",
+      "crawled_at": "2025-09-13T14:37:25.266609",
+      "image_url": null
+    }
+  ]
+}

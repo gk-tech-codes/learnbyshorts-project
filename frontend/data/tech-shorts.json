@@ -1,0 +1,76 @@
+{
+  "featuredShorts": [
+    {
+      "id": "short_7e14b3dd2c6e",
+      "title": "🤖 AI Update: California lawmakers pass AI safety bill SB 53",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": ["#667eea", "#764ba2"],
+        "icon": "🤖"
+      },
+      "preview": "The state's landmark safety bill sets new transparency requirements for large AI companies...",
+      "sourceUrl": "https://techcrunch.com/2025/09/13/california-lawmakers-pass-ai-safety-bill-sb-53-but-newsom-could-still-veto/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_0485b11ace5e",
+      "title": "🤖 AI Update: xAI reportedly lays off 500 workers from data annotation team",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": ["#667eea", "#764ba2"],
+        "icon": "🤖"
+      },
+      "preview": "Elon Musk's AI startup says it's shifting focus from generalist AI tutors to specialists...",
+      "sourceUrl": "https://techcrunch.com/2025/09/13/xai-reportedly-lays-off-500-workers-from-data-annotation-team/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_d6effab1fb16",
+      "title": "💰 Startup News: Why the Oracle-OpenAI deal caught Wall Street by surprise",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": ["#667eea", "#764ba2"],
+        "icon": "🤖"
+      },
+      "preview": "The $300B deal is a reminder that despite Oracle's legacy status, it shouldn't be overlooked...",
+      "sourceUrl": "https://techcrunch.com/2025/09/12/why-the-oracle-openai-deal-caught-wall-street-by-surprise/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_372da010122a",
+      "title": "🤖 AI Update: Google is a 'bad actor' says People CEO",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": ["#667eea", "#764ba2"],
+        "icon": "🤖"
+      },
+      "preview": "People CEO Neil Vogel says Google's AI crawler can't be blocked because it would block the web...",
+      "sourceUrl": "https://techcrunch.com/2025/09/12/google-is-a-bad-actor-says-people-ceo-accusing-the-company-of-stealing-content/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_8f2a1b3c4d5e",
+      "title": "📱 Tech News: The future of quantum computing breakthroughs",
+      "category": "Tech",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": ["#fa709a", "#fee140"],
+        "icon": "💻"
+      },
+      "preview": "Latest developments in quantum computing are reshaping how we think about computational power...",
+      "sourceUrl": "https://www.technologyreview.com/quantum-computing",
+      "sourceName": "MIT Technology Review"
+    }
+  ],
+  "lastUpdated": "2025-09-13T14:41:00.000Z",
+  "totalShorts": 31
+}

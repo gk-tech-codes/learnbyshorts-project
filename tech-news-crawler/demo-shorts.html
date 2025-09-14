@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech News Shorts Demo - LearnByShorts</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-header h1 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        #tech-shorts-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #718096;
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s;
+        }
+        
+        .refresh-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="demo-header">
+            <h1>🚀 Tech News Educational Shorts</h1>
+            <p>AI-powered educational content from latest tech news</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" id="total-shorts">-</div>
+                    <div class="stat-label">Total Shorts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="ai-shorts">-</div>
+                    <div class="stat-label">AI Shorts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="tech-shorts">-</div>
+                    <div class="stat-label">Tech Shorts</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tech-shorts-container">
+            <div class="loading">
+                <h3>🔄 Loading educational shorts...</h3>
+                <p>Generating bite-sized learning content from latest tech news</p>
+            </div>
+        </div>
+    </div>
+    
+    <button class="refresh-btn" onclick="refreshShorts()" title="Refresh Shorts">
+        🔄
+    </button>
+
+    <script>
+        // Inline the homepage integration script for demo
+        class TechShortsDisplay {
+            constructor() {
+                this.shortsContainer = null;
+                this.shortsData = null;
+            }
+
+            async loadShorts() {
+                try {
+                    const response = await fetch('./data/homepage_shorts.json');
+                    this.shortsData = await response.json();
+                    return this.shortsData;
+                } catch (error) {
+                    console.error('Failed to load tech shorts:', error);
+                    return null;
+                }
+            }
+
+            createShortCard(short) {
+                const template = short.imageTemplate;
+                const gradientStyle = template.type === 'gradient' 
+                    ? `linear-gradient(135deg, ${template.colors[0]}, ${template.colors[1]})`
+                    : template.color;
+
+                return `
+                    <div class="tech-short-card" data-short-id="${short.id}">
+                        <div class="short-image" style="background: ${gradientStyle};">
+                            <div class="short-icon">${template.icon}</div>
+                            <div class="short-category">${short.category}</div>
+                        </div>
+                        <div class="short-content">
+                            <h3 class="short-title">${short.title}</h3>
+                            <p class="short-preview">${short.preview}</p>
+                            <div class="short-meta">
+                                <span class="read-time">⏱️ ${short.readTime}</span>
+                                <span class="source">📰 ${short.sourceName}</span>
+                            </div>
+                            <button class="read-short-btn" onclick="openShort('${short.id}')">
+                                Read Short
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderShorts(containerId = 'tech-shorts-container') {
+                this.shortsContainer = document.getElementById(containerId);
+                
+                if (!this.shortsContainer || !this.shortsData) {
+                    console.error('Container or data not found');
+                    return;
+                }
+
+                const shortsHTML = this.shortsData.featuredShorts
+                    .map(short => this.createShortCard(short))
+                    .join('');
+
+                this.shortsContainer.innerHTML = `
+                    <div class="tech-shorts-header">
+                        <h2>🚀 Latest Tech & AI Insights</h2>
+                        <p>Educational shorts from top tech sources • Updated ${new Date(this.shortsData.lastUpdated).toLocaleDateString()}</p>
+                    </div>
+                    <div class="shorts-grid">
+                        ${shortsHTML}
+                    </div>
+                `;
+
+                // Update stats
+                this.updateStats();
+            }
+
+            updateStats() {
+                if (!this.shortsData) return;
+                
+                document.getElementById('total-shorts').textContent = this.shortsData.totalShorts;
+                
+                const aiShorts = this.shortsData.featuredShorts.filter(s => s.category === 'AI').length;
+                const techShorts = this.shortsData.featuredShorts.filter(s => s.category === 'Tech').length;
+                
+                document.getElementById('ai-shorts').textContent = aiShorts;
+                document.getElementById('tech-shorts').textContent = techShorts;
+            }
+
+            addStyles() {
+                const styles = `
+                    <style>
+                    .tech-shorts-header {
+                        text-align: center;
+                        margin-bottom: 2rem;
+                    }
+                    
+                    .tech-shorts-header h2 {
+                        color: #2d3748;
+                        margin-bottom: 0.5rem;
+                    }
+                    
+                    .tech-shorts-header p {
+                        color: #718096;
+                        font-size: 0.9rem;
+                    }
+                    
+                    .shorts-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                        gap: 1.5rem;
+                        margin-top: 2rem;
+                    }
+                    
+                    .tech-short-card {
+                        background: white;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        overflow: hidden;
+                        transition: transform 0.2s, box-shadow 0.2s;
+                        cursor: pointer;
+                    }
+                    
+                    .tech-short-card:hover {
+                        transform: translateY(-4px);
+                        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                    }
+                    
+                    .short-image {
+                        height: 120px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        color: white;
+                    }
+                    
+                    .short-icon {
+                        font-size: 2.5rem;
+                        margin-bottom: 0.5rem;
+                    }
+                    
+                    .short-category {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background: rgba(255, 255, 255, 0.2);
+                        padding: 4px 8px;
+                        border-radius: 12px;
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                    }
+                    
+                    .short-content {
+                        padding: 1.5rem;
+                    }
+                    
+                    .short-title {
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        color: #2d3748;
+                        margin-bottom: 0.75rem;
+                        line-height: 1.4;
+                    }
+                    
+                    .short-preview {
+                        color: #4a5568;
+                        font-size: 0.9rem;
+                        line-height: 1.5;
+                        margin-bottom: 1rem;
+                    }
+                    
+                    .short-meta {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                        font-size: 0.8rem;
+                        color: #718096;
+                    }
+                    
+                    .read-short-btn {
+                        width: 100%;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        color: white;
+                        border: none;
+                        padding: 0.75rem;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: opacity 0.2s;
+                    }
+                    
+                    .read-short-btn:hover {
+                        opacity: 0.9;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .shorts-grid {
+                            grid-template-columns: 1fr;
+                            gap: 1rem;
+                        }
+                        
+                        .short-content {
+                            padding: 1rem;
+                        }
+                    }
+                    </style>
+                `;
+                
+                document.head.insertAdjacentHTML('beforeend', styles);
+            }
+
+            async init() {
+                this.addStyles();
+                const data = await this.loadShorts();
+                if (data) {
+                    this.renderShorts();
+                }
+            }
+        }
+
+        function openShort(shortId) {
+            alert(`Opening educational short: ${shortId}\n\nThis would show the full educational content with:\n• Key learning points\n• Visual explanations\n• Interactive elements\n• Related resources`);
+        }
+
+        function refreshShorts() {
+            location.reload();
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const techShorts = new TechShortsDisplay();
+            techShorts.init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+{
+  "last_updated": "2025-09-13T17:07:48.075871",
+  "total_jobs": 12,
+  "jobs": [
+    {
+      "id": "b0ad71bbda84",
+      "title": "Data Scientist",
+      "company": "Swiggy",
+      "location": "Gurgaon, India",
+      "job_type": "Remote",
+      "salary_range": "₹8L - ₹18L",
+      "posted_date": "2025-09-12",
+      "description": "Join Swiggy as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in data scientist",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
+      "crawled_at": "2025-09-13T17:07:48.075780"
+    },
+    {
+      "id": "61e47ce46f36",
+      "title": "Mobile Developer",
+      "company": "Swiggy",
+      "location": "Pune, India",
+      "job_type": "Remote",
+      "salary_range": "₹9L - ₹19L",
+      "posted_date": "2025-09-12",
+      "description": "Join Swiggy as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in mobile developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
+      "crawled_at": "2025-09-13T17:07:48.075788"
+    },
+    {
+      "id": "178e90fad2b7",
+      "title": "Product Manager",
+      "company": "Google",
+      "location": "Boston, MA, USA",
+      "job_type": "Remote",
+      "salary_range": "$240K - $290K",
+      "posted_date": "2025-09-12",
+      "description": "Join Google as a Product Manager and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in product manager",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=google",
+      "crawled_at": "2025-09-13T17:07:48.075802"
+    },
+    {
+      "id": "4bf9c5a2cf14",
+      "title": "DevOps Engineer",
+      "company": "Stripe",
+      "location": "Remote, USA",
+      "job_type": "Full-time",
+      "salary_range": "$254K - $304K",
+      "posted_date": "2025-09-11",
+      "description": "Join Stripe as a DevOps Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in devops engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=stripe",
+      "crawled_at": "2025-09-13T17:07:48.075759"
+    },
+    {
+      "id": "f92aee3174b0",
+      "title": "Security Engineer",
+      "company": "PhonePe",
+      "location": "Gurgaon, India",
+      "job_type": "Hybrid",
+      "salary_range": "₹19L - ₹29L",
+      "posted_date": "2025-09-11",
+      "description": "Join PhonePe as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in security engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=phonepe",
+      "crawled_at": "2025-09-13T17:07:48.075815"
+    },
+    {
+      "id": "db1b3d9807ac",
+      "title": "Mobile Developer",
+      "company": "Tesla",
+      "location": "Seattle, WA, USA",
+      "job_type": "Contract",
+      "salary_range": "$170K - $220K",
+      "posted_date": "2025-09-11",
+      "description": "Join Tesla as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in mobile developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tesla",
+      "crawled_at": "2025-09-13T17:07:48.075836"
+    },
+    {
+      "id": "9e26d522447e",
+      "title": "Full Stack Developer",
+      "company": "Microsoft",
+      "location": "Remote, USA",
+      "job_type": "Remote",
+      "salary_range": "$149K - $199K",
+      "posted_date": "2025-09-10",
+      "description": "Join Microsoft as a Full Stack Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in full stack developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=microsoft",
+      "crawled_at": "2025-09-13T17:07:48.075742"
+    },
+    {
+      "id": "118006e44491",
+      "title": "Backend Engineer",
+      "company": "Meta",
+      "location": "New York, NY, USA",
+      "job_type": "Remote",
+      "salary_range": "$289K - $339K",
+      "posted_date": "2025-09-10",
+      "description": "Join Meta as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=meta",
+      "crawled_at": "2025-09-13T17:07:48.075769"
+    },
+    {
+      "id": "01925bbec6af",
+      "title": "Backend Engineer",
+      "company": "Paytm",
+      "location": "Mumbai, India",
+      "job_type": "Full-time",
+      "salary_range": "₹24L - ₹34L",
+      "posted_date": "2025-09-10",
+      "description": "Join Paytm as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=paytm",
+      "crawled_at": "2025-09-13T17:07:48.075795"
+    },
+    {
+      "id": "917ab584fed6",
+      "title": "Data Scientist",
+      "company": "Tesla",
+      "location": "Boston, MA, USA",
+      "job_type": "Hybrid",
+      "salary_range": "$251K - $301K",
+      "posted_date": "2025-09-10",
+      "description": "Join Tesla as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in data scientist",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tesla",
+      "crawled_at": "2025-09-13T17:07:48.075829"
+    },
+    {
+      "id": "d2479e0a12d7",
+      "title": "UI/UX Designer",
+      "company": "Swiggy",
+      "location": "Pune, India",
+      "job_type": "Contract",
+      "salary_range": "₹26L - ₹36L",
+      "posted_date": "2025-09-09",
+      "description": "Join Swiggy as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
+      "crawled_at": "2025-09-13T17:07:48.075808"
+    },
+    {
+      "id": "b2ae33ab3d84",
+      "title": "UI/UX Designer",
+      "company": "Infosys",
+      "location": "Mumbai, India",
+      "job_type": "Full-time",
+      "salary_range": "₹34L - ₹44L",
+      "posted_date": "2025-09-09",
+      "description": "Join Infosys as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=infosys",
+      "crawled_at": "2025-09-13T17:07:48.075821"
+    }
+  ]
+}

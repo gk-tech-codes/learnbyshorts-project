@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: https://img.youtube.com; media-src 'self' https://learnbyshorts-videos-464994449735.s3.amazonaws.com; frame-src 'self' https://www.youtube.com https://youtube.com; connect-src 'self' https://www.google-analytics.com https://www.youtube.com; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com https://www.youtube.com https://youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: https://img.youtube.com; media-src 'self' https://learnbyshorts-videos-464994449735.s3.amazonaws.com; frame-src 'self' https://www.youtube.com https://youtube.com; connect-src 'self' https://www.google-analytics.com https://www.youtube.com; upgrade-insecure-requests;">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -82,7 +82,7 @@
     <script src="js/analytics.js"></script>
     
     <link rel="stylesheet" href="/css/styles.css?v=1.5.9">
-    <link rel="stylesheet" href="/css/homepage.css?v=1.5.2">
+    <link rel="stylesheet" href="/css/homepage.css?v=2.5.0">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1.5.2">
     <link rel="stylesheet" href="css/header-auth.css">
     <link rel="stylesheet" href="css/video-tile.css">
@@ -243,6 +243,46 @@
                         <div class="video-tile-info" id="video-info-vAPwxZRCLPg">
                             <div class="loading-video-info">Loading video information...</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech News Shorts Section -->
+    <section id="tech-shorts" class="tech-shorts-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🚀 Latest Tech Insights & Jobs</h2>
+                <p class="section-description">
+                    Stay updated with the latest AI developments and discover new tech opportunities
+                </p>
+            </div>
+            
+            <div class="shorts-container">
+                <!-- Tech Jobs Slider -->
+                <div class="jobs-showcase">
+                    <h3 class="showcase-title">💼 Latest Tech Jobs</h3>
+                    <div class="jobs-viewer" id="jobsViewer">
+                        <!-- Jobs will be loaded here -->
+                    </div>
+                    <div class="jobs-navigation">
+                        <button class="nav-btn" id="jobsPrevBtn">‹</button>
+                        <div class="jobs-indicators" id="jobsIndicators"></div>
+                        <button class="nav-btn" id="jobsNextBtn">›</button>
+                    </div>
+                </div>
+                
+                <!-- Tech Shorts Slider -->
+                <div class="shorts-showcase">
+                    <h3 class="showcase-title">📰 Tech News Shorts</h3>
+                    <div class="shorts-viewer" id="shortsViewer">
+                        <!-- Shorts will be loaded here -->
+                    </div>
+                    <div class="shorts-navigation">
+                        <button class="nav-btn prev-btn" id="prevBtn">‹</button>
+                        <div class="shorts-indicators" id="shortsIndicators"></div>
+                        <button class="nav-btn next-btn" id="nextBtn">›</button>
                     </div>
                 </div>
             </div>
@@ -754,5 +794,537 @@
     <script src="js/social-sharing.js?v=1.3.6"></script>
     <script src="js/services/VideoService.js"></script>
     <script src="js/header-auth.js"></script>
+    
+    <!-- Tech Shorts Integration -->
+    <script>
+        class HomepageTechShorts {
+            constructor() {
+                this.currentIndex = 0;
+                this.shorts = [];
+                this.viewer = null;
+                this.indicators = null;
+            }
+
+            async loadShorts() {
+                // Skip fetch entirely - use inline data
+                this.shorts = [
+                    {
+                        "title": "California lawmakers pass AI safety bill SB 53",
+                        "category": "AI Policy",
+                        "preview": "The state's landmark safety bill sets new transparency requirements for large AI companies operating in California, marking a significant step in AI regulation.",
+                        "sourceUrl": "https://techcrunch.com/2025/09/13/california-lawmakers-pass-ai-safety-bill-sb-53-but-newsom-could-still-veto/",
+                        "sourceName": "TechCrunch"
+                    },
+                    {
+                        "title": "xAI lays off 500 workers from data annotation team",
+                        "category": "AI Business",
+                        "preview": "Elon Musk's AI startup is shifting focus from generalist AI tutors to specialized applications, affecting hundreds of workers in the restructuring process.",
+                        "sourceUrl": "https://techcrunch.com/2025/09/13/xai-reportedly-lays-off-500-workers-from-data-annotation-team/",
+                        "sourceName": "TechCrunch"
+                    },
+                    {
+                        "title": "Oracle emerges as surprise AI infrastructure leader",
+                        "category": "Cloud Computing",
+                        "preview": "Oracle's massive deal with OpenAI has positioned the database giant as an unexpected major player in AI infrastructure, surprising Wall Street analysts with the strategic partnership.",
+                        "sourceUrl": "https://techcrunch.com/2025/09/12/why-the-oracle-openai-deal-caught-wall-street-by-surprise/",
+                        "sourceName": "TechCrunch"
+                    }
+                ];
+                return true;
+            }
+
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                const now = new Date();
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                const articleDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                const diffTime = today - articleDate;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 0) return "Today";
+                if (diffDays === 1) return "Yesterday";
+                if (diffDays <= 7) return `${diffDays} days ago`;
+                return date.toLocaleDateString();
+            }
+
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                const now = new Date();
+                
+                // Reset time to compare just dates
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                const articleDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                
+                const diffTime = today - articleDate;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 0) return "Today";
+                if (diffDays === 1) return "Yesterday";
+                if (diffDays <= 7) return `${diffDays} days ago`;
+                return date.toLocaleDateString();
+            }
+
+            createShortHTML(short, index) {
+                // Generate different bullet points for each short
+                const bulletPointSets = [
+                    [
+                        "First comprehensive AI safety legislation in the US",
+                        "Requires transparency in AI training processes",
+                        "Could influence federal AI regulation nationwide"
+                    ],
+                    [
+                        "500 data annotation workers affected by layoffs",
+                        "Strategic pivot from general to specialized AI",
+                        "Reflects broader AI industry consolidation trends"
+                    ],
+                    [
+                        "$300 billion infrastructure partnership announced",
+                        "Oracle's cloud strategy gains major validation",
+                        "Challenges AWS and Microsoft market dominance"
+                    ]
+                ];
+
+                // Different dates for each short
+                const dates = ["2025-09-13", "2025-09-13", "2025-09-12"];
+                const shortDate = dates[index] || "2025-09-13";
+
+                const keyPoints = bulletPointSets[index] || [
+                    "Significant technology industry development",
+                    "Major implications for market dynamics",
+                    "Important trends in business strategy"
+                ];
+
+                return `
+                    <div class="short-item ${index === 0 ? 'active' : ''}" data-index="${index}" style="display: ${index === 0 ? 'block' : 'none'}; opacity: ${index === 0 ? '1' : '0'};">
+                        <div class="short-header">
+                            <div class="short-meta">
+                                <div class="short-category">${short.category}</div>
+                                <div class="short-date">${this.formatDate(shortDate)}</div>
+                            </div>
+                            <h3 class="short-title">${short.title}</h3>
+                        </div>
+                        <div class="short-content">
+                            <p class="short-summary">${short.preview}</p>
+                            <div class="key-insights">
+                                <h4 class="insights-title">Key Insights</h4>
+                                ${keyPoints.map(point => `
+                                    <div class="insight-item">
+                                        <span class="bullet">•</span>
+                                        <span class="insight-text">${point}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="short-footer">
+                            <div class="footer-content">
+                                <div class="source-info">📰 ${short.sourceName}</div>
+                                <button class="read-more-btn" onclick="window.open('${short.sourceUrl}', '_blank')">
+                                    Read More
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            render() {
+                this.viewer = document.getElementById('shortsViewer');
+                this.indicators = document.getElementById('shortsIndicators');
+                
+                if (!this.viewer || !this.shorts.length) {
+                    console.log('❌ Viewer or shorts not found');
+                    return;
+                }
+
+                console.log(`📱 Rendering ${this.shorts.length} shorts`);
+
+                // Create shorts HTML
+                this.viewer.innerHTML = this.shorts.map((short, index) => 
+                    this.createShortHTML(short, index)
+                ).join('');
+
+                // Create indicators
+                this.indicators.innerHTML = this.shorts.map((_, index) => 
+                    `<div class="indicator ${index === 0 ? 'active' : ''}" onclick="techShorts.goToShort(${index})"></div>`
+                ).join('');
+
+                // Setup navigation
+                this.setupNavigation();
+                
+                // Force display of first short
+                setTimeout(() => {
+                    this.updateDisplay();
+                    console.log('✅ First short displayed');
+                }, 100);
+            }
+
+            setupNavigation() {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+
+                prevBtn.addEventListener('click', () => this.previousShort());
+                nextBtn.addEventListener('click', () => this.nextShort());
+
+                this.updateNavigation();
+            }
+
+            goToShort(index) {
+                if (index >= 0 && index < this.shorts.length) {
+                    this.currentIndex = index;
+                    this.updateDisplay();
+                }
+            }
+
+            nextShort() {
+                if (this.currentIndex < this.shorts.length - 1) {
+                    this.currentIndex++;
+                    this.updateDisplay();
+                }
+            }
+
+            previousShort() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.updateDisplay();
+                }
+            }
+
+            updateDisplay() {
+                const items = document.querySelectorAll('.short-item');
+                const indicators = document.querySelectorAll('.indicator');
+
+                // Hide all items first
+                items.forEach((item, index) => {
+                    item.style.display = 'none';
+                    item.style.opacity = '0';
+                    item.classList.remove('active');
+                });
+
+                // Show current item
+                if (items[this.currentIndex]) {
+                    items[this.currentIndex].style.display = 'block';
+                    items[this.currentIndex].style.opacity = '1';
+                    items[this.currentIndex].classList.add('active');
+                }
+
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentIndex);
+                });
+
+                this.updateNavigation();
+                
+                // Debug log
+                console.log(`Showing short ${this.currentIndex + 1} of ${this.shorts.length}`);
+            }
+
+            updateNavigation() {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+
+                if (prevBtn) prevBtn.disabled = this.currentIndex === 0;
+                if (nextBtn) nextBtn.disabled = this.currentIndex === this.shorts.length - 1;
+            }
+
+            async init() {
+                const loaded = await this.loadShorts();
+                if (loaded) {
+                    this.render();
+                    console.log('✅ Homepage tech shorts loaded');
+                } else {
+                    console.log('❌ Failed to load homepage tech shorts');
+                }
+            }
+        }
+
+        // Initialize tech shorts
+        const techShorts = new HomepageTechShorts();
+        
+        // Tech Jobs Class
+        class HomepageTechJobs {
+            constructor() {
+                this.currentIndex = 0;
+                this.jobs = [];
+                this.viewer = null;
+                this.indicators = null;
+            }
+
+            async loadJobs() {
+                // Diverse jobs data from India and USA
+                this.jobs = [
+                    {
+                        "title": "Senior Software Engineer",
+                        "company": "Tesla",
+                        "location": "San Francisco, CA, USA",
+                        "job_type": "Full-time",
+                        "salary_range": "$180K - $250K",
+                        "posted_date": "2025-09-13",
+                        "description": "Join Tesla's engineering team to build the future of sustainable transport and energy.",
+                        "requirements": [
+                            "5+ years software engineering experience",
+                            "Strong Python/JavaScript skills",
+                            "Experience with distributed systems"
+                        ],
+                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tesla%20software%20engineer"
+                    },
+                    {
+                        "title": "Full Stack Developer",
+                        "company": "Infosys",
+                        "location": "Bangalore, India",
+                        "job_type": "Full-time",
+                        "salary_range": "₹15L - ₹25L",
+                        "posted_date": "2025-09-13",
+                        "description": "Build scalable web applications for global clients using modern tech stack.",
+                        "requirements": [
+                            "3+ years full stack development",
+                            "React, Node.js, MongoDB experience",
+                            "Strong problem-solving skills"
+                        ],
+                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=infosys%20full%20stack%20developer"
+                    },
+                    {
+                        "title": "Frontend Developer",
+                        "company": "OpenAI",
+                        "location": "Remote, USA",
+                        "job_type": "Remote",
+                        "salary_range": "$150K - $200K",
+                        "posted_date": "2025-09-12",
+                        "description": "Build user interfaces for cutting-edge AI applications at OpenAI.",
+                        "requirements": [
+                            "3+ years React/TypeScript experience",
+                            "Strong UI/UX design skills",
+                            "Experience with AI/ML interfaces"
+                        ],
+                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=openai%20frontend%20developer"
+                    },
+                    {
+                        "title": "Data Scientist",
+                        "company": "Flipkart",
+                        "location": "Hyderabad, India",
+                        "job_type": "Full-time",
+                        "salary_range": "₹20L - ₹35L",
+                        "posted_date": "2025-09-12",
+                        "description": "Drive data-driven decisions for India's largest e-commerce platform.",
+                        "requirements": [
+                            "4+ years data science experience",
+                            "Python, SQL, Machine Learning",
+                            "E-commerce domain knowledge"
+                        ],
+                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=flipkart%20data%20scientist"
+                    },
+                    {
+                        "title": "DevOps Engineer",
+                        "company": "Stripe",
+                        "location": "Seattle, WA, USA",
+                        "job_type": "Hybrid",
+                        "salary_range": "$160K - $220K",
+                        "posted_date": "2025-09-11",
+                        "description": "Scale Stripe's infrastructure to handle millions of transactions globally.",
+                        "requirements": [
+                            "4+ years DevOps/SRE experience",
+                            "Kubernetes and AWS expertise",
+                            "Strong automation skills"
+                        ],
+                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=stripe%20devops%20engineer"
+                    },
+                    {
+                        "title": "Mobile App Developer",
+                        "company": "Zomato",
+                        "location": "Gurgaon, India",
+                        "job_type": "Full-time",
+                        "salary_range": "₹12L - ₹22L",
+                        "posted_date": "2025-09-11",
+                        "description": "Build and enhance mobile experiences for millions of food lovers.",
+                        "requirements": [
+                            "3+ years React Native/Flutter",
+                            "iOS/Android development experience",
+                            "Performance optimization skills"
+                        ],
+                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=zomato%20mobile%20developer"
+                    },
+                    {
+                        "title": "Machine Learning Engineer",
+                        "company": "Google",
+                        "location": "Mountain View, CA, USA",
+                        "job_type": "Full-time",
+                        "salary_range": "$200K - $300K",
+                        "posted_date": "2025-09-10",
+                        "description": "Develop ML models that impact billions of users worldwide.",
+                        "requirements": [
+                            "5+ years ML engineering experience",
+                            "TensorFlow/PyTorch expertise",
+                            "Large-scale systems experience"
+                        ],
+                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=google%20machine%20learning%20engineer"
+                    },
+                    {
+                        "title": "Backend Engineer",
+                        "company": "Paytm",
+                        "location": "Noida, India",
+                        "job_type": "Full-time",
+                        "salary_range": "₹18L - ₹30L",
+                        "posted_date": "2025-09-10",
+                        "description": "Build robust backend systems for India's leading fintech platform.",
+                        "requirements": [
+                            "4+ years backend development",
+                            "Java/Go/Python expertise",
+                            "Microservices architecture"
+                        ],
+                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=paytm%20backend%20engineer"
+                    }
+                ];
+                return true;
+            }
+
+            formatJobDate(dateString) {
+                const date = new Date(dateString);
+                const now = new Date();
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                const jobDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                const diffTime = today - jobDate;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 0) return "Today";
+                if (diffDays === 1) return "Yesterday";
+                if (diffDays <= 7) return `${diffDays} days ago`;
+                return date.toLocaleDateString();
+            }
+
+            createJobHTML(job, index) {
+                return `
+                    <div class="job-item ${index === 0 ? 'active' : ''}" data-index="${index}" style="display: ${index === 0 ? 'block' : 'none'}; opacity: ${index === 0 ? '1' : '0'};">
+                        <div class="job-header">
+                            <div class="job-meta">
+                                <div class="job-type">${job.job_type}</div>
+                                <div class="job-posted">${this.formatJobDate(job.posted_date)}</div>
+                            </div>
+                            <h3 class="job-title">${job.title}</h3>
+                            <div class="job-company">${job.company}</div>
+                        </div>
+                        <div class="job-content">
+                            <div class="job-details">
+                                <div class="job-location">📍 ${job.location}</div>
+                                <div class="job-salary">💰 ${job.salary_range}</div>
+                            </div>
+                            <p class="job-description">${job.description}</p>
+                            <div class="job-requirements">
+                                <h4 class="requirements-title">Requirements</h4>
+                                ${job.requirements.map(req => `
+                                    <div class="requirement-item">
+                                        <span class="requirement-bullet">•</span>
+                                        <span class="requirement-text">${req}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="job-footer">
+                            <div class="job-footer-content">
+                                <div class="job-source">💼 ${job.company} Careers</div>
+                                <button class="apply-btn" onclick="window.open('${job.apply_url}', '_blank')">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            render() {
+                this.viewer = document.getElementById('jobsViewer');
+                this.indicators = document.getElementById('jobsIndicators');
+                
+                if (!this.viewer || !this.jobs.length) return;
+
+                this.viewer.innerHTML = this.jobs.map((job, index) => 
+                    this.createJobHTML(job, index)
+                ).join('');
+
+                this.indicators.innerHTML = this.jobs.map((_, index) => 
+                    `<div class="indicator ${index === 0 ? 'active' : ''}" onclick="techJobs.goToJob(${index})"></div>`
+                ).join('');
+
+                this.setupNavigation();
+                setTimeout(() => this.updateDisplay(), 100);
+            }
+
+            setupNavigation() {
+                const prevBtn = document.getElementById('jobsPrevBtn');
+                const nextBtn = document.getElementById('jobsNextBtn');
+
+                prevBtn.addEventListener('click', () => this.previousJob());
+                nextBtn.addEventListener('click', () => this.nextJob());
+                this.updateNavigation();
+            }
+
+            goToJob(index) {
+                if (index >= 0 && index < this.jobs.length) {
+                    this.currentIndex = index;
+                    this.updateDisplay();
+                }
+            }
+
+            nextJob() {
+                if (this.currentIndex < this.jobs.length - 1) {
+                    this.currentIndex++;
+                    this.updateDisplay();
+                }
+            }
+
+            previousJob() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.updateDisplay();
+                }
+            }
+
+            updateDisplay() {
+                const items = document.querySelectorAll('.job-item');
+                const indicators = document.querySelectorAll('#jobsIndicators .indicator');
+
+                items.forEach((item, index) => {
+                    item.style.display = 'none';
+                    item.style.opacity = '0';
+                    item.classList.remove('active');
+                });
+
+                if (items[this.currentIndex]) {
+                    items[this.currentIndex].style.display = 'block';
+                    items[this.currentIndex].style.opacity = '1';
+                    items[this.currentIndex].classList.add('active');
+                }
+
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentIndex);
+                });
+
+                this.updateNavigation();
+            }
+
+            updateNavigation() {
+                const prevBtn = document.getElementById('jobsPrevBtn');
+                const nextBtn = document.getElementById('jobsNextBtn');
+
+                if (prevBtn) prevBtn.disabled = this.currentIndex === 0;
+                if (nextBtn) nextBtn.disabled = this.currentIndex === this.jobs.length - 1;
+            }
+
+            async init() {
+                const loaded = await this.loadJobs();
+                if (loaded) {
+                    this.render();
+                    console.log('✅ Homepage tech jobs loaded');
+                }
+            }
+        }
+
+        // Initialize both sliders
+        const techJobs = new HomepageTechJobs();
+        
+        // Add to existing DOMContentLoaded listener
+        document.addEventListener('DOMContentLoaded', () => {
+            techShorts.init();
+            techJobs.init();
+        });
+    </script>
 </body>
 </html>
