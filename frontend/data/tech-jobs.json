@@ -1,107 +1,107 @@
 {
   "featuredJobs": [
     {
-      "id": "b0ad71bbda84",
+      "id": "b97eed0ba7d9",
+      "title": "Backend Engineer",
+      "company": "Salesforce",
+      "location": "New York, NY",
+      "job_type": "Hybrid",
+      "salary_range": "$127K - $177K",
+      "posted_date": "2025-09-20",
+      "description": "Join Salesforce as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=salesforce",
+      "crawled_at": "2025-09-20T16:17:36.347862"
+    },
+    {
+      "id": "97b7d872b48b",
       "title": "Data Scientist",
-      "company": "Swiggy",
-      "location": "Gurgaon, India",
-      "job_type": "Remote",
-      "salary_range": "₹8L - ₹18L",
-      "posted_date": "2025-09-12",
-      "description": "Join Swiggy as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "company": "Slack",
+      "location": "Los Angeles, CA",
+      "job_type": "Contract",
+      "salary_range": "$194K - $244K",
+      "posted_date": "2025-09-19",
+      "description": "Join Slack as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
       "requirements": [
         "3-5+ years experience in data scientist",
         "Strong problem-solving and analytical skills",
         "Experience with modern technology stack"
       ],
-      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
-      "crawled_at": "2025-09-13T17:07:48.075780"
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=slack",
+      "crawled_at": "2025-09-20T16:17:36.347756"
     },
     {
-      "id": "61e47ce46f36",
-      "title": "Mobile Developer",
-      "company": "Swiggy",
-      "location": "Pune, India",
+      "id": "71743a1e1c89",
+      "title": "Backend Engineer",
+      "company": "OpenAI",
+      "location": "Austin, TX",
       "job_type": "Remote",
-      "salary_range": "₹9L - ₹19L",
-      "posted_date": "2025-09-12",
-      "description": "Join Swiggy as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "salary_range": "$184K - $234K",
+      "posted_date": "2025-09-19",
+      "description": "Join OpenAI as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
       "requirements": [
-        "3-5+ years experience in mobile developer",
+        "3-5+ years experience in backend engineer",
         "Strong problem-solving and analytical skills",
         "Experience with modern technology stack"
       ],
-      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
-      "crawled_at": "2025-09-13T17:07:48.075788"
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=openai",
+      "crawled_at": "2025-09-20T16:17:36.347798"
     },
     {
-      "id": "178e90fad2b7",
-      "title": "Product Manager",
-      "company": "Google",
-      "location": "Boston, MA, USA",
-      "job_type": "Remote",
-      "salary_range": "$240K - $290K",
-      "posted_date": "2025-09-12",
-      "description": "Join Google as a Product Manager and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
-      "requirements": [
-        "3-5+ years experience in product manager",
-        "Strong problem-solving and analytical skills",
-        "Experience with modern technology stack"
-      ],
-      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=google",
-      "crawled_at": "2025-09-13T17:07:48.075802"
-    },
-    {
-      "id": "4bf9c5a2cf14",
-      "title": "DevOps Engineer",
-      "company": "Stripe",
-      "location": "Remote, USA",
+      "id": "8285106eeabf",
+      "title": "Full Stack Developer",
+      "company": "Oracle",
+      "location": "Boston, MA",
       "job_type": "Full-time",
-      "salary_range": "$254K - $304K",
-      "posted_date": "2025-09-11",
-      "description": "Join Stripe as a DevOps Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "salary_range": "$183K - $233K",
+      "posted_date": "2025-09-19",
+      "description": "Join Oracle as a Full Stack Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
       "requirements": [
-        "3-5+ years experience in devops engineer",
+        "3-5+ years experience in full stack developer",
         "Strong problem-solving and analytical skills",
         "Experience with modern technology stack"
       ],
-      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=stripe",
-      "crawled_at": "2025-09-13T17:07:48.075759"
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=oracle",
+      "crawled_at": "2025-09-20T16:17:36.347837"
     },
     {
-      "id": "f92aee3174b0",
-      "title": "Security Engineer",
-      "company": "PhonePe",
-      "location": "Gurgaon, India",
+      "id": "6d099665e3f9",
+      "title": "Backend Engineer",
+      "company": "Apple",
+      "location": "Los Angeles, CA",
       "job_type": "Hybrid",
-      "salary_range": "₹19L - ₹29L",
-      "posted_date": "2025-09-11",
-      "description": "Join PhonePe as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "salary_range": "$175K - $225K",
+      "posted_date": "2025-09-18",
+      "description": "Join Apple as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=apple",
+      "crawled_at": "2025-09-20T16:17:36.347776"
+    },
+    {
+      "id": "116480d4554d",
+      "title": "Security Engineer",
+      "company": "Microsoft",
+      "location": "Chicago, IL",
+      "job_type": "Hybrid",
+      "salary_range": "$127K - $177K",
+      "posted_date": "2025-09-18",
+      "description": "Join Microsoft as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
       "requirements": [
         "3-5+ years experience in security engineer",
         "Strong problem-solving and analytical skills",
         "Experience with modern technology stack"
       ],
-      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=phonepe",
-      "crawled_at": "2025-09-13T17:07:48.075815"
-    },
-    {
-      "id": "db1b3d9807ac",
-      "title": "Mobile Developer",
-      "company": "Tesla",
-      "location": "Seattle, WA, USA",
-      "job_type": "Contract",
-      "salary_range": "$170K - $220K",
-      "posted_date": "2025-09-11",
-      "description": "Join Tesla as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
-      "requirements": [
-        "3-5+ years experience in mobile developer",
-        "Strong problem-solving and analytical skills",
-        "Experience with modern technology stack"
-      ],
-      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tesla",
-      "crawled_at": "2025-09-13T17:07:48.075836"
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=microsoft",
+      "crawled_at": "2025-09-20T16:17:36.347806"
     }
   ],
-  "lastUpdated": "2025-09-13T17:07:48.076430"
+  "lastUpdated": "2025-09-20T16:17:36.348860"
 }

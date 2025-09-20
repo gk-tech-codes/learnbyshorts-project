@@ -38,8 +38,8 @@ class TechJobsCrawler:
     
     def generate_sample_jobs(self):
         """Generate sample tech jobs data"""
-        # US Companies
-        us_companies = [
+        # US Companies Only
+        companies = [
             {"name": "Google", "url": "https://www.linkedin.com/jobs/search/?keywords=google", "country": "USA"},
             {"name": "Microsoft", "url": "https://www.linkedin.com/jobs/search/?keywords=microsoft", "country": "USA"},
             {"name": "Apple", "url": "https://www.linkedin.com/jobs/search/?keywords=apple", "country": "USA"},
@@ -49,24 +49,13 @@ class TechJobsCrawler:
             {"name": "OpenAI", "url": "https://www.linkedin.com/jobs/search/?keywords=openai", "country": "USA"},
             {"name": "Stripe", "url": "https://www.linkedin.com/jobs/search/?keywords=stripe", "country": "USA"},
             {"name": "Airbnb", "url": "https://www.linkedin.com/jobs/search/?keywords=airbnb", "country": "USA"},
-            {"name": "Uber", "url": "https://www.linkedin.com/jobs/search/?keywords=uber", "country": "USA"}
+            {"name": "Uber", "url": "https://www.linkedin.com/jobs/search/?keywords=uber", "country": "USA"},
+            {"name": "Netflix", "url": "https://www.linkedin.com/jobs/search/?keywords=netflix", "country": "USA"},
+            {"name": "Spotify", "url": "https://www.linkedin.com/jobs/search/?keywords=spotify", "country": "USA"},
+            {"name": "Slack", "url": "https://www.linkedin.com/jobs/search/?keywords=slack", "country": "USA"},
+            {"name": "Salesforce", "url": "https://www.linkedin.com/jobs/search/?keywords=salesforce", "country": "USA"},
+            {"name": "Oracle", "url": "https://www.linkedin.com/jobs/search/?keywords=oracle", "country": "USA"}
         ]
-        
-        # Indian Companies
-        indian_companies = [
-            {"name": "Infosys", "url": "https://www.linkedin.com/jobs/search/?keywords=infosys", "country": "India"},
-            {"name": "TCS", "url": "https://www.linkedin.com/jobs/search/?keywords=tcs", "country": "India"},
-            {"name": "Wipro", "url": "https://www.linkedin.com/jobs/search/?keywords=wipro", "country": "India"},
-            {"name": "Flipkart", "url": "https://www.linkedin.com/jobs/search/?keywords=flipkart", "country": "India"},
-            {"name": "Zomato", "url": "https://www.linkedin.com/jobs/search/?keywords=zomato", "country": "India"},
-            {"name": "Paytm", "url": "https://www.linkedin.com/jobs/search/?keywords=paytm", "country": "India"},
-            {"name": "Swiggy", "url": "https://www.linkedin.com/jobs/search/?keywords=swiggy", "country": "India"},
-            {"name": "BYJU'S", "url": "https://www.linkedin.com/jobs/search/?keywords=byjus", "country": "India"},
-            {"name": "Ola", "url": "https://www.linkedin.com/jobs/search/?keywords=ola", "country": "India"},
-            {"name": "PhonePe", "url": "https://www.linkedin.com/jobs/search/?keywords=phonepe", "country": "India"}
-        ]
-        
-        companies = us_companies + indian_companies
         
         positions = [
             "Senior Software Engineer", "Frontend Developer", "Backend Engineer",
@@ -76,13 +65,9 @@ class TechJobsCrawler:
         ]
         
         us_locations = [
-            "San Francisco, CA, USA", "Seattle, WA, USA", "New York, NY, USA", 
-            "Austin, TX, USA", "Boston, MA, USA", "Remote, USA"
-        ]
-        
-        indian_locations = [
-            "Bangalore, India", "Hyderabad, India", "Pune, India", 
-            "Chennai, India", "Mumbai, India", "Gurgaon, India", "Noida, India"
+            "San Francisco, CA", "Seattle, WA", "New York, NY", 
+            "Austin, TX", "Boston, MA", "Remote", "Los Angeles, CA",
+            "Chicago, IL", "Denver, CO", "Atlanta, GA"
         ]
         
         job_types = ["Full-time", "Contract", "Remote", "Hybrid"]
@@ -98,21 +83,13 @@ class TechJobsCrawler:
             company = random.choice(companies)
             company_name = company["name"]
             company_url = company["url"]
-            company_country = company["country"]
             position = random.choice(positions)
             job_type = random.choice(job_types)
+            location = random.choice(us_locations)
             
-            # Choose location based on company country
-            if company_country == "India":
-                location = random.choice(indian_locations)
-                # Indian salary ranges (in Lakhs)
-                base_salary = random.randint(8, 40)
-                salary_range = f"₹{base_salary}L - ₹{base_salary + 10}L"
-            else:
-                location = random.choice(us_locations)
-                # US salary ranges (in thousands)
-                base_salary = random.randint(120, 300)
-                salary_range = f"${base_salary}K - ${base_salary + 50}K"
+            # US salary ranges only (in thousands)
+            base_salary = random.randint(120, 300)
+            salary_range = f"${base_salary}K - ${base_salary + 50}K"
             
             job = {
                 "id": hashlib.md5(f"{company_name}_{position}_{i}".encode()).hexdigest()[:12],

@@ -1,76 +1,176 @@
 {
   "featuredShorts": [
     {
-      "id": "short_7e14b3dd2c6e",
-      "title": "🤖 AI Update: California lawmakers pass AI safety bill SB 53",
+      "id": "short_5cac2a0b405d",
+      "title": "\ud83e\udd16 AI Update: Updates to Studio, YouTube Live, new gen AI tools,...",
       "category": "AI",
       "readTime": "2-3 min",
       "imageTemplate": {
         "type": "gradient",
-        "colors": ["#667eea", "#764ba2"],
-        "icon": "🤖"
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
       },
-      "preview": "The state's landmark safety bill sets new transparency requirements for large AI companies...",
-      "sourceUrl": "https://techcrunch.com/2025/09/13/california-lawmakers-pass-ai-safety-bill-sb-53-but-newsom-could-still-veto/",
+      "preview": "Updates to Studio, YouTube Live, new gen AI tools, and everything else announced at Made on YouTube...",
+      "sourceUrl": "https://techcrunch.com/2025/09/20/updates-to-studio-youtube-live-new-gen-ai-tools-and-everything-else-announced-at-made-on-youtube/",
       "sourceName": "TechCrunch AI"
     },
     {
-      "id": "short_0485b11ace5e",
-      "title": "🤖 AI Update: xAI reportedly lays off 500 workers from data annotation team",
+      "id": "short_bec3a60b19b4",
+      "title": "\ud83d\udcf1 Tech News: Lincoln Center\u2019s Collider Fellows explore how tech...",
       "category": "AI",
       "readTime": "2-3 min",
       "imageTemplate": {
         "type": "gradient",
-        "colors": ["#667eea", "#764ba2"],
-        "icon": "🤖"
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
       },
-      "preview": "Elon Musk's AI startup says it's shifting focus from generalist AI tutors to specialists...",
-      "sourceUrl": "https://techcrunch.com/2025/09/13/xai-reportedly-lays-off-500-workers-from-data-annotation-team/",
+      "preview": "Lincoln Center\u2019s Collider Fellows explore how tech could transform the performing arts...",
+      "sourceUrl": "https://techcrunch.com/2025/09/20/lincoln-centers-collider-fellows-explore-how-tech-could-transform-the-performing-arts/",
       "sourceName": "TechCrunch AI"
     },
     {
-      "id": "short_d6effab1fb16",
-      "title": "💰 Startup News: Why the Oracle-OpenAI deal caught Wall Street by surprise",
+      "id": "short_6f622882d309",
+      "title": "\ud83d\udcf1 Tech News: Only 7 days left to save on TechCrunch Disrupt 202...",
       "category": "AI",
       "readTime": "2-3 min",
       "imageTemplate": {
         "type": "gradient",
-        "colors": ["#667eea", "#764ba2"],
-        "icon": "🤖"
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
       },
-      "preview": "The $300B deal is a reminder that despite Oracle's legacy status, it shouldn't be overlooked...",
-      "sourceUrl": "https://techcrunch.com/2025/09/12/why-the-oracle-openai-deal-caught-wall-street-by-surprise/",
+      "preview": "Only 7 days left to save on TechCrunch Disrupt 2025 tickets \u2014 lock in Regular Bird pricing now...",
+      "sourceUrl": "https://techcrunch.com/2025/09/20/only-7-days-left-to-save-on-techcrunch-disrupt-2025-tickets-lock-in-regular-bird-pricing-now/",
       "sourceName": "TechCrunch AI"
     },
     {
-      "id": "short_372da010122a",
-      "title": "🤖 AI Update: Google is a 'bad actor' says People CEO",
+      "id": "short_d5de728f1847",
+      "title": "\ud83e\udd16 AI Update: Why California\u2019s SB 53 might provide a meaningful ...",
       "category": "AI",
       "readTime": "2-3 min",
       "imageTemplate": {
         "type": "gradient",
-        "colors": ["#667eea", "#764ba2"],
-        "icon": "🤖"
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
       },
-      "preview": "People CEO Neil Vogel says Google's AI crawler can't be blocked because it would block the web...",
-      "sourceUrl": "https://techcrunch.com/2025/09/12/google-is-a-bad-actor-says-people-ceo-accusing-the-company-of-stealing-content/",
+      "preview": "Why California\u2019s SB 53 might provide a meaningful check on big AI companies...",
+      "sourceUrl": "https://techcrunch.com/2025/09/19/why-californias-sb-53-might-provide-a-meaningful-check-on-big-ai-companies/",
       "sourceName": "TechCrunch AI"
     },
     {
-      "id": "short_8f2a1b3c4d5e",
-      "title": "📱 Tech News: The future of quantum computing breakthroughs",
-      "category": "Tech",
+      "id": "short_7d0e8f769793",
+      "title": "\ud83d\udcf1 Tech News: Cracking product-market fit: Lessons from founders...",
+      "category": "AI",
       "readTime": "2-3 min",
       "imageTemplate": {
         "type": "gradient",
-        "colors": ["#fa709a", "#fee140"],
-        "icon": "💻"
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
       },
-      "preview": "Latest developments in quantum computing are reshaping how we think about computational power...",
-      "sourceUrl": "https://www.technologyreview.com/quantum-computing",
-      "sourceName": "MIT Technology Review"
+      "preview": "Cracking product-market fit: Lessons from founders and investors at TechCrunch Disrupt 2025...",
+      "sourceUrl": "https://techcrunch.com/2025/09/19/crack-the-code-to-startup-traction-with-insights-from-chef-robotics-nea-and-iconiq-at-techcrunch-disrupt-2025/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_c762ecbf1fab",
+      "title": "\ud83e\udd16 AI Update: Meta\u2019s AR ambitions meet reality, and California g...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Meta\u2019s AR ambitions meet reality, and California gets serious about AI safety\u00a0\u2026 again...",
+      "sourceUrl": "https://techcrunch.com/video/metas-ar-ambitions-meet-reality-and-california-gets-serious-about-ai-safetyagain/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_547b232806c3",
+      "title": "\ud83e\udd16 AI Update: Live demo fails, AI safety wins, and the golden ag...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Live demo fails, AI safety wins, and the golden age of robotics...",
+      "sourceUrl": "https://techcrunch.com/podcast/live-demo-fails-ai-safety-wins-and-the-golden-age-of-robotics/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_dad8c4c4b8ac",
+      "title": "\ud83d\udcf1 Tech News: Final hours to apply: Be the life of TechCrunch Di...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Final hours to apply: Be the life of TechCrunch Disrupt 2025 by hosting your own Side Event...",
+      "sourceUrl": "https://techcrunch.com/2025/09/19/final-hours-be-the-life-of-techcrunch-disrupt-2025-by-hosting-your-own-side-event/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_cdc1d8266fe7",
+      "title": "\ud83d\udcf1 Tech News: Meta Ray-Ban Display and everything else unveiled ...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Meta Ray-Ban Display and everything else unveiled at Meta Connect 2025...",
+      "sourceUrl": "https://techcrunch.com/2025/09/19/meta-connect-2025-what-to-expect-and-how-to-watch/",
+      "sourceName": "TechCrunch AI"
+    },
+    {
+      "id": "short_9608523f43b8",
+      "title": "\ud83e\udd16 AI Update: Octopus Energy spins off its Kraken utility billin...",
+      "category": "AI",
+      "readTime": "2-3 min",
+      "imageTemplate": {
+        "type": "gradient",
+        "colors": [
+          "#667eea",
+          "#764ba2"
+        ],
+        "icon": "\ud83e\udd16"
+      },
+      "preview": "Octopus Energy spins off its Kraken utility billing and AI platform...",
+      "sourceUrl": "https://techcrunch.com/2025/09/19/octopus-energy-spins-off-its-kraken-utility-billing-and-ai-platform/",
+      "sourceName": "TechCrunch AI"
     }
   ],
-  "lastUpdated": "2025-09-13T14:41:00.000Z",
-  "totalShorts": 31
+  "lastUpdated": "2025-09-20T16:09:52.002944",
+  "totalShorts": 30
 }

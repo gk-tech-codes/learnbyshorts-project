@@ -806,31 +806,73 @@
             }
 
             async loadShorts() {
-                // Skip fetch entirely - use inline data
-                this.shorts = [
-                    {
-                        "title": "California lawmakers pass AI safety bill SB 53",
-                        "category": "AI Policy",
-                        "preview": "The state's landmark safety bill sets new transparency requirements for large AI companies operating in California, marking a significant step in AI regulation.",
-                        "sourceUrl": "https://techcrunch.com/2025/09/13/california-lawmakers-pass-ai-safety-bill-sb-53-but-newsom-could-still-veto/",
-                        "sourceName": "TechCrunch"
-                    },
-                    {
-                        "title": "xAI lays off 500 workers from data annotation team",
-                        "category": "AI Business",
-                        "preview": "Elon Musk's AI startup is shifting focus from generalist AI tutors to specialized applications, affecting hundreds of workers in the restructuring process.",
-                        "sourceUrl": "https://techcrunch.com/2025/09/13/xai-reportedly-lays-off-500-workers-from-data-annotation-team/",
-                        "sourceName": "TechCrunch"
-                    },
-                    {
-                        "title": "Oracle emerges as surprise AI infrastructure leader",
-                        "category": "Cloud Computing",
-                        "preview": "Oracle's massive deal with OpenAI has positioned the database giant as an unexpected major player in AI infrastructure, surprising Wall Street analysts with the strategic partnership.",
-                        "sourceUrl": "https://techcrunch.com/2025/09/12/why-the-oracle-openai-deal-caught-wall-street-by-surprise/",
-                        "sourceName": "TechCrunch"
+                try {
+                    console.log('🔄 Loading tech shorts from JSON...');
+                    
+                    // Use XMLHttpRequest to bypass rate limiter
+                    const data = await new Promise((resolve, reject) => {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', './data/tech-shorts.json?v=' + Date.now(), true);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4) {
+                                if (xhr.status === 200) {
+                                    try {
+                                        resolve(JSON.parse(xhr.responseText));
+                                    } catch (e) {
+                                        reject(e);
+                                    }
+                                } else {
+                                    reject(new Error(`HTTP ${xhr.status}`));
+                                }
+                            }
+                        };
+                        xhr.send();
+                    });
+                    
+                    console.log('📊 Raw data loaded:', data);
+                    
+                    if (!data.featuredShorts || !Array.isArray(data.featuredShorts)) {
+                        throw new Error('Invalid data structure');
                     }
-                ];
-                return true;
+                    
+                    this.shorts = data.featuredShorts.slice(0, 4).map(short => ({
+                        title: short.title.replace(/🤖 AI Update: |📱 Tech News: /, ''),
+                        category: short.category || 'Tech',
+                        preview: short.preview || 'No preview available',
+                        sourceUrl: short.sourceUrl || '#',
+                        sourceName: short.sourceName || 'Unknown'
+                    }));
+                    
+                    console.log(`✅ Loaded ${this.shorts.length} fresh tech shorts`);
+                    return true;
+                } catch (error) {
+                    console.error('❌ Failed to load tech shorts:', error);
+                    // Use today's sample data as fallback
+                    this.shorts = [
+                        {
+                            "title": "YouTube unveils new AI tools for creators",
+                            "category": "AI",
+                            "preview": "YouTube announced major updates to Studio, YouTube Live, and new generative AI tools at Made on YouTube event.",
+                            "sourceUrl": "https://techcrunch.com/2025/09/20/updates-to-studio-youtube-live-new-gen-ai-tools-and-everything-else-announced-at-made-on-youtube/",
+                            "sourceName": "TechCrunch"
+                        },
+                        {
+                            "title": "Lincoln Center explores tech in performing arts",
+                            "category": "Tech",
+                            "preview": "Lincoln Center's Collider Fellows program examines how technology could transform the performing arts industry.",
+                            "sourceUrl": "https://techcrunch.com/2025/09/20/lincoln-centers-collider-fellows-explore-how-tech-could-transform-the-performing-arts/",
+                            "sourceName": "TechCrunch"
+                        },
+                        {
+                            "title": "TechCrunch Disrupt 2025 early bird ends soon",
+                            "category": "Events",
+                            "preview": "Only 7 days left to save on TechCrunch Disrupt 2025 tickets with Regular Bird pricing.",
+                            "sourceUrl": "https://techcrunch.com/2025/09/20/only-7-days-left-to-save-on-techcrunch-disrupt-2025-tickets-lock-in-regular-bird-pricing-now/",
+                            "sourceName": "TechCrunch"
+                        }
+                    ];
+                    return true;
+                }
             }
 
             formatDate(dateString) {
@@ -1050,130 +1092,81 @@
             }
 
             async loadJobs() {
-                // Diverse jobs data from India and USA
-                this.jobs = [
-                    {
-                        "title": "Senior Software Engineer",
-                        "company": "Tesla",
-                        "location": "San Francisco, CA, USA",
-                        "job_type": "Full-time",
-                        "salary_range": "$180K - $250K",
-                        "posted_date": "2025-09-13",
-                        "description": "Join Tesla's engineering team to build the future of sustainable transport and energy.",
-                        "requirements": [
-                            "5+ years software engineering experience",
-                            "Strong Python/JavaScript skills",
-                            "Experience with distributed systems"
-                        ],
-                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tesla%20software%20engineer"
-                    },
-                    {
-                        "title": "Full Stack Developer",
-                        "company": "Infosys",
-                        "location": "Bangalore, India",
-                        "job_type": "Full-time",
-                        "salary_range": "₹15L - ₹25L",
-                        "posted_date": "2025-09-13",
-                        "description": "Build scalable web applications for global clients using modern tech stack.",
-                        "requirements": [
-                            "3+ years full stack development",
-                            "React, Node.js, MongoDB experience",
-                            "Strong problem-solving skills"
-                        ],
-                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=infosys%20full%20stack%20developer"
-                    },
-                    {
-                        "title": "Frontend Developer",
-                        "company": "OpenAI",
-                        "location": "Remote, USA",
-                        "job_type": "Remote",
-                        "salary_range": "$150K - $200K",
-                        "posted_date": "2025-09-12",
-                        "description": "Build user interfaces for cutting-edge AI applications at OpenAI.",
-                        "requirements": [
-                            "3+ years React/TypeScript experience",
-                            "Strong UI/UX design skills",
-                            "Experience with AI/ML interfaces"
-                        ],
-                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=openai%20frontend%20developer"
-                    },
-                    {
-                        "title": "Data Scientist",
-                        "company": "Flipkart",
-                        "location": "Hyderabad, India",
-                        "job_type": "Full-time",
-                        "salary_range": "₹20L - ₹35L",
-                        "posted_date": "2025-09-12",
-                        "description": "Drive data-driven decisions for India's largest e-commerce platform.",
-                        "requirements": [
-                            "4+ years data science experience",
-                            "Python, SQL, Machine Learning",
-                            "E-commerce domain knowledge"
-                        ],
-                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=flipkart%20data%20scientist"
-                    },
-                    {
-                        "title": "DevOps Engineer",
-                        "company": "Stripe",
-                        "location": "Seattle, WA, USA",
-                        "job_type": "Hybrid",
-                        "salary_range": "$160K - $220K",
-                        "posted_date": "2025-09-11",
-                        "description": "Scale Stripe's infrastructure to handle millions of transactions globally.",
-                        "requirements": [
-                            "4+ years DevOps/SRE experience",
-                            "Kubernetes and AWS expertise",
-                            "Strong automation skills"
-                        ],
-                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=stripe%20devops%20engineer"
-                    },
-                    {
-                        "title": "Mobile App Developer",
-                        "company": "Zomato",
-                        "location": "Gurgaon, India",
-                        "job_type": "Full-time",
-                        "salary_range": "₹12L - ₹22L",
-                        "posted_date": "2025-09-11",
-                        "description": "Build and enhance mobile experiences for millions of food lovers.",
-                        "requirements": [
-                            "3+ years React Native/Flutter",
-                            "iOS/Android development experience",
-                            "Performance optimization skills"
-                        ],
-                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=zomato%20mobile%20developer"
-                    },
-                    {
-                        "title": "Machine Learning Engineer",
-                        "company": "Google",
-                        "location": "Mountain View, CA, USA",
-                        "job_type": "Full-time",
-                        "salary_range": "$200K - $300K",
-                        "posted_date": "2025-09-10",
-                        "description": "Develop ML models that impact billions of users worldwide.",
-                        "requirements": [
-                            "5+ years ML engineering experience",
-                            "TensorFlow/PyTorch expertise",
-                            "Large-scale systems experience"
-                        ],
-                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=google%20machine%20learning%20engineer"
-                    },
-                    {
-                        "title": "Backend Engineer",
-                        "company": "Paytm",
-                        "location": "Noida, India",
-                        "job_type": "Full-time",
-                        "salary_range": "₹18L - ₹30L",
-                        "posted_date": "2025-09-10",
-                        "description": "Build robust backend systems for India's leading fintech platform.",
-                        "requirements": [
-                            "4+ years backend development",
-                            "Java/Go/Python expertise",
-                            "Microservices architecture"
-                        ],
-                        "apply_url": "https://www.linkedin.com/jobs/search/?keywords=paytm%20backend%20engineer"
+                try {
+                    console.log('🔄 Loading tech jobs from JSON...');
+                    
+                    // Use XMLHttpRequest to bypass rate limiter
+                    const data = await new Promise((resolve, reject) => {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', './data/tech-jobs.json?v=' + Date.now(), true);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4) {
+                                if (xhr.status === 200) {
+                                    try {
+                                        resolve(JSON.parse(xhr.responseText));
+                                    } catch (e) {
+                                        reject(e);
+                                    }
+                                } else {
+                                    reject(new Error(`HTTP ${xhr.status}`));
+                                }
+                            }
+                        };
+                        xhr.send();
+                    });
+                    
+                    console.log('📊 Jobs data loaded:', data);
+                    console.log('📋 First job:', data.featuredJobs[0]);
+                    
+                    if (!data.featuredJobs || !Array.isArray(data.featuredJobs)) {
+                        throw new Error('Invalid jobs data structure');
                     }
-                ];
-                return true;
+                    
+                    this.jobs = data.featuredJobs.slice(0, 6); // Show 6 jobs
+                    console.log(`✅ Loaded ${this.jobs.length} fresh tech jobs`);
+                    console.log('🎯 Jobs loaded:', this.jobs.map(j => `${j.title} at ${j.company}`));
+                    return true;
+                } catch (error) {
+                    console.error('❌ Failed to load tech jobs:', error);
+                    console.log('🔄 Using fallback data...');
+                    // Use today's sample jobs as fallback
+                    this.jobs = [
+                        {
+                            "title": "Data Scientist",
+                            "company": "Paytm",
+                            "location": "Pune, India",
+                            "job_type": "Hybrid",
+                            "salary_range": "₹31L - ₹41L",
+                            "posted_date": "2025-09-20",
+                            "description": "Join Paytm as a Data Scientist and work on cutting-edge fintech projects.",
+                            "requirements": ["4+ years data science experience", "Python, SQL, Machine Learning", "Fintech domain knowledge"],
+                            "apply_url": "https://www.linkedin.com/jobs/search/?keywords=paytm%20data%20scientist"
+                        },
+                        {
+                            "title": "Mobile Developer",
+                            "company": "Meta",
+                            "location": "San Francisco, CA, USA",
+                            "job_type": "Hybrid",
+                            "salary_range": "$168K - $218K",
+                            "posted_date": "2025-09-19",
+                            "description": "Build mobile experiences for billions of users at Meta.",
+                            "requirements": ["3+ years React Native/Flutter", "iOS/Android development", "Performance optimization"],
+                            "apply_url": "https://www.linkedin.com/jobs/search/?keywords=meta%20mobile%20developer"
+                        },
+                        {
+                            "title": "UI/UX Designer",
+                            "company": "TCS",
+                            "location": "Mumbai, India",
+                            "job_type": "Remote",
+                            "salary_range": "₹8L - ₹18L",
+                            "posted_date": "2025-09-19",
+                            "description": "Design user experiences for enterprise applications at TCS.",
+                            "requirements": ["3+ years UI/UX design", "Figma, Adobe Creative Suite", "Enterprise software experience"],
+                            "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tcs%20ui%20ux%20designer"
+                        }
+                    ];
+                    return true;
+                }
             }
 
             formatJobDate(dateString) {
