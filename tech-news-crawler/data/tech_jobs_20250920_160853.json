@@ -1,0 +1,210 @@
+{
+  "last_updated": "2025-09-20T16:08:53.004932",
+  "total_jobs": 12,
+  "jobs": [
+    {
+      "id": "19c490bd8946",
+      "title": "Data Scientist",
+      "company": "Paytm",
+      "location": "Pune, India",
+      "job_type": "Hybrid",
+      "salary_range": "₹31L - ₹41L",
+      "posted_date": "2025-09-20",
+      "description": "Join Paytm as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in data scientist",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=paytm",
+      "crawled_at": "2025-09-20T16:08:53.004788"
+    },
+    {
+      "id": "1fd9433d0524",
+      "title": "Mobile Developer",
+      "company": "Meta",
+      "location": "San Francisco, CA, USA",
+      "job_type": "Hybrid",
+      "salary_range": "$168K - $218K",
+      "posted_date": "2025-09-19",
+      "description": "Join Meta as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in mobile developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=meta",
+      "crawled_at": "2025-09-20T16:08:53.004859"
+    },
+    {
+      "id": "e6ac984d1c7a",
+      "title": "UI/UX Designer",
+      "company": "TCS",
+      "location": "Mumbai, India",
+      "job_type": "Remote",
+      "salary_range": "₹8L - ₹18L",
+      "posted_date": "2025-09-19",
+      "description": "Join TCS as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tcs",
+      "crawled_at": "2025-09-20T16:08:53.004883"
+    },
+    {
+      "id": "81f25c4b2f4b",
+      "title": "Cloud Architect",
+      "company": "Stripe",
+      "location": "Boston, MA, USA",
+      "job_type": "Full-time",
+      "salary_range": "$291K - $341K",
+      "posted_date": "2025-09-18",
+      "description": "Join Stripe as a Cloud Architect and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in cloud architect",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=stripe",
+      "crawled_at": "2025-09-20T16:08:53.004760"
+    },
+    {
+      "id": "53651250c65e",
+      "title": "Product Manager",
+      "company": "Infosys",
+      "location": "Bangalore, India",
+      "job_type": "Hybrid",
+      "salary_range": "₹39L - ₹49L",
+      "posted_date": "2025-09-18",
+      "description": "Join Infosys as a Product Manager and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in product manager",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=infosys",
+      "crawled_at": "2025-09-20T16:08:53.004824"
+    },
+    {
+      "id": "882ebd36fb36",
+      "title": "UI/UX Designer",
+      "company": "Amazon",
+      "location": "Remote, USA",
+      "job_type": "Remote",
+      "salary_range": "$281K - $331K",
+      "posted_date": "2025-09-18",
+      "description": "Join Amazon as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=amazon",
+      "crawled_at": "2025-09-20T16:08:53.004841"
+    },
+    {
+      "id": "71d844df07d9",
+      "title": "Machine Learning Engineer",
+      "company": "Stripe",
+      "location": "Boston, MA, USA",
+      "job_type": "Full-time",
+      "salary_range": "$253K - $303K",
+      "posted_date": "2025-09-17",
+      "description": "Join Stripe as a Machine Learning Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in machine learning engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=stripe",
+      "crawled_at": "2025-09-20T16:08:53.004815"
+    },
+    {
+      "id": "44f3d80ccea0",
+      "title": "Product Manager",
+      "company": "Swiggy",
+      "location": "Gurgaon, India",
+      "job_type": "Contract",
+      "salary_range": "₹30L - ₹40L",
+      "posted_date": "2025-09-17",
+      "description": "Join Swiggy as a Product Manager and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in product manager",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
+      "crawled_at": "2025-09-20T16:08:53.004875"
+    },
+    {
+      "id": "f6ae702c8b4b",
+      "title": "Machine Learning Engineer",
+      "company": "Meta",
+      "location": "Seattle, WA, USA",
+      "job_type": "Contract",
+      "salary_range": "$295K - $345K",
+      "posted_date": "2025-09-16",
+      "description": "Join Meta as a Machine Learning Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in machine learning engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=meta",
+      "crawled_at": "2025-09-20T16:08:53.004803"
+    },
+    {
+      "id": "883fb15e5c19",
+      "title": "Security Engineer",
+      "company": "Uber",
+      "location": "Remote, USA",
+      "job_type": "Contract",
+      "salary_range": "$292K - $342K",
+      "posted_date": "2025-09-16",
+      "description": "Join Uber as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in security engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=uber",
+      "crawled_at": "2025-09-20T16:08:53.004833"
+    },
+    {
+      "id": "8de7e393c7e1",
+      "title": "Security Engineer",
+      "company": "OpenAI",
+      "location": "Remote, USA",
+      "job_type": "Remote",
+      "salary_range": "$158K - $208K",
+      "posted_date": "2025-09-16",
+      "description": "Join OpenAI as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in security engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=openai",
+      "crawled_at": "2025-09-20T16:08:53.004849"
+    },
+    {
+      "id": "0c05c52bc1c9",
+      "title": "Cloud Architect",
+      "company": "Zomato",
+      "location": "Mumbai, India",
+      "job_type": "Hybrid",
+      "salary_range": "₹32L - ₹42L",
+      "posted_date": "2025-09-16",
+      "description": "Join Zomato as a Cloud Architect and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in cloud architect",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=zomato",
+      "crawled_at": "2025-09-20T16:08:53.004867"
+    }
+  ]
+}

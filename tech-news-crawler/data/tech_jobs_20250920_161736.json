@@ -1,0 +1,210 @@
+{
+  "last_updated": "2025-09-20T16:17:36.347902",
+  "total_jobs": 12,
+  "jobs": [
+    {
+      "id": "b97eed0ba7d9",
+      "title": "Backend Engineer",
+      "company": "Salesforce",
+      "location": "New York, NY",
+      "job_type": "Hybrid",
+      "salary_range": "$127K - $177K",
+      "posted_date": "2025-09-20",
+      "description": "Join Salesforce as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=salesforce",
+      "crawled_at": "2025-09-20T16:17:36.347862"
+    },
+    {
+      "id": "97b7d872b48b",
+      "title": "Data Scientist",
+      "company": "Slack",
+      "location": "Los Angeles, CA",
+      "job_type": "Contract",
+      "salary_range": "$194K - $244K",
+      "posted_date": "2025-09-19",
+      "description": "Join Slack as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in data scientist",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=slack",
+      "crawled_at": "2025-09-20T16:17:36.347756"
+    },
+    {
+      "id": "71743a1e1c89",
+      "title": "Backend Engineer",
+      "company": "OpenAI",
+      "location": "Austin, TX",
+      "job_type": "Remote",
+      "salary_range": "$184K - $234K",
+      "posted_date": "2025-09-19",
+      "description": "Join OpenAI as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=openai",
+      "crawled_at": "2025-09-20T16:17:36.347798"
+    },
+    {
+      "id": "8285106eeabf",
+      "title": "Full Stack Developer",
+      "company": "Oracle",
+      "location": "Boston, MA",
+      "job_type": "Full-time",
+      "salary_range": "$183K - $233K",
+      "posted_date": "2025-09-19",
+      "description": "Join Oracle as a Full Stack Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in full stack developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=oracle",
+      "crawled_at": "2025-09-20T16:17:36.347837"
+    },
+    {
+      "id": "6d099665e3f9",
+      "title": "Backend Engineer",
+      "company": "Apple",
+      "location": "Los Angeles, CA",
+      "job_type": "Hybrid",
+      "salary_range": "$175K - $225K",
+      "posted_date": "2025-09-18",
+      "description": "Join Apple as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=apple",
+      "crawled_at": "2025-09-20T16:17:36.347776"
+    },
+    {
+      "id": "116480d4554d",
+      "title": "Security Engineer",
+      "company": "Microsoft",
+      "location": "Chicago, IL",
+      "job_type": "Hybrid",
+      "salary_range": "$127K - $177K",
+      "posted_date": "2025-09-18",
+      "description": "Join Microsoft as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in security engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=microsoft",
+      "crawled_at": "2025-09-20T16:17:36.347806"
+    },
+    {
+      "id": "f0743e3d9f50",
+      "title": "UI/UX Designer",
+      "company": "Amazon",
+      "location": "Seattle, WA",
+      "job_type": "Hybrid",
+      "salary_range": "$137K - $187K",
+      "posted_date": "2025-09-18",
+      "description": "Join Amazon as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=amazon",
+      "crawled_at": "2025-09-20T16:17:36.347814"
+    },
+    {
+      "id": "f5c5256aad82",
+      "title": "Frontend Developer",
+      "company": "Apple",
+      "location": "Atlanta, GA",
+      "job_type": "Hybrid",
+      "salary_range": "$247K - $297K",
+      "posted_date": "2025-09-18",
+      "description": "Join Apple as a Frontend Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in frontend developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=apple",
+      "crawled_at": "2025-09-20T16:17:36.347854"
+    },
+    {
+      "id": "0e023e1d27e4",
+      "title": "Machine Learning Engineer",
+      "company": "Oracle",
+      "location": "Denver, CO",
+      "job_type": "Full-time",
+      "salary_range": "$130K - $180K",
+      "posted_date": "2025-09-17",
+      "description": "Join Oracle as a Machine Learning Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in machine learning engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=oracle",
+      "crawled_at": "2025-09-20T16:17:36.347789"
+    },
+    {
+      "id": "71db357576c3",
+      "title": "Data Scientist",
+      "company": "Salesforce",
+      "location": "Austin, TX",
+      "job_type": "Hybrid",
+      "salary_range": "$273K - $323K",
+      "posted_date": "2025-09-16",
+      "description": "Join Salesforce as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in data scientist",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=salesforce",
+      "crawled_at": "2025-09-20T16:17:36.347822"
+    },
+    {
+      "id": "764a78bb667f",
+      "title": "UI/UX Designer",
+      "company": "Google",
+      "location": "Los Angeles, CA",
+      "job_type": "Hybrid",
+      "salary_range": "$221K - $271K",
+      "posted_date": "2025-09-16",
+      "description": "Join Google as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=google",
+      "crawled_at": "2025-09-20T16:17:36.347830"
+    },
+    {
+      "id": "1c7fafa3a22f",
+      "title": "Senior Software Engineer",
+      "company": "Apple",
+      "location": "Remote",
+      "job_type": "Remote",
+      "salary_range": "$134K - $184K",
+      "posted_date": "2025-09-16",
+      "description": "Join Apple as a Senior Software Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in senior software engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=apple",
+      "crawled_at": "2025-09-20T16:17:36.347847"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "topicId": "oop-java-topic-1",
+  "title": "Maya's Onboarding Challenge: Understanding Objects and Classes",
+  "description": "Learn fundamental OOP concepts through Maya's experience onboarding Alex to the team's codebase",
+  "difficulty": "Beginner",
+  "duration": "60-75 min",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "The Codebase Tour",
+      "content": {
+        "story": "\"Welcome to FinTech Solutions, Alex!\" Maya Chen smiled as she pulled up a chair next to the new junior developer. \"I know your first day can be overwhelming, but I'm here to help you understand our payment processing system.\"\n\nAlex Rodriguez looked at the screen filled with Java code, feeling a bit intimidated. \"Thanks, Maya. I learned basic Java syntax in bootcamp, but this looks... complex.\"\n\n\"Don't worry,\" Maya laughed. \"It looks complex because it's built using object-oriented programming. Think of it like this - instead of writing one giant program, we break everything into smaller, manageable pieces called classes. Each class is like a blueprint for creating objects.\"\n\nMaya opened the PaymentProcessor.java file. \"See this? This is a class - it's like a template that defines what a payment processor should look like and what it can do.\"\n\n```java\npublic class PaymentProcessor {\n    private String processorId;\n    private String bankName;\n    private boolean isActive;\n    \n    public void processPayment(double amount) {\n        // Payment processing logic\n    }\n    \n    public boolean validateCard(String cardNumber) {\n        // Card validation logic\n        return true;\n    }\n}\n```\n\n\"But Maya,\" Alex asked, \"how do we actually use this class?\"\n\n\"Great question! We create objects from the class. Watch this:\" Maya opened another file and showed Alex how objects are created.\n\n```java\n// Creating objects from the PaymentProcessor class\nPaymentProcessor visaProcessor = new PaymentProcessor();\nPaymentProcessor mastercardProcessor = new PaymentProcessor();\n```\n\n\"Think of the class as a cookie cutter, and objects as the actual cookies. We can make many cookies (objects) from the same cutter (class), but each cookie can have different decorations or flavors.\"\n\nAlex's eyes lit up. \"So the class is the blueprint, and objects are the actual things we work with?\"\n\n\"Exactly!\" Maya nodded. \"In our payment system, we might have dozens of PaymentProcessor objects running at the same time, each handling different transactions.\"",
+        "keyPoints": [
+          "Classes are blueprints or templates that define the structure and behavior of objects",
+          "Objects are instances created from classes - the actual 'things' your program works with",
+          "One class can be used to create many objects, each with its own data",
+          "The 'new' keyword is used to create objects from classes in Java"
+        ],
+        "codeExample": {
+          "title": "Basic Class and Object Creation",
+          "code": "// Class definition - the blueprint\npublic class PaymentProcessor {\n    // Instance variables (data)\n    private String processorId;\n    private String bankName;\n    private boolean isActive;\n    \n    // Methods (behavior)\n    public void processPayment(double amount) {\n        System.out.println(\"Processing payment of $\" + amount);\n    }\n    \n    public boolean validateCard(String cardNumber) {\n        // Simple validation logic\n        return cardNumber.length() == 16;\n    }\n}\n\n// Creating objects from the class\npublic class PaymentDemo {\n    public static void main(String[] args) {\n        // Create two different payment processor objects\n        PaymentProcessor visaProcessor = new PaymentProcessor();\n        PaymentProcessor mastercardProcessor = new PaymentProcessor();\n        \n        // Each object can perform the same actions\n        visaProcessor.processPayment(100.50);\n        mastercardProcessor.processPayment(250.00);\n    }\n}",
+          "explanation": "This example shows how a single class (PaymentProcessor) serves as a blueprint for creating multiple objects. Each object has its own copy of the instance variables and can call the methods defined in the class."
+        }
+      }
+    },
+    {
+      "id": "section-2",
+      "title": "Building Your First Class",
+      "content": {
+        "story": "\"Now it's your turn, Alex,\" Maya said, opening a new file. \"Let's create a User class for our system. Every good payment system needs to track users.\"\n\nAlex cracked his knuckles. \"Okay, so I need to think about what data a user should have and what they should be able to do?\"\n\n\"Perfect thinking!\" Maya encouraged. \"What information do we need to store about each user?\"\n\nAlex thought for a moment. \"Well, they'd need a name, email address, maybe an account balance?\"\n\n\"Great start! And what actions should a user be able to perform?\"\n\n\"They should be able to... update their profile? Check their balance? Maybe make payments?\"\n\nMaya nodded approvingly. \"You're thinking like a programmer now. Let's build this step by step.\"\n\nTogether, they started coding:\n\n```java\npublic class User {\n    // Instance variables - the data each user object will have\n    private String name;\n    private String email;\n    private double accountBalance;\n    \n    // Methods - what each user object can do\n    public void updateProfile(String newName, String newEmail) {\n        this.name = newName;\n        this.email = newEmail;\n        System.out.println(\"Profile updated for \" + name);\n    }\n    \n    public void checkBalance() {\n        System.out.println(name + \"'s balance: $\" + accountBalance);\n    }\n    \n    public boolean makePayment(double amount) {\n        if (accountBalance >= amount) {\n            accountBalance -= amount;\n            System.out.println(\"Payment of $\" + amount + \" successful\");\n            return true;\n        } else {\n            System.out.println(\"Insufficient funds\");\n            return false;\n        }\n    }\n}\n```\n\n\"Notice how we use 'this' keyword?\" Maya pointed out. \"It refers to the current object - the specific user object that's calling the method.\"\n\nAlex nodded, then frowned. \"But Maya, how do we set the initial values for name, email, and balance when we create a user?\"\n\n\"Excellent question! That's where constructors come in, but let's test what we have first.\" Maya showed Alex how to create and use User objects:\n\n```java\nUser alice = new User();\nUser bob = new User();\n\n// But wait - how do we set their initial data?\n```\n\n\"I see the problem,\" Alex said. \"We can create users, but they don't have any initial data!\"",
+        "keyPoints": [
+          "Instance variables store the data that each object will have",
+          "Methods define what actions objects can perform",
+          "The 'this' keyword refers to the current object calling the method",
+          "Private variables can only be accessed within the class itself"
+        ],
+        "codeExample": {
+          "title": "Complete User Class with Instance Variables and Methods",
+          "code": "public class User {\n    // Instance variables - each object gets its own copy\n    private String name;\n    private String email;\n    private double accountBalance;\n    private String userId;\n    \n    // Method to update user profile\n    public void updateProfile(String newName, String newEmail) {\n        this.name = newName;\n        this.email = newEmail;\n        System.out.println(\"Profile updated for \" + this.name);\n    }\n    \n    // Method to check account balance\n    public void checkBalance() {\n        System.out.println(this.name + \"'s balance: $\" + this.accountBalance);\n    }\n    \n    // Method to make a payment\n    public boolean makePayment(double amount) {\n        if (this.accountBalance >= amount) {\n            this.accountBalance -= amount;\n            System.out.println(this.name + \" paid $\" + amount);\n            return true;\n        } else {\n            System.out.println(\"Insufficient funds for \" + this.name);\n            return false;\n        }\n    }\n    \n    // Method to add funds to account\n    public void addFunds(double amount) {\n        this.accountBalance += amount;\n        System.out.println(\"Added $\" + amount + \" to \" + this.name + \"'s account\");\n    }\n}",
+          "explanation": "This User class demonstrates how instance variables store data specific to each object, and methods operate on that data. The 'this' keyword explicitly refers to the current object, making the code clearer."
+        }
+      }
+    },
+    {
+      "id": "section-3",
+      "title": "The Constructor Mystery",
+      "content": {
+        "story": "\"The problem you identified is exactly why we need constructors,\" Maya explained. \"A constructor is a special method that runs automatically when we create an object. It's where we set up the initial state.\"\n\nAlex looked puzzled. \"But I don't see any constructor in our User class.\"\n\n\"That's because Java provides a default constructor automatically if we don't write one. But the default constructor doesn't do much - it just creates an empty object.\" Maya pulled up the Java documentation. \"Watch what happens when we try to use our current User class:\"\n\n```java\nUser alice = new User(); // Creates user with null name, null email, 0.0 balance\nalice.checkBalance(); // Prints: null's balance: $0.0\n```\n\n\"That's not very useful,\" Alex observed.\n\n\"Exactly! Let's add a proper constructor.\" Maya started typing:\n\n```java\npublic class User {\n    private String name;\n    private String email;\n    private double accountBalance;\n    \n    // Constructor - same name as the class, no return type\n    public User(String name, String email, double initialBalance) {\n        this.name = name;\n        this.email = email;\n        this.accountBalance = initialBalance;\n        System.out.println(\"Created user: \" + name);\n    }\n    \n    // ... rest of the methods\n}\n```\n\n\"Now when we create users, we must provide the required information:\"\n\n```java\nUser alice = new User(\"Alice Johnson\", \"alice@email.com\", 1000.0);\nUser bob = new User(\"Bob Smith\", \"bob@email.com\", 500.0);\n\nalice.checkBalance(); // Prints: Alice Johnson's balance: $1000.0\nbob.checkBalance();   // Prints: Bob Smith's balance: $500.0\n```\n\nAlex's face brightened. \"So the constructor ensures every user starts with proper data!\"\n\n\"Exactly! But what if sometimes we want to create a user with zero balance?\" Maya asked.\n\n\"We could... make another constructor?\" Alex suggested tentatively.\n\n\"Brilliant! Java allows multiple constructors - this is called constructor overloading:\"\n\n```java\npublic class User {\n    private String name;\n    private String email;\n    private double accountBalance;\n    \n    // Constructor with initial balance\n    public User(String name, String email, double initialBalance) {\n        this.name = name;\n        this.email = email;\n        this.accountBalance = initialBalance;\n    }\n    \n    // Constructor with zero balance\n    public User(String name, String email) {\n        this.name = name;\n        this.email = email;\n        this.accountBalance = 0.0;\n    }\n}\n```\n\n\"Now we can create users either way:\"\n\n```java\nUser alice = new User(\"Alice\", \"alice@email.com\", 1000.0);\nUser charlie = new User(\"Charlie\", \"charlie@email.com\"); // Starts with $0\n```",
+        "keyPoints": [
+          "Constructors are special methods that initialize objects when they're created",
+          "Constructor names must match the class name exactly",
+          "Constructors have no return type (not even void)",
+          "You can have multiple constructors with different parameters (overloading)",
+          "If you don't write a constructor, Java provides a default one"
+        ],
+        "codeExample": {
+          "title": "User Class with Multiple Constructors",
+          "code": "public class User {\n    private String name;\n    private String email;\n    private double accountBalance;\n    private String userId;\n    \n    // Constructor with all parameters\n    public User(String name, String email, double initialBalance) {\n        this.name = name;\n        this.email = email;\n        this.accountBalance = initialBalance;\n        this.userId = generateUserId();\n        System.out.println(\"Created user: \" + name + \" with balance: $\" + initialBalance);\n    }\n    \n    // Constructor with zero balance\n    public User(String name, String email) {\n        this.name = name;\n        this.email = email;\n        this.accountBalance = 0.0;\n        this.userId = generateUserId();\n        System.out.println(\"Created user: \" + name + \" with zero balance\");\n    }\n    \n    // Helper method to generate unique user ID\n    private String generateUserId() {\n        return \"USER_\" + System.currentTimeMillis();\n    }\n    \n    // Other methods...\n    public void checkBalance() {\n        System.out.println(name + \" (\" + userId + \") balance: $\" + accountBalance);\n    }\n}\n\n// Usage example\npublic class UserDemo {\n    public static void main(String[] args) {\n        User alice = new User(\"Alice Johnson\", \"alice@email.com\", 1000.0);\n        User bob = new User(\"Bob Smith\", \"bob@email.com\"); // Zero balance\n        \n        alice.checkBalance();\n        bob.checkBalance();\n    }\n}",
+          "explanation": "This example shows constructor overloading - providing multiple ways to create objects. Each constructor initializes the object differently based on the parameters provided."
+        }
+      }
+    },
+    {
+      "id": "section-4",
+      "title": "Objects in Action",
+      "content": {
+        "story": "\"Now let's see our objects working together in a real scenario,\" Maya said excitedly. \"Let's simulate a simple transaction between users.\"\n\nAlex was getting more confident. \"So we'll create some users and have them interact with each other?\"\n\n\"Exactly! Let's build a simple transaction system.\" Maya opened a new file:\n\n```java\npublic class TransactionDemo {\n    public static void main(String[] args) {\n        // Create users\n        User alice = new User(\"Alice Johnson\", \"alice@email.com\", 1000.0);\n        User bob = new User(\"Bob Smith\", \"bob@email.com\", 500.0);\n        User charlie = new User(\"Charlie Brown\", \"charlie@email.com\");\n        \n        // Create payment processor\n        PaymentProcessor processor = new PaymentProcessor();\n        \n        System.out.println(\"=== Initial Balances ===\");\n        alice.checkBalance();\n        bob.checkBalance();\n        charlie.checkBalance();\n    }\n}\n```\n\n\"But wait,\" Alex noticed, \"how do users actually send money to each other? Our User class can only make payments, not receive them.\"\n\n\"Great observation! Let's add a method to receive payments:\" Maya updated the User class:\n\n```java\npublic void receivePayment(double amount, String fromUser) {\n    this.accountBalance += amount;\n    System.out.println(this.name + \" received $\" + amount + \" from \" + fromUser);\n}\n```\n\n\"Now let's create a transfer method that coordinates between two users:\"\n\n```java\npublic static boolean transferMoney(User sender, User receiver, double amount) {\n    System.out.println(\"\\n=== Transfer: $\" + amount + \" from \" + \n                      sender.getName() + \" to \" + receiver.getName() + \" ===\");\n    \n    if (sender.makePayment(amount)) {\n        receiver.receivePayment(amount, sender.getName());\n        return true;\n    } else {\n        System.out.println(\"Transfer failed - insufficient funds\");\n        return false;\n    }\n}\n```\n\n\"Wait,\" Alex interrupted, \"we're calling sender.getName() but we don't have a getName() method!\"\n\n\"You're absolutely right! We need getter methods to access private data safely:\" Maya added:\n\n```java\npublic String getName() {\n    return this.name;\n}\n\npublic String getEmail() {\n    return this.email;\n}\n\npublic double getBalance() {\n    return this.accountBalance;\n}\n```\n\nNow they could run a complete transaction simulation:\n\n```java\nSystem.out.println(\"\\n=== Transaction Simulation ===\");\n\n// Alice sends $200 to Bob\ntransferMoney(alice, bob, 200.0);\n\n// Bob sends $50 to Charlie\ntransferMoney(bob, charlie, 50.0);\n\n// Charlie tries to send $100 to Alice (should fail)\ntransferMoney(charlie, alice, 100.0);\n\nSystem.out.println(\"\\n=== Final Balances ===\");\nalice.checkBalance();\nbob.checkBalance();\ncharlie.checkBalance();\n```\n\n\"This is amazing!\" Alex exclaimed. \"The objects are like little independent entities that can interact with each other!\"\n\n\"Exactly! Each object maintains its own state and can communicate with other objects through method calls. This is the power of object-oriented programming.\"",
+        "keyPoints": [
+          "Objects can interact with each other through method calls",
+          "Each object maintains its own independent state (data)",
+          "Getter methods provide safe access to private instance variables",
+          "Objects can be passed as parameters to methods",
+          "The object lifecycle: creation, use, and eventual garbage collection"
+        ],
+        "codeExample": {
+          "title": "Complete Transaction System with Interacting Objects",
+          "code": "public class User {\n    private String name;\n    private String email;\n    private double accountBalance;\n    \n    public User(String name, String email, double initialBalance) {\n        this.name = name;\n        this.email = email;\n        this.accountBalance = initialBalance;\n    }\n    \n    // Getter methods\n    public String getName() { return this.name; }\n    public String getEmail() { return this.email; }\n    public double getBalance() { return this.accountBalance; }\n    \n    // Payment methods\n    public boolean makePayment(double amount) {\n        if (this.accountBalance >= amount) {\n            this.accountBalance -= amount;\n            System.out.println(this.name + \" paid $\" + amount);\n            return true;\n        }\n        System.out.println(\"Insufficient funds for \" + this.name);\n        return false;\n    }\n    \n    public void receivePayment(double amount, String fromUser) {\n        this.accountBalance += amount;\n        System.out.println(this.name + \" received $\" + amount + \" from \" + fromUser);\n    }\n    \n    public void checkBalance() {\n        System.out.println(this.name + \"'s balance: $\" + this.accountBalance);\n    }\n}\n\npublic class TransactionSystem {\n    public static boolean transferMoney(User sender, User receiver, double amount) {\n        System.out.println(\"Transfer: $\" + amount + \" from \" + sender.getName() + \n                          \" to \" + receiver.getName());\n        \n        if (sender.makePayment(amount)) {\n            receiver.receivePayment(amount, sender.getName());\n            return true;\n        }\n        return false;\n    }\n    \n    public static void main(String[] args) {\n        User alice = new User(\"Alice\", \"alice@email.com\", 1000.0);\n        User bob = new User(\"Bob\", \"bob@email.com\", 500.0);\n        \n        transferMoney(alice, bob, 200.0);\n        \n        alice.checkBalance();\n        bob.checkBalance();\n    }\n}",
+          "explanation": "This complete example shows objects interacting in a real-world scenario. Users can send and receive payments, demonstrating how objects maintain independent state while communicating through method calls."
+        }
+      }
+    },
+    {
+      "id": "section-5",
+      "title": "Code Review and Best Practices",
+      "content": {
+        "story": "\"Great work, Alex!\" Maya said as she reviewed the code they'd written together. \"But before we wrap up, let me show you some best practices that will make your code even better.\"\n\nAlex pulled up their User class. \"What could we improve?\"\n\n\"Well, let's start with naming conventions. In Java, we follow specific patterns:\" Maya highlighted different parts of the code:\n\n```java\n// Class names: PascalCase (first letter of each word capitalized)\npublic class PaymentProcessor { }\npublic class User { }\n\n// Method names: camelCase (first word lowercase, subsequent words capitalized)\npublic void makePayment() { }\npublic boolean validateCard() { }\n\n// Variable names: camelCase\nprivate String firstName;\nprivate double accountBalance;\n\n// Constants: ALL_CAPS with underscores\npublic static final double MAX_TRANSACTION_AMOUNT = 10000.0;\n```\n\n\"Also, notice how we organize our code?\" Maya pointed to the class structure:\n\n```java\npublic class User {\n    // 1. Instance variables first\n    private String name;\n    private String email;\n    private double accountBalance;\n    \n    // 2. Constructors next\n    public User(String name, String email, double balance) {\n        // Constructor code\n    }\n    \n    // 3. Public methods\n    public void makePayment(double amount) {\n        // Method code\n    }\n    \n    // 4. Private helper methods last\n    private boolean isValidAmount(double amount) {\n        return amount > 0 && amount <= MAX_TRANSACTION_AMOUNT;\n    }\n}\n```\n\n\"What about error handling?\" Alex asked. \"What if someone tries to create a user with a negative balance?\"\n\n\"Excellent thinking! Let's add some validation to our constructor:\"\n\n```java\npublic User(String name, String email, double initialBalance) {\n    if (name == null || name.trim().isEmpty()) {\n        throw new IllegalArgumentException(\"Name cannot be null or empty\");\n    }\n    if (email == null || !email.contains(\"@\")) {\n        throw new IllegalArgumentException(\"Invalid email address\");\n    }\n    if (initialBalance < 0) {\n        throw new IllegalArgumentException(\"Initial balance cannot be negative\");\n    }\n    \n    this.name = name.trim();\n    this.email = email.toLowerCase();\n    this.accountBalance = initialBalance;\n}\n```\n\n\"And let's add some documentation:\" Maya showed Alex how to write JavaDoc comments:\n\n```java\n/**\n * Represents a user in the payment system.\n * Each user has a name, email, and account balance.\n */\npublic class User {\n    \n    /**\n     * Creates a new user with the specified details.\n     * @param name The user's full name (cannot be null or empty)\n     * @param email The user's email address (must contain @)\n     * @param initialBalance The starting account balance (cannot be negative)\n     * @throws IllegalArgumentException if any parameter is invalid\n     */\n    public User(String name, String email, double initialBalance) {\n        // Constructor implementation\n    }\n    \n    /**\n     * Attempts to make a payment from this user's account.\n     * @param amount The amount to pay (must be positive)\n     * @return true if payment successful, false if insufficient funds\n     */\n    public boolean makePayment(double amount) {\n        // Method implementation\n    }\n}\n```\n\n\"Wow, this makes the code so much clearer!\" Alex said. \"Any other tips?\"\n\n\"Yes - always think about what could go wrong and handle it gracefully. And remember: code is read much more often than it's written, so make it clear and understandable.\"\n\nMaya smiled. \"You've done great work today, Alex. You now understand the fundamental building blocks of object-oriented programming: classes and objects. Tomorrow, we'll learn about protecting our data with encapsulation.\"",
+        "keyPoints": [
+          "Follow Java naming conventions: PascalCase for classes, camelCase for methods and variables",
+          "Organize class members: variables, constructors, public methods, private methods",
+          "Add input validation to prevent invalid object states",
+          "Use JavaDoc comments to document your classes and methods",
+          "Handle edge cases and error conditions gracefully",
+          "Write code that is clear and easy to understand"
+        ],
+        "codeExample": {
+          "title": "Well-Structured User Class with Best Practices",
+          "code": "/**\n * Represents a user in the FinTech payment system.\n * Manages user information and account balance operations.\n */\npublic class User {\n    // Constants\n    public static final double MAX_TRANSACTION_AMOUNT = 10000.0;\n    \n    // Instance variables\n    private String name;\n    private String email;\n    private double accountBalance;\n    private final String userId;\n    \n    /**\n     * Creates a new user with specified details.\n     * @param name User's full name (required)\n     * @param email User's email address (must contain @)\n     * @param initialBalance Starting balance (cannot be negative)\n     * @throws IllegalArgumentException if parameters are invalid\n     */\n    public User(String name, String email, double initialBalance) {\n        validateInput(name, email, initialBalance);\n        \n        this.name = name.trim();\n        this.email = email.toLowerCase();\n        this.accountBalance = initialBalance;\n        this.userId = generateUserId();\n    }\n    \n    // Public methods\n    public String getName() { return this.name; }\n    public String getEmail() { return this.email; }\n    public double getBalance() { return this.accountBalance; }\n    public String getUserId() { return this.userId; }\n    \n    /**\n     * Attempts to make a payment from user's account.\n     * @param amount Payment amount (must be positive and <= balance)\n     * @return true if successful, false if insufficient funds\n     */\n    public boolean makePayment(double amount) {\n        if (!isValidAmount(amount)) {\n            System.out.println(\"Invalid payment amount\");\n            return false;\n        }\n        \n        if (this.accountBalance >= amount) {\n            this.accountBalance -= amount;\n            System.out.println(this.name + \" paid $\" + amount);\n            return true;\n        }\n        \n        System.out.println(\"Insufficient funds for \" + this.name);\n        return false;\n    }\n    \n    // Private helper methods\n    private void validateInput(String name, String email, double balance) {\n        if (name == null || name.trim().isEmpty()) {\n            throw new IllegalArgumentException(\"Name cannot be null or empty\");\n        }\n        if (email == null || !email.contains(\"@\")) {\n            throw new IllegalArgumentException(\"Invalid email address\");\n        }\n        if (balance < 0) {\n            throw new IllegalArgumentException(\"Balance cannot be negative\");\n        }\n    }\n    \n    private boolean isValidAmount(double amount) {\n        return amount > 0 && amount <= MAX_TRANSACTION_AMOUNT;\n    }\n    \n    private String generateUserId() {\n        return \"USER_\" + System.currentTimeMillis();\n    }\n}",
+          "explanation": "This example demonstrates professional Java code structure with proper naming conventions, input validation, documentation, and error handling. The code is organized logically and includes helpful comments."
+        }
+      }
+    }
+  ],
+  "practiceExercises": [
+    {
+      "title": "Create a Product Class",
+      "description": "Create a Product class for an e-commerce system with name, price, and quantity fields. Include methods to update price and check availability.",
+      "difficulty": "Beginner",
+      "hints": ["Include proper constructors", "Add validation for price and quantity", "Create getter methods"]
+    },
+    {
+      "title": "Bank Account System",
+      "description": "Design a BankAccount class with deposit, withdraw, and transfer methods. Create multiple accounts and simulate transactions.",
+      "difficulty": "Intermediate", 
+      "hints": ["Handle insufficient funds", "Track transaction history", "Validate account numbers"]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the relationship between a class and an object?",
+      "options": [
+        "A class is an instance of an object",
+        "A class is a blueprint for creating objects",
+        "Classes and objects are the same thing",
+        "Objects contain classes"
+      ],
+      "correct": 1,
+      "explanation": "A class is a blueprint or template that defines the structure and behavior of objects. Objects are instances created from classes."
+    },
+    {
+      "question": "Which keyword is used to create an object in Java?",
+      "options": ["create", "new", "make", "object"],
+      "correct": 1,
+      "explanation": "The 'new' keyword is used to create objects in Java. It allocates memory and calls the constructor."
+    },
+    {
+      "question": "What is the purpose of a constructor?",
+      "options": [
+        "To destroy objects",
+        "To initialize objects when they are created",
+        "To define methods",
+        "To create classes"
+      ],
+      "correct": 1,
+      "explanation": "Constructors initialize objects when they are created, setting up their initial state with appropriate values."
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "last_updated": "2025-09-20T16:14:46.596126",
+  "total_jobs": 12,
+  "jobs": [
+    {
+      "id": "dd274ce5d993",
+      "title": "DevOps Engineer",
+      "company": "Swiggy",
+      "location": "Mumbai, India",
+      "job_type": "Contract",
+      "salary_range": "₹31L - ₹41L",
+      "posted_date": "2025-09-20",
+      "description": "Join Swiggy as a DevOps Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in devops engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
+      "crawled_at": "2025-09-20T16:14:46.595994"
+    },
+    {
+      "id": "39a80eaecff9",
+      "title": "Security Engineer",
+      "company": "Swiggy",
+      "location": "Noida, India",
+      "job_type": "Hybrid",
+      "salary_range": "₹28L - ₹38L",
+      "posted_date": "2025-09-20",
+      "description": "Join Swiggy as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in security engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
+      "crawled_at": "2025-09-20T16:14:46.596012"
+    },
+    {
+      "id": "040a7a81b289",
+      "title": "Senior Software Engineer",
+      "company": "Uber",
+      "location": "San Francisco, CA, USA",
+      "job_type": "Full-time",
+      "salary_range": "$172K - $222K",
+      "posted_date": "2025-09-20",
+      "description": "Join Uber as a Senior Software Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in senior software engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=uber",
+      "crawled_at": "2025-09-20T16:14:46.596076"
+    },
+    {
+      "id": "f44f9a8bcea8",
+      "title": "Cloud Architect",
+      "company": "BYJU'S",
+      "location": "Hyderabad, India",
+      "job_type": "Remote",
+      "salary_range": "₹40L - ₹50L",
+      "posted_date": "2025-09-19",
+      "description": "Join BYJU'S as a Cloud Architect and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in cloud architect",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=byjus",
+      "crawled_at": "2025-09-20T16:14:46.596031"
+    },
+    {
+      "id": "5d244607f5cc",
+      "title": "Security Engineer",
+      "company": "Ola",
+      "location": "Pune, India",
+      "job_type": "Hybrid",
+      "salary_range": "₹35L - ₹45L",
+      "posted_date": "2025-09-19",
+      "description": "Join Ola as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in security engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=ola",
+      "crawled_at": "2025-09-20T16:14:46.596040"
+    },
+    {
+      "id": "807ce5954fd4",
+      "title": "Backend Engineer",
+      "company": "PhonePe",
+      "location": "Pune, India",
+      "job_type": "Remote",
+      "salary_range": "₹26L - ₹36L",
+      "posted_date": "2025-09-19",
+      "description": "Join PhonePe as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=phonepe",
+      "crawled_at": "2025-09-20T16:14:46.596069"
+    },
+    {
+      "id": "aa621fab14c5",
+      "title": "UI/UX Designer",
+      "company": "Infosys",
+      "location": "Mumbai, India",
+      "job_type": "Remote",
+      "salary_range": "₹10L - ₹20L",
+      "posted_date": "2025-09-18",
+      "description": "Join Infosys as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=infosys",
+      "crawled_at": "2025-09-20T16:14:46.596049"
+    },
+    {
+      "id": "fc8cf516418b",
+      "title": "Mobile Developer",
+      "company": "OpenAI",
+      "location": "Seattle, WA, USA",
+      "job_type": "Contract",
+      "salary_range": "$291K - $341K",
+      "posted_date": "2025-09-18",
+      "description": "Join OpenAI as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in mobile developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=openai",
+      "crawled_at": "2025-09-20T16:14:46.596056"
+    },
+    {
+      "id": "aea51e90d06a",
+      "title": "Backend Engineer",
+      "company": "Flipkart",
+      "location": "Chennai, India",
+      "job_type": "Hybrid",
+      "salary_range": "₹37L - ₹47L",
+      "posted_date": "2025-09-18",
+      "description": "Join Flipkart as a Backend Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in backend engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=flipkart",
+      "crawled_at": "2025-09-20T16:14:46.596063"
+    },
+    {
+      "id": "ce7a8ef5b3eb",
+      "title": "Security Engineer",
+      "company": "Meta",
+      "location": "Boston, MA, USA",
+      "job_type": "Contract",
+      "salary_range": "$224K - $274K",
+      "posted_date": "2025-09-18",
+      "description": "Join Meta as a Security Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in security engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=meta",
+      "crawled_at": "2025-09-20T16:14:46.596090"
+    },
+    {
+      "id": "500ee59d2f2c",
+      "title": "Machine Learning Engineer",
+      "company": "Tesla",
+      "location": "Seattle, WA, USA",
+      "job_type": "Contract",
+      "salary_range": "$186K - $236K",
+      "posted_date": "2025-09-17",
+      "description": "Join Tesla as a Machine Learning Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in machine learning engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tesla",
+      "crawled_at": "2025-09-20T16:14:46.596083"
+    },
+    {
+      "id": "eb80b9e00f73",
+      "title": "Data Scientist",
+      "company": "Meta",
+      "location": "Austin, TX, USA",
+      "job_type": "Full-time",
+      "salary_range": "$150K - $200K",
+      "posted_date": "2025-09-16",
+      "description": "Join Meta as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in data scientist",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=meta",
+      "crawled_at": "2025-09-20T16:14:46.596023"
+    }
+  ]
+}

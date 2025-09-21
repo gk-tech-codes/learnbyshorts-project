@@ -1,0 +1,39 @@
+{
+  "topicId": "oop-java-topic-2",
+  "title": "Alex's First Bug Hunt: Encapsulation and Data Protection",
+  "description": "Discover encapsulation principles as Alex learns to fix security vulnerabilities in the payment system",
+  "difficulty": "Beginner",
+  "duration": "60-75 min",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "The Security Breach Discovery",
+      "content": {
+        "story": "Alex discovered a critical security flaw in the payment system where user account balances could be modified directly. Maya showed him how encapsulation protects sensitive data through private fields and controlled access methods.",
+        "keyPoints": [
+          "Private fields protect data from unauthorized access",
+          "Public fields create security vulnerabilities",
+          "Encapsulation is the first line of defense in secure programming"
+        ],
+        "codeExample": {
+          "title": "Vulnerable vs Protected User Class",
+          "code": "// VULNERABLE - Public fields\npublic class VulnerableUser {\n    public String name;\n    public double balance; // Anyone can modify!\n}\n\n// PROTECTED - Private fields\npublic class SecureUser {\n    private String name;\n    private double balance; // Protected from direct access\n    \n    public double getBalance() {\n        return balance;\n    }\n    \n    public void setBalance(double newBalance) {\n        if (newBalance >= 0) {\n            this.balance = newBalance;\n        }\n    }\n}",
+          "explanation": "The secure version uses private fields and controlled access through getter and setter methods."
+        }
+      }
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the main purpose of encapsulation?",
+      "options": [
+        "To make code run faster",
+        "To protect data and control access to it",
+        "To create more classes",
+        "To use inheritance"
+      ],
+      "correct": 1,
+      "explanation": "Encapsulation protects data by making fields private and providing controlled access through methods."
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "courseId": "object-oriented-programming-java",
+  "characters": [
+    {
+      "name": "Maya Chen",
+      "role": "Senior Software Engineer",
+      "background": "Full-stack developer at FinTech Solutions Inc., 6 years experience building Java microservices for payment processing systems. Started as a junior developer and worked her way up through dedication to clean code and mentoring others.",
+      "personality": {
+        "traits": ["methodical", "patient", "detail-oriented", "collaborative"],
+        "teachingStyle": "Explains concepts through practical examples, always relates theory to real-world applications",
+        "catchphrases": ["Let's think about this step by step", "In production, this would mean...", "Clean code is happy code"],
+        "motivations": "Believes great software comes from great fundamentals and loves helping others grow"
+      },
+      "expertise": {
+        "primary": "Object-oriented design and architecture",
+        "secondary": ["Code quality and best practices", "Mentoring and knowledge transfer", "System scalability"],
+        "tools": ["IntelliJ IDEA", "Git", "Maven", "Spring Framework", "JUnit"],
+        "specializations": ["Design patterns", "Code refactoring", "Performance optimization"]
+      },
+      "relationships": {
+        "withAlex": "Primary mentor - patient and encouraging, remembers her own learning journey",
+        "withDrKim": "Respectful colleague - values her strategic insights and learns from her experience",
+        "withJordan": "Close collaborator - works together on deployment and system reliability"
+      },
+      "storyRole": "Primary teacher and guide, demonstrates concepts through her daily work challenges"
+    },
+    {
+      "name": "Alex Rodriguez",
+      "role": "Junior Developer",
+      "background": "Recent coding bootcamp graduate with 3 months at FinTech Solutions Inc. Has basic programming knowledge but is eager to learn professional development practices. Previously worked in customer service, bringing strong communication skills.",
+      "personality": {
+        "traits": ["curious", "enthusiastic", "humble", "persistent"],
+        "learningStyle": "Learns best through hands-on practice and asking questions, not afraid to admit confusion",
+        "catchphrases": ["Wait, so if I understand correctly...", "That makes so much sense now!", "Can you show me how that works in practice?"],
+        "motivations": "Wants to become a skilled developer and contribute meaningfully to the team"
+      },
+      "expertise": {
+        "primary": "Basic Java syntax and programming fundamentals",
+        "secondary": ["Problem-solving mindset", "Customer perspective", "Quick learning ability"],
+        "tools": ["VS Code", "Git (learning)", "Basic command line"],
+        "growthAreas": ["OOP concepts", "Design patterns", "Professional development practices"]
+      },
+      "relationships": {
+        "withMaya": "Mentee - grateful for guidance and strives to apply lessons learned",
+        "withDrKim": "Respectful student - appreciates her ability to explain complex concepts simply",
+        "withJordan": "Peer learner - enjoys practical perspectives on code deployment and maintenance"
+      },
+      "storyRole": "Student perspective - asks questions learners would ask, makes common mistakes to learn from"
+    },
+    {
+      "name": "Dr. Sarah Kim",
+      "role": "Tech Lead & Mentor",
+      "background": "Computer Science PhD from Stanford, 15 years in industry including 5 years at Google and 3 years at Netflix. Joined FinTech Solutions as Tech Lead to build scalable systems. Expert in distributed systems and software architecture.",
+      "personality": {
+        "traits": ["strategic", "analytical", "supportive", "visionary"],
+        "teachingStyle": "Connects concepts to bigger picture, uses analogies and real-world examples from industry experience",
+        "catchphrases": ["Let's zoom out and see the bigger picture", "This reminds me of a similar challenge at...", "The key principle here is..."],
+        "motivations": "Passionate about building systems that scale and mentoring the next generation of engineers"
+      },
+      "expertise": {
+        "primary": "Software architecture and system design",
+        "secondary": ["Advanced OOP patterns", "Performance optimization", "Team leadership", "Technical strategy"],
+        "tools": ["IntelliJ IDEA", "Docker", "Kubernetes", "AWS", "Microservices architecture"],
+        "specializations": ["Distributed systems", "Design patterns", "Code architecture", "Technical mentoring"]
+      },
+      "relationships": {
+        "withMaya": "Mentor and colleague - provides strategic guidance and architectural insights",
+        "withAlex": "Senior mentor - patient teacher who breaks down complex concepts into understandable pieces",
+        "withJordan": "Strategic partner - collaborates on system architecture and deployment strategies"
+      },
+      "storyRole": "Senior expert who provides advanced insights and connects concepts to industry best practices"
+    },
+    {
+      "name": "Jordan Taylor",
+      "role": "DevOps Engineer",
+      "background": "Infrastructure specialist with 8 years experience in DevOps and site reliability. Started as a system administrator, evolved into DevOps engineering. Works closely with development teams to ensure code is maintainable and deployable.",
+      "personality": {
+        "traits": ["practical", "reliable", "solution-focused", "collaborative"],
+        "teachingStyle": "Focuses on real-world implications and maintainability, shares war stories from production",
+        "catchphrases": ["In production, this would...", "From an ops perspective...", "Let's think about maintainability"],
+        "motivations": "Believes good code should be deployable, maintainable, and reliable in production"
+      },
+      "expertise": {
+        "primary": "Infrastructure, deployment, and system reliability",
+        "secondary": ["Code maintainability", "Monitoring and observability", "Cross-team collaboration"],
+        "tools": ["Docker", "Kubernetes", "Jenkins", "Prometheus", "Grafana", "AWS/GCP"],
+        "specializations": ["CI/CD pipelines", "Infrastructure as code", "System monitoring", "Performance tuning"]
+      },
+      "relationships": {
+        "withMaya": "Close collaborator - works together on making code production-ready",
+        "withAlex": "Practical mentor - shows how code decisions impact deployment and maintenance",
+        "withDrKim": "Strategic partner - provides operational insights for architectural decisions"
+      },
+      "storyRole": "Practical voice who shows how OOP concepts impact real-world deployment and maintenance"
+    }
+  ],
+  "teamDynamics": {
+    "workingStyle": "Collaborative and supportive, with regular code reviews, pair programming sessions, and knowledge sharing",
+    "meetingCadence": "Daily standups, weekly architecture discussions, monthly retrospectives",
+    "codeReviewProcess": "All code reviewed by at least one senior developer, focus on learning and improvement",
+    "learningCulture": "Encourages questions, celebrates learning from mistakes, shares knowledge openly"
+  },
+  "companyContext": {
+    "name": "FinTech Solutions Inc.",
+    "industry": "Financial Technology",
+    "size": "Mid-size startup (200 employees)",
+    "techStack": "Java, Spring Boot, microservices, AWS, Docker, Kubernetes",
+    "challenges": "Scaling payment processing, maintaining security, handling high transaction volumes",
+    "values": "Code quality, security, scalability, team growth"
+  },
+  "storySettings": {
+    "primaryLocation": "FinTech Solutions office - modern open workspace with collaboration areas",
+    "meetingRooms": ["The Whiteboard Room", "Code Review Corner", "Architecture Lounge"],
+    "virtualSpaces": ["Slack channels", "Code review tools", "Shared documentation"],
+    "projectContexts": ["Payment processing system", "User management platform", "Notification service", "Trading system"]
+  }
+}

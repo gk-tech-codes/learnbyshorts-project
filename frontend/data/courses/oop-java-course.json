@@ -1,0 +1,95 @@
+{
+  "id": "object-oriented-programming-java",
+  "title": "Object-Oriented Programming with Java",
+  "description": "Master OOP concepts through real-world Java applications and modern development practices",
+  "category": "Programming Fundamentals",
+  "difficulty": "Progressive (Beginner to Advanced)",
+  "duration": "10-14 hours",
+  "rating": 4.8,
+  "students": 0,
+  "instructor": "Maya Chen & Team",
+  "price": "Free",
+  "image": "/assets/courses/oop-java-cover.jpg",
+  "tags": ["Java", "OOP", "Programming", "Software Development"],
+  "prerequisites": ["Basic programming concepts", "Java syntax basics"],
+  "learningOutcomes": [
+    "Design and implement robust object-oriented systems",
+    "Apply SOLID principles in professional Java development", 
+    "Build scalable applications using advanced OOP patterns",
+    "Debug and optimize object-oriented code effectively"
+  ],
+  "topics": [
+    {
+      "id": "oop-java-topic-1",
+      "title": "Maya's Onboarding Challenge: Understanding Objects and Classes",
+      "description": "Learn fundamental OOP concepts through Maya's experience onboarding Alex to the team's codebase",
+      "duration": "60-75 min",
+      "difficulty": "Beginner",
+      "completed": false,
+      "sections": 5
+    },
+    {
+      "id": "oop-java-topic-2", 
+      "title": "Alex's First Bug Hunt: Encapsulation and Data Protection",
+      "description": "Discover encapsulation principles as Alex learns to fix security vulnerabilities in the payment system",
+      "duration": "60-75 min",
+      "difficulty": "Beginner",
+      "completed": false,
+      "sections": 5
+    },
+    {
+      "id": "oop-java-topic-3",
+      "title": "Dr. Kim's Code Review: Inheritance and Code Reusability",
+      "description": "Learn inheritance concepts through Dr. Kim's code review session on the user management system",
+      "duration": "75-90 min",
+      "difficulty": "Intermediate",
+      "completed": false,
+      "sections": 5
+    },
+    {
+      "id": "oop-java-topic-4",
+      "title": "Maya's Interface Design: Polymorphism in Action",
+      "description": "Master polymorphism through Maya's design of a flexible notification system using interfaces",
+      "duration": "75-90 min",
+      "difficulty": "Intermediate",
+      "completed": false,
+      "sections": 5
+    },
+    {
+      "id": "oop-java-topic-5",
+      "title": "Jordan's Deployment Crisis: Abstract Classes and Templates",
+      "description": "Learn abstract classes through Jordan's solution to standardize deployment configurations across services",
+      "duration": "75-90 min",
+      "difficulty": "Intermediate",
+      "completed": false,
+      "sections": 5
+    },
+    {
+      "id": "oop-java-topic-6",
+      "title": "Dr. Kim's Architecture Workshop: SOLID Principles",
+      "description": "Apply SOLID principles through Dr. Kim's refactoring workshop on the legacy reporting system",
+      "duration": "90-105 min",
+      "difficulty": "Advanced",
+      "completed": false,
+      "sections": 5
+    },
+    {
+      "id": "oop-java-topic-7",
+      "title": "Maya's Performance Challenge: Advanced OOP Patterns",
+      "description": "Master advanced patterns through Maya's optimization of the high-traffic trading system",
+      "duration": "90-105 min",
+      "difficulty": "Advanced",
+      "completed": false,
+      "sections": 5
+    },
+    {
+      "id": "oop-java-topic-8",
+      "title": "Team's Final Project: Building a Complete OOP System",
+      "description": "Integrate all OOP concepts in the team's collaborative project to build a scalable e-commerce platform",
+      "duration": "105-120 min",
+      "difficulty": "Advanced",
+      "completed": false,
+      "sections": 5
+    }
+  ]
+}

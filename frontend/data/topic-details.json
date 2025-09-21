@@ -200,9 +200,1376 @@
           "description": "Learn about object creation patterns"
         },
         {
-          "id": "observer-pattern-intro", 
+          "id": "observer-pattern-intro",
           "title": "The Observer Pattern",
           "description": "Understanding behavioral patterns"
+        }
+      ]
+    },
+    "google-two-sum": {
+      "id": "google-two-sum",
+      "title": "Alex's Google Interview: The Two Sum Challenge",
+      "subtitle": "How a Hash Map Saved the Day in a Phone Screen",
+      "description": "Follow Alex through their Google phone screen as they tackle the classic Two Sum problem and discover the power of hash maps.",
+      "difficulty": "Easy",
+      "estimatedTime": "15 minutes",
+      "category": "Interview Prep",
+      "subcategory": "Google",
+      "tags": [
+        "Array",
+        "Hash Table",
+        "Google",
+        "Phone Screen"
+      ],
+      "prerequisites": [
+        "Basic programming",
+        "Understanding of arrays"
+      ],
+      "learningObjectives": [
+        "Master the Two Sum problem approach",
+        "Understand hash map optimization",
+        "Learn Google interview communication style",
+        "Practice time and space complexity analysis"
+      ],
+      "story": {
+        "setting": "Google Video Interview",
+        "characters": [
+          "Alex (Candidate)",
+          "Sarah (Google Engineer)"
+        ],
+        "plot": "Alex faces the classic Two Sum problem in their Google phone screen and must optimize from brute force to hash map solution."
+      },
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Interview Setting",
+          "content": "Alex nervously adjusts their laptop as the Google engineer joins the video call. \"Hi Alex, I'm Sarah, a Senior Software Engineer at Google. Ready to dive into some coding?\""
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Problem",
+          "content": "\"Let's start with a classic,\" Sarah says, sharing her screen. \"Given an array of integers and a target sum, return the indices of two numbers that add up to the target.\"\n\nInput: nums = [2,7,11,15], target = 9\nOutput: [0,1]\nExplanation: nums[0] + nums[1] = 2 + 7 = 9"
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Alex's Approach",
+          "content": "Alex thinks aloud: \"I could use a brute force approach with nested loops, but that would be O(n²). A better approach would be to use a hash map to store numbers I've seen and their indices.\"\n\nSarah nods encouragingly. \"Great thinking! Can you implement that?\""
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 The Implementation",
+          "content": "```javascript\nfunction twoSum(nums, target) {\n    const map = new Map();\n    \n    for (let i = 0; i < nums.length; i++) {\n        const complement = target - nums[i];\n        \n        if (map.has(complement)) {\n            return [map.get(complement), i];\n        }\n        \n        map.set(nums[i], i);\n    }\n    \n    return [];\n}\n\n// Time Complexity: O(n)\n// Space Complexity: O(n)\n```"
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ The Result",
+          "content": "Alex codes confidently, explaining each step. The hash map approach allows them to solve it in O(n) time with O(n) space.\n\nSarah smiles, \"Excellent! You identified the optimal solution quickly and implemented it cleanly. Let's move to the next question.\"\n\nAlex feels confident - the hash map pattern clicked, and they're ready for whatever comes next in their Google interview journey."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the time complexity of the hash map solution?",
+          "options": [
+            "O(n²)",
+            "O(n log n)",
+            "O(n)",
+            "O(1)"
+          ],
+          "correct": 2,
+          "explanation": "We iterate through the array once, and hash map operations are O(1) on average."
+        }
+      ],
+      "nextTopic": {
+        "id": "google-valid-parentheses",
+        "title": "Valid Parentheses Challenge",
+        "description": "Continue with the next Google interview question"
+      }
+    },
+    "google-valid-parentheses": {
+      "id": "google-valid-parentheses",
+      "title": "Sarah's Google Interview: The Parentheses Puzzle",
+      "subtitle": "When Stacks Become Your Best Friend",
+      "description": "Join Sarah as she tackles the Valid Parentheses problem using stack data structure in her Google phone screen.",
+      "difficulty": "Easy",
+      "estimatedTime": "12 minutes",
+      "category": "Interview Prep",
+      "subcategory": "Google",
+      "tags": [
+        "Stack",
+        "String",
+        "Google",
+        "Phone Screen"
+      ],
+      "prerequisites": [
+        "Understanding of stacks",
+        "String manipulation"
+      ],
+      "learningObjectives": [
+        "Master the Valid Parentheses problem",
+        "Understand stack-based solutions",
+        "Learn pattern matching techniques",
+        "Practice Google interview style"
+      ],
+      "story": {
+        "setting": "Google Phone Screen Continuation",
+        "characters": [
+          "Sarah (Candidate)",
+          "Mike (Google Engineer)"
+        ],
+        "plot": "Sarah encounters the Valid Parentheses problem and uses stack data structure to solve it efficiently."
+      },
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Interview Continues",
+          "content": "Mike, the Google interviewer, pulls up the next problem. \"Great job on Two Sum, Sarah. Now let's test your understanding of stacks with a string problem.\""
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Challenge",
+          "content": "\"Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\"\n\nValid strings must have:\n- Open brackets closed by the same type of brackets\n- Open brackets closed in the correct order\n\nExample: \"()[]{}\" → true, \"([)]\" → false"
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Sarah's Solution",
+          "content": "```javascript\nfunction isValid(s) {\n    const stack = [];\n    const pairs = {\n        ')': '(',\n        '}': '{',\n        ']': '['\n    };\n    \n    for (let char of s) {\n        if (char === '(' || char === '{' || char === '[') {\n            stack.push(char);\n        } else {\n            if (stack.length === 0 || stack.pop() !== pairs[char]) {\n                return false;\n            }\n        }\n    }\n    \n    return stack.length === 0;\n}\n```"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the time complexity of the stack-based solution for valid parentheses?",
+          "options": [
+            "O(n²)",
+            "O(n log n)",
+            "O(n)",
+            "O(1)"
+          ],
+          "correct": 2,
+          "explanation": "We iterate through the string once, and stack operations (push/pop) are O(1), so overall time complexity is O(n)."
+        }
+      ],
+      "nextTopic": null
+    },
+    "microsoft-reverse-string": {
+      "id": "microsoft-reverse-string",
+      "title": "John's Microsoft Interview: The Reverse String Challenge",
+      "subtitle": "When Two Pointers Save the Day",
+      "description": "Follow John through his Microsoft phone screen as he tackles the string reversal problem with two-pointer technique.",
+      "difficulty": "Easy",
+      "estimatedTime": "10 minutes",
+      "category": "Interview Prep",
+      "subcategory": "Microsoft",
+      "tags": [
+        "String",
+        "Two Pointers",
+        "Microsoft",
+        "Phone Screen"
+      ],
+      "prerequisites": [
+        "Basic programming",
+        "Understanding of arrays"
+      ],
+      "learningObjectives": [
+        "Master the string reversal problem",
+        "Understand two-pointer technique",
+        "Learn Microsoft interview communication style",
+        "Practice in-place algorithm optimization"
+      ],
+      "story": {
+        "setting": "Microsoft Video Interview",
+        "characters": [
+          "John (Candidate)",
+          "Emma (Microsoft Engineer)"
+        ],
+        "plot": "John faces the string reversal challenge and must optimize from naive approach to two-pointer solution."
+      },
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Microsoft Interview",
+          "content": "John adjusts his headset as Emma, a Senior Software Engineer at Microsoft, joins the Teams call. \"Hi John, I'm Emma. Ready to solve some problems together?\""
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Challenge",
+          "content": "\"Let's start with a classic,\" Emma says, sharing her screen. \"Write a function to reverse a string. But here's the catch - do it in-place with O(1) extra space.\"\n\nInput: s = ['h','e','l','l','o']\nOutput: ['o','l','l','e','h']"
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 John's Approach",
+          "content": "John thinks aloud: \"I could create a new string and build it backwards, but that would use O(n) space. For in-place reversal, I can use two pointers - one at the start, one at the end, and swap characters while moving toward the center.\"\n\nEmma nods. \"Great thinking! Show me the implementation.\""
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 The Implementation",
+          "content": "```javascript\nfunction reverseString(s) {\n    let left = 0;\n    let right = s.length - 1;\n    \n    while (left < right) {\n        // Swap characters\n        [s[left], s[right]] = [s[right], s[left]];\n        \n        // Move pointers toward center\n        left++;\n        right--;\n    }\n    \n    return s;\n}\n\n// Time Complexity: O(n)\n// Space Complexity: O(1)\n```"
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ The Result",
+          "content": "John implements the solution cleanly, explaining the two-pointer technique step by step.\n\nEmma smiles, \"Perfect! You identified the optimal approach and implemented it efficiently. The two-pointer technique is fundamental for many string and array problems.\"\n\nJohn feels confident - the in-place optimization clicked, and he's ready for the next challenge in his Microsoft interview journey."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the space complexity of the two-pointer solution?",
+          "options": [
+            "O(n)",
+            "O(log n)",
+            "O(1)",
+            "O(n²)"
+          ],
+          "correct": 2,
+          "explanation": "We only use a constant amount of extra space for the two pointer variables."
+        }
+      ],
+      "nextTopic": {
+        "id": "microsoft-array-rotation",
+        "title": "Array Rotation Challenge",
+        "description": "Continue with the next Microsoft interview question"
+      }
+    },
+    "microsoft-array-rotation": {
+      "id": "microsoft-array-rotation",
+      "title": "Lisa's Microsoft Interview: The Array Rotation Problem",
+      "subtitle": "Optimizing Space with Cyclic Replacements",
+      "description": "Join Lisa as she solves the array rotation challenge using optimal space complexity in her Microsoft interview.",
+      "difficulty": "Medium",
+      "estimatedTime": "14 minutes",
+      "category": "Interview Prep",
+      "subcategory": "Microsoft",
+      "tags": [
+        "Array",
+        "Rotation",
+        "Microsoft",
+        "Optimization"
+      ],
+      "prerequisites": [
+        "Understanding of arrays",
+        "Modular arithmetic"
+      ],
+      "learningObjectives": [
+        "Master the array rotation problem",
+        "Understand cyclic replacement technique",
+        "Learn space optimization strategies",
+        "Practice Microsoft interview style"
+      ],
+      "story": {
+        "setting": "Microsoft Technical Interview",
+        "characters": [
+          "Lisa (Candidate)",
+          "David (Microsoft Engineer)"
+        ],
+        "plot": "Lisa encounters the array rotation problem and must optimize from brute force to cyclic replacement solution."
+      },
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Technical Round",
+          "content": "David, the Microsoft interviewer, pulls up the next problem. \"Great job on the previous question, Lisa. Now let's test your array manipulation skills.\""
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Problem",
+          "content": "\"Rotate an array to the right by k steps. Do it in-place with O(1) extra space.\"\n\nInput: nums = [1,2,3,4,5,6,7], k = 3\nOutput: [5,6,7,1,2,3,4]\nExplanation: Rotate right by 3 steps"
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Lisa's Solution",
+          "content": "```javascript\nfunction rotate(nums, k) {\n    const n = nums.length;\n    k = k % n; // Handle k > n\n    \n    // Reverse entire array\n    reverse(nums, 0, n - 1);\n    \n    // Reverse first k elements\n    reverse(nums, 0, k - 1);\n    \n    // Reverse remaining elements\n    reverse(nums, k, n - 1);\n}\n\nfunction reverse(nums, start, end) {\n    while (start < end) {\n        [nums[start], nums[end]] = [nums[end], nums[start]];\n        start++;\n        end--;\n    }\n}\n```"
+        }
+      ],
+      "nextTopic": null
+    },
+    "operating-systems-introduction-architecture": {
+      "id": "operating-systems-introduction-architecture",
+      "title": "Maya's First Crisis: When Servers Go Silent",
+      "subtitle": "Learning OS Fundamentals Through Production Incidents",
+      "description": "Join Maya on her first day as SRE when a critical system failure teaches her about kernel architecture, system calls, and modern OS design",
+      "difficulty": "Beginner",
+      "estimatedTime": "75 minutes",
+      "category": "Operating Systems",
+      "subcategory": "OS Architecture",
+      "tags": [
+        "Operating Systems",
+        "Kernel",
+        "System Calls",
+        "SRE"
+      ],
+      "prerequisites": [
+        "Basic understanding of computer systems"
+      ],
+      "learningObjectives": [
+        "Understand operating system architecture and components",
+        "Learn about kernel vs user space and system calls",
+        "Apply OS concepts to troubleshoot system issues"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 Maya's First Day Crisis",
+          "content": "Maya Chen nervously adjusted her laptop bag as she walked into CloudScale's bustling office. Today was her first day as a Site Reliability Engineer, transitioning from five years of software development to the world of infrastructure and system reliability.\n\n'Welcome to the SRE team!' David Rodriguez, the Platform Engineer, greeted her with a warm smile. 'Ready to dive into the deep end?'\n\nBefore Maya could respond, alarms started blaring from the monitoring dashboard. Red alerts cascaded across multiple screens - their critical payment processing system was down.\n\n'Perfect timing,' Alex Thompson, the DevOps Engineer, called out sarcastically. 'Maya, looks like you're getting your baptism by fire. Our payment system just went silent, and we're losing transactions by the second.'\n\nMaya's heart raced. In her development role, she'd dealt with application bugs, but this was different. This was the entire system failing, affecting real customers and real money. She looked at the monitoring screens showing cryptic kernel messages and system metrics she barely understood.\n\n'Don't worry,' David said, noticing her expression. 'This is exactly how you learn operating systems - by solving real problems. Let's figure out what's happening at the OS level.'"
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Silent System Mystery",
+          "content": "The payment processing system had been running smoothly for months, handling thousands of transactions per hour. But now, it was completely unresponsive. The application logs showed nothing unusual, but the system metrics told a different story.\n\n'Look at this,' David pointed to the monitoring dashboard. 'CPU usage is normal, memory looks fine, but our application isn't responding to any requests. This screams OS-level issue.'\n\nMaya stared at the screens, feeling overwhelmed. 'In my development work, I never had to think about the operating system. The application just... worked.'\n\n'That's the beauty and curse of modern development,' Alex chimed in. 'Abstractions hide complexity until they don't. When the OS fails, everything fails.'\n\nThe business impact was immediate and severe. Customer transactions were being rejected, the support team was fielding angry calls, and the CEO was asking for updates every five minutes. Maya realized she needed to understand how applications actually interact with the operating system to solve this crisis."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Diving into OS Architecture",
+          "content": "David led Maya through the systematic approach to OS troubleshooting. 'First, let's understand what an operating system actually does,' he explained, pulling up a system architecture diagram.\n\n'The OS has several key responsibilities: managing processes, handling memory, controlling I/O operations, and providing security. Our payment system interacts with all of these through system calls.'\n\nMaya watched as David demonstrated various diagnostic commands. 'When an application wants to read a file, send network data, or allocate memory, it can't do these things directly. It has to ask the kernel through system calls.'\n\n'So our payment application is making system calls, but something in the kernel isn't responding?' Maya asked.\n\n'Exactly! Let's trace the system calls and see where things are getting stuck.' David showed her how to use strace to monitor system calls in real-time.\n\nAs they analyzed the output, a pattern emerged. The application was making system calls, but they were hanging indefinitely. The kernel was receiving the requests but not processing them properly.\n\n'This looks like a kernel-level deadlock or resource exhaustion,' David concluded. 'The OS architecture has multiple layers, and we need to understand each one to fix this.'"
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Kernel Detective Work",
+          "content": "David guided Maya through the diagnostic process, showing her the tools and techniques used to debug OS-level issues.\n\n```bash\n# Check system call traces\nsudo strace -p $(pgrep payment-service) -f -e trace=all\n\n# Monitor kernel messages\nsudo dmesg -w\n\n# Check system resource usage\ncat /proc/meminfo\ncat /proc/loadavg\n\n# Examine process states\nps aux | grep payment\n\n# Check for kernel deadlocks\nsudo cat /proc/lockdep_stats\n```\n\nThe investigation revealed that a recent kernel update had introduced a bug in the file system locking mechanism. The payment service was trying to write transaction logs, but the kernel was deadlocking on file system locks.\n\n```bash\n# Temporary fix: restart the problematic kernel module\nsudo rmmod problematic_fs_module\nsudo modprobe problematic_fs_module\n\n# Long-term fix: rollback kernel or apply patch\nsudo apt-mark hold linux-image-generic\n```\n\n'This is why understanding OS architecture is crucial for SREs,' David explained. 'Applications depend on the kernel for everything. When the kernel fails, applications fail, regardless of how well-written they are.'\n\nMaya realized that her development background, while valuable, was just the tip of the iceberg. The operating system was the foundation that everything else built upon."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Crisis Resolved, Knowledge Gained",
+          "content": "Within two hours, the payment system was back online. Maya had successfully diagnosed and resolved her first OS-level incident, but more importantly, she had gained a fundamental understanding of operating system architecture.\n\n'You did great for your first day,' Alex said, patting Maya on the shoulder. 'Most developers never get to see this side of the system.'\n\nMaya reflected on what she had learned. The operating system wasn't just some abstract layer - it was the critical foundation that managed every aspect of the computer's operation. Applications like their payment service were completely dependent on the OS for process management, memory allocation, file operations, and network communication.\n\n'I used to think of the OS as just something that ran my applications,' Maya said. 'Now I understand it's more like the conductor of an orchestra, coordinating all the different components and resources.'\n\nDavid nodded approvingly. 'That's exactly right. And as an SRE, you'll need to understand not just how applications work, but how they interact with the OS. Today was just the beginning.'\n\nAs Maya packed up her laptop that evening, she felt a mix of exhaustion and excitement. She had successfully handled a production crisis on her first day, but she also realized how much more she needed to learn about operating systems, process management, memory systems, and performance optimization.\n\nThe journey from application developer to systems expert had begun, and Maya was ready for the challenge."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system kernel?",
+          "options": [
+            "Managing user applications only",
+            "Providing a bridge between hardware and software",
+            "Handling network requests",
+            "Managing databases"
+          ],
+          "correct": 1,
+          "explanation": "The kernel acts as the core component that manages system resources and provides an interface between hardware and software applications."
+        }
+      ]
+    },
+    "operating-systems-process-management": {
+      "id": "operating-systems-process-management",
+      "title": "David's Multi-Tasking Crisis: The Web Server That Couldn't",
+      "description": "Process management fundamentals",
+      "difficulty": "Medium",
+      "estimatedTime": "22 minutes",
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Crisis",
+          "content": "David faces a web server crisis that teaches process management."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Challenge",
+          "content": "The team faces a critical challenge that requires understanding of operating system concepts to solve effectively."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 The Analysis",
+          "content": "Through systematic analysis and step-by-step reasoning, the team works through the problem using operating system principles."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 The Implementation",
+          "content": "```bash\n# Example OS command\nps aux | grep process\ntop -o %CPU\n```"
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ The Resolution",
+          "content": "The team successfully resolves the issue, learning valuable operating system concepts that will help them in future challenges."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Test",
+          "options": [
+            "A",
+            "B"
+          ],
+          "correct": 0,
+          "explanation": "Test"
+        }
+      ]
+    },
+    "operating-systems-memory-management": {
+      "id": "operating-systems-memory-management",
+      "title": "Sarah's Memory Leak Investigation: The Case of the Vanishing RAM",
+      "description": "Memory management fundamentals",
+      "difficulty": "Medium",
+      "estimatedTime": "25 minutes",
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Investigation",
+          "content": "Sarah investigates memory leaks and learns memory management."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Challenge",
+          "content": "The team faces a critical challenge that requires understanding of operating system concepts to solve effectively."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 The Analysis",
+          "content": "Through systematic analysis and step-by-step reasoning, the team works through the problem using operating system principles."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 The Implementation",
+          "content": "```bash\n# Example OS command\nps aux | grep process\ntop -o %CPU\n```"
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ The Resolution",
+          "content": "The team successfully resolves the issue, learning valuable operating system concepts that will help them in future challenges."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Test",
+          "options": [
+            "A",
+            "B"
+          ],
+          "correct": 0,
+          "explanation": "Test"
+        }
+      ]
+    },
+    "operating-systems-maya-s-first-crisis-when-servers": {
+      "id": "operating-systems-maya-s-first-crisis-when-servers",
+      "title": "Maya's First Crisis: When Servers Go Silent",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Maya's First Crisis: When Servers Go Silent",
+      "difficulty": "Beginner",
+      "estimatedTime": "60 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "Maya Chen nervously adjusted her laptop bag as she walked into CloudScale's bustling office. Today was her first day as a Site Reliability Engineer, and she was about to face her first major system crisis. The payment processing system had gone silent, and Maya needed to understand how operating systems manage critical processes.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Maya's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Maya faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Maya approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Maya investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Maya successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "operating-systems-david-s-container-conundrum-the-": {
+      "id": "operating-systems-david-s-container-conundrum-the-",
+      "title": "David's Container Conundrum: The Multi-Tasking Mystery",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "David's Container Conundrum: The Multi-Tasking Mystery",
+      "difficulty": "Beginner",
+      "estimatedTime": "70 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "David Rodriguez, the Platform Engineer, was investigating a mysterious performance issue with their containerized applications. The containers were consuming far more CPU than expected, and David suspected the problem lay deep in the operating system's process management. He needed to understand how the OS schedules and manages multiple processes.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following David's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem David faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "David approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how David investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "David successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "operating-systems-sarah-s-memory-leak-hunt-the-cas": {
+      "id": "operating-systems-sarah-s-memory-leak-hunt-the-cas",
+      "title": "Sarah's Memory Leak Hunt: The Case of the Vanishing RAM",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Sarah's Memory Leak Hunt: The Case of the Vanishing RAM",
+      "difficulty": "Intermediate",
+      "estimatedTime": "80 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "Sarah Kim, the DevOps Engineer, was debugging a memory-intensive application that seemed to be consuming more RAM every hour. The application would eventually crash with out-of-memory errors, and Sarah needed to understand how operating systems manage virtual memory, paging, and memory allocation to solve this critical issue.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Sarah's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Sarah faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Sarah approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Sarah investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Sarah successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "operating-systems-alex-s-storage-saga-the-great-da": {
+      "id": "operating-systems-alex-s-storage-saga-the-great-da",
+      "title": "Alex's Storage Saga: The Great Data Migration",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Alex's Storage Saga: The Great Data Migration",
+      "difficulty": "Intermediate",
+      "estimatedTime": "90 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "Alex Thompson, the Infrastructure Engineer, was tasked with migrating 50TB of critical data to a new storage system. The migration needed to be fast, reliable, and with zero downtime. Alex needed to understand how operating systems handle file systems, storage management, and I/O operations to ensure a successful migration.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Alex's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Alex faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Alex approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Alex investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Alex successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "operating-systems-team-crisis-the-deadlock-detecti": {
+      "id": "operating-systems-team-crisis-the-deadlock-detecti",
+      "title": "Team Crisis: The Deadlock Detective Story",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Team Crisis: The Deadlock Detective Story",
+      "difficulty": "Intermediate",
+      "estimatedTime": "100 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "Maya Chen nervously adjusted her laptop bag as she walked into CloudScale's bustling office. Today was her first day as a Site Reliability Engineer, and she was about to face her first major system crisis. The payment processing system had gone silent, and Maya needed to understand how operating systems manage critical processes.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Team's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Team faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Team approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Team investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Team successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "operating-systems-maya-s-deep-dive-journey-to-the-": {
+      "id": "operating-systems-maya-s-deep-dive-journey-to-the-",
+      "title": "Maya's Deep Dive: Journey to the Kernel's Heart",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Maya's Deep Dive: Journey to the Kernel's Heart",
+      "difficulty": "Advanced",
+      "estimatedTime": "110 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "Maya had grown from a nervous new hire to a confident SRE, but now she faced her ultimate challenge - optimizing system performance at the kernel level. She needed to understand system calls, kernel internals, and OS services to solve complex performance bottlenecks that were affecting the entire platform.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Maya's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Maya faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Maya approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Maya investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Maya successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "operating-systems-the-team-s-triumph-building-the-": {
+      "id": "operating-systems-the-team-s-triumph-building-the-",
+      "title": "The Team's Triumph: Building the Ultimate System",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "The Team's Triumph: Building the Ultimate System",
+      "difficulty": "Advanced",
+      "estimatedTime": "120 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "The entire CloudScale team was facing their biggest challenge yet - a complex deadlock in their distributed system that was causing random application freezes. Maya, David, Sarah, and Alex needed to work together to understand synchronization primitives, concurrency, and how operating systems prevent and resolve deadlocks.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Team's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Team faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Team approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Team investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Team successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "networking-fundamentals-elena-s-first-day-when-the": {
+      "id": "networking-fundamentals-elena-s-first-day-when-the",
+      "title": "Elena's First Day: When the Network Goes Dark",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Elena's First Day: When the Network Goes Dark",
+      "difficulty": "Beginner",
+      "estimatedTime": "60 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "The CloudScale team had learned so much about operating systems through their various challenges. Now it was time to apply all their knowledge to design and build the ultimate high-performance system architecture that would scale to millions of users.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Maya's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Maya faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Maya approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Maya investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Maya successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "networking-fundamentals-marcus-s-protocol-mystery-": {
+      "id": "networking-fundamentals-marcus-s-protocol-mystery-",
+      "title": "Marcus's Protocol Mystery: The Case of the Slow Application",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Marcus's Protocol Mystery: The Case of the Slow Application",
+      "difficulty": "Beginner",
+      "estimatedTime": "70 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "The CloudScale team had learned so much about operating systems through their various challenges. Now it was time to apply all their knowledge to design and build the ultimate high-performance system architecture that would scale to millions of users.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Maya's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Maya faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Maya approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Maya investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Maya successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "networking-fundamentals-priya-s-routing-challenge-": {
+      "id": "networking-fundamentals-priya-s-routing-challenge-",
+      "title": "Priya's Routing Challenge: Connecting the Disconnected",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Priya's Routing Challenge: Connecting the Disconnected",
+      "difficulty": "Intermediate",
+      "estimatedTime": "80 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "The CloudScale team had learned so much about operating systems through their various challenges. Now it was time to apply all their knowledge to design and build the ultimate high-performance system architecture that would scale to millions of users.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Maya's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Maya faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Maya approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Maya investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Maya successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "networking-fundamentals-james-s-switching-dilemma-": {
+      "id": "networking-fundamentals-james-s-switching-dilemma-",
+      "title": "James's Switching Dilemma: The VLAN Virtualization Victory",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "James's Switching Dilemma: The VLAN Virtualization Victory",
+      "difficulty": "Intermediate",
+      "estimatedTime": "90 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "The CloudScale team had learned so much about operating systems through their various challenges. Now it was time to apply all their knowledge to design and build the ultimate high-performance system architecture that would scale to millions of users.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Maya's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Maya faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Maya approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Maya investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Maya successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "networking-fundamentals-team-crisis-the-security-b": {
+      "id": "networking-fundamentals-team-crisis-the-security-b",
+      "title": "Team Crisis: The Security Breach That Changed Everything",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Team Crisis: The Security Breach That Changed Everything",
+      "difficulty": "Intermediate",
+      "estimatedTime": "100 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "Maya Chen nervously adjusted her laptop bag as she walked into CloudScale's bustling office. Today was her first day as a Site Reliability Engineer, and she was about to face her first major system crisis. The payment processing system had gone silent, and Maya needed to understand how operating systems manage critical processes.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Team's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Team faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Team approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Team investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Team successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "networking-fundamentals-elena-s-wireless-evolution": {
+      "id": "networking-fundamentals-elena-s-wireless-evolution",
+      "title": "Elena's Wireless Evolution: From Chaos to Connectivity",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "Elena's Wireless Evolution: From Chaos to Connectivity",
+      "difficulty": "Advanced",
+      "estimatedTime": "110 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "The CloudScale team had learned so much about operating systems through their various challenges. Now it was time to apply all their knowledge to design and build the ultimate high-performance system architecture that would scale to millions of users.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Maya's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Maya faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Maya approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Maya investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Maya successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
+        }
+      ]
+    },
+    "networking-fundamentals-the-team-s-cloud-journey-b": {
+      "id": "networking-fundamentals-the-team-s-cloud-journey-b",
+      "title": "The Team's Cloud Journey: Bridging On-Premises and Cloud",
+      "subtitle": "Learning OS Fundamentals Through Real-World Scenarios",
+      "description": "The Team's Cloud Journey: Bridging On-Premises and Cloud",
+      "difficulty": "Advanced",
+      "estimatedTime": "120 minutes",
+      "category": "Operating Systems",
+      "subcategory": "System Programming",
+      "tags": [
+        "Operating Systems",
+        "System Programming",
+        "Performance",
+        "Infrastructure"
+      ],
+      "content": [
+        {
+          "type": "story_intro",
+          "title": "🎯 The Challenge Begins",
+          "content": "The entire CloudScale team was facing their biggest challenge yet - a complex deadlock in their distributed system that was causing random application freezes. Maya, David, Sarah, and Alex needed to work together to understand synchronization primitives, concurrency, and how operating systems prevent and resolve deadlocks.\n\nThis scenario teaches fundamental operating system concepts through hands-on problem solving. You'll learn how the OS manages processes, memory, and system resources while following Team's journey to solve real infrastructure challenges."
+        },
+        {
+          "type": "problem_statement",
+          "title": "📝 The Technical Challenge",
+          "content": "The problem Team faces requires deep understanding of operating system internals. Modern applications depend on the OS for process management, memory allocation, file operations, and network communication. When these systems fail, applications fail - regardless of how well-written the application code is.\n\nThis is why understanding operating systems is crucial for any software engineer working with production systems."
+        },
+        {
+          "type": "thinking_process",
+          "title": "💭 Understanding the OS Layer",
+          "content": "Team approaches this systematically by understanding how the operating system provides services to applications. The OS acts as an intermediary between applications and hardware, managing resources and providing abstractions that make programming easier.\n\nKey OS responsibilities include: process scheduling, memory management, file system operations, network I/O, and security enforcement."
+        },
+        {
+          "type": "code_solution",
+          "title": "💻 Hands-On Implementation",
+          "content": "Here's how Team investigates and solves the problem using OS-level tools and techniques:\n\n```bash\n# Monitor system processes\nps aux | grep application\ntop -p $PID\n\n# Check memory usage\nfree -h\ncat /proc/meminfo\n\n# Analyze system calls\nstrace -p $PID\n\n# Monitor file operations\nlsof -p $PID\n```\n\nThese commands reveal how applications interact with the operating system and help identify performance bottlenecks or resource issues."
+        },
+        {
+          "type": "story_conclusion",
+          "title": "✅ Problem Solved and Lessons Learned",
+          "content": "Team successfully resolves the issue by applying operating system knowledge to the real-world problem. The solution demonstrates how understanding OS internals enables better system design, debugging, and performance optimization.\n\nKey takeaways: Operating systems provide the foundation for all applications. Understanding process management, memory systems, and I/O operations is essential for building scalable, reliable software systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary role of an operating system?",
+          "options": [
+            "To run applications directly on hardware",
+            "To provide an interface between applications and hardware",
+            "To store data permanently",
+            "To connect to the internet"
+          ],
+          "correct": 1,
+          "explanation": "The operating system acts as an intermediary between applications and hardware, managing resources and providing abstractions."
+        },
+        {
+          "question": "Which OS component is responsible for managing multiple running programs?",
+          "options": [
+            "File system",
+            "Memory manager",
+            "Process scheduler",
+            "Device drivers"
+          ],
+          "correct": 2,
+          "explanation": "The process scheduler manages how multiple programs share CPU time and system resources."
         }
       ]
     }

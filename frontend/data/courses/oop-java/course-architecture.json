@@ -1,0 +1,171 @@
+{
+  "courseId": "object-oriented-programming-java",
+  "title": "Object-Oriented Programming with Java",
+  "description": "Master OOP concepts through real-world Java applications and modern development practices",
+  "difficulty": "Progressive (Beginner to Advanced)",
+  "estimatedHours": "10-14 hours",
+  "categoryId": "programming-fundamentals",
+  "prerequisites": ["Basic programming concepts", "Java syntax basics"],
+  "learningOutcomes": [
+    "Design and implement robust object-oriented systems",
+    "Apply SOLID principles in professional Java development",
+    "Build scalable applications using advanced OOP patterns",
+    "Debug and optimize object-oriented code effectively"
+  ],
+  "characters": [
+    {
+      "name": "Maya Chen",
+      "role": "Senior Software Engineer",
+      "background": "Full-stack developer at a fintech startup, specializes in Java microservices",
+      "personality": "Methodical, patient teacher, loves clean code and best practices",
+      "expertise": "Object-oriented design, system architecture, code quality"
+    },
+    {
+      "name": "Alex Rodriguez",
+      "role": "Junior Developer",
+      "background": "Recent bootcamp graduate, eager to learn professional development practices",
+      "personality": "Curious, asks great questions, learns through hands-on practice",
+      "expertise": "Basic programming, quick learner, fresh perspective"
+    },
+    {
+      "name": "Dr. Sarah Kim",
+      "role": "Tech Lead & Mentor",
+      "background": "Computer Science PhD, 15 years experience, leads architecture decisions",
+      "personality": "Strategic thinker, explains complex concepts simply, focuses on real-world applications",
+      "expertise": "Advanced OOP patterns, system design, performance optimization"
+    },
+    {
+      "name": "Jordan Taylor",
+      "role": "DevOps Engineer",
+      "background": "Infrastructure specialist who works closely with development teams",
+      "personality": "Practical problem-solver, focuses on maintainable and deployable code",
+      "expertise": "Code deployment, system reliability, cross-team collaboration"
+    }
+  ],
+  "topics": [
+    {
+      "id": "oop-java-topic-1",
+      "title": "Maya's Onboarding Challenge: Understanding Objects and Classes",
+      "description": "Learn fundamental OOP concepts through Maya's experience onboarding Alex to the team's codebase",
+      "difficulty": "Beginner",
+      "duration": "60-75 min",
+      "prerequisites": ["Basic Java syntax"],
+      "learningObjectives": [
+        "Define classes and create objects",
+        "Understand the relationship between classes and objects",
+        "Implement constructors and instance variables",
+        "Use methods to define object behavior"
+      ]
+    },
+    {
+      "id": "oop-java-topic-2", 
+      "title": "Alex's First Bug Hunt: Encapsulation and Data Protection",
+      "description": "Discover encapsulation principles as Alex learns to fix security vulnerabilities in the payment system",
+      "difficulty": "Beginner",
+      "duration": "60-75 min",
+      "prerequisites": ["Classes and objects"],
+      "learningObjectives": [
+        "Implement proper encapsulation with private fields",
+        "Create getter and setter methods",
+        "Understand access modifiers and their purposes",
+        "Apply data validation in setter methods"
+      ]
+    },
+    {
+      "id": "oop-java-topic-3",
+      "title": "Dr. Kim's Code Review: Inheritance and Code Reusability", 
+      "description": "Learn inheritance concepts through Dr. Kim's code review session on the user management system",
+      "difficulty": "Intermediate",
+      "duration": "75-90 min",
+      "prerequisites": ["Encapsulation", "Class design"],
+      "learningObjectives": [
+        "Create class hierarchies using inheritance",
+        "Override methods effectively",
+        "Use super keyword appropriately",
+        "Understand when to use inheritance vs composition"
+      ]
+    },
+    {
+      "id": "oop-java-topic-4",
+      "title": "Maya's Interface Design: Polymorphism in Action",
+      "description": "Master polymorphism through Maya's design of a flexible notification system using interfaces",
+      "difficulty": "Intermediate", 
+      "duration": "75-90 min",
+      "prerequisites": ["Inheritance", "Method overriding"],
+      "learningObjectives": [
+        "Implement and use interfaces effectively",
+        "Apply polymorphism in real-world scenarios",
+        "Understand dynamic method dispatch",
+        "Design flexible and extensible systems"
+      ]
+    },
+    {
+      "id": "oop-java-topic-5",
+      "title": "Jordan's Deployment Crisis: Abstract Classes and Templates",
+      "description": "Learn abstract classes through Jordan's solution to standardize deployment configurations across services",
+      "difficulty": "Intermediate",
+      "duration": "75-90 min", 
+      "prerequisites": ["Inheritance", "Polymorphism"],
+      "learningObjectives": [
+        "Create and use abstract classes",
+        "Implement template method pattern",
+        "Understand when to use abstract classes vs interfaces",
+        "Design reusable code templates"
+      ]
+    },
+    {
+      "id": "oop-java-topic-6",
+      "title": "Dr. Kim's Architecture Workshop: SOLID Principles",
+      "description": "Apply SOLID principles through Dr. Kim's refactoring workshop on the legacy reporting system",
+      "difficulty": "Advanced",
+      "duration": "90-105 min",
+      "prerequisites": ["All previous OOP concepts"],
+      "learningObjectives": [
+        "Apply Single Responsibility Principle",
+        "Implement Open/Closed Principle",
+        "Use Liskov Substitution Principle",
+        "Apply Interface Segregation and Dependency Inversion"
+      ]
+    },
+    {
+      "id": "oop-java-topic-7",
+      "title": "Maya's Performance Challenge: Advanced OOP Patterns",
+      "description": "Master advanced patterns through Maya's optimization of the high-traffic trading system",
+      "difficulty": "Advanced",
+      "duration": "90-105 min",
+      "prerequisites": ["SOLID principles", "Advanced OOP concepts"],
+      "learningObjectives": [
+        "Implement Singleton and Factory patterns",
+        "Use Observer pattern for event handling",
+        "Apply Strategy pattern for algorithm selection",
+        "Optimize object creation and memory usage"
+      ]
+    },
+    {
+      "id": "oop-java-topic-8",
+      "title": "Team's Final Project: Building a Complete OOP System",
+      "description": "Integrate all OOP concepts in the team's collaborative project to build a scalable e-commerce platform",
+      "difficulty": "Advanced",
+      "duration": "105-120 min",
+      "prerequisites": ["All previous topics"],
+      "learningObjectives": [
+        "Design complete object-oriented systems",
+        "Integrate multiple design patterns effectively",
+        "Apply best practices for maintainable code",
+        "Implement comprehensive testing strategies"
+      ]
+    }
+  ],
+  "projectOutcomes": [
+    "Complete e-commerce platform with user management",
+    "Notification system with multiple delivery methods", 
+    "Deployment configuration management system",
+    "Performance-optimized trading system components"
+  ],
+  "industryRelevance": [
+    "Enterprise Java development practices",
+    "Microservices architecture patterns",
+    "Code quality and maintainability standards",
+    "Team collaboration and code review processes"
+  ]
+}

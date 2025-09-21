@@ -1,0 +1,34 @@
+{
+  "topicId": "oop-java-topic-3",
+  "title": "Dr. Kim's Code Review: Inheritance and Code Reusability",
+  "description": "Topic 3 content - placeholder for testing",
+  "difficulty": "Intermediate",
+  "duration": "75-90 min",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "Introduction to Topic 3",
+      "content": {
+        "story": "This is a placeholder topic for testing the course structure. In the full implementation, this would contain detailed story-based content with the team characters.",
+        "keyPoints": [
+          "Key concept 1 for topic 3",
+          "Key concept 2 for topic 3",
+          "Key concept 3 for topic 3"
+        ],
+        "codeExample": {
+          "title": "Example for Topic 3",
+          "code": "// Placeholder code example\npublic class Topic3Example {\n    public void demonstrateConcept() {\n        System.out.println(\"Topic 3 concept\");\n    }\n}",
+          "explanation": "This is a placeholder code example for topic 3."
+        }
+      }
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the main concept in topic 3?",
+      "options": ["Concept A", "Concept B", "Concept C", "Concept D"],
+      "correct": 0,
+      "explanation": "Placeholder explanation for topic 3."
+    }
+  ]
+}

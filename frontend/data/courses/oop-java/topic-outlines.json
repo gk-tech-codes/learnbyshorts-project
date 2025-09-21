@@ -1,0 +1,453 @@
+{
+  "courseId": "object-oriented-programming-java",
+  "topicOutlines": [
+    {
+      "topicId": "oop-java-topic-1",
+      "title": "Maya's Onboarding Challenge: Understanding Objects and Classes",
+      "storyArc": {
+        "setup": "Alex's first day - Maya needs to explain the codebase structure",
+        "conflict": "Alex is overwhelmed by the existing code and doesn't understand the object-oriented structure",
+        "resolution": "Maya breaks down classes and objects using real examples from their payment system"
+      },
+      "sections": [
+        {
+          "id": "section-1",
+          "title": "The Codebase Tour",
+          "learningObjective": "Understand what classes and objects are in Java",
+          "storyContext": "Maya shows Alex around the payment processing codebase",
+          "technicalContent": "Class definition, object instantiation, basic syntax",
+          "practicalExample": "PaymentProcessor class and creating payment objects",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-2", 
+          "title": "Building Your First Class",
+          "learningObjective": "Create classes with instance variables and methods",
+          "storyContext": "Alex creates a simple User class for the system",
+          "technicalContent": "Instance variables, methods, class structure",
+          "practicalExample": "User class with name, email, and basic methods",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-3",
+          "title": "The Constructor Mystery",
+          "learningObjective": "Implement constructors to initialize objects properly",
+          "storyContext": "Maya explains why some objects work and others don't",
+          "technicalContent": "Default constructors, parameterized constructors, initialization",
+          "practicalExample": "Adding constructors to User and PaymentProcessor classes",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-4",
+          "title": "Objects in Action",
+          "learningObjective": "Use objects to solve real problems",
+          "storyContext": "Alex and Maya build a simple transaction processing flow",
+          "technicalContent": "Object interaction, method calls, object lifecycle",
+          "practicalExample": "Creating users, processing payments, handling transactions",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-5",
+          "title": "Code Review and Best Practices",
+          "learningObjective": "Apply class and object best practices",
+          "storyContext": "Maya reviews Alex's code and suggests improvements",
+          "technicalContent": "Naming conventions, code organization, common pitfalls",
+          "practicalExample": "Refactoring Alex's code for better structure",
+          "duration": "8-10 min"
+        }
+      ]
+    },
+    {
+      "topicId": "oop-java-topic-2",
+      "title": "Alex's First Bug Hunt: Encapsulation and Data Protection", 
+      "storyArc": {
+        "setup": "Security audit reveals data exposure issues in the payment system",
+        "conflict": "Alex discovers that sensitive user data can be accessed and modified directly",
+        "resolution": "Maya teaches encapsulation to protect data and maintain system integrity"
+      },
+      "sections": [
+        {
+          "id": "section-1",
+          "title": "The Security Breach Discovery",
+          "learningObjective": "Understand why data protection is crucial",
+          "storyContext": "Alex finds a bug where user balance can be modified directly",
+          "technicalContent": "Problems with public fields, data integrity issues",
+          "practicalExample": "Vulnerable User class with public balance field",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-2",
+          "title": "Building Walls: Private Fields",
+          "learningObjective": "Implement private fields for data protection",
+          "storyContext": "Maya shows how to protect sensitive data",
+          "technicalContent": "Access modifiers, private fields, data hiding",
+          "practicalExample": "Converting public fields to private in User class",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-3",
+          "title": "Controlled Access: Getters and Setters",
+          "learningObjective": "Create proper access methods for private data",
+          "storyContext": "Alex learns how to provide controlled access to data",
+          "technicalContent": "Getter and setter methods, method naming conventions",
+          "practicalExample": "Adding getters and setters to User class",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-4",
+          "title": "Smart Setters: Data Validation",
+          "learningObjective": "Implement data validation in setter methods",
+          "storyContext": "Maya shows how to prevent invalid data from entering the system",
+          "technicalContent": "Input validation, business rules, exception handling",
+          "practicalExample": "Adding validation to balance and email setters",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-5",
+          "title": "Encapsulation in Practice",
+          "learningObjective": "Apply encapsulation principles to real systems",
+          "storyContext": "Alex refactors the payment system with proper encapsulation",
+          "technicalContent": "Complete encapsulation implementation, testing protected data",
+          "practicalExample": "Fully encapsulated PaymentProcessor and User classes",
+          "duration": "8-10 min"
+        }
+      ]
+    },
+    {
+      "topicId": "oop-java-topic-3",
+      "title": "Dr. Kim's Code Review: Inheritance and Code Reusability",
+      "storyArc": {
+        "setup": "Dr. Kim reviews the user management system and finds code duplication",
+        "conflict": "Multiple user types (Customer, Admin, Merchant) have duplicate code",
+        "resolution": "Team learns inheritance to eliminate duplication and create maintainable hierarchies"
+      },
+      "sections": [
+        {
+          "id": "section-1",
+          "title": "The Code Duplication Problem",
+          "learningObjective": "Identify when inheritance is needed",
+          "storyContext": "Dr. Kim points out repeated code in different user classes",
+          "technicalContent": "Code duplication issues, maintenance problems",
+          "practicalExample": "Customer, Admin, and Merchant classes with duplicate code",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-2",
+          "title": "Creating the Parent Class",
+          "learningObjective": "Design and implement base classes",
+          "storyContext": "Maya creates a base User class with common functionality",
+          "technicalContent": "Inheritance syntax, extends keyword, parent class design",
+          "practicalExample": "Base User class with common fields and methods",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-3",
+          "title": "Extending with Child Classes",
+          "learningObjective": "Create specialized child classes",
+          "storyContext": "Alex creates Customer and Admin classes that extend User",
+          "technicalContent": "Child class implementation, additional fields and methods",
+          "practicalExample": "Customer and Admin classes extending User",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-4",
+          "title": "Method Overriding and Super",
+          "learningObjective": "Override methods and use super keyword",
+          "storyContext": "Jordan shows how different user types need different login behavior",
+          "technicalContent": "Method overriding, @Override annotation, super keyword",
+          "practicalExample": "Overriding login() method in Admin class",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-5",
+          "title": "Inheritance Best Practices",
+          "learningObjective": "Apply inheritance principles correctly",
+          "storyContext": "Dr. Kim reviews the inheritance hierarchy and suggests improvements",
+          "technicalContent": "Is-a relationship, inheritance vs composition, design principles",
+          "practicalExample": "Refining the user hierarchy based on best practices",
+          "duration": "8-10 min"
+        }
+      ]
+    },
+    {
+      "topicId": "oop-java-topic-4",
+      "title": "Maya's Interface Design: Polymorphism in Action",
+      "storyArc": {
+        "setup": "The notification system needs to support email, SMS, and push notifications",
+        "conflict": "Hard-coded notification types make the system inflexible and hard to extend",
+        "resolution": "Maya designs interfaces and polymorphism to create a flexible notification system"
+      },
+      "sections": [
+        {
+          "id": "section-1",
+          "title": "The Rigid Notification Problem",
+          "learningObjective": "Understand the need for flexible design",
+          "storyContext": "Alex struggles with hard-coded notification types",
+          "technicalContent": "Problems with rigid code, need for flexibility",
+          "practicalExample": "Inflexible notification system with if-else chains",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-2",
+          "title": "Designing the Interface Contract",
+          "learningObjective": "Create and implement interfaces",
+          "storyContext": "Maya designs a NotificationService interface",
+          "technicalContent": "Interface definition, method signatures, contracts",
+          "practicalExample": "NotificationService interface with send() method",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-3",
+          "title": "Multiple Implementations",
+          "learningObjective": "Implement interfaces in different classes",
+          "storyContext": "Team creates EmailService, SMSService, and PushService",
+          "technicalContent": "Interface implementation, implements keyword",
+          "practicalExample": "EmailService and SMSService implementing NotificationService",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-4",
+          "title": "Polymorphism Magic",
+          "learningObjective": "Use polymorphism for flexible code",
+          "storyContext": "Jordan shows how to use different services interchangeably",
+          "technicalContent": "Polymorphism, dynamic method dispatch, interface references",
+          "practicalExample": "NotificationManager using different services polymorphically",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-5",
+          "title": "Extending the System",
+          "learningObjective": "Add new implementations without changing existing code",
+          "storyContext": "Alex adds SlackService without modifying existing code",
+          "technicalContent": "Open/closed principle, extensibility, interface benefits",
+          "practicalExample": "Adding SlackService and integrating seamlessly",
+          "duration": "8-10 min"
+        }
+      ]
+    },
+    {
+      "topicId": "oop-java-topic-5",
+      "title": "Jordan's Deployment Crisis: Abstract Classes and Templates",
+      "storyArc": {
+        "setup": "Deployment configurations are inconsistent across different services",
+        "conflict": "Each service has different deployment steps, causing errors and delays",
+        "resolution": "Jordan creates abstract deployment templates to standardize the process"
+      },
+      "sections": [
+        {
+          "id": "section-1",
+          "title": "The Deployment Chaos",
+          "learningObjective": "Identify when abstract classes are useful",
+          "storyContext": "Jordan faces inconsistent deployment processes across services",
+          "technicalContent": "Problems with code duplication, need for templates",
+          "practicalExample": "Different deployment classes with similar but inconsistent logic",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-2",
+          "title": "Creating the Abstract Template",
+          "learningObjective": "Design and implement abstract classes",
+          "storyContext": "Jordan creates an abstract DeploymentProcess class",
+          "technicalContent": "Abstract classes, abstract methods, template structure",
+          "practicalExample": "Abstract DeploymentProcess with template method pattern",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-3",
+          "title": "Implementing Concrete Deployments",
+          "learningObjective": "Extend abstract classes with specific implementations",
+          "storyContext": "Maya and Alex create specific deployment classes",
+          "technicalContent": "Extending abstract classes, implementing abstract methods",
+          "practicalExample": "WebServiceDeployment and DatabaseDeployment classes",
+          "duration": "15-18 min"
+        },
+        {
+          "id": "section-4",
+          "title": "Template Method Pattern",
+          "learningObjective": "Use template methods for consistent workflows",
+          "storyContext": "Dr. Kim explains how the template ensures consistent deployment steps",
+          "technicalContent": "Template method pattern, workflow consistency, hook methods",
+          "practicalExample": "Deployment workflow with pre/post deployment hooks",
+          "duration": "12-15 min"
+        },
+        {
+          "id": "section-5",
+          "title": "Abstract vs Interface Decision",
+          "learningObjective": "Choose between abstract classes and interfaces",
+          "storyContext": "Team discusses when to use abstract classes vs interfaces",
+          "technicalContent": "Abstract classes vs interfaces, design decision criteria",
+          "practicalExample": "Comparing abstract class and interface solutions",
+          "duration": "8-10 min"
+        }
+      ]
+    },
+    {
+      "topicId": "oop-java-topic-6",
+      "title": "Dr. Kim's Architecture Workshop: SOLID Principles",
+      "storyArc": {
+        "setup": "Legacy reporting system is becoming unmaintainable and hard to extend",
+        "conflict": "Adding new features breaks existing functionality, code is tightly coupled",
+        "resolution": "Dr. Kim leads a refactoring workshop applying SOLID principles"
+      },
+      "sections": [
+        {
+          "id": "section-1",
+          "title": "The Legacy System Problem",
+          "learningObjective": "Identify code quality issues and their impact",
+          "storyContext": "Team struggles with the monolithic reporting system",
+          "technicalContent": "Code smells, tight coupling, maintenance problems",
+          "practicalExample": "Monolithic ReportGenerator class with multiple responsibilities",
+          "duration": "15-20 min"
+        },
+        {
+          "id": "section-2",
+          "title": "Single Responsibility Principle",
+          "learningObjective": "Apply SRP to break down large classes",
+          "storyContext": "Dr. Kim shows how to separate data access, processing, and formatting",
+          "technicalContent": "SRP definition, class responsibilities, separation of concerns",
+          "practicalExample": "Breaking ReportGenerator into DataAccess, Processor, and Formatter",
+          "duration": "20-25 min"
+        },
+        {
+          "id": "section-3",
+          "title": "Open/Closed and Liskov Substitution",
+          "learningObjective": "Design extensible and substitutable classes",
+          "storyContext": "Maya shows how to add new report types without modifying existing code",
+          "technicalContent": "OCP and LSP principles, inheritance hierarchies, substitutability",
+          "practicalExample": "Extensible report types with proper inheritance",
+          "duration": "20-25 min"
+        },
+        {
+          "id": "section-4",
+          "title": "Interface Segregation Principle",
+          "learningObjective": "Create focused, client-specific interfaces",
+          "storyContext": "Alex discovers that classes implement methods they don't need",
+          "technicalContent": "ISP definition, interface design, client-specific contracts",
+          "practicalExample": "Splitting large interfaces into focused ones",
+          "duration": "15-20 min"
+        },
+        {
+          "id": "section-5",
+          "title": "Dependency Inversion Principle",
+          "learningObjective": "Depend on abstractions, not concretions",
+          "storyContext": "Jordan shows how to make the system testable and flexible",
+          "technicalContent": "DIP definition, dependency injection, abstraction layers",
+          "practicalExample": "Injecting dependencies through interfaces",
+          "duration": "15-20 min"
+        }
+      ]
+    },
+    {
+      "topicId": "oop-java-topic-7",
+      "title": "Maya's Performance Challenge: Advanced OOP Patterns",
+      "storyArc": {
+        "setup": "High-traffic trading system is experiencing performance issues",
+        "conflict": "Object creation overhead and inflexible algorithms are causing bottlenecks",
+        "resolution": "Maya applies advanced design patterns to optimize performance and flexibility"
+      },
+      "sections": [
+        {
+          "id": "section-1",
+          "title": "Performance Bottleneck Analysis",
+          "learningObjective": "Identify performance issues in object-oriented systems",
+          "storyContext": "Maya profiles the trading system and finds object creation bottlenecks",
+          "technicalContent": "Performance profiling, object creation costs, memory management",
+          "practicalExample": "Analyzing TradingEngine performance with profiling tools",
+          "duration": "15-20 min"
+        },
+        {
+          "id": "section-2",
+          "title": "Singleton and Factory Patterns",
+          "learningObjective": "Implement Singleton and Factory patterns for object management",
+          "storyContext": "Maya optimizes object creation with controlled instantiation",
+          "technicalContent": "Singleton pattern, Factory pattern, object lifecycle management",
+          "practicalExample": "ConnectionManager singleton and TradeFactory implementation",
+          "duration": "25-30 min"
+        },
+        {
+          "id": "section-3",
+          "title": "Observer Pattern for Event Handling",
+          "learningObjective": "Implement Observer pattern for loose coupling",
+          "storyContext": "Alex implements real-time trade notifications using Observer pattern",
+          "technicalContent": "Observer pattern, event-driven architecture, loose coupling",
+          "practicalExample": "TradeObserver system for real-time notifications",
+          "duration": "20-25 min"
+        },
+        {
+          "id": "section-4",
+          "title": "Strategy Pattern for Algorithm Selection",
+          "learningObjective": "Use Strategy pattern for flexible algorithm implementation",
+          "storyContext": "Dr. Kim shows how to support multiple trading algorithms",
+          "technicalContent": "Strategy pattern, algorithm encapsulation, runtime selection",
+          "practicalExample": "TradingStrategy implementations for different market conditions",
+          "duration": "20-25 min"
+        },
+        {
+          "id": "section-5",
+          "title": "Pattern Integration and Optimization",
+          "learningObjective": "Combine patterns effectively for optimal performance",
+          "storyContext": "Jordan helps integrate all patterns into a cohesive system",
+          "technicalContent": "Pattern combination, performance optimization, system integration",
+          "practicalExample": "Complete trading system with integrated patterns",
+          "duration": "15-20 min"
+        }
+      ]
+    },
+    {
+      "topicId": "oop-java-topic-8",
+      "title": "Team's Final Project: Building a Complete OOP System",
+      "storyArc": {
+        "setup": "Company decides to build a new e-commerce platform from scratch",
+        "conflict": "Team must integrate all OOP concepts into a scalable, maintainable system",
+        "resolution": "Collaborative development of a complete e-commerce platform showcasing all learned concepts"
+      },
+      "sections": [
+        {
+          "id": "section-1",
+          "title": "System Architecture Planning",
+          "learningObjective": "Design complete object-oriented system architecture",
+          "storyContext": "Dr. Kim leads architecture planning session for e-commerce platform",
+          "technicalContent": "System design, component architecture, technology decisions",
+          "practicalExample": "E-commerce system architecture with user, product, and order management",
+          "duration": "20-25 min"
+        },
+        {
+          "id": "section-2",
+          "title": "Core Domain Implementation",
+          "learningObjective": "Implement core business objects with proper OOP principles",
+          "storyContext": "Maya and Alex implement User, Product, and Order domain objects",
+          "technicalContent": "Domain modeling, encapsulation, inheritance hierarchies",
+          "practicalExample": "User hierarchy, Product catalog, Order processing classes",
+          "duration": "25-30 min"
+        },
+        {
+          "id": "section-3",
+          "title": "Service Layer with Design Patterns",
+          "learningObjective": "Apply design patterns in service layer implementation",
+          "storyContext": "Team implements services using Factory, Strategy, and Observer patterns",
+          "technicalContent": "Service layer design, pattern application, business logic organization",
+          "practicalExample": "OrderService, PaymentService, NotificationService with patterns",
+          "duration": "25-30 min"
+        },
+        {
+          "id": "section-4",
+          "title": "Integration and Testing Strategy",
+          "learningObjective": "Integrate components and implement comprehensive testing",
+          "storyContext": "Jordan sets up integration testing and deployment pipeline",
+          "technicalContent": "Component integration, unit testing, integration testing, mocking",
+          "practicalExample": "Complete test suite for e-commerce system components",
+          "duration": "20-25 min"
+        },
+        {
+          "id": "section-5",
+          "title": "Code Review and Production Readiness",
+          "learningObjective": "Conduct thorough code review and prepare for production",
+          "storyContext": "Final code review session with focus on OOP best practices",
+          "technicalContent": "Code review process, production readiness checklist, performance considerations",
+          "practicalExample": "Complete e-commerce platform ready for deployment",
+          "duration": "15-20 min"
+        }
+      ]
+    }
+  ]
+}

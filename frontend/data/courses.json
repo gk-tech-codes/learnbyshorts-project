@@ -1,6 +1,43 @@
 {
   "courses": [
     {
+      "id": "object-oriented-programming-java",
+      "categoryId": "programming-fundamentals",
+      "subcategoryId": "object-oriented-programming",
+      "title": "Object-Oriented Programming with Java",
+      "description": "Master OOP concepts through real-world Java applications and modern development practices with Maya's team at FinTech Solutions.",
+      "difficulty": "Progressive",
+      "duration": "10-14 hours",
+      "concepts": 8,
+      "type": "story",
+      "storyUrl": "topic-story.html?course=object-oriented-programming-java&topic=oop-java-topic-1",
+      "tags": [
+        "Java",
+        "OOP",
+        "Programming",
+        "Software Development"
+      ],
+      "prerequisites": [
+        "Basic programming concepts",
+        "Java syntax basics"
+      ],
+      "learningOutcomes": [
+        "Design and implement robust object-oriented systems",
+        "Apply SOLID principles in professional Java development",
+        "Build scalable applications using advanced OOP patterns",
+        "Debug and optimize object-oriented code effectively"
+      ],
+      "featured": true,
+      "published": true,
+      "audioEnabled": false,
+      "icon": "☕",
+      "color": "#f59e0b",
+      "instructor": "Maya Chen & Team",
+      "rating": 4.8,
+      "students": 0,
+      "price": "Free"
+    },
+    {
       "id": "abstract-factory-pattern",
       "categoryId": "design-patterns",
       "subcategoryId": "creational-patterns",

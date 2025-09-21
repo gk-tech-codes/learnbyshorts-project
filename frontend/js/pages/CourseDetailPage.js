@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function loadCourseData(courseId) {
     try {
-        const response = await fetch('data/courses.json');
+        const response = await fetch(`data/courses.json?v=${Date.now()}`);
         const data = await response.json();
         const course = data.courses.find(c => c.id === courseId);
         
@@ -175,6 +175,14 @@ function getTopicsForCourse(courseId) {
             { title: 'Beyond Singleton', description: 'Explore modern alternatives and when NOT to use Singleton', duration: '11 min' },
             { title: 'Singleton Mastery', description: 'Become the office Singleton expert with best practices', duration: '6 min' }
         ],
+        'google': [
+            { title: 'Alex\'s Google Interview: The Two Sum Challenge', description: 'Follow Alex through their Google phone screen as they tackle the classic Two Sum problem and discover the power of hash maps', duration: '15 min' },
+            { title: 'Sarah\'s Google Interview: The Parentheses Puzzle', description: 'Join Sarah as she tackles the Valid Parentheses problem using stack data structure in their Google phone screen', duration: '12 min' }
+        ],
+        'microsoft': [
+            { title: 'John\'s Microsoft Interview: The Reverse String Challenge', description: 'Follow John through his Microsoft phone screen as he tackles the string reversal problem with two-pointer technique', duration: '10 min' },
+            { title: 'Lisa\'s Microsoft Interview: The Array Rotation Problem', description: 'Join Lisa as she solves the array rotation challenge using optimal space complexity in her Microsoft interview', duration: '14 min' }
+        ],
         'factory-method-pattern': [
             { title: 'The Pizza Shop Crisis', description: 'Maya\'s hard-coded pizza creation nightmare and the chaos of if-else chains', duration: '8 min' },
             { title: 'The Pizza Factory Solution', description: 'Raj introduces the Factory Method pattern with abstract PizzaStore', duration: '10 min' },
@@ -272,6 +280,24 @@ function getTopicsForCourse(courseId) {
             { title: 'Multi-Model Expertise', description: 'GPT-4, Claude, Gemini differences and optimization strategies for each platform', duration: '9 min' },
             { title: 'Ethical AI Practices', description: 'Bias prevention, responsible AI usage, and building inclusive prompt libraries', duration: '8 min' },
             { title: 'The Prompt Engineering Empire', description: 'Arjun becomes company AI consultant and transforms his career path', duration: '7 min' }
+        ],
+        'operating-systems': [
+            { title: "Maya's First Crisis: When Servers Go Silent", description: "Learn OS fundamentals through Maya's first day as SRE when a critical system failure teaches her about kernel architecture", duration: "75 min" },
+            { title: "David's Container Conundrum: The Multi-Tasking Mystery", description: "Master process creation, scheduling, and management through David's investigation of container performance issues", duration: "85 min" },
+            { title: "Sarah's Memory Leak Hunt: The Case of the Vanishing RAM", description: "Explore virtual memory, paging, and memory allocation through Sarah's debugging of a memory-intensive application", duration: "90 min" },
+            { title: "Alex's Storage Saga: The Great Data Migration", description: "Understand file systems, storage management, and I/O through Alex's mission to migrate critical data", duration: "80 min" },
+            { title: "Team Crisis: The Deadlock Detective Story", description: "Master synchronization primitives and concurrency through the team's collaborative effort to solve a complex deadlock", duration: "95 min" },
+            { title: "Maya's Deep Dive: Journey to the Kernel's Heart", description: "Explore system calls, kernel internals, and OS services through Maya's investigation of system performance bottlenecks", duration: "85 min" },
+            { title: "The Team's Triumph: Building the Ultimate System", description: "Apply all OS concepts to design and optimize a high-performance system architecture", duration: "100 min" }
+        ],
+        'networking-fundamentals': [
+            { title: "Elena's First Day: When the Network Goes Dark", description: "Learn networking fundamentals through Elena's first day as a Network Engineer when a complete network outage teaches her about OSI layers, protocols, and network architecture", duration: "60-75 min" },
+            { title: "Marcus's Protocol Mystery: The Case of the Slow Application", description: "Master TCP/IP stack and packet analysis through Marcus's investigation of application performance issues that reveal deep protocol-level problems", duration: "70-85 min" },
+            { title: "Priya's Routing Challenge: Connecting the Disconnected", description: "Understand routing protocols and network design through Priya's mission to connect multiple office locations with optimal path selection", duration: "80-95 min" },
+            { title: "James's Switching Dilemma: The VLAN Virtualization Victory", description: "Master switching concepts and VLANs through James's project to segment and secure the corporate network using modern switching technologies", duration: "75-90 min" },
+            { title: "Team Crisis: The Security Breach That Changed Everything", description: "Learn network security through the team's collaborative response to a sophisticated attack that teaches firewalls, VPNs, and security protocols", duration: "85-100 min" },
+            { title: "Elena's Wireless Evolution: From Chaos to Connectivity", description: "Master wireless networking through Elena's project to design and deploy enterprise WiFi that supports thousands of users and IoT devices", duration: "80-95 min" },
+            { title: "The Team's Cloud Journey: Bridging On-Premises and Cloud", description: "Apply all networking knowledge to design hybrid cloud connectivity that seamlessly integrates on-premises and cloud infrastructure", duration: "90-105 min" }
         ]
     };
     

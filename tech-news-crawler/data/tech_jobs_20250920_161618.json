@@ -1,0 +1,210 @@
+{
+  "last_updated": "2025-09-20T16:16:18.687285",
+  "total_jobs": 12,
+  "jobs": [
+    {
+      "id": "571146633656",
+      "title": "Mobile Developer",
+      "company": "Swiggy",
+      "location": "Mumbai, India",
+      "job_type": "Contract",
+      "salary_range": "₹9L - ₹19L",
+      "posted_date": "2025-09-20",
+      "description": "Join Swiggy as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in mobile developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=swiggy",
+      "crawled_at": "2025-09-20T16:16:18.687151"
+    },
+    {
+      "id": "00593848a3ea",
+      "title": "Senior Software Engineer",
+      "company": "OpenAI",
+      "location": "Boston, MA, USA",
+      "job_type": "Remote",
+      "salary_range": "$171K - $221K",
+      "posted_date": "2025-09-20",
+      "description": "Join OpenAI as a Senior Software Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in senior software engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=openai",
+      "crawled_at": "2025-09-20T16:16:18.687189"
+    },
+    {
+      "id": "57a3ad8af902",
+      "title": "UI/UX Designer",
+      "company": "Microsoft",
+      "location": "Boston, MA, USA",
+      "job_type": "Hybrid",
+      "salary_range": "$186K - $236K",
+      "posted_date": "2025-09-20",
+      "description": "Join Microsoft as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=microsoft",
+      "crawled_at": "2025-09-20T16:16:18.687248"
+    },
+    {
+      "id": "b818f96744db",
+      "title": "Product Manager",
+      "company": "Apple",
+      "location": "Seattle, WA, USA",
+      "job_type": "Remote",
+      "salary_range": "$268K - $318K",
+      "posted_date": "2025-09-18",
+      "description": "Join Apple as a Product Manager and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in product manager",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=apple",
+      "crawled_at": "2025-09-20T16:16:18.687168"
+    },
+    {
+      "id": "53651250c65e",
+      "title": "Product Manager",
+      "company": "Infosys",
+      "location": "Hyderabad, India",
+      "job_type": "Contract",
+      "salary_range": "₹32L - ₹42L",
+      "posted_date": "2025-09-18",
+      "description": "Join Infosys as a Product Manager and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in product manager",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=infosys",
+      "crawled_at": "2025-09-20T16:16:18.687197"
+    },
+    {
+      "id": "cb6033d3dcf4",
+      "title": "Frontend Developer",
+      "company": "Zomato",
+      "location": "Gurgaon, India",
+      "job_type": "Contract",
+      "salary_range": "₹21L - ₹31L",
+      "posted_date": "2025-09-18",
+      "description": "Join Zomato as a Frontend Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in frontend developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=zomato",
+      "crawled_at": "2025-09-20T16:16:18.687228"
+    },
+    {
+      "id": "b9d2b48bd3bf",
+      "title": "Data Scientist",
+      "company": "Airbnb",
+      "location": "New York, NY, USA",
+      "job_type": "Remote",
+      "salary_range": "$175K - $225K",
+      "posted_date": "2025-09-18",
+      "description": "Join Airbnb as a Data Scientist and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in data scientist",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=airbnb",
+      "crawled_at": "2025-09-20T16:16:18.687241"
+    },
+    {
+      "id": "37b084eba6c0",
+      "title": "UI/UX Designer",
+      "company": "OpenAI",
+      "location": "Seattle, WA, USA",
+      "job_type": "Contract",
+      "salary_range": "$236K - $286K",
+      "posted_date": "2025-09-17",
+      "description": "Join OpenAI as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=openai",
+      "crawled_at": "2025-09-20T16:16:18.687179"
+    },
+    {
+      "id": "3bd9f4c04b69",
+      "title": "Machine Learning Engineer",
+      "company": "Apple",
+      "location": "Remote, USA",
+      "job_type": "Hybrid",
+      "salary_range": "$279K - $329K",
+      "posted_date": "2025-09-17",
+      "description": "Join Apple as a Machine Learning Engineer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in machine learning engineer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=apple",
+      "crawled_at": "2025-09-20T16:16:18.687214"
+    },
+    {
+      "id": "12f36947362e",
+      "title": "Full Stack Developer",
+      "company": "Amazon",
+      "location": "San Francisco, CA, USA",
+      "job_type": "Hybrid",
+      "salary_range": "$187K - $237K",
+      "posted_date": "2025-09-17",
+      "description": "Join Amazon as a Full Stack Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in full stack developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=amazon",
+      "crawled_at": "2025-09-20T16:16:18.687234"
+    },
+    {
+      "id": "784ad91b621f",
+      "title": "UI/UX Designer",
+      "company": "Microsoft",
+      "location": "Remote, USA",
+      "job_type": "Remote",
+      "salary_range": "$188K - $238K",
+      "posted_date": "2025-09-16",
+      "description": "Join Microsoft as a UI/UX Designer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in ui/ux designer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=microsoft",
+      "crawled_at": "2025-09-20T16:16:18.687206"
+    },
+    {
+      "id": "20f9034d4511",
+      "title": "Mobile Developer",
+      "company": "Infosys",
+      "location": "Chennai, India",
+      "job_type": "Remote",
+      "salary_range": "₹37L - ₹47L",
+      "posted_date": "2025-09-16",
+      "description": "Join Infosys as a Mobile Developer and work on cutting-edge technology projects. We're looking for talented engineers to help build the future.",
+      "requirements": [
+        "3-5+ years experience in mobile developer",
+        "Strong problem-solving and analytical skills",
+        "Experience with modern technology stack"
+      ],
+      "apply_url": "https://www.linkedin.com/jobs/search/?keywords=infosys",
+      "crawled_at": "2025-09-20T16:16:18.687221"
+    }
+  ]
+}

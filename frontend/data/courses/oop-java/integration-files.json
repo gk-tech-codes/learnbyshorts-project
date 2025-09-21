@@ -1,0 +1,111 @@
+{
+  "courseId": "object-oriented-programming-java",
+  "integrationFiles": {
+    "courseData": {
+      "filename": "oop-java-course.json",
+      "content": {
+        "id": "object-oriented-programming-java",
+        "title": "Object-Oriented Programming with Java",
+        "description": "Master OOP concepts through real-world Java applications and modern development practices",
+        "category": "Programming Fundamentals",
+        "difficulty": "Progressive (Beginner to Advanced)",
+        "duration": "10-14 hours",
+        "rating": 4.8,
+        "students": 0,
+        "instructor": "Maya Chen & Team",
+        "price": "Free",
+        "image": "/assets/courses/oop-java-cover.jpg",
+        "tags": ["Java", "OOP", "Programming", "Software Development"],
+        "prerequisites": ["Basic programming concepts", "Java syntax basics"],
+        "learningOutcomes": [
+          "Design and implement robust object-oriented systems",
+          "Apply SOLID principles in professional Java development", 
+          "Build scalable applications using advanced OOP patterns",
+          "Debug and optimize object-oriented code effectively"
+        ],
+        "topics": [
+          {
+            "id": "oop-java-topic-1",
+            "title": "Maya's Onboarding Challenge: Understanding Objects and Classes",
+            "description": "Learn fundamental OOP concepts through Maya's experience onboarding Alex to the team's codebase",
+            "duration": "60-75 min",
+            "difficulty": "Beginner",
+            "completed": false,
+            "sections": 5
+          },
+          {
+            "id": "oop-java-topic-2", 
+            "title": "Alex's First Bug Hunt: Encapsulation and Data Protection",
+            "description": "Discover encapsulation principles as Alex learns to fix security vulnerabilities in the payment system",
+            "duration": "60-75 min",
+            "difficulty": "Beginner",
+            "completed": false,
+            "sections": 5
+          },
+          {
+            "id": "oop-java-topic-3",
+            "title": "Dr. Kim's Code Review: Inheritance and Code Reusability",
+            "description": "Learn inheritance concepts through Dr. Kim's code review session on the user management system",
+            "duration": "75-90 min",
+            "difficulty": "Intermediate",
+            "completed": false,
+            "sections": 5
+          },
+          {
+            "id": "oop-java-topic-4",
+            "title": "Maya's Interface Design: Polymorphism in Action",
+            "description": "Master polymorphism through Maya's design of a flexible notification system using interfaces",
+            "duration": "75-90 min",
+            "difficulty": "Intermediate",
+            "completed": false,
+            "sections": 5
+          },
+          {
+            "id": "oop-java-topic-5",
+            "title": "Jordan's Deployment Crisis: Abstract Classes and Templates",
+            "description": "Learn abstract classes through Jordan's solution to standardize deployment configurations across services",
+            "duration": "75-90 min",
+            "difficulty": "Intermediate",
+            "completed": false,
+            "sections": 5
+          },
+          {
+            "id": "oop-java-topic-6",
+            "title": "Dr. Kim's Architecture Workshop: SOLID Principles",
+            "description": "Apply SOLID principles through Dr. Kim's refactoring workshop on the legacy reporting system",
+            "duration": "90-105 min",
+            "difficulty": "Advanced",
+            "completed": false,
+            "sections": 5
+          },
+          {
+            "id": "oop-java-topic-7",
+            "title": "Maya's Performance Challenge: Advanced OOP Patterns",
+            "description": "Master advanced patterns through Maya's optimization of the high-traffic trading system",
+            "duration": "90-105 min",
+            "difficulty": "Advanced",
+            "completed": false,
+            "sections": 5
+          },
+          {
+            "id": "oop-java-topic-8",
+            "title": "Team's Final Project: Building a Complete OOP System",
+            "description": "Integrate all OOP concepts in the team's collaborative project to build a scalable e-commerce platform",
+            "duration": "105-120 min",
+            "difficulty": "Advanced",
+            "completed": false,
+            "sections": 5
+          }
+        ]
+      }
+    },
+    "courseDetailPage": {
+      "filename": "object-oriented-programming-java.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Object-Oriented Programming with Java - LearnByShorts</title>\n    <link rel=\"stylesheet\" href=\"css/course-detail.css\">\n</head>\n<body>\n    <div class=\"course-hero\">\n        <div class=\"hero-content\">\n            <h1>Object-Oriented Programming with Java</h1>\n            <p class=\"hero-description\">Master OOP concepts through real-world Java applications and modern development practices</p>\n            <div class=\"course-meta\">\n                <span class=\"difficulty\">Progressive (Beginner to Advanced)</span>\n                <span class=\"duration\">10-14 hours</span>\n                <span class=\"rating\">★★★★★ 4.8</span>\n            </div>\n            <button class=\"start-course-btn\" onclick=\"startCourse()\">Start Learning</button>\n        </div>\n    </div>\n    \n    <div class=\"course-content\">\n        <section class=\"course-overview\">\n            <h2>What You'll Learn</h2>\n            <ul class=\"learning-outcomes\">\n                <li>Design and implement robust object-oriented systems</li>\n                <li>Apply SOLID principles in professional Java development</li>\n                <li>Build scalable applications using advanced OOP patterns</li>\n                <li>Debug and optimize object-oriented code effectively</li>\n            </ul>\n        </section>\n        \n        <section class=\"course-curriculum\">\n            <h2>Course Curriculum</h2>\n            <div class=\"topics-list\">\n                <!-- Topics will be loaded dynamically -->\n            </div>\n        </section>\n        \n        <section class=\"meet-instructors\">\n            <h2>Meet Your Instructors</h2>\n            <div class=\"instructors-grid\">\n                <div class=\"instructor\">\n                    <h3>Maya Chen</h3>\n                    <p>Senior Software Engineer at FinTech Solutions</p>\n                </div>\n                <div class=\"instructor\">\n                    <h3>Dr. Sarah Kim</h3>\n                    <p>Tech Lead & Mentor with 15 years experience</p>\n                </div>\n            </div>\n        </section>\n    </div>\n    \n    <script>\n        function startCourse() {\n            window.location.href = 'topic-story.html?course=object-oriented-programming-java&topic=oop-java-topic-1';\n        }\n        \n        // Load course data and populate curriculum\n        fetch('data/courses/oop-java-course.json')\n            .then(response => response.json())\n            .then(course => {\n                const topicsList = document.querySelector('.topics-list');\n                course.topics.forEach((topic, index) => {\n                    const topicElement = document.createElement('div');\n                    topicElement.className = 'topic-item';\n                    topicElement.innerHTML = `\n                        <h4>${index + 1}. ${topic.title}</h4>\n                        <p>${topic.description}</p>\n                        <div class=\"topic-meta\">\n                            <span class=\"duration\">${topic.duration}</span>\n                            <span class=\"difficulty\">${topic.difficulty}</span>\n                        </div>\n                    `;\n                    topicsList.appendChild(topicElement);\n                });\n            });\n    </script>\n</body>\n</html>"
+    },
+    "topicStoryIntegration": {
+      "filename": "topic-story-oop-java.js",
+      "content": "// Topic Story Integration for OOP Java Course\nconst OOPJavaTopics = {\n    'oop-java-topic-1': {\n        title: \"Maya's Onboarding Challenge: Understanding Objects and Classes\",\n        sections: [\n            {\n                id: 'section-1',\n                title: 'The Codebase Tour',\n                type: 'story',\n                content: 'story-content-loaded-from-json'\n            },\n            {\n                id: 'section-2', \n                title: 'Building Your First Class',\n                type: 'story',\n                content: 'story-content-loaded-from-json'\n            },\n            {\n                id: 'section-3',\n                title: 'The Constructor Mystery',\n                type: 'story',\n                content: 'story-content-loaded-from-json'\n            },\n            {\n                id: 'section-4',\n                title: 'Objects in Action',\n                type: 'story',\n                content: 'story-content-loaded-from-json'\n            },\n            {\n                id: 'section-5',\n                title: 'Code Review and Best Practices',\n                type: 'story',\n                content: 'story-content-loaded-from-json'\n            }\n        ]\n    }\n};\n\n// Function to load topic content\nfunction loadOOPJavaTopic(topicId) {\n    return fetch(`data/courses/oop-java/${topicId}.json`)\n        .then(response => response.json())\n        .then(topicData => {\n            return {\n                ...topicData,\n                sections: topicData.sections.map(section => ({\n                    ...section,\n                    content: section.content\n                }))\n            };\n        });\n}\n\n// Export for use in topic-story.html\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { OOPJavaTopics, loadOOPJavaTopic };\n}"
+    }
+  }
+}

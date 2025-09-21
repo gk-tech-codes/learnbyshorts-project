@@ -1,0 +1,26 @@
+{
+  "crawled_at": "2025-09-20T16:08:36.099444",
+  "total_articles": 2,
+  "articles": [
+    {
+      "id": "64b2aad834c7",
+      "title": "Science journalists find ChatGPT is bad at summarizing scientific papers",
+      "link": "https://arstechnica.com/ai/2025/09/science-journalists-find-chatgpt-is-bad-at-summarizing-scientific-papers/",
+      "image_url": null,
+      "summary": "",
+      "source": "Ars Technica",
+      "crawled_at": "2025-09-20T16:08:35.089758",
+      "domain": "arstechnica.com"
+    },
+    {
+      "id": "fd325b50b67a",
+      "title": "New attack on ChatGPT research agent pilfers secrets from Gmail inboxes",
+      "link": "https://arstechnica.com/information-technology/2025/09/new-attack-on-chatgpt-research-agent-pilfers-secrets-from-gmail-inboxes/",
+      "image_url": null,
+      "summary": "",
+      "source": "Ars Technica",
+      "crawled_at": "2025-09-20T16:08:35.091114",
+      "domain": "arstechnica.com"
+    }
+  ]
+}
