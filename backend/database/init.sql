@@ -286,9 +286,8 @@ INSERT OR IGNORE INTO course_templates (id, name, description, category_id, temp
 '{"lessons": [{"title": "Design Principles", "duration": 250}, {"title": "Color Theory", "duration": 300}, {"title": "Typography", "duration": 350}]}',
 '{"type": "flexible", "duration_weeks": 3, "lessons_per_week": 3}');
 
--- Create admin user (password: Admin123!)
-INSERT OR IGNORE INTO users (id, email, password_hash, first_name, last_name, role, is_active, email_verified) VALUES
-('admin-user-001', 'admin@learnbyshorts.com', '$2b$10$rQZ8kHWfQxwjQxDjQxDjQOQxDjQxDjQxDjQxDjQxDjQxDjQxDjQxDj', 'Admin', 'User', 'admin', 1, 1);
+-- Do not seed a shared administrator account. Provision privileged users through
+-- the approved identity provider and an auditable role-assignment workflow.
 
 -- Cleanup old sessions (remove expired sessions)
 DELETE FROM user_sessions WHERE expires_at < datetime('now');

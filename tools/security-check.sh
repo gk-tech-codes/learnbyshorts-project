@@ -21,6 +21,13 @@ if rg -n \
   exit 1
 fi
 
+if rg -n \
+  '(password:[[:space:]]*Admin|admin@learnbyshorts\.com|INSERT[^;]*INTO[[:space:]]+users[^;]*(admin|password_hash))' \
+  backend --glob '!boto3/**' --glob '!botocore/**' --glob '!google/**' >/dev/null; then
+  echo "A seeded or documented default administrator credential was found." >&2
+  exit 1
+fi
+
 while IFS= read -r file; do
   case "$file" in
     frontend/course-detail.html|frontend/course-story.html)

@@ -68,8 +68,11 @@ The S3 origin should be private:
 - Use a CloudFront Origin Access Control (OAC).
 - Restrict the bucket policy to the exact CloudFront distribution ARN.
 - Redirect viewers to HTTPS.
-- Attach a response headers policy with CSP, HSTS, nosniff, referrer policy,
-  frame protection, and a restrictive permissions policy.
+- Attach a response headers policy with HSTS, nosniff, referrer policy, frame
+  protection, and a restrictive permissions policy.
+- Keep page-specific CSP policies in HTML until legacy inline scripts and style
+  blocks have been removed. A second CSP response header intersects with the
+  page policy and can break working pages if deployed as a broad global rule.
 
 Change the origin before blocking public S3 access, then verify CloudFront
 returns the site and direct anonymous S3 requests are denied.
@@ -78,4 +81,15 @@ returns the site and direct anonymous S3 requests are denied.
 
 Use `tools/publish-static-site.sh`. It never stores credentials, verifies the
 AWS account, defaults to a dry run, and refuses to publish through a public S3
-origin unless explicitly overridden during the migration window.
+origin unless explicitly overridden during the migration window. The publisher
+also creates exact nested-path aliases, so canonical trailing-slash URLs work
+with the private S3 REST origin.
+
+Use `tools/configure-cloudfront-edge.sh` for the separate edge hardening. It
+defaults to a no-write plan, targets one fixed distribution, refuses to replace
+an unknown viewer-request function, and requires only the CloudFront actions
+listed by its help output.
+
+Never seed a shared administrator password in a database initializer. Privileged
+accounts must be provisioned through the approved identity provider and an
+auditable role-assignment workflow.

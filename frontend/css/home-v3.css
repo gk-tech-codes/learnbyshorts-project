@@ -334,8 +334,9 @@ button {
     margin: 0;
     font-size: clamp(3.55rem, 4.8vw, 4.85rem);
     font-weight: 820;
-    letter-spacing: -.072em;
+    letter-spacing: -.06em;
     line-height: .92;
+    word-spacing: .1em;
 }
 
 .hero h1 em {
@@ -344,7 +345,7 @@ button {
     font-family: inherit;
     font-style: normal;
     font-weight: 820;
-    letter-spacing: -.072em;
+    letter-spacing: -.06em;
 }
 
 .hero h1 em::after {

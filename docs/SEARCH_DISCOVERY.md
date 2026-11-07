@@ -8,9 +8,11 @@ is indexed; deployment does not guarantee ranking or immediate inclusion.
 
 - Sitemap: https://www.learnbyshorts.com/sitemap.xml
 - Robots: https://www.learnbyshorts.com/robots.txt
-- Primary course: https://www.learnbyshorts.com/learn-v2/index.html
-- Modern interview lab: https://www.learnbyshorts.com/interview-lab/index.html
-- AI fluency lab: https://www.learnbyshorts.com/ai-era-lab/index.html
+- Primary course: https://www.learnbyshorts.com/learn-v2/
+- Modern interview lab: https://www.learnbyshorts.com/interview-lab/
+- AI fluency lab: https://www.learnbyshorts.com/ai-era-lab/
+- Modern course catalog: https://www.learnbyshorts.com/modern-skills/
+- Generated proof courses: https://www.learnbyshorts.com/courses/{course-id}/
 
 ## Webmaster setup
 
@@ -25,16 +27,15 @@ is indexed; deployment does not guarantee ranking or immediate inclusion.
 
 IndexNow is also configured for engines that participate in the protocol. The
 public verification key is intentionally served from the site root. After
-deploying a material homepage, Java OOP lab, interview lab, or AI Fluency Lab
-change, run:
+deploying a material content change, run:
 
 ```bash
 tools/submit-indexnow.sh
 tools/submit-indexnow.sh --apply
 ```
 
-The first command is a safe dry run. The second submits only the production
-URLs listed in the script.
+The first command is a safe dry run. The second submits every canonical URL in
+the current sitemap, so the submission cannot silently drift from the site.
 
 Official operational references:
 
@@ -51,6 +52,7 @@ Official operational references:
 - Links are ordinary HTML links reachable without authentication.
 - Structured data describes visible page content and validates as JSON.
 - The production URL returns successfully through CloudFront.
+- The trailing-slash canonical URL returns HTML rather than an S3 `403`.
 - Direct S3 origin access remains denied.
 - Sitemap `lastmod` changes only when page content materially changes.
 - Search-performance exports are archived in the impact evidence folder.

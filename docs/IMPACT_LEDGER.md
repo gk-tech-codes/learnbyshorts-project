@@ -41,6 +41,7 @@ every material entry.
 | 2026-11-07 | `ef10641` | AI Fluency Lab, reusable-skill curriculum, and secure Cognito account implementation | Git commit, production screenshots, browser checks, security checks, AWS configuration export |
 | 2026-11-07 | `3bdb292` | Eight role-based paths, research-linked learning loop, Java debugger repair, content recovery, and expanded QA automation | Git commit, QA report, browser screenshots, automated check output |
 | 2026-11-07 | `3bdb292` + production rollout | Secure Cognito/API/Lambda/DynamoDB foundation and the full frontend released to production | AWS configuration exports, CloudFront invalidation `I1V7QFTHD4J41IBJXWZ83P8V36`, live browser QA, IndexNow HTTP `200` |
+| 2026-11-07 | `922411e` + production rollout | Twelve indexable modern course paths, 48 proof missions, weekly Learning OS challenge, shareable interview readiness plan, owned social card, privacy-safe growth events, and thin-content removal | Git commit, 25-URL sitemap, automated QA, live visual checks, CloudFront invalidations `I1DEZBXNWOF0ZAWGELH3R570PJ` and `IA59FL71AAE6IUT7BRKE0N6BZI`, IndexNow HTTP `200` |
 
 ## Metric definitions
 
@@ -59,6 +60,9 @@ Use consistent definitions so results remain credible.
 | AI roadmap depth | Number of the seven AI Fluency levels marked practiced in the local learner state | Local product event or permissioned study export |
 | AI path selection | Selected role-based starting path; never includes learner-entered prompt or skill text | Aggregate GA4 event or permissioned study export |
 | Skill artifact completion | Learner generates and tests a reusable skill contract | Permissioned pilot record; never collect private skill text by default |
+| Course activation | Unique browser that completes one proof mission after `course_landing_view` | GA4 aggregate |
+| Weekly challenge completion | Activated learner reaches three proof missions within the local seven-day window | GA4 aggregate |
+| Privacy-safe return | `learner_return` in the 2–7 day or 8–30 day bucket; never an exact return timestamp in analytics | GA4 aggregate |
 
 ## Monthly snapshot
 

@@ -16,6 +16,10 @@ Usage: tools/publish-static-site.sh [--apply] [--prune] [--allow-public-origin]
 The default is a safe S3 sync dry run. --apply uploads files. --prune also
 removes remote objects not present locally. --allow-public-origin is temporary
 and should be removed after CloudFront OAC migration.
+
+The publisher also creates tiny HTML aliases for every nested index page. This
+allows canonical URLs such as /modern-skills/ and /courses/ai-fluency/ to work
+with a private S3 REST origin even before a CloudFront URI rewrite is attached.
 EOF
 }
 
@@ -55,8 +59,30 @@ fi
 echo "Publishing with profile $AWS_PROFILE_NAME to account $account_id."
 AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" aws "${sync_args[@]}"
 
+alias_count=0
+while IFS= read -r -d '' index_file; do
+  alias_key="${index_file#frontend/}"
+  alias_key="${alias_key%index.html}"
+  alias_count=$((alias_count + 1))
+
+  if [[ "$APPLY" == "true" ]]; then
+    AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" \
+      aws s3api put-object \
+        --bucket "$S3_BUCKET_NAME" \
+        --key "$alias_key" \
+        --body "$index_file" \
+        --content-type "text/html; charset=utf-8" \
+        --cache-control "public, max-age=300, must-revalidate" \
+        --region "$AWS_REGION_NAME" >/dev/null
+  else
+    echo "(dryrun) alias: $index_file -> s3://$S3_BUCKET_NAME/$alias_key"
+  fi
+done < <(find frontend -mindepth 2 -type f -name index.html -print0 | sort -z)
+
 if [[ "$APPLY" == "true" ]]; then
-  echo "Upload complete. Invalidate CloudFront separately after verifying the origin."
+  echo "Upload complete with $alias_count clean-URL aliases."
+  echo "Invalidate CloudFront separately after verifying the origin."
 else
-  echo "Dry run complete. Re-run with --apply after reviewing the changes."
+  echo "Dry run complete with $alias_count planned clean-URL aliases."
+  echo "Re-run with --apply after reviewing the changes."
 fi
