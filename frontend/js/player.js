@@ -168,7 +168,7 @@ class CoursePlayer {
                     description: plainStory.slice(0, 180) || course.description,
                     detailedExplanation: plainStory || course.description,
                     duration: 8,
-                    images: ['assets/course-visual.svg?v=20261107-1'],
+                    images: ['assets/course-visual.svg?v=20261107-2'],
                     keyPoints: course.learningOutcomes?.slice(0, 4) || [course.description],
                     relatedConcepts: course.tags?.slice(0, 4) || []
                 };
@@ -260,12 +260,12 @@ class CoursePlayer {
         const imageElement = document.getElementById('concept-image');
         imageElement.onerror = () => {
             imageElement.onerror = null;
-            imageElement.src = 'assets/course-visual.svg?v=20261107-1';
+            imageElement.src = 'assets/course-visual.svg?v=20261107-2';
         };
         if (concept.images && concept.images.length > 0) {
             imageElement.src = concept.images[0];
         } else {
-            imageElement.src = 'assets/course-visual.svg?v=20261107-1';
+            imageElement.src = 'assets/course-visual.svg?v=20261107-2';
         }
         
         // Set concept duration
