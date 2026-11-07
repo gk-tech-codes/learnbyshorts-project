@@ -19,14 +19,15 @@ payload="$(cat <<EOF
   "keyLocation": "https://$INDEXNOW_HOST/$INDEXNOW_KEY.txt",
   "urlList": [
     "https://$INDEXNOW_HOST/",
-    "https://$INDEXNOW_HOST/learn-v2/index.html"
+    "https://$INDEXNOW_HOST/learn-v2/index.html",
+    "https://$INDEXNOW_HOST/interview-lab/index.html"
   ]
 }
 EOF
 )"
 
 if [[ "$APPLY" != "true" ]]; then
-  echo "Dry run: would notify IndexNow about the production homepage and Java OOP lab."
+  echo "Dry run: would notify IndexNow about the homepage, Java OOP lab, and modern interview lab."
   echo "Re-run with --apply after those URLs and the key file are deployed."
   exit 0
 fi

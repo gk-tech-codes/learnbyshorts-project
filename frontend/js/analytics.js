@@ -148,6 +148,19 @@ const Analytics = {
             progress_percent: progressPercent,
             due_reviews: dueReviews
         });
+    },
+
+    trackHomepageDemo: function(correct) {
+        sendEvent('homepage_demo_answer', {
+            answer_result: correct ? 'correct' : 'incorrect'
+        });
+    },
+
+    trackInterviewDiagnostic: function(primarySkill, totalScore) {
+        sendEvent('interview_diagnostic_complete', {
+            primary_skill: primarySkill,
+            total_score: totalScore
+        });
     }
 };
 

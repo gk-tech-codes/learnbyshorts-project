@@ -38,6 +38,8 @@
         const kicker = document.getElementById('resume-kicker');
         const link = document.getElementById('resume-link');
         const heroCta = document.querySelector('.hero-actions .btn-primary');
+        const percentLabel = card.querySelector('[data-resume-percent]');
+        const progressRing = card.querySelector('.resume-value');
 
         if (dueReviews > 0) {
             kicker.textContent = 'Review ready';
@@ -58,6 +60,12 @@
             heroCta.setAttribute('aria-label', `Continue the Java OOP lesson at ${percent}% complete`);
             const label = heroCta.lastChild;
             if (label) label.textContent = ` Continue Lesson · ${percent}%`;
+        }
+
+        if (percentLabel) percentLabel.textContent = `${percent}%`;
+        if (progressRing) {
+            const circumference = 113;
+            progressRing.style.strokeDashoffset = String(circumference - circumference * percent / 100);
         }
 
         link.addEventListener('click', () => {

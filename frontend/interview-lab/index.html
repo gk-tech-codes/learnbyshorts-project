@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+    <title>Modern Software Engineering Interview Lab | LearnByShorts</title>
+    <meta name="description" content="Build a modern software engineering interview plan across live coding, debugging, system design, behavioral impact, project deep-dives, and responsible AI-assisted engineering.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#101816">
+    <link rel="canonical" href="https://www.learnbyshorts.com/interview-lab/index.html">
+    <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+
+    <meta property="og:title" content="Modern Software Engineering Interview Lab">
+    <meta property="og:description" content="Diagnose your interview readiness and build a focused practice plan for modern engineering loops.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.learnbyshorts.com/interview-lab/index.html">
+    <meta property="og:site_name" content="LearnByShorts">
+    <meta name="twitter:card" content="summary">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Modern Software Engineering Interview Lab",
+        "description": "A readiness diagnostic and guided practice plan covering live coding, debugging, system design, behavioral impact, project deep-dives, and responsible AI-assisted engineering.",
+        "url": "https://www.learnbyshorts.com/interview-lab/index.html",
+        "provider": {
+            "@type": "Organization",
+            "name": "LearnByShorts",
+            "url": "https://www.learnbyshorts.com/"
+        },
+        "educationalLevel": "Intermediate",
+        "isAccessibleForFree": true,
+        "inLanguage": "en"
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5413RZXDET"></script>
+    <script src="../js/analytics.js?v=20261107-3"></script>
+    <link rel="stylesheet" href="../css/home-v3.css?v=20261107-3">
+    <link rel="stylesheet" href="./interview-lab.css?v=20261107-3">
+</head>
+<body class="interview-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header interview-header" data-header>
+        <div class="shell nav-shell">
+            <a class="brand" href="../index.html" aria-label="LearnByShorts home">
+                <img src="../assets/logo.svg" alt="" width="40" height="40">
+                <span><strong>LearnByShorts</strong><small>Modern Interview Lab</small></span>
+            </a>
+            <nav class="desktop-nav" aria-label="Interview lab navigation">
+                <a href="#signals">Signals</a>
+                <a href="#companies">Companies</a>
+                <a href="#course">Course</a>
+                <a href="#diagnostic">Diagnostic</a>
+            </nav>
+            <a class="nav-cta" href="#diagnostic">Build my plan →</a>
+            <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu-button>
+                <span></span><span></span>
+            </button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile navigation" data-mobile-nav hidden>
+            <a href="#signals">Signals</a>
+            <a href="#companies">Companies</a>
+            <a href="#course">Course</a>
+            <a href="#diagnostic">Diagnostic</a>
+            <a class="mobile-nav-cta" href="../index.html">Back to all courses →</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="interview-hero">
+            <div class="shell interview-hero-grid">
+                <div>
+                    <a class="back-link" href="../index.html#learn">← All learning paths</a>
+                    <p class="eyebrow eyebrow-mint"><span></span> Free readiness lab</p>
+                    <h1>The modern interview is a <em>signal stack.</em></h1>
+                    <p class="interview-lede">
+                        Algorithms still matter—but engineering teams also evaluate how
+                        you debug, design, communicate tradeoffs, explain past impact,
+                        and use modern tools with judgment.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button-mint" href="#diagnostic">Take the 3-minute diagnostic</a>
+                        <a class="button interview-secondary" href="#course">See the course map</a>
+                    </div>
+                    <ul class="interview-trust">
+                        <li>Local-only answers</li>
+                        <li>Role-aware plan</li>
+                        <li>No signup</li>
+                    </ul>
+                </div>
+
+                <div class="signal-stack" aria-label="Modern interview signal stack">
+                    <div class="stack-card stack-card-1"><span>01</span><strong>Problem solving</strong><small>Live coding + communication</small></div>
+                    <div class="stack-card stack-card-2"><span>02</span><strong>Engineering judgment</strong><small>Debugging + code review</small></div>
+                    <div class="stack-card stack-card-3"><span>03</span><strong>Architecture</strong><small>Systems + tradeoffs</small></div>
+                    <div class="stack-card stack-card-4"><span>04</span><strong>Impact</strong><small>Behavioral + project depth</small></div>
+                    <div class="stack-result"><span>Strong hire signal</span><strong>Clear thinking under ambiguity</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="interview-note">
+            <div class="shell">
+                <strong>Important:</strong>
+                Interview processes vary by role, level, location, and company—and they change.
+                Use this as a skills map, then confirm the current process with your recruiter.
+            </div>
+        </section>
+
+        <section id="signals" class="section signals-section">
+            <div class="shell">
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow eyebrow-dark"><span></span> What teams evaluate</p>
+                        <h2>Prepare for the whole job.</h2>
+                    </div>
+                    <p>A strong candidate does more than reach an answer. They make their reasoning observable, test assumptions, and respond well when the problem changes.</p>
+                </div>
+
+                <div class="signal-grid">
+                    <article><span>01</span><h3>Live coding</h3><p>Clarify the problem, choose a data structure, implement cleanly, test aloud, and improve complexity.</p><small>Algorithms · data structures · testing</small></article>
+                    <article><span>02</span><h3>Debugging & review</h3><p>Read unfamiliar code, form hypotheses, isolate the defect, explain risk, and propose a maintainable fix.</p><small>Diagnosis · code quality · collaboration</small></article>
+                    <article><span>03</span><h3>System design</h3><p>Move from requirements to interfaces, data models, scale, failure modes, observability, and tradeoffs.</p><small>Architecture · reliability · judgment</small></article>
+                    <article><span>04</span><h3>Behavioral impact</h3><p>Tell evidence-rich stories about ownership, conflict, decisions, failures, learning, and measurable results.</p><small>Leadership · communication · reflection</small></article>
+                    <article><span>05</span><h3>Project deep-dive</h3><p>Defend what you built: constraints, alternatives, your contribution, the hardest failure, and what changed afterward.</p><small>Depth · credibility · product thinking</small></article>
+                    <article><span>06</span><h3>AI-assisted judgment</h3><p>When tools are allowed, show that you can verify output, protect data, catch subtle errors, and remain accountable.</p><small>Verification · security · responsible use</small></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="companies" class="section company-section">
+            <div class="shell">
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow eyebrow-dark"><span></span> Official company signals</p>
+                        <h2>Different loops. Shared fundamentals.</h2>
+                    </div>
+                    <p>This comparison is distilled from public company interview guidance. Follow the source links and your recruiter's instructions for the current role.</p>
+                </div>
+
+                <div class="company-table-wrap">
+                    <table class="company-table">
+                        <thead><tr><th>Company</th><th>Publicly emphasized formats</th><th>Preparation focus</th><th>Official guide</th></tr></thead>
+                        <tbody>
+                            <tr><th>Amazon</th><td>Online assessment, technical interviews, behavioral evaluation</td><td>Coding, system design where relevant, Leadership Principles</td><td><a href="https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep" target="_blank" rel="noopener noreferrer">Amazon Jobs ↗</a></td></tr>
+                            <tr><th>Meta</th><td>Coding, design, behavioral conversations</td><td>Problem solving, system/product design, impact stories</td><td><a href="https://www.metacareers.com/swe-prep-onsite" target="_blank" rel="noopener noreferrer">Meta Careers ↗</a></td></tr>
+                            <tr><th>Microsoft</th><td>Technical problem solving and role-related discussion</td><td>Design, coding, testing, technical depth, past experience</td><td><a href="https://careers.microsoft.com/us/en/technical-interviewing" target="_blank" rel="noopener noreferrer">Microsoft Careers ↗</a></td></tr>
+                            <tr><th>OpenAI</th><td>Role-dependent skills assessments and structured interviews</td><td>Deep role skills, collaboration, mission and values</td><td><a href="https://openai.com/interview-guide/" target="_blank" rel="noopener noreferrer">OpenAI guide ↗</a></td></tr>
+                            <tr><th>Anthropic</th><td>Live coding for technical roles plus experience and motivation discussions</td><td>Technical fluency, clear thinking, mission context, candidate questions</td><td><a href="https://www.anthropic.com/careers" target="_blank" rel="noopener noreferrer">Anthropic Careers ↗</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="course" class="section course-map-section">
+            <div class="shell course-map-grid">
+                <div class="course-map-intro">
+                    <p class="eyebrow eyebrow-mint"><span></span> Six-module course map</p>
+                    <h2>Train signals, not trivia.</h2>
+                    <p>Use the diagnostic to choose a starting point, then move through a repeatable cycle: learn the rubric, attempt under constraints, review the evidence, and repeat.</p>
+                    <a class="button button-mint" href="#diagnostic">Find my starting module</a>
+                </div>
+                <ol class="module-list">
+                    <li><span>01</span><div><strong>Observable problem solving</strong><p>Clarification, examples, solution search, implementation, testing, and complexity.</p></div><small>4 sessions</small></li>
+                    <li><span>02</span><div><strong>Debugging unfamiliar systems</strong><p>Hypothesis trees, log reading, code review, risk assessment, and concise fixes.</p></div><small>3 sessions</small></li>
+                    <li><span>03</span><div><strong>System design from requirements</strong><p>APIs, data, scale, reliability, security, observability, and explicit tradeoffs.</p></div><small>4 sessions</small></li>
+                    <li><span>04</span><div><strong>Impact stories with evidence</strong><p>Situation, decision, action, measurable result, conflict, failure, and learning.</p></div><small>2 sessions</small></li>
+                    <li><span>05</span><div><strong>Project defense</strong><p>Architecture narrative, personal contribution, alternatives, incidents, and outcomes.</p></div><small>2 sessions</small></li>
+                    <li><span>06</span><div><strong>Responsible AI collaboration</strong><p>Tool policy, prompt intent, verification, privacy, attribution, and final accountability.</p></div><small>2 sessions</small></li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="diagnostic" class="section diagnostic-section">
+            <div class="shell diagnostic-shell">
+                <div class="diagnostic-heading">
+                    <p class="eyebrow eyebrow-dark"><span></span> Private readiness diagnostic</p>
+                    <h2>Where should you practice first?</h2>
+                    <p>Rate your current confidence. Answers stay in this browser and generate a focused two-week starting plan.</p>
+                </div>
+
+                <form class="diagnostic-form" data-diagnostic>
+                    <fieldset data-skill="coding" data-label="Live coding">
+                        <legend><span>01</span><strong>Live coding</strong><small>I can clarify, implement, test, and discuss complexity while thinking aloud.</small></legend>
+                        <div class="rating-options">
+                            <label><input type="radio" name="coding" value="0" required><span>Needs work</span></label>
+                            <label><input type="radio" name="coding" value="1"><span>Developing</span></label>
+                            <label><input type="radio" name="coding" value="2"><span>Confident</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset data-skill="debugging" data-label="Debugging and code review">
+                        <legend><span>02</span><strong>Debugging & review</strong><small>I can diagnose unfamiliar code and explain a safe, maintainable fix.</small></legend>
+                        <div class="rating-options">
+                            <label><input type="radio" name="debugging" value="0" required><span>Needs work</span></label>
+                            <label><input type="radio" name="debugging" value="1"><span>Developing</span></label>
+                            <label><input type="radio" name="debugging" value="2"><span>Confident</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset data-skill="systems" data-label="System design">
+                        <legend><span>03</span><strong>System design</strong><small>I can turn ambiguous requirements into an architecture and defend tradeoffs.</small></legend>
+                        <div class="rating-options">
+                            <label><input type="radio" name="systems" value="0" required><span>Needs work</span></label>
+                            <label><input type="radio" name="systems" value="1"><span>Developing</span></label>
+                            <label><input type="radio" name="systems" value="2"><span>Confident</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset data-skill="behavioral" data-label="Behavioral impact">
+                        <legend><span>04</span><strong>Behavioral impact</strong><small>I have concise stories with specific decisions, actions, and measurable results.</small></legend>
+                        <div class="rating-options">
+                            <label><input type="radio" name="behavioral" value="0" required><span>Needs work</span></label>
+                            <label><input type="radio" name="behavioral" value="1"><span>Developing</span></label>
+                            <label><input type="radio" name="behavioral" value="2"><span>Confident</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset data-skill="project" data-label="Project deep-dive">
+                        <legend><span>05</span><strong>Project deep-dive</strong><small>I can defend my architecture, contribution, failures, and lessons in depth.</small></legend>
+                        <div class="rating-options">
+                            <label><input type="radio" name="project" value="0" required><span>Needs work</span></label>
+                            <label><input type="radio" name="project" value="1"><span>Developing</span></label>
+                            <label><input type="radio" name="project" value="2"><span>Confident</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset data-skill="ai" data-label="AI-assisted judgment">
+                        <legend><span>06</span><strong>AI-assisted judgment</strong><small>I can follow tool rules, verify output, protect data, and remain accountable.</small></legend>
+                        <div class="rating-options">
+                            <label><input type="radio" name="ai" value="0" required><span>Needs work</span></label>
+                            <label><input type="radio" name="ai" value="1"><span>Developing</span></label>
+                            <label><input type="radio" name="ai" value="2"><span>Confident</span></label>
+                        </div>
+                    </fieldset>
+
+                    <button class="button diagnostic-submit" type="submit">Build my focused plan →</button>
+                </form>
+
+                <section class="diagnostic-result" data-diagnostic-result hidden aria-live="polite">
+                    <div>
+                        <span class="result-kicker">Your two-week starting plan</span>
+                        <h2 data-result-title>Start with live coding.</h2>
+                        <p data-result-copy></p>
+                    </div>
+                    <div class="plan-grid" data-plan-grid></div>
+                    <div class="result-actions">
+                        <a class="button button-primary" href="../learn-v2/index.html">Practice clear technical thinking</a>
+                        <button type="button" class="reset-plan" data-reset-plan>Retake diagnostic</button>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="interview-final">
+            <div class="shell final-cta-inner">
+                <div><span class="final-cta-kicker">Build the full foundation</span><h2>Practice the skill, then practice explaining it.</h2></div>
+                <a class="button button-light" href="../index.html#learn">Explore all courses →</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer interview-footer">
+        <div class="shell footer-bottom">
+            <span>© 2026 LearnByShorts · Interview processes vary; verify current role guidance.</span>
+            <span><a href="../privacy-policy.html">Privacy</a> · <a href="../terms-of-service.html">Terms</a></span>
+        </div>
+    </footer>
+
+    <script src="../js/home-v3.js?v=20261107-3"></script>
+    <script src="./interview-lab.js?v=20261107-3"></script>
+</body>
+</html>

@@ -9,6 +9,7 @@ is indexed; deployment does not guarantee ranking or immediate inclusion.
 - Sitemap: https://www.learnbyshorts.com/sitemap.xml
 - Robots: https://www.learnbyshorts.com/robots.txt
 - Primary course: https://www.learnbyshorts.com/learn-v2/index.html
+- Modern interview lab: https://www.learnbyshorts.com/interview-lab/index.html
 
 ## Webmaster setup
 
@@ -23,14 +24,14 @@ is indexed; deployment does not guarantee ranking or immediate inclusion.
 
 IndexNow is also configured for engines that participate in the protocol. The
 public verification key is intentionally served from the site root. After
-deploying a material homepage or Java OOP lab change, run:
+deploying a material homepage, Java OOP lab, or interview lab change, run:
 
 ```bash
 tools/submit-indexnow.sh
 tools/submit-indexnow.sh --apply
 ```
 
-The first command is a safe dry run. The second submits only the two production
+The first command is a safe dry run. The second submits only the production
 URLs listed in the script.
 
 Official operational references:
