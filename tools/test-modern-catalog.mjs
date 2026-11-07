@@ -20,10 +20,21 @@ function unique(values, label) {
 }
 
 assert.equal(modern.reviewedAt, '2026-11-07');
-assert.equal(modern.tracks.length, 8);
+assert.equal(modern.tracks.length, 12);
 assert.equal(modern.videos.length, 5);
 unique(modern.tracks.map(track => track.id), 'track ids');
 unique(modern.videos.map(video => video.id), 'video ids');
+for (const requiredTrack of [
+    'ai-evals-reliability',
+    'ai-assisted-coding',
+    'backend-distributed-systems',
+    'platform-engineering-kubernetes'
+]) {
+    assert.ok(
+        modern.tracks.some(track => track.id === requiredTrack),
+        `missing current track ${requiredTrack}`
+    );
+}
 
 const categories = new Set(['ai', 'build', 'data', 'cloud', 'security', 'career']);
 for (const track of modern.tracks) {
@@ -50,6 +61,11 @@ assert.doesNotMatch(modernHtml, /<iframe\b/i);
 assert.match(modernHtml, /frame-src https:\/\/www\.youtube-nocookie\.com/);
 assert.match(modernJs, /https:\/\/www\.youtube-nocookie\.com\/embed\//);
 assert.doesNotMatch(modernJs, /innerHTML\s*=/);
+assert.match(modernHtml, /data-path-finder/);
+assert.match(modernHtml, /data-finder-result/);
+assert.match(modernJs, /recommendationRules/);
+assert.match(modernJs, /ai-evals-reliability/);
+assert.match(modernJs, /platform-engineering-kubernetes/);
 
 assert.equal(companies.reviewedAt, '2026-11-07');
 assert.equal(companies.companies.length, 6);
@@ -96,6 +112,6 @@ assert.match(loginHtml, /data-auth-provider="Google" hidden/);
 assert.match(loginHtml, /Gmail addresses work/);
 
 console.log(
-    'Modern catalog QA passed: 8 current paths, 32 missions, 5 privacy-gated videos, ' +
+    'Modern catalog QA passed: 12 current paths, 48 missions, local path finder, 5 privacy-gated videos, ' +
     '6 source-linked company sprints, a private Amazon SDE II job path, and provider-aware sign-in.'
 );

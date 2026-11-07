@@ -40,8 +40,66 @@
         videoFrame: document.querySelector('[data-video-frame]'),
         videoBefore: document.querySelector('[data-video-before]'),
         videoAfter: document.querySelector('[data-video-after]'),
-        videoFallback: document.querySelector('[data-video-fallback]')
+        videoFallback: document.querySelector('[data-video-fallback]'),
+        finderForm: document.querySelector('[data-path-finder]'),
+        finderGoal: document.querySelector('[data-finder-goal]'),
+        finderLevel: document.querySelector('[data-finder-level]'),
+        finderPace: document.querySelector('[data-finder-pace]'),
+        finderResult: document.querySelector('[data-finder-result]'),
+        finderMark: document.querySelector('[data-finder-mark]'),
+        finderTitle: document.querySelector('[data-finder-title]'),
+        finderReason: document.querySelector('[data-finder-reason]'),
+        finderDuration: document.querySelector('[data-finder-duration]'),
+        finderOpen: document.querySelector('[data-finder-open]')
     };
+
+    const recommendationRules = Object.freeze({
+        ai: Object.freeze({
+            beginner: 'ai-fluency',
+            intermediate: 'ai-evals-reliability',
+            advanced: 'agentic-engineering'
+        }),
+        build: Object.freeze({
+            beginner: 'full-stack-delivery',
+            intermediate: 'ai-assisted-coding',
+            advanced: 'backend-distributed-systems'
+        }),
+        cloud: Object.freeze({
+            beginner: 'cloud-finops',
+            intermediate: 'platform-engineering-kubernetes',
+            advanced: 'platform-engineering-kubernetes'
+        }),
+        data: Object.freeze({
+            beginner: 'data-applied-ml',
+            intermediate: 'data-applied-ml',
+            advanced: 'ai-product-engineering'
+        }),
+        security: Object.freeze({
+            beginner: 'secure-engineering',
+            intermediate: 'secure-engineering',
+            advanced: 'secure-engineering'
+        }),
+        career: Object.freeze({
+            beginner: 'systems-interviews',
+            intermediate: 'systems-interviews',
+            advanced: 'systems-interviews'
+        })
+    });
+
+    const recommendationReasons = Object.freeze({
+        'ai-fluency': 'Build a dependable mental model and verification habit before adding tools or autonomous loops.',
+        'ai-evals-reliability': 'You already have project experience; the highest-leverage next step is learning to measure whether an AI system actually works.',
+        'agentic-engineering': 'Your production experience is best used on tool boundaries, permissions, recovery, and measurable agent behavior.',
+        'full-stack-delivery': 'A vertical product slice will connect frontend, APIs, testing, and release fundamentals without unnecessary specialization.',
+        'ai-assisted-coding': 'Use your existing project foundation to accelerate implementation while strengthening review, testing, and technical ownership.',
+        'backend-distributed-systems': 'Your next growth edge is reasoning about state, concurrency, partial failure, and operations across service boundaries.',
+        'cloud-finops': 'Start with the cheapest adequate architecture and learn the operational and cost decisions behind a real cloud workload.',
+        'platform-engineering-kubernetes': 'Move beyond individual deployments and build a safe, reusable path that improves how other engineers ship.',
+        'data-applied-ml': 'Build a defensible decision workflow from data quality and SQL through baselines, models, and clear explanation.',
+        'ai-product-engineering': 'Combine your data experience with retrieval, evaluation, observability, security, and product economics.',
+        'secure-engineering': 'Practice threat modeling, identity, supply-chain controls, and AI abuse cases as one delivery discipline.',
+        'systems-interviews': 'Diagnose the complete hiring signal, then focus practice on the weakest evidence instead of studying everything.'
+    });
 
     function element(tag, className, text) {
         const node = document.createElement(tag);
@@ -310,6 +368,24 @@
         );
     }
 
+    function recommendTrack() {
+        const goal = String(refs.finderGoal?.value || '');
+        const level = String(refs.finderLevel?.value || '');
+        const pace = Number(refs.finderPace?.value);
+        const trackId = recommendationRules[goal]?.[level];
+        const track = state.tracks.find(item => item.id === trackId);
+        if (!track || !refs.finderResult) return;
+
+        refs.finderResult.style.setProperty('--finder-accent', track.accent);
+        refs.finderMark.textContent = track.mark;
+        refs.finderTitle.textContent = track.title;
+        refs.finderReason.textContent = recommendationReasons[track.id] || track.whyNow;
+        refs.finderDuration.textContent = `${track.duration} · ${[15, 30, 60].includes(pace) ? pace : 30} min/day`;
+        refs.finderOpen.dataset.finderTrack = track.id;
+        refs.finderResult.hidden = false;
+        refs.finderResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
     refs.filters.forEach(button => {
         button.addEventListener('click', () => {
             state.category = button.dataset.category;
@@ -323,6 +399,16 @@
     refs.search?.addEventListener('input', event => {
         state.query = event.target.value.slice(0, 80);
         renderCourses();
+    });
+
+    refs.finderForm?.addEventListener('submit', event => {
+        event.preventDefault();
+        recommendTrack();
+    });
+
+    refs.finderOpen?.addEventListener('click', () => {
+        const trackId = safeId(refs.finderOpen.dataset.finderTrack);
+        if (trackId) openTrack(trackId);
     });
 
     refs.courseGrid?.addEventListener('click', event => {

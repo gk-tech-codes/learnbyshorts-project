@@ -78,6 +78,56 @@
       "videoIds": ["cs50-ai"]
     },
     {
+      "id": "ai-evals-reliability",
+      "category": "ai",
+      "mark": "EV",
+      "accent": "#f6a6ff",
+      "title": "LLM Evaluation & Reliability",
+      "level": "Intermediate",
+      "duration": "3 weeks",
+      "description": "Turn a promising model demo into a measurable system with task-specific datasets, graders, human review, regression gates, and production feedback.",
+      "outcome": "A versioned evaluation suite that catches one real quality regression and documents the remaining uncertainty.",
+      "whyNow": "Model behavior changes across prompts, tools, data, and versions; reliable teams evaluate the complete task instead of trusting a polished demo.",
+      "tags": ["Evals", "Datasets", "Graders", "Regression"],
+      "missions": [
+        {"id": "eval-contract", "title": "Define observable success", "action": "Write a narrow task contract with useful, harmful, abstaining, and ambiguous outcomes.", "proof": "A rubric with examples for every outcome class."},
+        {"id": "eval-dataset", "title": "Build the test distribution", "action": "Create representative, edge, adversarial, and previously failed cases without leaking answers into the input.", "proof": "A versioned dataset of at least twenty labeled cases."},
+        {"id": "eval-graders", "title": "Combine grading methods", "action": "Use deterministic checks where possible, model graders where justified, and human review for disputed cases.", "proof": "A grader agreement report with known blind spots."},
+        {"id": "eval-gate", "title": "Install a regression gate", "action": "Compare two system versions on quality, safety, latency, and cost, then define the release threshold.", "proof": "A before-and-after scorecard that blocks one unacceptable regression."}
+      ],
+      "references": [
+        {"label": "Evaluation best practices", "provider": "OpenAI", "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices"},
+        {"label": "Develop test cases", "provider": "Anthropic", "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"},
+        {"label": "Evaluate generative AI models", "provider": "Google Cloud", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/models/evaluation-overview"}
+      ],
+      "videoIds": []
+    },
+    {
+      "id": "ai-assisted-coding",
+      "category": "build",
+      "mark": "AC",
+      "accent": "#7fe5ff",
+      "title": "AI-Assisted Coding & Code Review",
+      "level": "Beginner to intermediate",
+      "duration": "3 weeks",
+      "description": "Use coding agents without losing the engineering thread: write precise tasks, constrain changes, inspect diffs, test risk, and retain authorship.",
+      "outcome": "A production-shaped TypeScript or Python feature built with AI assistance and defended through tests, review notes, and a decision record.",
+      "whyNow": "AI can accelerate implementation, but typed contracts, focused diffs, and human review determine whether generated code is safe to ship.",
+      "tags": ["Coding agents", "TypeScript", "Testing", "Code review"],
+      "missions": [
+        {"id": "coding-spec", "title": "Write the implementation contract", "action": "Turn a feature request into scope, invariants, interfaces, acceptance checks, and explicit non-goals before prompting.", "proof": "A task brief another engineer can execute without guessing."},
+        {"id": "coding-slice", "title": "Constrain the generated change", "action": "Ask for one vertical slice, preserve unrelated code, and require the agent to explain every touched file.", "proof": "A focused diff with a file-by-file rationale."},
+        {"id": "coding-risk", "title": "Test what the model may miss", "action": "Inspect the diff for boundary, security, concurrency, and failure-state risks, then add targeted tests.", "proof": "At least three risk-derived tests including one caught defect."},
+        {"id": "coding-review", "title": "Own the final review", "action": "Reproduce the behavior, remove unnecessary complexity, record rejected suggestions, and explain the final design unaided.", "proof": "A review summary and independent five-minute walkthrough."}
+      ],
+      "references": [
+        {"label": "Octoverse 2025: AI and typed languages", "provider": "GitHub", "url": "https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/"},
+        {"label": "Copilot best practices", "provider": "GitHub Docs", "url": "https://docs.github.com/en/copilot/get-started/best-practices"},
+        {"label": "TypeScript Handbook", "provider": "TypeScript", "url": "https://www.typescriptlang.org/docs/handbook/intro.html"}
+      ],
+      "videoIds": ["git-github"]
+    },
+    {
       "id": "full-stack-delivery",
       "category": "build",
       "mark": "FS",
@@ -128,6 +178,31 @@
       "videoIds": ["neural-network"]
     },
     {
+      "id": "backend-distributed-systems",
+      "category": "build",
+      "mark": "BE",
+      "accent": "#ffbe78",
+      "title": "Backend APIs & Distributed Systems",
+      "level": "Intermediate",
+      "duration": "4 weeks",
+      "description": "Design a dependable backend across API contracts, data consistency, queues, caching, failure recovery, and end-to-end observability.",
+      "outcome": "A small service with an explicit consistency model, tested failure behavior, telemetry, and a defended scaling plan.",
+      "whyNow": "AI can draft endpoints quickly; engineers still need to reason about state, partial failure, concurrency, and operational tradeoffs.",
+      "tags": ["APIs", "Distributed systems", "Reliability", "Observability"],
+      "missions": [
+        {"id": "backend-contract", "title": "Design the API boundary", "action": "Define resources, validation, errors, idempotency, pagination, and versioning around one user outcome.", "proof": "An API contract with example success and failure exchanges."},
+        {"id": "backend-state", "title": "Choose the consistency model", "action": "Map the data lifecycle and decide where strong consistency, eventual consistency, transactions, or compensation apply.", "proof": "A state-flow diagram with one rejected alternative."},
+        {"id": "backend-failure", "title": "Engineer for partial failure", "action": "Add timeouts, bounded retries, idempotency, overload behavior, and a recovery path for one dependency failure.", "proof": "A failure test that demonstrates safe degradation."},
+        {"id": "backend-observe", "title": "Trace the user request", "action": "Connect structured logs, metrics, and traces from an external request through storage or a queue.", "proof": "A trace-led incident explanation and scaling threshold."}
+      ],
+      "references": [
+        {"label": "A Tour of Go", "provider": "Go", "url": "https://go.dev/tour/"},
+        {"label": "Distributed Systems", "provider": "MIT 6.5840", "url": "https://pdos.csail.mit.edu/6.824/"},
+        {"label": "OpenTelemetry documentation", "provider": "OpenTelemetry", "url": "https://opentelemetry.io/docs/"}
+      ],
+      "videoIds": ["docker-course"]
+    },
+    {
       "id": "cloud-finops",
       "category": "cloud",
       "mark": "CF",
@@ -149,6 +224,31 @@
         {"label": "AWS Skill Builder", "provider": "Amazon Web Services", "url": "https://skillbuilder.aws/"},
         {"label": "Learn cloud computing", "provider": "Microsoft Learn", "url": "https://learn.microsoft.com/en-us/training/azure/"},
         {"label": "Google Cloud training", "provider": "Google Skills", "url": "https://www.skills.google/collections/cloud"}
+      ],
+      "videoIds": ["docker-course"]
+    },
+    {
+      "id": "platform-engineering-kubernetes",
+      "category": "cloud",
+      "mark": "PK",
+      "accent": "#8db5ff",
+      "title": "Platform Engineering & Kubernetes",
+      "level": "Intermediate",
+      "duration": "4 weeks",
+      "description": "Build a paved path for deploying and operating services with containers, Kubernetes, GitOps, policy, observability, and developer-centered platform design.",
+      "outcome": "A small internal platform blueprint with one golden path, self-service contract, policy gates, and measurable developer feedback.",
+      "whyNow": "Kubernetes is a core infrastructure layer for cloud and AI workloads, while platform value depends on reducing developer friction rather than adding another portal.",
+      "tags": ["Kubernetes", "Platform engineering", "GitOps", "SRE"],
+      "missions": [
+        {"id": "platform-user", "title": "Start with developer friction", "action": "Interview or simulate one service team and rank its recurring setup, deploy, security, and operations pain.", "proof": "A friction map with one measurable platform objective."},
+        {"id": "platform-k8s", "title": "Run the workload safely", "action": "Package one service and define requests, limits, health probes, configuration, identity, and rollout behavior.", "proof": "A reviewed Kubernetes workload with a failed-health recovery test."},
+        {"id": "platform-path", "title": "Create one golden path", "action": "Turn the secure defaults into a reusable service template with documented escape hatches.", "proof": "A self-service template that produces a deployable service."},
+        {"id": "platform-measure", "title": "Measure platform value", "action": "Track lead time, deployment reliability, adoption, support burden, and one developer-experience signal.", "proof": "A platform scorecard and a decision to improve, keep, or remove one feature."}
+      ],
+      "references": [
+        {"label": "Learn Kubernetes Basics", "provider": "Kubernetes", "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/"},
+        {"label": "Platform Engineering Maturity Model", "provider": "CNCF", "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"},
+        {"label": "2025 Annual Cloud Native Survey findings", "provider": "CNCF", "url": "https://www.cncf.io/blog/2026/01/20/kubernetes-fuels-ai-growth-organizational-culture-remains-the-decisive-factor/"}
       ],
       "videoIds": ["docker-course"]
     },
