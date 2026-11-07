@@ -1,0 +1,85 @@
+# LearnByShorts Impact Ledger
+
+Started: 2026-11-07
+
+This ledger records verifiable product impact. It is not a marketing-claims
+document. Keep dated exports, URLs, screenshots, and third-party records for
+every material entry.
+
+## Evidence rules
+
+- Record zero or "not measured" instead of estimating.
+- Keep the original source for every metric or testimonial.
+- Obtain permission before identifying a learner or organization.
+- Separate first-party statements from independent coverage or expert opinion.
+- Never buy, trade, or manufacture reviews, citations, awards, or testimonials.
+- Preserve monthly exports so growth can be independently recalculated.
+
+## Product baseline — 2026-11-07
+
+| Item | Verifiable record |
+| --- | --- |
+| Production product | https://www.learnbyshorts.com/ |
+| Public source | https://github.com/gk-tech-codes/learnbyshorts-project |
+| Security baseline | S3 Block Public Access enabled; CloudFront Origin Access Control is the only public delivery path |
+| Recovery baseline | S3 object versioning enabled |
+| Learning experience | 19-step interactive Java OOP preview with recall, quizzes, code challenges, XP, local progress, streak protection, and spaced review |
+| Privacy posture | Learning events exclude answers and personally identifiable information; GPC and Do Not Track are respected |
+| Revenue experiment | $29 one-time founding learner offer; no claim of sales until payment records exist |
+| Operating model | Static/offline-generated content delivered through S3 and CloudFront to avoid always-on AI or application-server cost |
+
+## Release record
+
+| Date | Commit | What changed | Evidence to preserve |
+| --- | --- | --- | --- |
+| 2026-11-07 | `2ad4247` | Fail-closed authentication and removed embedded fallbacks | Git commit, security checks |
+| 2026-11-07 | `76ccd28` | Interactive Java OOP lab and founding offer | Git commit, production screenshots |
+| 2026-11-07 | `fc233d0` | Repaired legacy learning pages and dashboard auth | Git commit, test results |
+| 2026-11-07 | `a24213b` | Privacy-safe learning metrics and search discovery | Git commit, GA4 event definitions, sitemap |
+| 2026-11-07 | `5ed1e29` | Production analytics compatibility fix | Git commit, live QA record |
+
+## Metric definitions
+
+Use consistent definitions so results remain credible.
+
+| Metric | Definition | Source |
+| --- | --- | --- |
+| Activated learner | Unique browser that triggers `lesson_start` | GA4 |
+| Step engagement | `learning_step_complete` events divided by activated learners | GA4 |
+| Preview completion rate | Learners with `lesson_complete` divided by activated learners | GA4 |
+| Returning learner rate | `lesson_start` with `learner_state=returning` divided by activated learners | GA4 |
+| Resume conversion | `resume_prompt_click` divided by `resume_prompt_view` | GA4 |
+| Founding interest rate | `founding_access_interest` divided by activated learners | GA4 |
+| Paid conversion | Confirmed payments divided by founding-access requests | Payment and request records |
+| Independent adoption | Named schools, teams, teachers, or communities actively using the product | Written confirmation or public URL |
+
+## Monthly snapshot
+
+Export and archive this table on the first day of each month.
+
+| Month | Activated learners | Completion rate | Returning rate | Resume conversion | Founding requests | Paid learners | Independent adopters | Source archive |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 2026-11 | Not measured | Not measured | Not measured | Not measured | 0 recorded | 0 recorded | 0 recorded | Add export path |
+
+## Independent evidence log
+
+| Date | Evidence type | Person or organization | What it independently establishes | Public URL or archive | Permission |
+| --- | --- | --- | --- | --- | --- |
+|  | Pilot/adoption |  |  |  |  |
+|  | Published coverage |  |  |  |  |
+|  | Expert evaluation |  |  |  |  |
+|  | Invited talk |  |  |  |  |
+|  | Award |  |  |  |  |
+|  | Testimonial |  |  |  |  |
+
+## Evidence archive checklist
+
+- GitHub releases, commits, contributors, stars, forks, and issue discussions.
+- Monthly GA4 CSV/PDF exports with the date range and metric definitions.
+- Search Console and Bing Webmaster performance exports.
+- Payment records with sensitive details redacted in working copies.
+- Signed pilot confirmations and permissioned learner testimonials.
+- Independent articles, podcasts, talks, citations, syllabi, or product links.
+- Architecture, security, cost, and incident records.
+- Before/after product screenshots and reproducible test results.
+

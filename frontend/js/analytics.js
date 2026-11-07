@@ -132,6 +132,22 @@ const Analytics = {
 
     trackFoundingInterest: function(location) {
         sendEvent('founding_access_interest', { location });
+    },
+
+    trackResumePrompt: function(courseId, progressPercent, dueReviews) {
+        sendEvent('resume_prompt_view', {
+            course_id: courseId,
+            progress_percent: progressPercent,
+            due_reviews: dueReviews
+        });
+    },
+
+    trackResumeClick: function(courseId, progressPercent, dueReviews) {
+        sendEvent('resume_prompt_click', {
+            course_id: courseId,
+            progress_percent: progressPercent,
+            due_reviews: dueReviews
+        });
     }
 };
 
