@@ -1,30 +1,35 @@
 // Google Analytics 4 Configuration
 // GA4 Measurement ID: G-5413RZXDET
 
-// Initialize Google Analytics 4
+// Respect browser-level privacy signals. Analytics is used only for aggregate
+// product improvement; the learning engine never sends lesson answers or PII.
+const analyticsPrivacyOptOut =
+    navigator.globalPrivacyControl === true ||
+    navigator.doNotTrack === '1' ||
+    window.doNotTrack === '1';
+
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
+if (!analyticsPrivacyOptOut) {
+    gtag('js', new Date());
+    gtag('config', 'G-5413RZXDET', {
+        send_page_view: true,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+    });
+}
 
-// Configure GA4 with your measurement ID
-gtag('config', 'G-5413RZXDET', {
-    // Enhanced measurement settings
-    send_page_view: true,
-    allow_google_signals: true,
-    allow_ad_personalization_signals: true,
-    
-    // Custom dimensions
-    custom_map: {
-        'custom_parameter_1': 'user_type',
-        'custom_parameter_2': 'content_category'
+function sendEvent(name, parameters = {}) {
+    if (!analyticsPrivacyOptOut) {
+        gtag('event', name, parameters);
     }
-});
+}
 
 // Custom event tracking functions
 const Analytics = {
     // Track page views
     trackPageView: function(pageName, pageTitle) {
-        gtag('event', 'page_view', {
+        sendEvent('page_view', {
             page_title: pageTitle,
             page_location: window.location.href,
             page_name: pageName
@@ -33,7 +38,7 @@ const Analytics = {
 
     // Track design pattern views
     trackPatternView: function(patternName, difficulty) {
-        gtag('event', 'pattern_view', {
+        sendEvent('pattern_view', {
             event_category: 'Design Patterns',
             event_label: patternName,
             custom_parameter_2: 'design_patterns',
@@ -44,7 +49,7 @@ const Analytics = {
 
     // Track story chapter completion
     trackChapterComplete: function(patternName, chapterNumber) {
-        gtag('event', 'chapter_complete', {
+        sendEvent('chapter_complete', {
             event_category: 'Learning Progress',
             event_label: `${patternName} - Chapter ${chapterNumber}`,
             chapter_number: chapterNumber,
@@ -55,7 +60,7 @@ const Analytics = {
 
     // Track contact form submissions
     trackContactSubmission: function(formType) {
-        gtag('event', 'form_submit', {
+        sendEvent('form_submit', {
             event_category: 'Contact',
             event_label: formType,
             value: 1
@@ -64,7 +69,7 @@ const Analytics = {
 
     // Track external link clicks
     trackExternalLink: function(linkUrl, linkText) {
-        gtag('event', 'click', {
+        sendEvent('click', {
             event_category: 'External Links',
             event_label: linkUrl,
             link_text: linkText,
@@ -74,7 +79,7 @@ const Analytics = {
 
     // Track search queries (if you add search)
     trackSearch: function(searchTerm, resultsCount) {
-        gtag('event', 'search', {
+        sendEvent('search', {
             search_term: searchTerm,
             results_count: resultsCount
         });
@@ -82,7 +87,7 @@ const Analytics = {
 
     // Track user engagement time
     trackEngagement: function(contentType, timeSpent) {
-        gtag('event', 'user_engagement', {
+        sendEvent('user_engagement', {
             event_category: 'Engagement',
             event_label: contentType,
             engagement_time_msec: timeSpent,
@@ -92,12 +97,41 @@ const Analytics = {
 
     // Track downloads (if you add downloadable content)
     trackDownload: function(fileName, fileType) {
-        gtag('event', 'file_download', {
+        sendEvent('file_download', {
             event_category: 'Downloads',
             event_label: fileName,
             file_extension: fileType,
             value: 1
         });
+    },
+
+    trackLessonStart: function(courseId, returningLearner) {
+        sendEvent('lesson_start', {
+            course_id: courseId,
+            learner_state: returningLearner ? 'returning' : 'new'
+        });
+    },
+
+    trackLearningStep: function(courseId, blockType, stepNumber, totalSteps) {
+        sendEvent('learning_step_complete', {
+            course_id: courseId,
+            block_type: blockType,
+            step_number: stepNumber,
+            total_steps: totalSteps
+        });
+    },
+
+    trackLessonComplete: function(courseId, totalSteps, xp, level) {
+        sendEvent('lesson_complete', {
+            course_id: courseId,
+            total_steps: totalSteps,
+            xp,
+            level
+        });
+    },
+
+    trackFoundingInterest: function(location) {
+        sendEvent('founding_access_interest', { location });
     }
 };
 
@@ -110,6 +144,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 Analytics.trackExternalLink(this.href, this.textContent);
             });
         }
+    });
+
+    document.querySelectorAll('[data-analytics-event]').forEach(element => {
+        element.addEventListener('click', function() {
+            sendEvent(this.dataset.analyticsEvent, {
+                location: this.dataset.analyticsLocation || window.location.pathname
+            });
+        });
     });
 
     // Track time spent on page

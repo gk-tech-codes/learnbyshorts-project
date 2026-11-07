@@ -1,24 +1,12 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://www.learnbyshorts.com/sitemap.xml
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
-# Block access to admin/test pages
+# Keep account and non-content pages out of search results.
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /signup.html
 Disallow: /csp-test.html
 Disallow: /security-test.html
 Disallow: /rate-limit-test.html
-Disallow: /js/
-Disallow: /css/
 
-# Allow important pages
-Allow: /index.html
-Allow: /about.html
-Allow: /contact.html
-Allow: /design-patterns.html
-Allow: /course-detail.html
-Allow: /privacy-policy.html
-Allow: /terms-of-service.html
+Sitemap: https://www.learnbyshorts.com/sitemap.xml

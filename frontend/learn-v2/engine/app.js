@@ -14,6 +14,7 @@ async function main() {
   const seq = CourseLoader.sequence(course, { interactionFirst: true });
 
   const progress = new ProgressStore(course.id);
+  const isReturningLearner = progress.get().completed.length > 0;
   const game = new GameEngine(progress.get().game);
   const reviews = new ReviewScheduler(progress.get().reviews);
   const adaptive = new Adaptive();
@@ -26,6 +27,8 @@ async function main() {
   let idx = progress.get().position || 0;
   const total = seq.length;
   const byId = Object.fromEntries(seq.map((b, i) => [b.id, i]));
+  window.Analytics?.trackLessonStart(course.id, isReturningLearner);
+  let completionTracked = false;
 
   // Honest "come back" trigger: surface concepts due for review.
   const dueCount = reviews.due().length;
@@ -61,6 +64,13 @@ async function main() {
             <a href="../index.html#pricing">See founding access · $29</a>
           </div>
         </div>`;
+      if (!completionTracked) {
+        window.Analytics?.trackLessonComplete(course.id, total, game.xp, game.level);
+        completionTracked = true;
+      }
+      $('#stage').querySelector('a')?.addEventListener('click', () => {
+        window.Analytics?.trackFoundingInterest('lesson_completion');
+      });
       persist();
       hud();
       return;
@@ -76,6 +86,7 @@ async function main() {
       if (result.concept && typeof result.quality === 'number') reviews.grade(result.concept, result.quality);
       progress.complete(block.id);
       idx = result.next != null && byId[result.next] != null ? byId[result.next] : idx + 1;
+      window.Analytics?.trackLearningStep(course.id, block.type, Math.min(idx, total), total);
       persist();
       hud();
       window.scrollTo({ top: 0, behavior: 'smooth' });
