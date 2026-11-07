@@ -19,12 +19,12 @@ payload="$(cat <<EOF
   "keyLocation": "https://$INDEXNOW_HOST/$INDEXNOW_KEY.txt",
   "urlList": [
     "https://$INDEXNOW_HOST/",
-    "https://$INDEXNOW_HOST/learning-os/",
-    "https://$INDEXNOW_HOST/modern-skills/",
+    "https://$INDEXNOW_HOST/learning-os/index.html",
+    "https://$INDEXNOW_HOST/modern-skills/index.html",
     "https://$INDEXNOW_HOST/learn-v2/index.html",
     "https://$INDEXNOW_HOST/interview-lab/index.html",
     "https://$INDEXNOW_HOST/interview-companies.html",
-    "https://$INDEXNOW_HOST/job-paths/amazon-sde-ii/",
+    "https://$INDEXNOW_HOST/job-paths/amazon-sde-ii/index.html",
     "https://$INDEXNOW_HOST/ai-era-lab/index.html"
   ]
 }

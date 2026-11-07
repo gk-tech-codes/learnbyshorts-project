@@ -13,7 +13,7 @@
       "caveat": "The exact sequence varies by team, level, location, and whether an online assessment is used.",
       "sourceUrl": "https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep",
       "sourceLabel": "Amazon Jobs interview preparation",
-      "rolePathUrl": "job-paths/amazon-sde-ii/",
+      "rolePathUrl": "job-paths/amazon-sde-ii/index.html",
       "rolePathLabel": "Build an Amazon SDE II plan",
       "sprint": [
         {"id": "amazon-code", "title": "Observable coding", "task": "Solve one medium problem while clarifying inputs, narrating tradeoffs, and testing three edge cases.", "evidence": "A written solution review with complexity and one correction."},

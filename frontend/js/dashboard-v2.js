@@ -46,7 +46,7 @@
             mark: 'S2',
             title: 'Amazon SDE II Job Path',
             description: 'Map a real posting to resume evidence and a focused 1–8 week preparation plan.',
-            href: 'job-paths/amazon-sde-ii/',
+            href: 'job-paths/amazon-sde-ii/index.html',
             color: '#ffb55f'
         },
         {
