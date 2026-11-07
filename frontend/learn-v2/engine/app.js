@@ -27,7 +27,7 @@ async function main() {
   let idx = progress.get().position || 0;
   const total = seq.length;
   const byId = Object.fromEntries(seq.map((b, i) => [b.id, i]));
-  window.Analytics?.trackLessonStart(course.id, isReturningLearner);
+  window.Analytics?.trackLessonStart?.(course.id, isReturningLearner);
   let completionTracked = false;
 
   // Honest "come back" trigger: surface concepts due for review.
@@ -65,11 +65,11 @@ async function main() {
           </div>
         </div>`;
       if (!completionTracked) {
-        window.Analytics?.trackLessonComplete(course.id, total, game.xp, game.level);
+        window.Analytics?.trackLessonComplete?.(course.id, total, game.xp, game.level);
         completionTracked = true;
       }
       $('#stage').querySelector('a')?.addEventListener('click', () => {
-        window.Analytics?.trackFoundingInterest('lesson_completion');
+        window.Analytics?.trackFoundingInterest?.('lesson_completion');
       });
       persist();
       hud();
@@ -86,7 +86,7 @@ async function main() {
       if (result.concept && typeof result.quality === 'number') reviews.grade(result.concept, result.quality);
       progress.complete(block.id);
       idx = result.next != null && byId[result.next] != null ? byId[result.next] : idx + 1;
-      window.Analytics?.trackLearningStep(course.id, block.type, Math.min(idx, total), total);
+      window.Analytics?.trackLearningStep?.(course.id, block.type, Math.min(idx, total), total);
       persist();
       hud();
       window.scrollTo({ top: 0, behavior: 'smooth' });
