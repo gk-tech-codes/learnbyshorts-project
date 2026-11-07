@@ -37,7 +37,6 @@
         const detail = document.getElementById('resume-detail');
         const kicker = document.getElementById('resume-kicker');
         const link = document.getElementById('resume-link');
-        const heroCta = document.querySelector('.hero-actions .btn-primary');
         const percentLabel = card.querySelector('[data-resume-percent]');
         const progressRing = card.querySelector('.resume-value');
 
@@ -54,15 +53,6 @@
         } else {
             title.textContent = `Continue your Java OOP lesson — ${percent}% complete`;
             detail.textContent = `${totalSteps - completedSteps} short step${totalSteps - completedSteps === 1 ? '' : 's'} remaining.`;
-        }
-
-        if (heroCta) {
-            heroCta.setAttribute(
-                'aria-label',
-                `Open Learning OS with Java OOP at ${percent}% complete`
-            );
-            const label = heroCta.lastChild;
-            if (label) label.textContent = ` Open Mission · Java ${percent}%`;
         }
 
         if (percentLabel) percentLabel.textContent = `${percent}%`;
