@@ -90,6 +90,21 @@ defaults to a no-write plan, targets one fixed distribution, refuses to replace
 an unknown viewer-request function, and requires only the CloudFront actions
 listed by its help output.
 
+## Production edge status
+
+As of 2026-11-07, distribution `E1A3IB2N57BAED` is deployed with:
+
+- CloudFront Function `learnbyshorts-viewer-request` on viewer requests;
+- response-headers policy `301abbbd-d809-4dac-a9b0-397b7d688de7`;
+- permanent apex-to-`www` and reviewed legacy-route redirects that preserve
+  query parameters;
+- nested trailing-slash URI rewriting for the private S3 REST origin;
+- HSTS, `nosniff`, frame denial, strict-origin referrer policy, restricted
+  camera/microphone/geolocation permissions, and opener isolation.
+
+Live QA confirmed both tested redirects, all expected headers, and `200`
+responses for all 25 sitemap URLs.
+
 Never seed a shared administrator password in a database initializer. Privileged
 accounts must be provisioned through the approved identity provider and an
 auditable role-assignment workflow.

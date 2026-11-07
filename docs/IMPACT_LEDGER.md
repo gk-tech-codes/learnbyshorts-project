@@ -21,7 +21,7 @@ every material entry.
 | --- | --- |
 | Production product | https://www.learnbyshorts.com/ |
 | Public source | https://github.com/gk-tech-codes/learnbyshorts-project |
-| Security baseline | S3 Block Public Access enabled; CloudFront Origin Access Control is the only public delivery path |
+| Security baseline | S3 Block Public Access enabled; CloudFront Origin Access Control is the only public delivery path; canonical edge redirects and security response headers are deployed |
 | Recovery baseline | S3 object versioning enabled |
 | Learning experience | 19-step interactive Java OOP preview with recall, quizzes, five private browser-debugging challenges, XP, resilient local progress, streak protection, and spaced review |
 | AI-era curriculum | Eight role-based starting paths, a seven-level AI Fluency Lab, research-linked learning loops, a local Skill Studio, a coding confidence gate, failure-case practice, and multi-model work across ChatGPT, Claude, Grok, and Gemini |
@@ -42,6 +42,7 @@ every material entry.
 | 2026-11-07 | `3bdb292` | Eight role-based paths, research-linked learning loop, Java debugger repair, content recovery, and expanded QA automation | Git commit, QA report, browser screenshots, automated check output |
 | 2026-11-07 | `3bdb292` + production rollout | Secure Cognito/API/Lambda/DynamoDB foundation and the full frontend released to production | AWS configuration exports, CloudFront invalidation `I1V7QFTHD4J41IBJXWZ83P8V36`, live browser QA, IndexNow HTTP `200` |
 | 2026-11-07 | `922411e` + production rollout | Twelve indexable modern course paths, 48 proof missions, weekly Learning OS challenge, shareable interview readiness plan, owned social card, privacy-safe growth events, and thin-content removal | Git commit, 25-URL sitemap, automated QA, live visual checks, CloudFront invalidations `I1DEZBXNWOF0ZAWGELH3R570PJ` and `IA59FL71AAE6IUT7BRKE0N6BZI`, IndexNow HTTP `200` |
+| 2026-11-07 | `9381a2b` + edge rollout | Canonical apex and legacy redirects, nested clean-route rewriting, HSTS, content-type protection, frame denial, referrer controls, browser-permission restrictions, and opener isolation released through CloudFront | Distribution `E1A3IB2N57BAED` reached `Deployed`; function `learnbyshorts-viewer-request`; policy `301abbbd-d809-4dac-a9b0-397b7d688de7`; live redirect/header QA; all 25 sitemap URLs returned `200` |
 
 ## Metric definitions
 
