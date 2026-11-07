@@ -76,7 +76,7 @@
             <section class="courses-section">
                 <div class="section-header">
                     <h2>Your Courses</h2>
-                    <a href="courses.html" class="view-all-btn">View All</a>
+                    <a href="index.html#courses" class="view-all-btn">View All</a>
                 </div>
                 
                 <div id="courses-grid" class="courses-grid">
@@ -97,6 +97,8 @@
     <script src="js/auth-service.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
+            await authService.initialized;
+
             // Check authentication
             if (!authService.isAuthenticated()) {
                 window.location.href = 'login.html';
@@ -116,11 +118,11 @@
 
         async function loadUserData() {
             try {
-                const user = authService.getCurrentUser();
+                const user = authService.getUser();
                 if (user) {
                     document.getElementById('user-name').textContent = user.name;
                     document.getElementById('user-email').textContent = user.email;
-                    document.getElementById('user-avatar').src = user.avatar || 'assets/default-avatar.png';
+                    document.getElementById('user-avatar').src = user.avatar || 'assets/logo.svg';
                     document.getElementById('welcome-name').textContent = user.name.split(' ')[0];
                 }
             } catch (error) {
@@ -131,7 +133,7 @@
         async function loadDashboardData() {
             try {
                 // Load user progress
-                const progress = await authService.getUserProgress();
+                const progress = await authService.getProgress();
                 
                 // Update stats
                 document.getElementById('courses-completed').textContent = progress.coursesCompleted || 0;
@@ -159,7 +161,7 @@
                     id: 1,
                     title: 'JavaScript Fundamentals',
                     progress: 75,
-                    thumbnail: 'assets/course-js.jpg',
+                    thumbnail: 'assets/course-javascript.jpg',
                     lessons: 24,
                     duration: '4h 30m'
                 },
@@ -175,7 +177,7 @@
                     id: 3,
                     title: 'CSS Grid & Flexbox',
                     progress: 90,
-                    thumbnail: 'assets/course-css.jpg',
+                    thumbnail: 'assets/course-python.jpg',
                     lessons: 12,
                     duration: '2h 45m'
                 }
@@ -184,7 +186,7 @@
             coursesGrid.innerHTML = courses.map(course => `
                 <div class="course-card" onclick="openCourse(${course.id})">
                     <div class="course-thumbnail">
-                        <img src="${course.thumbnail}" alt="${course.title}" onerror="this.src='assets/default-course.png'">
+                        <img src="${course.thumbnail}" alt="${course.title}" onerror="this.src='assets/hero-video-thumb.jpg'">
                         <div class="course-progress">
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: ${course.progress}%"></div>
@@ -242,7 +244,7 @@
         }
 
         function openCourse(courseId) {
-            window.location.href = `course.html?id=${courseId}`;
+            window.location.href = courseId === 1 ? 'learn-v2/' : 'index.html#courses';
         }
     </script>
     <script src="js/header-auth.js"></script>

@@ -198,10 +198,6 @@ class CourseStoryPage {
                 });
             }
         }
-        
-        console.log(`Generated ${this.chapters.length} chapters:`, this.chapters.map(c => c.title));
-    }
-        
         // Add technical explanation chapter
         if (this.conceptData.technicalExplanation) {
             this.chapters.push({
@@ -236,7 +232,7 @@ class CourseStoryPage {
             content: 'Congratulations! You have completed this course. You now understand the key concepts and applications of this pattern.'
         });
         
-        console.log('Chapters generated:', this.chapters);
+        console.log(`Generated ${this.chapters.length} chapters:`, this.chapters.map(c => c.title));
     }
     
     /**
