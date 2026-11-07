@@ -10,6 +10,22 @@
 
     const catalog = [
         {
+            id: 'modern-skills',
+            mark: '26',
+            title: 'Modern Skills Lab',
+            description: 'AI, agents, product delivery, data, cloud, security, and modern interviews.',
+            href: 'modern-skills/index.html',
+            color: '#c8ff68'
+        },
+        {
+            id: 'learning-os',
+            mark: 'OS',
+            title: 'Daily Learning OS',
+            description: 'Adaptive missions, mastery map, calibration, explain-back practice, and proof.',
+            href: 'learning-os/index.html',
+            color: '#b9f6cf'
+        },
+        {
             id: 'ai-fluency',
             mark: 'AI',
             title: 'AI Fluency Lab',
@@ -24,6 +40,14 @@
             description: 'Build a role-aware plan across the complete engineering signal stack.',
             href: 'interview-lab/index.html',
             color: '#ff9c8f'
+        },
+        {
+            id: 'amazon-sde-ii',
+            mark: 'S2',
+            title: 'Amazon SDE II Job Path',
+            description: 'Map a real posting to resume evidence and a focused 1–8 week preparation plan.',
+            href: 'job-paths/amazon-sde-ii/',
+            color: '#ffb55f'
         },
         {
             id: 'oop-java',

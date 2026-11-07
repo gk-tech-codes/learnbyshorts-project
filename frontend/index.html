@@ -49,6 +49,26 @@
                 "publisher": {"@id": "https://www.learnbyshorts.com/#organization"}
             },
             {
+                "@type": "WebApplication",
+                "name": "LearnByShorts Learning OS",
+                "url": "https://www.learnbyshorts.com/learning-os/",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Any modern web browser",
+                "isAccessibleForFree": true,
+                "description": "A local-first adaptive learning planner with daily missions, mastery tracking, confidence calibration, explain-back practice, and private learning evidence.",
+                "provider": {"@id": "https://www.learnbyshorts.com/#organization"}
+            },
+            {
+                "@type": "Course",
+                "name": "Modern Skills Lab",
+                "description": "Eight outcome-driven learning paths for AI fluency, agentic engineering, AI products, full-stack delivery, data, cloud, security, and modern interviews.",
+                "url": "https://www.learnbyshorts.com/modern-skills/",
+                "provider": {"@id": "https://www.learnbyshorts.com/#organization"},
+                "educationalLevel": ["Beginner", "Intermediate", "Advanced"],
+                "isAccessibleForFree": true,
+                "inLanguage": "en"
+            },
+            {
                 "@type": "Course",
                 "name": "Object-Oriented Programming with Java",
                 "description": "A free interactive Java OOP lesson using a workplace story, active recall, quizzes, and coding challenges.",
@@ -64,6 +84,16 @@
                 "description": "A free readiness diagnostic and practice plan for live coding, debugging, system design, behavioral impact, project deep-dives, and responsible AI-assisted engineering.",
                 "url": "https://www.learnbyshorts.com/interview-lab/index.html",
                 "provider": {"@id": "https://www.learnbyshorts.com/#organization"},
+                "isAccessibleForFree": true,
+                "inLanguage": "en"
+            },
+            {
+                "@type": "Course",
+                "name": "Amazon SDE II Resume and Interview Preparation Path",
+                "description": "A private one-to-eight-week job-based preparation path for resume evidence, coding, system design, production engineering, project depth, and behavioral interviews.",
+                "url": "https://www.learnbyshorts.com/job-paths/amazon-sde-ii/",
+                "provider": {"@id": "https://www.learnbyshorts.com/#organization"},
+                "educationalLevel": "Intermediate to advanced",
                 "isAccessibleForFree": true,
                 "inLanguage": "en"
             },
@@ -111,8 +141,8 @@
     </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5413RZXDET"></script>
-    <script src="js/analytics.js?v=20261107-5"></script>
-    <link rel="stylesheet" href="css/home-v3.css?v=20261107-5">
+    <script src="js/analytics.js?v=20261107-8"></script>
+    <link rel="stylesheet" href="css/home-v3.css?v=20261107-8">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -128,10 +158,11 @@
             </a>
 
             <nav class="desktop-nav" aria-label="Primary navigation">
+                <a href="learning-os/index.html">Daily mission</a>
+                <a href="modern-skills/index.html">Modern skills</a>
+                <a href="job-paths/amazon-sde-ii/">Job plans</a>
                 <a href="#learn">Learn</a>
                 <a href="#method">Method</a>
-                <a href="#watch">Watch</a>
-                <a href="#pricing">Founding access</a>
             </nav>
 
             <div class="nav-actions">
@@ -147,6 +178,9 @@
         </div>
 
         <nav class="mobile-nav" aria-label="Mobile navigation" data-mobile-nav hidden>
+            <a href="learning-os/index.html">Daily mission</a>
+            <a href="modern-skills/index.html">Modern skills</a>
+            <a href="job-paths/amazon-sde-ii/">Job plans</a>
             <a href="#learn">Learn</a>
             <a href="#method">Method</a>
             <a href="#watch">Watch</a>
@@ -172,11 +206,11 @@
                     </p>
 
                     <div class="hero-actions">
-                        <a class="button button-primary btn-primary" href="ai-era-lab/index.html" aria-label="Open the free AI Fluency Lab">
+                        <a class="button button-primary btn-primary" href="learning-os/index.html" aria-label="Build today's adaptive learning mission">
                             <span class="button-icon" aria-hidden="true">▶</span>
-                            <span>Start the AI Fluency Lab</span>
+                            <span>Build today’s mission</span>
                         </a>
-                        <a class="button button-quiet" href="#method">See how it works</a>
+                        <a class="button button-quiet" href="ai-era-lab/index.html">Explore AI Fluency</a>
                     </div>
 
                     <ul class="hero-trust" aria-label="Lesson benefits">
@@ -254,10 +288,47 @@
 
         <section class="proof-strip" aria-label="Learning format">
             <div class="shell proof-grid">
-                <div><strong>3 labs</strong><span>AI · interviews · Java</span></div>
+                <div><strong>1 mission</strong><span>adapted on your device</span></div>
                 <div><strong>7 levels</strong><span>first prompt to agents</span></div>
                 <div><strong>5 gates</strong><span>inspect · test · secure · own</span></div>
                 <div><strong>Private</strong><span>local-first progress</span></div>
+            </div>
+        </section>
+
+        <section class="section mission-preview-section">
+            <div class="shell mission-preview-grid">
+                <div class="mission-preview-copy">
+                    <p class="eyebrow eyebrow-dark"><span></span> New · Learning OS</p>
+                    <h2>Your courses now decide what comes next.</h2>
+                    <p>
+                        Learning OS turns Java, AI, and interview progress into one
+                        focused daily session. It adds confidence calibration,
+                        explain-back practice, streaks, a mastery map, and a private
+                        proof vault—without sending your draft answers to a server.
+                    </p>
+                    <ul>
+                        <li><span>01</span> Recall before reveal</li>
+                        <li><span>02</span> Practice the weakest active skill</li>
+                        <li><span>03</span> Prove you can explain it independently</li>
+                    </ul>
+                    <a class="button button-primary" href="learning-os/index.html">
+                        Open Learning OS <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+
+                <div class="mission-preview-product" aria-label="Example adaptive mission">
+                    <div class="mission-preview-top">
+                        <span>LEARNING_OS / TODAY</span>
+                        <strong>10 min</strong>
+                    </div>
+                    <ol>
+                        <li class="is-complete"><span>✓</span><div><small>2 min · Recall</small><strong>Retrieve yesterday’s idea</strong></div></li>
+                        <li><span>02</span><div><small>5 min · Focus</small><strong>Debug one Java decision</strong></div></li>
+                        <li><span>03</span><div><small>3 min · Prove</small><strong>Explain it without AI</strong></div></li>
+                    </ol>
+                    <div class="mission-preview-meter"><span></span></div>
+                    <p>Adaptive mission · 1 of 3 thinking steps complete</p>
+                </div>
             </div>
         </section>
 
@@ -266,12 +337,30 @@
                 <div class="section-heading split-heading">
                     <div>
                         <p class="eyebrow eyebrow-dark"><span></span> Pick a path</p>
-                        <h2>One clear idea at a time.</h2>
+                        <h2>Current skills. Durable foundations.</h2>
                     </div>
-                    <p>Start with what is ready today. Every path uses stories to make the technical decision feel concrete.</p>
+                    <p>Start with a modern outcome or strengthen the foundation underneath it. Every featured path asks you to build, verify, and explain.</p>
                 </div>
 
                 <div class="path-grid">
+                    <article class="path-card path-modern">
+                        <div class="path-top">
+                            <span class="path-icon path-icon-lime">26</span>
+                            <span class="status-pill status-live"><i></i> 8 live paths</span>
+                        </div>
+                        <div>
+                            <p class="path-label">All levels · Current curriculum</p>
+                            <h3>Modern Skills Lab</h3>
+                            <p>Choose AI fluency, agents, AI products, full-stack delivery, data, cloud, security, or modern interview engineering.</p>
+                        </div>
+                        <ul class="path-topics">
+                            <li>32 proof missions</li>
+                            <li>Global benchmarks</li>
+                            <li>Curated video lab</li>
+                        </ul>
+                        <a href="modern-skills/index.html">Explore current skills <span aria-hidden="true">→</span></a>
+                    </article>
+
                     <article class="path-card path-featured">
                         <div class="path-top">
                             <span class="path-icon path-icon-yellow">J</span>
@@ -306,6 +395,24 @@
                             <li>Two-week plan</li>
                         </ul>
                         <a href="interview-lab/index.html">Build your practice plan <span aria-hidden="true">→</span></a>
+                    </article>
+
+                    <article class="path-card path-job">
+                        <div class="path-top">
+                            <span class="path-icon path-icon-orange">S2</span>
+                            <span class="status-pill status-live"><i></i> New role path</span>
+                        </div>
+                        <div>
+                            <p class="path-label">Intermediate+ · Amazon SDE II</p>
+                            <h3>Job-to-Interview Planner</h3>
+                            <p>Turn a real posting into a private evidence map, truthful resume actions, and a focused 1, 2, 4, or 8-week preparation curriculum.</p>
+                        </div>
+                        <ul class="path-topics">
+                            <li>Local analysis</li>
+                            <li>Resume evidence</li>
+                            <li>AI coaching prompts</li>
+                        </ul>
+                        <a href="job-paths/amazon-sde-ii/">Build the Amazon SDE II plan <span aria-hidden="true">→</span></a>
                     </article>
 
                     <article class="path-card">
@@ -428,8 +535,8 @@
                 <div class="benefit-grid">
                     <article>
                         <span class="benefit-symbol">↗</span>
-                        <h3>Resume instantly</h3>
-                        <p>Come back to the exact lesson step, XP, and review state on the same device.</p>
+                        <h3>Adapt every day</h3>
+                        <p>Turn saved progress and due reviews into one clear mission instead of choosing from an endless catalog.</p>
                     </article>
                     <article>
                         <span class="benefit-symbol">⌁</span>
@@ -536,7 +643,11 @@
                     </details>
                     <details>
                         <summary>Will my progress be saved?<span>+</span></summary>
-                        <p>Yes, on this browser and device. The homepage will recognize your progress and take you back to the next step.</p>
+                        <p>Yes, on this browser and device. Learning OS can turn that progress into the next mission. Signed-in learners can sync eligible structured progress without uploading free-form drafts.</p>
+                    </details>
+                    <details>
+                        <summary>Does Learning OS call an AI model?<span>+</span></summary>
+                        <p>No. Its adaptive mission and mastery calculations run in your browser. It can generate a tutor prompt to use with the AI assistant you already choose.</p>
                     </details>
                     <details>
                         <summary>What will founding learners receive?<span>+</span></summary>
@@ -569,7 +680,7 @@
                 <p>Short stories. Active recall. Real code.</p>
             </div>
             <div class="footer-links">
-                <div><strong>Learn</strong><a href="ai-era-lab/index.html">AI Fluency Lab</a><a href="interview-lab/index.html">Modern Interview Lab</a><a href="learn-v2/index.html">Java OOP Lab</a><a href="design-patterns.html">Design Patterns</a></div>
+                <div><strong>Learn</strong><a href="learning-os/index.html">Daily Learning OS</a><a href="modern-skills/index.html">Modern Skills Lab</a><a href="job-paths/amazon-sde-ii/">Amazon SDE II plan</a><a href="ai-era-lab/index.html">AI Fluency Lab</a><a href="interview-lab/index.html">Modern Interview Lab</a><a href="learn-v2/index.html">Java OOP Lab</a></div>
                 <div><strong>Company</strong><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:hello@learnbyshorts.com">Email us</a></div>
                 <div><strong>Account</strong><a href="login.html">Sign in</a><a href="privacy-policy.html">Privacy</a><a href="terms-of-service.html">Terms</a></div>
             </div>
@@ -580,7 +691,7 @@
         </div>
     </footer>
 
-    <script src="js/learning-resume.js?v=20261107-5"></script>
-    <script src="js/home-v3.js?v=20261107-5"></script>
+    <script src="js/learning-resume.js?v=20261107-8"></script>
+    <script src="js/home-v3.js?v=20261107-8"></script>
 </body>
 </html>

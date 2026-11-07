@@ -1,0 +1,121 @@
+{
+  "reviewedAt": "2026-11-07",
+  "companies": [
+    {
+      "id": "amazon",
+      "name": "Amazon",
+      "mark": "A",
+      "accent": "#ffb55f",
+      "roles": ["swe", "senior", "ai"],
+      "summary": "Prepare to combine technical problem solving with specific examples of ownership, judgment, and measurable impact.",
+      "formats": ["Coding and problem solving", "Role-dependent system design", "Behavioral evidence"],
+      "signals": ["Clarify constraints before coding", "Test edge cases aloud", "Connect stories to Leadership Principles", "Quantify your individual contribution"],
+      "caveat": "The exact sequence varies by team, level, location, and whether an online assessment is used.",
+      "sourceUrl": "https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep",
+      "sourceLabel": "Amazon Jobs interview preparation",
+      "rolePathUrl": "job-paths/amazon-sde-ii/",
+      "rolePathLabel": "Build an Amazon SDE II plan",
+      "sprint": [
+        {"id": "amazon-code", "title": "Observable coding", "task": "Solve one medium problem while clarifying inputs, narrating tradeoffs, and testing three edge cases.", "evidence": "A written solution review with complexity and one correction."},
+        {"id": "amazon-design", "title": "Design under constraints", "task": "Design a service from requirements through APIs, data, scale, failure modes, and operations.", "evidence": "A one-page architecture with two rejected alternatives."},
+        {"id": "amazon-stories", "title": "Leadership evidence", "task": "Prepare four concise stories about ownership, disagreement, failure, and customer impact.", "evidence": "Each story includes your decision, action, result, and lesson."},
+        {"id": "amazon-mock", "title": "Full signal simulation", "task": "Run a 60-minute coding-plus-behavioral mock without notes.", "evidence": "Three observed gaps and a targeted repeat plan."}
+      ]
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "mark": "M",
+      "accent": "#94c9ff",
+      "roles": ["swe", "senior", "ai"],
+      "summary": "Build speed without losing clarity: clean coding, explicit tradeoffs, scalable design, and evidence of impact.",
+      "formats": ["Coding", "System or product design", "Behavioral conversation"],
+      "signals": ["Choose efficient structures quickly", "Keep implementation clean under time pressure", "Drive design from requirements", "Explain impact and collaboration"],
+      "caveat": "Design format and depth depend strongly on role and seniority; use the recruiter-provided guide as the source of truth.",
+      "sourceUrl": "https://www.metacareers.com/swe-prep-onsite/",
+      "sourceLabel": "Meta software engineering full-loop guide",
+      "sprint": [
+        {"id": "meta-code", "title": "Fast clean implementation", "task": "Complete two timed problems with a strict plan-code-test-retrospective loop.", "evidence": "Working code plus a list of avoidable pauses."},
+        {"id": "meta-design", "title": "Scale the product", "task": "Design a feed, messaging, or media workflow and defend data, caching, and reliability decisions.", "evidence": "A diagram with bottlenecks and mitigation choices."},
+        {"id": "meta-impact", "title": "Impact narrative", "task": "Explain one project from user problem to measurable outcome and your exact contribution.", "evidence": "A five-minute recording with no vague team-only claims."},
+        {"id": "meta-mock", "title": "Back-to-back rounds", "task": "Simulate coding followed immediately by a design or behavioral round.", "evidence": "A rubric score for clarity, correctness, pace, and recovery."}
+      ]
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "mark": "MS",
+      "accent": "#b9f6cf",
+      "roles": ["swe", "senior", "ai"],
+      "summary": "Show technical depth and a collaborative problem-solving process: assumptions, implementation, testing, design, and learning.",
+      "formats": ["Role-related technical discussion", "Problem solving and coding", "Competency-based questions"],
+      "signals": ["Make assumptions explicit", "Write testable maintainable code", "Discuss alternatives constructively", "Use concrete examples of growth and collaboration"],
+      "caveat": "Microsoft publishes broad interview guidance; the actual loop is defined by the role and interview team.",
+      "sourceUrl": "https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips.html",
+      "sourceLabel": "Microsoft Careers interview tips",
+      "sprint": [
+        {"id": "microsoft-code", "title": "Code for maintainability", "task": "Solve a problem, then refactor names, boundaries, tests, and error handling as if submitting a review.", "evidence": "Before-and-after code with a short review note."},
+        {"id": "microsoft-design", "title": "Explain the alternatives", "task": "Design one service and compare at least two reasonable approaches before choosing.", "evidence": "A tradeoff table tied to requirements."},
+        {"id": "microsoft-growth", "title": "Growth and collaboration", "task": "Prepare examples of feedback, conflict, ambiguity, and learning a new domain.", "evidence": "Four stories with specific outcomes."},
+        {"id": "microsoft-mock", "title": "Collaborative simulation", "task": "Practice with an interviewer who changes one requirement halfway through.", "evidence": "A note showing how your design and communication adapted."}
+      ]
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "mark": "G",
+      "accent": "#ffdc68",
+      "roles": ["swe", "senior", "ai"],
+      "summary": "Practice structured problem solving, technical depth, and clear collaboration while staying ready for role-specific variation.",
+      "formats": ["Role-dependent assessments", "Structured interviews", "Technical and behavioral evaluation"],
+      "signals": ["Reason from examples and constraints", "Explain correctness and complexity", "Communicate clearly through ambiguity", "Prepare evidence from relevant projects"],
+      "caveat": "Google's public guidance is intentionally broad. Do not infer a fixed number or type of rounds without recruiter confirmation.",
+      "sourceUrl": "https://www.google.com/about/careers/applications/interview-tips/",
+      "sourceLabel": "Google Careers interview tips",
+      "sprint": [
+        {"id": "google-reason", "title": "Structured reasoning", "task": "Turn an ambiguous prompt into examples, constraints, candidate approaches, and a justified choice.", "evidence": "A solution outline written before code."},
+        {"id": "google-code", "title": "Correctness first", "task": "Implement and test a data-structures problem, then state the invariant that makes it correct.", "evidence": "Code, edge cases, and one-paragraph correctness argument."},
+        {"id": "google-depth", "title": "Role depth", "task": "Choose one role-specific domain and prepare a technical project deep-dive.", "evidence": "A diagram plus decisions, failures, and measured results."},
+        {"id": "google-mock", "title": "Ambiguity simulation", "task": "Run a mock where constraints change and follow-up questions increase difficulty.", "evidence": "A recovery review: what changed, why, and how quickly."}
+      ]
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "mark": "OAI",
+      "accent": "#c8ff68",
+      "roles": ["swe", "senior", "ai"],
+      "summary": "Demonstrate exceptional role depth, practical execution, strong collaboration, and thoughtful alignment with the mission.",
+      "formats": ["Role-dependent skills assessment", "Structured interviews", "Experience and values conversations"],
+      "signals": ["Show deep evidence in the target discipline", "Explain how you move from ambiguity to delivery", "Discuss safety and judgment where relevant", "Bring thoughtful questions about the work"],
+      "caveat": "Assessment format varies significantly by role; the official guide and recruiter communication should override generalized preparation.",
+      "sourceUrl": "https://openai.com/interview-guide/",
+      "sourceLabel": "OpenAI interview guide",
+      "sprint": [
+        {"id": "openai-depth", "title": "Exceptional role depth", "task": "Select the hardest relevant project and explain the underlying technical decisions at increasing levels of detail.", "evidence": "A ten-minute deep-dive with source artifacts."},
+        {"id": "openai-build", "title": "Build under ambiguity", "task": "Complete a small role-relevant work sample with explicit assumptions, tests, and limitations.", "evidence": "A runnable artifact and decision log."},
+        {"id": "openai-judgment", "title": "Judgment and mission", "task": "Prepare examples where quality, safety, speed, and user value created real tension.", "evidence": "Three evidence-backed decision stories."},
+        {"id": "openai-mock", "title": "Technical challenge defense", "task": "Present your work sample, receive adversarial questions, and revise one weak decision.", "evidence": "A post-review change with rationale."}
+      ]
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "mark": "AN",
+      "accent": "#ff9c8f",
+      "roles": ["swe", "senior", "ai"],
+      "summary": "Prepare for technically rigorous, mission-aware conversations that reward clear thinking, practical skill, and honest uncertainty.",
+      "formats": ["Role-specific technical evaluation", "Experience discussions", "Mission and motivation conversations"],
+      "signals": ["Think clearly about uncertain systems", "Use evidence instead of confident guessing", "Show relevant implementation or research depth", "Explain why the mission and role fit"],
+      "caveat": "Public careers information changes as roles evolve; confirm the current loop and allowed tools with the recruiting team.",
+      "sourceUrl": "https://www.anthropic.com/careers",
+      "sourceLabel": "Anthropic Careers",
+      "sprint": [
+        {"id": "anthropic-uncertainty", "title": "Reason under uncertainty", "task": "Analyze a technical claim with incomplete evidence and state what you know, infer, and still need to test.", "evidence": "A calibrated decision memo."},
+        {"id": "anthropic-technical", "title": "Role-specific technical depth", "task": "Implement or analyze one task representative of the target role without hiding uncertainty.", "evidence": "A reproducible artifact and evaluation notes."},
+        {"id": "anthropic-mission", "title": "Mission connection", "task": "Connect your past choices to responsible AI development without generic enthusiasm.", "evidence": "Two specific stories and three thoughtful questions."},
+        {"id": "anthropic-mock", "title": "Evidence-first simulation", "task": "Run a mock where every confident claim can be challenged with 'what evidence supports that?'", "evidence": "A list of unsupported claims you corrected."}
+      ]
+    }
+  ]
+}

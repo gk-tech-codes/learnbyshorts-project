@@ -57,9 +57,12 @@
         }
 
         if (heroCta) {
-            heroCta.setAttribute('aria-label', `Continue the Java OOP lesson at ${percent}% complete`);
+            heroCta.setAttribute(
+                'aria-label',
+                `Open Learning OS with Java OOP at ${percent}% complete`
+            );
             const label = heroCta.lastChild;
-            if (label) label.textContent = ` Continue Lesson · ${percent}%`;
+            if (label) label.textContent = ` Open Mission · Java ${percent}%`;
         }
 
         if (percentLabel) percentLabel.textContent = `${percent}%`;

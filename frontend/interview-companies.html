@@ -3,225 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-    
-    <!-- Cache Control Headers -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
-    <!-- SEO Meta Tags -->
-    <title>Tech Giants Interview Prep - Google, Microsoft, Amazon & More | LearnByShorts</title>
-    <meta name="description" content="Master interviews at top tech companies through real experiences and story-based learning. Google, Microsoft, Amazon interview questions with detailed solutions.">
-    <meta name="keywords" content="tech interview prep, Google interview, Microsoft interview, Amazon interview, coding interview, algorithm questions, system design, behavioral interview">
-    <meta name="author" content="LearnByShorts">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Tech Giants Interview Prep - Interactive Learning | LearnByShorts">
-    <meta property="og:description" content="Master interviews at top tech companies through real experiences and story-based learning.">
-    <meta property="og:image" content="https://www.learnbyshorts.com/assets/interview-prep-og.jpg">
-    <meta property="og:url" content="https://www.learnbyshorts.com/interview-companies.html">
-    <meta property="og:type" content="article">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tech Giants Interview Prep - Interactive Learning">
-    <meta name="twitter:description" content="Master interviews at top tech companies through real experiences.">
-    <meta name="twitter:image" content="https://www.learnbyshorts.com/assets/interview-prep-twitter.jpg">
-    
-    <!-- Canonical URL -->
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+    <title>Company Interview Explorer & Role Plans | LearnByShorts</title>
+    <meta name="description" content="Compare current public interview guidance for Amazon, Meta, Microsoft, Google, OpenAI, and Anthropic. Build company sprints and a private 1–8 week Amazon SDE II role plan.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#101816">
     <link rel="canonical" href="https://www.learnbyshorts.com/interview-companies.html">
-    
-    <!-- Schema.org Structured Data -->
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/home-v3.css?v=20261107-8">
+    <link rel="stylesheet" href="css/interview-companies-v2.css?v=20261107-2">
+
+    <meta property="og:title" content="Company Interview Explorer | LearnByShorts">
+    <meta property="og:description" content="Prepare for company-specific engineering signals using official guidance, practical sprints, and honest caveats.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.learnbyshorts.com/interview-companies.html">
+    <meta property="og:site_name" content="LearnByShorts">
+    <meta name="twitter:card" content="summary">
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Course",
-        "name": "Tech Giants Interview Preparation",
-        "description": "Master interviews at top tech companies through real experiences and story-based learning",
+        "name": "Company Interview Explorer",
+        "description": "A source-linked engineering interview preparation course covering company-specific signals, job-based role plans, coding, system design, technical depth, behavioral evidence, and responsible AI judgment.",
+        "url": "https://www.learnbyshorts.com/interview-companies.html",
         "provider": {
-            "@type": "Organization",
+            "@type": "EducationalOrganization",
             "name": "LearnByShorts",
-            "url": "https://www.learnbyshorts.com"
+            "url": "https://www.learnbyshorts.com/"
         },
-        "hasCourseInstance": [
-            {
-                "@type": "CourseInstance",
-                "name": "Google Interview Prep",
-                "description": "Master Google's algorithmic challenges and system design questions"
-            },
-            {
-                "@type": "CourseInstance", 
-                "name": "Microsoft Interview Prep",
-                "description": "Ace Microsoft's problem-solving and coding interviews"
-            }
-        ]
+        "isAccessibleForFree": true,
+        "inLanguage": "en"
     }
     </script>
-    
-    <!-- Google Analytics 4 -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5413RZXDET"></script>
-    <script src="js/analytics.js"></script>
-    
-    <link rel="stylesheet" href="css/styles.css?v=1.5.4">
-    <link rel="stylesheet" href="css/category.css?v=1.5.4">
-    <link rel="stylesheet" href="css/seo-enhancements.css?v=1.5.4">
-    <link rel="stylesheet" href="css/mobile-menu.css?v=1.5.4">
-    <link rel="stylesheet" href="css/homepage.css?v=1.5.4">
-    <link rel="stylesheet" href="css/header-auth.css">
-    <link rel="stylesheet" href="css/interview.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="js/analytics.js?v=20261107-8"></script>
 </head>
-<body>
-    <!-- Header -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <img src="assets/logo.svg" alt="LearnByShorts" class="brand-logo">
-                    <div class="brand-text">
-                        <h1>LearnByShorts</h1>
-                        <span class="tagline">Master Computer Science Through Stories</span>
+<body class="company-explorer-page">
+    <a class="skip-link" href="#main-content">Skip to company explorer</a>
+
+    <header class="site-header" data-header>
+        <div class="shell nav-shell">
+            <a class="brand" href="index.html" aria-label="LearnByShorts home">
+                <img src="assets/logo.svg" alt="" width="40" height="40">
+                <span><strong>LearnByShorts</strong><small>Company Interview Explorer</small></span>
+            </a>
+            <nav class="desktop-nav" aria-label="Interview explorer navigation">
+                <a href="#companies">Companies</a>
+                <a href="#job-plans">Job plans</a>
+                <a href="#compare">Compare</a>
+                <a href="interview-lab/index.html">Readiness lab</a>
+            </nav>
+            <a class="nav-cta" href="#companies">Choose a company →</a>
+            <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu-button>
+                <span></span><span></span>
+            </button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile navigation" data-mobile-nav hidden>
+            <a href="#companies">Companies</a>
+            <a href="#job-plans">Job plans</a>
+            <a href="#compare">Compare</a>
+            <a href="interview-lab/index.html">Readiness lab</a>
+            <a class="mobile-nav-cta" href="learning-os/index.html">Open Learning OS →</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="company-hero">
+            <div class="shell company-hero-grid">
+                <div>
+                    <a class="back-link" href="interview-lab/index.html">← Modern Interview Lab</a>
+                    <p class="eyebrow eyebrow-mint"><span></span> Source-linked preparation</p>
+                    <h1>Prepare for the <em>signal,</em><br>not interview folklore.</h1>
+                    <p class="company-lede">
+                        Company loops change. Build the durable skills each role needs,
+                        compare public guidance, and finish a focused sprint that creates
+                        evidence—not memorized rumors.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button-mint" href="#companies">Explore companies</a>
+                        <a class="button company-secondary" href="job-paths/amazon-sde-ii/">Build Amazon SDE II plan</a>
                     </div>
-                </a>
-            </div>
-            <div class="nav-menu">
-                <a href="index.html#home" class="nav-link">Home</a>
-                <a href="index.html#courses" class="nav-link">Courses</a>
-                <a href="index.html#features" class="nav-link">Features</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        
-        <!-- Premium mobile menu overlay -->
-        <div class="menu-overlay"></div>
-    </nav>
-
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb">
-        <div class="container">
-            <ol class="breadcrumb-list">
-                <li><a href="index.html">Home</a></li>
-                <li><span>Interview Prep</span></li>
-            </ol>
-        </div>
-    </nav>
-
-    <!-- Category Hero -->
-    <section class="category-hero" style="background-color: #667eea;">
-        <div class="container">
-            <div class="category-hero-content">
-                <div class="category-icon">🎯</div>
-                <h1>Tech Giants Interview Prep</h1>
-                <p>Master interviews at top tech companies through real experiences and story-based learning. Learn coding questions, system design, and behavioral interviews with detailed solutions.</p>
-                <div class="category-meta">
-                    <span class="difficulty">All Levels</span>
-                    <span class="time">4 companies available</span>
                 </div>
+                <aside class="truth-card" aria-label="Interview preparation rules">
+                    <div class="truth-card-top"><span>INTERVIEW_OS</span><strong>2026</strong></div>
+                    <ol>
+                        <li><span>01</span><div><strong>Official source first</strong><small>Recruiter instructions override every guide.</small></div></li>
+                        <li><span>02</span><div><strong>Train the full signal</strong><small>Code, design, debug, communicate, prove impact.</small></div></li>
+                        <li><span>03</span><div><strong>Never fake certainty</strong><small>Role, level, location, and team change the loop.</small></div></li>
+                    </ol>
+                </aside>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Category Description -->
-    <section class="category-description">
-        <div class="container">
-            <div class="description-content">
-                <h2>About Tech Interview Preparation</h2>
-                <p>Technical interviews at top tech companies can be challenging, but with the right preparation and understanding of common patterns, you can succeed. Our story-based approach helps you learn not just the solutions, but the thought process behind solving complex problems under pressure.</p>
-                
-                <p>Tech interviews typically consist of several rounds:</p>
-                
-                <ul>
-                    <li><strong>Phone/Video Screen:</strong> Initial technical screening with coding questions and basic problem-solving.</li>
-                    <li><strong>Technical Rounds:</strong> Deep dive into algorithms, data structures, and coding challenges.</li>
-                    <li><strong>System Design:</strong> Architecture and scalability discussions for senior positions.</li>
-                    <li><strong>Behavioral Rounds:</strong> Culture fit, leadership principles, and past experience discussions.</li>
-                </ul>
-                
-                <p>Each company has its unique interview style and focus areas. We provide real interview experiences through engaging stories that help you understand the interviewer's perspective and learn effective problem-solving approaches.</p>
+        <section class="source-note">
+            <div class="shell">
+                <strong>Reviewed November 7, 2026.</strong>
+                Public guidance can change at any time. Always confirm rounds, allowed tools,
+                format, and evaluation criteria with your recruiter.
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Company Categories -->
-    <section class="pattern-categories">
-        <div class="container">
-            <h2>Choose Your Target Company</h2>
-            
-            <!-- FAANG Companies -->
-            <div class="pattern-category">
-                <h3>FAANG Companies</h3>
-                <p>Top-tier tech companies with rigorous interview processes</p>
-                
-                <div class="patterns-grid" id="faang-companies">
-                    <!-- FAANG companies will be loaded here -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Professional Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Brand Section -->
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <span class="logo-icon">📚</span>
-                        <span class="logo-text">LearnByShorts</span>
-                    </div>
-                    <p class="footer-description">
-                        Making computer science concepts accessible through engaging visual stories and narratives.
+        <section id="job-plans" class="job-plan-callout">
+            <div class="shell job-plan-callout-grid">
+                <div>
+                    <span>NEW · JOB-TO-INTERVIEW PATH</span>
+                    <h2>One posting. One honest evidence map. One focused plan.</h2>
+                    <p>
+                        Paste a redacted job posting, choose 1, 2, 4, or 8 weeks, and
+                        build a private curriculum for resume evidence, coding, system
+                        design, project depth, behavioral stories, and AI-assisted practice.
                     </p>
                 </div>
-
-                <!-- Links Sections -->
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="#careers">Careers</a></li>
-                            <li><a href="#blog">Blog</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Support</h4>
-                        <ul>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        </ul>
-                    </div>
+                <div class="job-plan-example">
+                    <div><small>First reviewed role</small><strong>Amazon SDE II</strong></div>
+                    <ul>
+                        <li>Local posting and resume analysis</li>
+                        <li>Focused weekly proof deliverables</li>
+                        <li>ChatGPT, Claude, Grok, and Gemini prompts</li>
+                    </ul>
+                    <a class="button button-primary" href="job-paths/amazon-sde-ii/">Build the role plan →</a>
                 </div>
             </div>
+        </section>
 
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
-                    <div class="footer-meta">
-                        <span>Made with ❤️ for learners</span>
+        <section id="companies" class="section explorer-section">
+            <div class="shell">
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow eyebrow-dark"><span></span> Choose a target</p>
+                        <h2>Six companies. Durable preparation.</h2>
                     </div>
+                    <p>Filter by role, open a four-part sprint, and track completion locally. No invented acceptance rates or fixed-round promises.</p>
                 </div>
+
+                <div class="explorer-controls" aria-label="Company filters">
+                    <div class="role-filters" data-role-filters>
+                        <button type="button" data-role="all" aria-pressed="true">All roles</button>
+                        <button type="button" data-role="swe" aria-pressed="false">Software engineering</button>
+                        <button type="button" data-role="senior" aria-pressed="false">Senior / Staff</button>
+                        <button type="button" data-role="ai" aria-pressed="false">AI / ML</button>
+                    </div>
+                    <label class="company-search">
+                        <span>Search</span>
+                        <input type="search" data-company-search placeholder="Company or signal" autocomplete="off">
+                    </label>
+                </div>
+
+                <p class="result-count" data-result-count aria-live="polite">Loading company guidance…</p>
+                <div class="company-grid" data-company-grid aria-busy="true"></div>
+            </div>
+        </section>
+
+        <section id="compare" class="section compare-section">
+            <div class="shell compare-layout">
+                <div>
+                    <p class="eyebrow eyebrow-mint"><span></span> Compare signals</p>
+                    <h2>Most fundamentals transfer.</h2>
+                    <p>Select up to three companies from the cards. The comparison makes shared preparation visible so you do not build six completely separate study plans.</p>
+                </div>
+                <div class="comparison-board" data-comparison>
+                    <p>Select companies using “Add to comparison.”</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="interview-bridge">
+            <div class="shell bridge-grid">
+                <div><span>STEP 01</span><strong>Choose the company</strong><p>Understand the public signals and uncertainty.</p></div>
+                <div><span>STEP 02</span><strong>Run the diagnostic</strong><p>Find the weakest transferable interview skill.</p></div>
+                <div><span>STEP 03</span><strong>Practice and prove</strong><p>Complete a sprint and preserve the evidence.</p></div>
+                <a class="button button-primary" href="interview-lab/index.html#diagnostic">Build my two-week plan →</a>
+            </div>
+        </section>
+    </main>
+
+    <dialog class="company-dialog" data-company-dialog aria-labelledby="company-dialog-title">
+        <div class="dialog-shell">
+            <button class="dialog-close" type="button" data-dialog-close aria-label="Close company plan">×</button>
+            <div class="dialog-heading">
+                <span class="dialog-mark" data-dialog-mark></span>
+                <div><p data-dialog-kicker>Company sprint</p><h2 id="company-dialog-title" data-dialog-title></h2></div>
+            </div>
+            <p class="dialog-summary" data-dialog-summary></p>
+            <div class="dialog-columns">
+                <section>
+                    <h3>Publicly emphasized formats</h3>
+                    <ul data-dialog-formats></ul>
+                    <h3>Signals to practice</h3>
+                    <ul data-dialog-signals></ul>
+                    <p class="dialog-caveat" data-dialog-caveat></p>
+                    <a class="official-link" data-dialog-source target="_blank" rel="noopener noreferrer">Open official guidance ↗</a>
+                    <a class="role-path-link" data-dialog-role-path hidden>Build a role plan →</a>
+                </section>
+                <section>
+                    <div class="sprint-heading">
+                        <div><span>Four-part practice sprint</span><strong data-dialog-progress>0 of 4 complete</strong></div>
+                        <div class="sprint-meter"><span data-dialog-meter></span></div>
+                    </div>
+                    <div class="sprint-list" data-dialog-sprint></div>
+                </section>
             </div>
         </div>
+    </dialog>
+
+    <footer class="site-footer">
+        <div class="shell footer-grid">
+            <div>
+                <a class="brand footer-brand" href="index.html">
+                    <img src="assets/logo.svg" alt="" width="40" height="40">
+                    <span><strong>LearnByShorts</strong><small>Interview preparation without folklore.</small></span>
+                </a>
+            </div>
+            <div class="footer-links">
+                <div><strong>Practice</strong><a href="job-paths/amazon-sde-ii/">Amazon SDE II plan</a><a href="interview-lab/index.html">Readiness diagnostic</a><a href="learning-os/index.html">Daily Learning OS</a></div>
+                <div><strong>Learn</strong><a href="ai-era-lab/index.html">AI Fluency Lab</a><a href="learn-v2/index.html">Java OOP Lab</a></div>
+                <div><strong>Trust</strong><a href="privacy-policy.html">Privacy</a><a href="terms-of-service.html">Terms</a></div>
+            </div>
+        </div>
+        <div class="shell footer-bottom"><span>© 2026 LearnByShorts</span><span>Verify the current process with your recruiter.</span></div>
     </footer>
 
-    <script src="js/interview-companies.js?v=1.0.4"></script>
-    <script src="js/mobile-menu.js?v=1.3.6"></script>
+    <script src="js/home-v3.js?v=20261107-8"></script>
+    <script src="js/interview-companies.js?v=20261107-3"></script>
 </body>
 </html>

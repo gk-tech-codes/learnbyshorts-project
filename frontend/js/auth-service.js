@@ -173,6 +173,44 @@ class AuthService {
         window.location.assign(authorize.href);
     }
 
+    async signInWithProvider(provider, mode = 'login') {
+        const providerName = String(provider || '');
+        if (!this.hasIdentityProvider(providerName) || providerName === 'COGNITO') {
+            throw new Error('That identity provider is not available.');
+        }
+
+        if (!this.isConfigured()) {
+            throw new Error('Account sign-in is temporarily unavailable.');
+        }
+
+        const verifier = this.randomValue(64);
+        const state = this.randomValue();
+        const nonce = this.randomValue();
+        const requestedReturn = new URLSearchParams(window.location.search).get('redirect');
+        this.write(this.keys.verifier, verifier);
+        this.write(this.keys.state, state);
+        this.write(this.keys.nonce, nonce);
+        this.write(
+            this.keys.returnTo,
+            this.safeReturnPath(requestedReturn || '/dashboard.html')
+        );
+
+        const authorize = new URL('/oauth2/authorize', this.config.domain);
+        authorize.search = new URLSearchParams({
+            client_id: this.config.clientId,
+            response_type: 'code',
+            redirect_uri: this.config.redirectUri,
+            scope: this.config.scopes.join(' '),
+            state,
+            nonce,
+            code_challenge: await this.pkceChallenge(verifier),
+            code_challenge_method: 'S256',
+            identity_provider: providerName,
+            ...(mode === 'signup' ? { screen_hint: 'signup' } : {})
+        }).toString();
+        window.location.assign(authorize.href);
+    }
+
     async exchangeToken(parameters) {
         const response = await fetch(new URL('/oauth2/token', this.config.domain), {
             method: 'POST',
@@ -376,6 +414,11 @@ class AuthService {
             this.currentUser &&
             this.tokenIsCurrent(this.read(this.keys.access), 0)
         );
+    }
+
+    hasIdentityProvider(provider) {
+        return Array.isArray(this.config.identityProviders) &&
+            this.config.identityProviders.includes(provider);
     }
 
     getUser() {

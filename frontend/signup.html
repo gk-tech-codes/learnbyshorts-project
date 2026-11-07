@@ -12,7 +12,7 @@
     <meta name="robots" content="noindex,follow">
     <meta name="theme-color" content="#111a18">
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/account-v2.css?v=20261107-4">
+    <link rel="stylesheet" href="css/account-v2.css?v=20261107-5">
 </head>
 <body class="account-page" data-auth-mode="signup">
     <a class="skip-link" href="#account-main">Skip to account creation</a>
@@ -40,11 +40,17 @@
             <div class="account-mark"><img src="assets/logo.svg" alt="" width="48" height="48"></div>
             <p class="card-kicker">Start learning</p>
             <h2 id="account-title">Create your account.</h2>
-            <p class="card-copy">You will continue to a secure hosted page to choose your email and password.</p>
+            <p class="card-copy">Create an account with one of the sign-up methods currently enabled.</p>
+            <button class="account-provider" type="button" data-auth-provider="Google" hidden>
+                <span class="google-mark" aria-hidden="true">G</span>
+                Continue with Google
+            </button>
+            <div class="account-divider provider-divider" data-provider-divider hidden><span>or use email</span></div>
             <button class="account-primary" type="button" data-auth-action>
-                Continue to account creation <span aria-hidden="true">→</span>
+                Create with email <span aria-hidden="true">→</span>
             </button>
             <p class="account-status" data-auth-status aria-live="polite">No password is stored in S3, DynamoDB, or this browser.</p>
+            <p class="provider-note" data-provider-note>Email/password sign-up is active. Gmail addresses work, but Google single sign-on is not enabled yet.</p>
             <div class="account-divider"><span>Already have an account?</span></div>
             <a class="account-secondary" href="login.html">Sign in instead</a>
             <p class="account-legal">By continuing, you agree to the <a href="terms-of-service.html">Terms</a> and acknowledge the <a href="privacy-policy.html">Privacy Policy</a>.</p>
@@ -52,8 +58,8 @@
     </main>
 
     <footer class="account-footer"><span>© 2026 LearnByShorts</span><span>Authentication powered by Amazon Cognito.</span></footer>
-    <script src="js/auth-config.js?v=20261107-4"></script>
-    <script src="js/auth-service.js?v=20261107-4"></script>
-    <script src="js/auth-page.js?v=20261107-4"></script>
+    <script src="js/auth-config.js?v=20261107-5"></script>
+    <script src="js/auth-service.js?v=20261107-5"></script>
+    <script src="js/auth-page.js?v=20261107-5"></script>
 </body>
 </html>

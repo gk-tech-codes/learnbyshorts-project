@@ -1,0 +1,264 @@
+{
+  "reviewedAt": "2026-11-07",
+  "tracks": [
+    {
+      "id": "ai-fluency",
+      "category": "ai",
+      "mark": "AI",
+      "accent": "#c8ff68",
+      "title": "AI Fluency & Verification",
+      "level": "All levels",
+      "duration": "2 weeks",
+      "description": "Use modern AI deliberately: frame work, provide context, verify claims, protect data, and keep human ownership.",
+      "outcome": "A reusable AI workflow with a verification checklist and documented failure boundaries.",
+      "whyNow": "AI use is becoming baseline; dependable judgment is the differentiator.",
+      "tags": ["Prompting", "Context", "Verification", "Safety"],
+      "interactiveUrl": "../ai-era-lab/index.html",
+      "missions": [
+        {"id": "ai-capabilities", "title": "Map capability and failure", "action": "Test one task across two assistants and record where each succeeds, guesses, or refuses.", "proof": "A comparison matrix with three verified failure modes."},
+        {"id": "ai-context", "title": "Engineer the context", "action": "Turn a vague request into a goal, constraints, evidence, output contract, and stopping rule.", "proof": "A reusable prompt template plus one before-and-after result."},
+        {"id": "ai-verify", "title": "Build a verification gate", "action": "Check sources, edge cases, security, and reproducibility before accepting an output.", "proof": "A completed five-gate review."},
+        {"id": "ai-own", "title": "Make the final decision", "action": "Write what the model contributed, what you rejected, and why the result is safe to use.", "proof": "A short decision record with explicit human ownership."}
+      ],
+      "references": [
+        {"label": "LearnByShorts AI Fluency Lab", "provider": "LearnByShorts", "url": "../ai-era-lab/index.html"},
+        {"label": "Elements of AI", "provider": "University of Helsinki + MinnaLearn", "url": "https://www.elementsofai.com/"},
+        {"label": "Generative AI for Everyone", "provider": "DeepLearning.AI", "url": "https://www.deeplearning.ai/courses/generative-ai-for-everyone/"}
+      ],
+      "videoIds": ["genai-nutshell"]
+    },
+    {
+      "id": "agentic-engineering",
+      "category": "ai",
+      "mark": "AG",
+      "accent": "#aaa5ff",
+      "title": "Agentic Software Engineering",
+      "level": "Intermediate",
+      "duration": "3 weeks",
+      "description": "Design bounded agents that use tools, manage context, recover from failure, and pass measurable evaluations.",
+      "outcome": "A small tool-using agent with an evaluation set, permissions boundary, and failure-handling plan.",
+      "whyNow": "The durable skill is not calling a model; it is engineering a reliable loop around one.",
+      "tags": ["Agents", "MCP", "Tools", "Evals"],
+      "missions": [
+        {"id": "agent-boundary", "title": "Choose the right boundary", "action": "Separate deterministic code, model judgment, tool calls, and human approval.", "proof": "A workflow diagram with stop and escalation conditions."},
+        {"id": "agent-context", "title": "Manage context deliberately", "action": "Create compact instructions, task-specific memory, and a policy for what never enters context.", "proof": "A context budget and data-handling checklist."},
+        {"id": "agent-tools", "title": "Connect one safe tool", "action": "Define a narrow tool contract, validate inputs, and make retries idempotent.", "proof": "A tested tool schema with denied unsafe inputs."},
+        {"id": "agent-evals", "title": "Evaluate the loop", "action": "Build ten representative cases including failure, ambiguity, and adversarial input.", "proof": "An eval report with pass rate and one improved failure."}
+      ],
+      "references": [
+        {"label": "Agentic AI", "provider": "DeepLearning.AI", "url": "https://www.deeplearning.ai/courses/agentic-ai/"},
+        {"label": "MCP Course", "provider": "Hugging Face", "url": "https://huggingface.co/learn/mcp-course/unit0/introduction"},
+        {"label": "Agentic Context Engineering", "provider": "Hugging Face", "url": "https://huggingface.co/learn/agents-course/en/bonus-unit2/introduction"}
+      ],
+      "videoIds": ["neural-network"]
+    },
+    {
+      "id": "ai-product-engineering",
+      "category": "build",
+      "mark": "AP",
+      "accent": "#ff9c8f",
+      "title": "Build & Ship AI Products",
+      "level": "Intermediate",
+      "duration": "3 weeks",
+      "description": "Move from a user problem to an evaluated AI feature with retrieval, observability, security, and cost controls.",
+      "outcome": "A deployed thin-slice AI product whose quality and cost can be measured.",
+      "whyNow": "Successful AI products need product judgment, evaluation, and operations—not only model access.",
+      "tags": ["Product", "RAG", "Observability", "FinOps"],
+      "missions": [
+        {"id": "product-problem", "title": "Define the user decision", "action": "Choose one narrow user problem and specify what a useful, harmful, and abstaining answer looks like.", "proof": "A product brief with an initial evaluation set."},
+        {"id": "product-retrieval", "title": "Ground the response", "action": "Add retrieval only where current or private source material is actually required.", "proof": "A citation-aware prototype and retrieval failure cases."},
+        {"id": "product-quality", "title": "Measure quality and cost", "action": "Track latency, cost, task success, unsupported claims, and user correction rate.", "proof": "A small scorecard with thresholds."},
+        {"id": "product-ship", "title": "Ship the thin slice", "action": "Deploy with access control, logging boundaries, fallback behavior, and a kill switch.", "proof": "A live demo plus an operational readiness review."}
+      ],
+      "references": [
+        {"label": "LLM Bootcamp", "provider": "Full Stack Deep Learning", "url": "https://fullstackdeeplearning.com/llm-bootcamp/"},
+        {"label": "Advanced: Generative AI for Developers", "provider": "Google Skills", "url": "https://www.skills.google/paths/183"},
+        {"label": "Generative AI Learning Plan for Developers", "provider": "AWS Skill Builder", "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/2068/generative-ai-learning-plan-for-developers"}
+      ],
+      "videoIds": ["cs50-ai"]
+    },
+    {
+      "id": "full-stack-delivery",
+      "category": "build",
+      "mark": "FS",
+      "accent": "#94c9ff",
+      "title": "Modern Full-Stack Delivery",
+      "level": "Beginner to intermediate",
+      "duration": "4 weeks",
+      "description": "Build a production-shaped web product with typed interfaces, tests, CI, containers, and observable releases.",
+      "outcome": "A tested full-stack application with a deployment pipeline and documented operational decisions.",
+      "whyNow": "Frameworks change; shipping a maintainable, testable product remains a durable engineering skill.",
+      "tags": ["TypeScript", "APIs", "Testing", "CI/CD"],
+      "missions": [
+        {"id": "fullstack-slice", "title": "Build one vertical slice", "action": "Implement one user outcome across UI, API, validation, storage, and error states.", "proof": "A working feature with typed boundaries."},
+        {"id": "fullstack-test", "title": "Test the risk", "action": "Add unit, integration, and browser checks around the feature's highest-risk behavior.", "proof": "A test plan connected to real failure modes."},
+        {"id": "fullstack-pipeline", "title": "Automate delivery", "action": "Create a pipeline that checks formatting, tests, security basics, and build output.", "proof": "A green repeatable pipeline and a deliberately caught failure."},
+        {"id": "fullstack-operate", "title": "Operate the release", "action": "Add structured errors, health checks, rollback notes, and a lightweight cost estimate.", "proof": "An operational runbook for the deployed feature."}
+      ],
+      "references": [
+        {"label": "Full Stack Open", "provider": "University of Helsinki", "url": "https://fullstackopen.com/en/"},
+        {"label": "GitHub Skills", "provider": "GitHub", "url": "https://skills.github.com/"},
+        {"label": "Docker learning path", "provider": "Docker Docs", "url": "https://docs.docker.com/get-started/"}
+      ],
+      "videoIds": ["git-github", "docker-course"]
+    },
+    {
+      "id": "data-applied-ml",
+      "category": "data",
+      "mark": "DA",
+      "accent": "#ffdc68",
+      "title": "Data, SQL & Applied ML",
+      "level": "Beginner to intermediate",
+      "duration": "3 weeks",
+      "description": "Turn messy data into a defensible decision using SQL, quality checks, baselines, models, and plain-language explanation.",
+      "outcome": "A reproducible analysis or model with data-quality checks and a decision-focused explanation.",
+      "whyNow": "AI increases the speed of analysis, but data quality and statistical judgment still determine whether it is useful.",
+      "tags": ["SQL", "Python", "Data quality", "ML"],
+      "missions": [
+        {"id": "data-question", "title": "Start with the decision", "action": "Write the decision, metric, grain, and minimum data required before opening a notebook.", "proof": "A one-page analysis contract."},
+        {"id": "data-quality", "title": "Interrogate the data", "action": "Check missingness, duplicates, leakage, time boundaries, and surprising distributions.", "proof": "A data-quality report with one corrected defect."},
+        {"id": "data-baseline", "title": "Beat a simple baseline", "action": "Build the simplest credible query or model before adding complexity.", "proof": "Baseline results and a justified improvement."},
+        {"id": "data-explain", "title": "Explain the decision", "action": "State the result, uncertainty, limitation, and recommended next action without model jargon.", "proof": "An executive summary plus reproducible code."}
+      ],
+      "references": [
+        {"label": "CS50's Introduction to Databases with SQL", "provider": "Harvard", "url": "https://cs50.harvard.edu/sql/"},
+        {"label": "Kaggle Learn", "provider": "Kaggle", "url": "https://www.kaggle.com/learn"},
+        {"label": "Practical Deep Learning for Coders", "provider": "fast.ai", "url": "https://course.fast.ai/"}
+      ],
+      "videoIds": ["neural-network"]
+    },
+    {
+      "id": "cloud-finops",
+      "category": "cloud",
+      "mark": "CF",
+      "accent": "#b9f6cf",
+      "title": "Cloud, Serverless & FinOps",
+      "level": "Intermediate",
+      "duration": "3 weeks",
+      "description": "Design and operate a low-cost cloud workload with infrastructure as code, observability, security, and explicit cost limits.",
+      "outcome": "A serverless service with an architecture diagram, budget guardrails, and operational runbook.",
+      "whyNow": "Modern builders must understand both reliability and unit economics before scaling infrastructure.",
+      "tags": ["AWS", "Serverless", "IaC", "Cost"],
+      "missions": [
+        {"id": "cloud-architecture", "title": "Choose the cheapest adequate shape", "action": "Compare static, serverless, container, and managed options against traffic and reliability needs.", "proof": "An architecture decision record with estimated cost drivers."},
+        {"id": "cloud-iac", "title": "Make infrastructure repeatable", "action": "Describe resources, permissions, encryption, and deletion safety as code.", "proof": "A reviewed change set with no public datastore."},
+        {"id": "cloud-observe", "title": "Observe the user outcome", "action": "Define logs, metrics, alarms, and a trace from failure symptom to likely cause.", "proof": "A dashboard or runbook with alert thresholds."},
+        {"id": "cloud-cost", "title": "Install cost guardrails", "action": "Set a budget, identify variable-cost events, and create a frugal degradation plan.", "proof": "A monthly cost envelope and shutdown checklist."}
+      ],
+      "references": [
+        {"label": "AWS Skill Builder", "provider": "Amazon Web Services", "url": "https://skillbuilder.aws/"},
+        {"label": "Learn cloud computing", "provider": "Microsoft Learn", "url": "https://learn.microsoft.com/en-us/training/azure/"},
+        {"label": "Google Cloud training", "provider": "Google Skills", "url": "https://www.skills.google/collections/cloud"}
+      ],
+      "videoIds": ["docker-course"]
+    },
+    {
+      "id": "secure-engineering",
+      "category": "security",
+      "mark": "SE",
+      "accent": "#ff9c8f",
+      "title": "Secure AI & Software Delivery",
+      "level": "Intermediate",
+      "duration": "3 weeks",
+      "description": "Threat-model a product, protect identity and secrets, secure dependencies, and verify AI-specific abuse boundaries.",
+      "outcome": "A security-reviewed application with a threat model, hardened authentication, and tested abuse cases.",
+      "whyNow": "Fast AI-assisted delivery expands both capability and attack surface; secure defaults must move equally fast.",
+      "tags": ["Threat modeling", "Auth", "OWASP", "Supply chain"],
+      "missions": [
+        {"id": "security-threats", "title": "Threat-model the outcome", "action": "Map assets, actors, trust boundaries, abuse paths, and the impact of failure.", "proof": "A threat model with prioritized mitigations."},
+        {"id": "security-identity", "title": "Harden identity and data", "action": "Verify authentication, authorization, session handling, storage exposure, and least privilege.", "proof": "A security checklist with anonymous-access tests."},
+        {"id": "security-supply", "title": "Secure the delivery chain", "action": "Review dependencies, build permissions, secret handling, and release provenance.", "proof": "A dependency and pipeline risk report."},
+        {"id": "security-ai", "title": "Test AI abuse boundaries", "action": "Probe prompt injection, data leakage, unsafe tool use, over-permission, and unsupported output.", "proof": "An adversarial test set and one repaired control."}
+      ],
+      "references": [
+        {"label": "Web Security Academy", "provider": "PortSwigger", "url": "https://portswigger.net/web-security"},
+        {"label": "OWASP Top 10 for LLM Applications", "provider": "OWASP", "url": "https://genai.owasp.org/llm-top-10/"},
+        {"label": "Secure Code Game", "provider": "GitHub Skills", "url": "https://github.com/skills/secure-code-game"}
+      ],
+      "videoIds": []
+    },
+    {
+      "id": "systems-interviews",
+      "category": "career",
+      "mark": "SI",
+      "accent": "#aaa5ff",
+      "title": "System Design, Debugging & Modern Interviews",
+      "level": "Intermediate to advanced",
+      "duration": "2 weeks",
+      "description": "Prepare for the complete engineering signal: coding, debugging, systems, project depth, behavioral impact, and responsible AI use.",
+      "outcome": "A company-aware interview plan, two recorded simulations, and an evidence-backed project narrative.",
+      "whyNow": "Hiring loops increasingly measure real engineering judgment beyond isolated algorithm recall.",
+      "tags": ["System design", "Debugging", "Behavioral", "AI judgment"],
+      "interactiveUrl": "../interview-lab/index.html",
+      "missions": [
+        {"id": "interview-diagnostic", "title": "Diagnose the weakest signal", "action": "Score coding, debugging, systems, project depth, behavior, and AI judgment honestly.", "proof": "A prioritized two-week plan."},
+        {"id": "interview-systems", "title": "Design and debug", "action": "Design one service, then diagnose a realistic failure inside it.", "proof": "An architecture plus hypothesis-driven incident review."},
+        {"id": "interview-project", "title": "Defend a real project", "action": "Explain constraints, your contribution, alternatives, failure, and measured impact.", "proof": "A ten-minute recorded deep-dive."},
+        {"id": "interview-sim", "title": "Run the full simulation", "action": "Combine a timed technical task with behavioral follow-up and self-review.", "proof": "A rubric score and targeted repeat."}
+      ],
+      "references": [
+        {"label": "Modern Interview Lab", "provider": "LearnByShorts", "url": "../interview-lab/index.html"},
+        {"label": "Company Interview Explorer", "provider": "LearnByShorts", "url": "../interview-companies.html"},
+        {"label": "Nand to Tetris", "provider": "Hebrew University of Jerusalem", "url": "https://www.nand2tetris.org/"}
+      ],
+      "videoIds": ["git-github"]
+    }
+  ],
+  "videos": [
+    {
+      "id": "genai-nutshell",
+      "youtubeId": "2IK3DFHRFfw",
+      "title": "Generative AI in a Nutshell",
+      "creator": "Henrik Kniberg",
+      "category": "AI fluency",
+      "length": "Conceptual overview",
+      "why": "Build a useful mental model before learning product-specific tricks.",
+      "before": "Write your current explanation of how a generative model produces an answer.",
+      "after": "Name two capabilities, two failure modes, and one decision that must remain human."
+    },
+    {
+      "id": "neural-network",
+      "youtubeId": "aircAruvnKk",
+      "title": "But what is a neural network?",
+      "creator": "3Blue1Brown",
+      "category": "AI foundations",
+      "length": "Visual foundation",
+      "why": "Connect model behavior to a concrete visual representation instead of treating AI as magic.",
+      "before": "Sketch what you think a neuron and a layer represent.",
+      "after": "Explain weights, activations, and learning using one original example."
+    },
+    {
+      "id": "cs50-ai",
+      "youtubeId": "5NgNicANyqM",
+      "title": "Harvard CS50’s Artificial Intelligence with Python",
+      "creator": "freeCodeCamp.org",
+      "category": "Applied AI",
+      "length": "Full university course",
+      "why": "Provides durable AI foundations behind current generative systems.",
+      "before": "Choose one section tied to your current project; do not watch the entire course passively.",
+      "after": "Implement one idea and record the test that demonstrates it works."
+    },
+    {
+      "id": "git-github",
+      "youtubeId": "RGOj5yH7evk",
+      "title": "Git and GitHub for Beginners",
+      "creator": "freeCodeCamp.org",
+      "category": "Delivery",
+      "length": "Crash course",
+      "why": "Version control remains the evidence trail behind modern human-and-AI software work.",
+      "before": "Predict what commit, branch, merge, and remote each control.",
+      "after": "Create a branch, make one focused commit, review its diff, and explain the history."
+    },
+    {
+      "id": "docker-course",
+      "youtubeId": "3c-iBn73dDE",
+      "title": "Docker Tutorial for Beginners",
+      "creator": "TechWorld with Nana",
+      "category": "Cloud delivery",
+      "length": "Full course",
+      "why": "Containers remain a practical bridge between local development and repeatable deployment.",
+      "before": "Write the difference you expect between an image, container, volume, and network.",
+      "after": "Containerize one small service and explain its runtime boundary and secret-handling plan."
+    }
+  ]
+}

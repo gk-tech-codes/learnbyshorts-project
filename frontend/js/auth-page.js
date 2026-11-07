@@ -3,6 +3,9 @@
 
     const mode = document.body.dataset.authMode;
     const action = document.querySelector('[data-auth-action]');
+    const providerActions = [...document.querySelectorAll('[data-auth-provider]')];
+    const providerDivider = document.querySelector('[data-provider-divider]');
+    const providerNote = document.querySelector('[data-provider-note]');
     const status = document.querySelector('[data-auth-status]');
     const retry = document.querySelector('[data-auth-retry]');
 
@@ -44,6 +47,9 @@
 
         if (!window.authService?.isConfigured()) {
             if (action) action.disabled = true;
+            providerActions.forEach(button => {
+                button.disabled = true;
+            });
             showStatus(
                 'Secure account sign-in is temporarily unavailable. Public lessons still work without an account.',
                 true
@@ -56,15 +62,46 @@
             return;
         }
 
-        action?.addEventListener('click', async () => {
-            action.disabled = true;
+        const availableProviders = providerActions.filter(button => {
+            const available = window.authService.hasIdentityProvider(button.dataset.authProvider);
+            button.hidden = !available;
+            return available;
+        });
+        if (providerDivider) providerDivider.hidden = availableProviders.length === 0;
+        if (providerNote) {
+            providerNote.textContent = availableProviders.length > 0
+                ? 'Choose Google for one-click access or continue with Cognito email and password.'
+                : 'Email/password sign-in is active. Gmail addresses work, but Google single sign-on is not enabled yet.';
+        }
+
+        async function startSignIn(button, provider = '') {
+            const buttons = [action, ...availableProviders].filter(Boolean);
+            buttons.forEach(candidate => {
+                candidate.disabled = true;
+            });
             showStatus('Opening the secure authentication page…');
             try {
-                await window.authService.signIn(mode === 'signup' ? 'signup' : 'login');
+                if (provider) {
+                    await window.authService.signInWithProvider(
+                        provider,
+                        mode === 'signup' ? 'signup' : 'login'
+                    );
+                } else {
+                    await window.authService.signIn(mode === 'signup' ? 'signup' : 'login');
+                }
             } catch {
-                action.disabled = false;
+                buttons.forEach(candidate => {
+                    candidate.disabled = false;
+                });
                 showStatus('Sign-in could not start safely. Please try again.', true);
             }
+        }
+
+        action?.addEventListener('click', () => startSignIn(action));
+        availableProviders.forEach(button => {
+            button.addEventListener('click', () => {
+                startSignIn(button, button.dataset.authProvider);
+            });
         });
     }
 

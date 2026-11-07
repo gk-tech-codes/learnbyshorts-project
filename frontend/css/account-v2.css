@@ -137,7 +137,7 @@ button, input { font: inherit; }
 .card-kicker { margin-bottom: .4rem; }
 .account-card h2 { margin: 0; font-size: 2.1rem; letter-spacing: -.055em; line-height: 1.05; }
 .card-copy { margin: .85rem 0 1.5rem; color: var(--muted); font-size: .78rem; }
-.account-primary, .account-secondary {
+.account-primary, .account-secondary, .account-provider {
     display: flex;
     width: 100%;
     min-height: 52px;
@@ -161,6 +161,28 @@ button, input { font: inherit; }
 .account-primary:hover { background: #26322e; }
 .account-primary:disabled { cursor: wait; opacity: .65; }
 .account-secondary { border: 1px solid var(--line); background: #fff; color: #34413c; }
+.account-provider {
+    gap: .7rem;
+    margin-bottom: .85rem;
+    border: 1px solid #cfd7d3;
+    background: #fff;
+    color: #27332f;
+}
+.account-provider:hover { border-color: #96a39d; background: #f8faf8; }
+.account-provider:disabled { cursor: wait; opacity: .65; }
+.account-provider[hidden],
+.provider-divider[hidden] { display: none; }
+.google-mark {
+    display: grid;
+    width: 25px;
+    height: 25px;
+    place-items: center;
+    border: 1px solid #dce2df;
+    border-radius: 50%;
+    color: #4285f4;
+    font-size: .82rem;
+    font-weight: 900;
+}
 .account-status {
     min-height: 1.1rem;
     margin: .75rem 0 0;
@@ -191,6 +213,14 @@ button, input { font: inherit; }
     content: "";
 }
 .account-divider span { padding-inline: .75rem; }
+.provider-divider { margin: .2rem 0 .85rem; }
+.provider-note {
+    margin: .45rem 0 0;
+    color: #7b8781;
+    font-size: .6rem;
+    line-height: 1.45;
+    text-align: center;
+}
 .account-legal { margin: 1.2rem 0 0; color: #89938e; font-size: .56rem; text-align: center; }
 .account-footer {
     min-height: 60px;

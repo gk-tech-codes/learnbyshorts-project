@@ -1,0 +1,159 @@
+{
+  "reviewedAt": "2026-11-07",
+  "roles": [
+    {
+      "id": "amazon-sde-ii",
+      "company": "Amazon",
+      "role": "Software Development Engineer II",
+      "level": "SDE II",
+      "summary": "A focused preparation path for experienced software engineers who need to demonstrate coding, system design, production judgment, ownership, and measurable impact.",
+      "caveat": "Amazon teams, locations, and individual job postings vary. Treat the posting and recruiter instructions as the source of truth; this plan is preparation guidance, not a promise about interview rounds or outcomes.",
+      "sources": [
+        {
+          "label": "Amazon SDE II interview preparation",
+          "url": "https://www.amazon.jobs/content/en/how-we-hire/sde-ii-interview-prep"
+        },
+        {
+          "label": "Amazon Leadership Principles",
+          "url": "https://www.amazon.jobs/content/en/our-workplace/leadership-principles"
+        },
+        {
+          "label": "Current Amazon SDE II job search",
+          "url": "https://www.amazon.jobs/en/search?base_query=Software%20Development%20Engineer%20II"
+        }
+      ],
+      "signals": [
+        {
+          "id": "coding",
+          "label": "Coding and problem solving",
+          "description": "Choose appropriate data structures, write correct code, explain complexity, and test edge cases.",
+          "keywords": ["algorithm", "data structure", "coding", "programming", "java", "python", "c++", "javascript", "complexity", "problem solving"],
+          "resumeTemplate": "Built [service or feature] using [language/stack], resolving [technical constraint] and improving [measured outcome] by [metric]."
+        },
+        {
+          "id": "design",
+          "label": "System design",
+          "description": "Move from requirements to APIs, data models, scale, failure modes, and explicit tradeoffs.",
+          "keywords": ["system design", "architecture", "distributed", "scalable", "api", "microservice", "database", "data model", "high level design"],
+          "resumeTemplate": "Designed [system] for [scale/workload], choosing [architecture] over [alternative] because [constraint], resulting in [measured outcome]."
+        },
+        {
+          "id": "production",
+          "label": "Production engineering",
+          "description": "Show testing, operational ownership, observability, security, reliability, and cost judgment.",
+          "keywords": ["production", "reliability", "availability", "latency", "testing", "observability", "monitoring", "security", "operational", "on-call", "cost"],
+          "resumeTemplate": "Improved [system] reliability by [action], reducing [incidents/latency/cost] from [before] to [after] while protecting [constraint]."
+        },
+        {
+          "id": "delivery",
+          "label": "End-to-end delivery",
+          "description": "Demonstrate ownership across requirements, implementation, launch, measurement, and iteration.",
+          "keywords": ["full software development life cycle", "sdlc", "requirements", "launch", "delivery", "deployment", "ci/cd", "roadmap", "end-to-end"],
+          "resumeTemplate": "Owned [initiative] from [starting point] through launch, coordinating [partners] and delivering [customer or business result]."
+        },
+        {
+          "id": "leadership",
+          "label": "Leadership evidence",
+          "description": "Use specific stories that make your judgment, ownership, customer focus, and learning observable.",
+          "keywords": ["lead", "ownership", "customer", "mentor", "influence", "stakeholder", "collaboration", "cross-functional", "decision", "impact"],
+          "resumeTemplate": "Led [decision or initiative] across [people/teams], resolving [conflict or ambiguity] and achieving [measured customer result]."
+        },
+        {
+          "id": "depth",
+          "label": "Technical project depth",
+          "description": "Defend the hardest decisions in a relevant project, including failures, alternatives, and lessons.",
+          "keywords": ["design pattern", "object-oriented", "performance", "optimization", "framework", "platform", "infrastructure", "cloud", "aws"],
+          "resumeTemplate": "Solved [hard technical problem] by [decision], rejected [alternative] due to [tradeoff], and validated the result with [evidence]."
+        }
+      ],
+      "planModules": [
+        {
+          "id": "target",
+          "title": "Target and evidence map",
+          "focus": "Decompose the exact posting, map every requirement to evidence, and identify the three highest-risk gaps.",
+          "deliverable": "One-page role scorecard plus a truthful resume evidence inventory."
+        },
+        {
+          "id": "coding-core",
+          "title": "Coding signal",
+          "focus": "Practice arrays, strings, hash maps, trees, graphs, heaps, recursion, and dynamic programming using plan-code-test-review.",
+          "deliverable": "Eight reviewed solutions with complexity analysis and a mistake log."
+        },
+        {
+          "id": "design",
+          "title": "System design signal",
+          "focus": "Design services from requirements through APIs, data, scale, availability, security, observability, and cost.",
+          "deliverable": "Two one-page designs with rejected alternatives and failure-mode analysis."
+        },
+        {
+          "id": "leadership",
+          "title": "Leadership Principles evidence",
+          "focus": "Prepare specific stories for ownership, customer focus, disagreement, failure, urgency, quality, and learning.",
+          "deliverable": "Eight concise stories with decisions, individual actions, results, and lessons."
+        },
+        {
+          "id": "production",
+          "title": "Production engineering depth",
+          "focus": "Review testing, deployment, reliability, operations, security, and cost decisions from your strongest project.",
+          "deliverable": "A project deep-dive packet with architecture, metrics, incidents, and improvements."
+        },
+        {
+          "id": "resume",
+          "title": "Resume and proof alignment",
+          "focus": "Rewrite bullets around scope, decisions, metrics, and role-relevant evidence without inventing experience.",
+          "deliverable": "A targeted one-page resume and three linked proof artifacts."
+        },
+        {
+          "id": "mock",
+          "title": "Full-loop simulation",
+          "focus": "Run coding, system design, project-depth, and behavioral simulations under realistic time pressure.",
+          "deliverable": "A rubric-based gap report and repeat plan."
+        },
+        {
+          "id": "final",
+          "title": "Final calibration",
+          "focus": "Repair the weakest signal, confirm logistics with the recruiter, and practice a calm opening and closing.",
+          "deliverable": "Final readiness checklist with evidence for every claimed strength."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "posting",
+          "title": "Job-posting decomposer",
+          "use": "ChatGPT, Claude, Grok, Gemini, or another assistant",
+          "text": "Act as a rigorous software-engineering career coach. Analyze the job posting below without inventing requirements. Return: (1) required capabilities grouped into coding, system design, production engineering, delivery, and leadership; (2) exact evidence a strong candidate should demonstrate; (3) likely gaps that require learning rather than resume wording; (4) a prioritized preparation backlog. Quote only short phrases from the posting and label every inference. Do not predict hiring outcomes. JOB POSTING: [paste a redacted posting here]"
+        },
+        {
+          "id": "resume",
+          "title": "Evidence-first resume editor",
+          "use": "Best after building the local evidence map",
+          "text": "Act as an evidence-first technical resume editor. Compare my redacted experience notes with the role requirements. Never invent technologies, metrics, scope, leadership, or results. For each bullet, ask me for missing evidence before rewriting it. Then use this structure: action + technical decision + scope + measured result + constraint. Return a requirement-to-evidence table, revised bullets, and unresolved gaps that should remain honest. ROLE REQUIREMENTS: [paste redacted requirements] EXPERIENCE NOTES: [paste redacted notes without contact or confidential information]"
+        },
+        {
+          "id": "coding",
+          "title": "Coding interviewer with verification",
+          "use": "Use voice mode or a fresh chat for realistic practice",
+          "text": "Run a 35-minute SDE II coding interview. Give one problem at a time and do not reveal the solution. Require me to clarify constraints, propose alternatives, state complexity, write code, and test edge cases. Ask realistic follow-ups only after I have a working approach. At the end, score correctness, communication, complexity, code quality, testing, and recovery from 1-4. Identify one repeat exercise. If I ask for the answer too early, respond with a smaller hint."
+        },
+        {
+          "id": "design",
+          "title": "System design interviewer",
+          "use": "Use a diagram tool separately; keep the reasoning yours",
+          "text": "Run a 45-minute SDE II system-design interview. Begin with an ambiguous service problem. Make me establish functional and non-functional requirements before proposing architecture. Challenge APIs, data model, scale estimates, failure modes, consistency, security, observability, operations, and cost. Do not accept named technologies without a reason. At the end, score requirements, decomposition, tradeoffs, reliability, depth, and communication from 1-4, then name the weakest decision to redesign."
+        },
+        {
+          "id": "leadership",
+          "title": "Leadership evidence coach",
+          "use": "For preparation—not a script to memorize",
+          "text": "Coach me to build truthful Amazon-style behavioral stories from my own experience. Ask one question at a time about the situation, my exact responsibility, alternatives, decision, individual actions, measurable result, and lesson. Challenge vague team language and unsupported impact. Map the finished story to at most two relevant Leadership Principles, explain why, and ask two skeptical follow-ups. Never create an experience I did not provide."
+        },
+        {
+          "id": "mock",
+          "title": "Gap-driven final mock",
+          "use": "Run after at least one coding and one design practice",
+          "text": "Create a final SDE II mock loop using only the weaknesses I provide. Include one coding exercise, one system-design follow-up, one project-depth challenge, and two behavioral questions. Do not reveal model answers during the mock. Keep a rubric for correctness, depth, tradeoffs, testing, communication, ownership, and evidence. Finish with a seven-day repair plan ordered by risk. WEAKNESSES: [paste your verified gap list]"
+        }
+      ]
+    }
+  ]
+}

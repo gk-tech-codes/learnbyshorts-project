@@ -188,6 +188,101 @@ const Analytics = {
             gates_completed: gatesCompleted,
             gate_state: gatesCompleted === 5 ? 'ready' : 'incomplete'
         });
+    },
+
+    trackLearningOsMission: function(goal, minutes) {
+        sendEvent('learning_os_mission_view', {
+            learning_goal: goal,
+            planned_minutes: minutes
+        });
+    },
+
+    trackLearningOsStep: function(step, completedSteps, missionComplete) {
+        sendEvent('learning_os_step_update', {
+            mission_step: step,
+            completed_steps: completedSteps,
+            mission_state: missionComplete ? 'complete' : 'in_progress'
+        });
+    },
+
+    trackLearningOsCalibration: function(questionId, confidence, correct) {
+        sendEvent('learning_os_calibration', {
+            question_id: questionId,
+            confidence_band: confidence >= 0.8 ? 'high' : confidence >= 0.5 ? 'medium' : 'low',
+            answer_result: correct ? 'correct' : 'incorrect'
+        });
+    },
+
+    trackLearningOsProof: function(focusId, rubricScore) {
+        sendEvent('learning_os_proof_saved', {
+            focus_id: focusId,
+            rubric_score: rubricScore
+        });
+    },
+
+    trackLearningOsExport: function(proofCount) {
+        sendEvent('learning_os_proof_export', {
+            proof_count: proofCount
+        });
+    },
+
+    trackModernCourseOpen: function(trackId, completedMissions) {
+        sendEvent('modern_course_open', {
+            track_id: trackId,
+            completed_missions: completedMissions
+        });
+    },
+
+    trackModernCourseStep: function(trackId, completedMissions) {
+        sendEvent('modern_course_step', {
+            track_id: trackId,
+            completed_missions: completedMissions
+        });
+    },
+
+    trackCuratedVideoOpen: function(videoId, category) {
+        sendEvent('curated_video_open', {
+            video_id: videoId,
+            video_category: category
+        });
+    },
+
+    trackCompanyInterviewOpen: function(companyId, completedSteps) {
+        sendEvent('company_interview_open', {
+            company_id: companyId,
+            completed_steps: completedSteps
+        });
+    },
+
+    trackCompanyInterviewStep: function(companyId, completedSteps) {
+        sendEvent('company_interview_step', {
+            company_id: companyId,
+            completed_steps: completedSteps
+        });
+    },
+
+    trackJobPlanGenerate: function(roleId, weeks, inputMode, coverageBand) {
+        sendEvent('job_plan_generate', {
+            role_id: roleId,
+            plan_weeks: weeks,
+            input_mode: inputMode,
+            coverage_band: coverageBand
+        });
+    },
+
+    trackJobPlanStep: function(roleId, weeks, completedSteps) {
+        sendEvent('job_plan_step', {
+            role_id: roleId,
+            plan_weeks: weeks,
+            completed_steps: completedSteps
+        });
+    },
+
+    trackJobPromptCopy: function(roleId, promptId) {
+        sendEvent('job_prompt_copy', {
+            role_id: roleId,
+            prompt_id: promptId
+        });
     }
 };
 

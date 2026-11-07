@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'; upgrade-insecure-requests;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     
     <title>Privacy Policy - LearnByShorts</title>
-    <meta name="description" content="LearnByShorts Privacy Policy - How we collect, use, and protect your personal information in compliance with GDPR and CCPA.">
+    <meta name="description" content="LearnByShorts privacy policy covering local-first learning progress, private job-planner inputs, account data, analytics, and optional third-party videos.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://www.learnbyshorts.com/privacy-policy.html">
     
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/header-auth.css">
     <link rel="stylesheet" href="css/legal.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -42,13 +43,13 @@
     <main class="legal-container">
         <div class="container">
             <h1>Privacy Policy</h1>
-            <p class="last-updated">Last updated: January 12, 2025</p>
+            <p class="last-updated">Last updated: November 7, 2026</p>
             
             <div class="legal-content">
                 <section>
                     <h2>1. Introduction</h2>
                     <p>LearnByShorts ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://www.learnbyshorts.com">www.learnbyshorts.com</a> and use our educational services.</p>
-                    <p>This policy complies with the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).</p>
+                    <p>This policy describes our current data practices. Your rights may vary by location, and nothing in this policy limits rights provided by applicable law.</p>
                 </section>
 
                 <section>
@@ -58,22 +59,35 @@
                     <p>We may collect the following personal information:</p>
                     <ul>
                         <li><strong>Contact Information:</strong> Name, email address when you contact us</li>
-                        <li><strong>Usage Data:</strong> Pages visited, time spent, learning progress</li>
-                        <li><strong>Technical Data:</strong> IP address, browser type, device information</li>
-                        <li><strong>Analytics Data:</strong> Aggregated usage statistics via Google Analytics</li>
+                        <li><strong>Account Information:</strong> Email and profile fields you choose to provide when creating an account</li>
+                        <li><strong>Structured Learning Progress:</strong> Eligible course progress you explicitly sync while signed in</li>
+                        <li><strong>Usage and Technical Data:</strong> Pages visited, approximate engagement, browser type, device information, and server logs</li>
+                        <li><strong>Analytics Data:</strong> Aggregate product events that exclude lesson answers, job postings, resume text, and free-form drafts</li>
                     </ul>
 
                     <h3>2.2 Automatically Collected Information</h3>
                     <ul>
                         <li>Browser and device information</li>
-                        <li>IP address and location data</li>
+                        <li>IP address and coarse location inferred by infrastructure or analytics providers</li>
                         <li>Cookies and similar tracking technologies</li>
                         <li>Website usage patterns and preferences</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>3. How We Use Your Information</h2>
+                    <h2>3. Local-First Learning and Job Tools</h2>
+                    <p>Several LearnByShorts tools are designed to work in your browser:</p>
+                    <ul>
+                        <li><strong>Learning Progress:</strong> Free learning paths may store structured progress in your browser so you can resume on the same device.</li>
+                        <li><strong>Job-to-Interview Planner:</strong> Job-posting text and resume or experience notes are analyzed only in the current page and are not saved to browser storage, sent to LearnByShorts, or included in analytics.</li>
+                        <li><strong>Planner Checkmarks:</strong> Completed plan blocks may be stored locally on your device. They do not include the text you pasted.</li>
+                        <li><strong>Free-Form Drafts:</strong> Explain-back notes and other designated drafts remain local and are excluded from account sync.</li>
+                    </ul>
+                    <p>Do not paste contact details, passwords, employer-confidential information, customer data, source code you cannot share, or other sensitive information into learning or job-planning tools.</p>
+                </section>
+
+                <section>
+                    <h2>4. How We Use Your Information</h2>
                     <p>We use collected information for:</p>
                     <ul>
                         <li><strong>Service Provision:</strong> Delivering educational content and tracking progress</li>
@@ -85,7 +99,7 @@
                 </section>
 
                 <section>
-                    <h2>4. Legal Basis for Processing (GDPR)</h2>
+                    <h2>5. Legal Basis for Processing</h2>
                     <p>We process your personal data based on:</p>
                     <ul>
                         <li><strong>Consent:</strong> When you voluntarily provide information</li>
@@ -96,10 +110,12 @@
                 </section>
 
                 <section>
-                    <h2>5. Information Sharing and Disclosure</h2>
+                    <h2>6. Information Sharing and Disclosure</h2>
                     <p>We do not sell, trade, or rent your personal information. We may share information with:</p>
                     <ul>
-                        <li><strong>Service Providers:</strong> Google Analytics for website analytics</li>
+                        <li><strong>Account and Hosting Providers:</strong> Amazon Web Services, including Amazon Cognito for optional account authentication</li>
+                        <li><strong>Analytics Providers:</strong> Google Analytics for aggregate product measurement where enabled; our configuration disables Google signals and ad personalization signals</li>
+                        <li><strong>Optional Video Provider:</strong> YouTube only after you choose to load a privacy-enhanced embedded player or open a YouTube link</li>
                         <li><strong>Legal Requirements:</strong> When required by law or legal process</li>
                         <li><strong>Business Transfers:</strong> In case of merger, acquisition, or sale</li>
                         <li><strong>Consent:</strong> When you explicitly agree to sharing</li>
@@ -107,21 +123,21 @@
                 </section>
 
                 <section>
-                    <h2>6. Data Security</h2>
+                    <h2>7. Data Security</h2>
                     <p>We implement appropriate security measures including:</p>
                     <ul>
                         <li>SSL/TLS encryption for data transmission</li>
                         <li>Content Security Policy (CSP) headers</li>
-                        <li>Rate limiting and abuse prevention</li>
+                        <li>Private cloud storage and least-privilege access controls where supported</li>
                         <li>Input sanitization and validation</li>
                         <li>Regular security assessments</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>7. Your Rights</h2>
+                    <h2>8. Your Rights</h2>
                     
-                    <h3>7.1 GDPR Rights (EU Users)</h3>
+                    <h3>8.1 GDPR Rights (EU Users)</h3>
                     <ul>
                         <li><strong>Access:</strong> Request copies of your personal data</li>
                         <li><strong>Rectification:</strong> Correct inaccurate personal data</li>
@@ -132,7 +148,7 @@
                         <li><strong>Withdraw Consent:</strong> Withdraw consent at any time</li>
                     </ul>
 
-                    <h3>7.2 CCPA Rights (California Users)</h3>
+                    <h3>8.2 CCPA Rights (California Users)</h3>
                     <ul>
                         <li><strong>Know:</strong> What personal information is collected and how it's used</li>
                         <li><strong>Delete:</strong> Request deletion of personal information</li>
@@ -142,7 +158,7 @@
                 </section>
 
                 <section>
-                    <h2>8. Cookies and Tracking</h2>
+                    <h2>9. Cookies and Tracking</h2>
                     <p>We use cookies and similar technologies for:</p>
                     <ul>
                         <li><strong>Essential Cookies:</strong> Required for website functionality</li>
@@ -150,21 +166,22 @@
                         <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
                     </ul>
                     <p>You can control cookies through your browser settings. Disabling cookies may affect website functionality.</p>
+                    <p>Our analytics code also respects supported Global Privacy Control and Do Not Track browser signals. Local progress storage is functional browser storage rather than advertising tracking.</p>
                 </section>
 
                 <section>
-                    <h2>9. Data Retention</h2>
-                    <p>We retain personal information for:</p>
+                    <h2>10. Data Retention</h2>
+                    <p>Retention depends on the type of data and the service involved:</p>
                     <ul>
-                        <li><strong>Contact Data:</strong> 3 years after last contact</li>
-                        <li><strong>Usage Data:</strong> 2 years for analytics purposes</li>
-                        <li><strong>Technical Logs:</strong> 1 year for security purposes</li>
-                        <li><strong>Legal Requirements:</strong> As required by applicable law</li>
+                        <li><strong>Local Browser Data:</strong> Remains until you clear site data or the browser removes it</li>
+                        <li><strong>Account and Synced Progress:</strong> Retained while needed to provide the account and respond to support, security, or deletion requests</li>
+                        <li><strong>Analytics and Technical Logs:</strong> Retained according to configured provider and infrastructure settings</li>
+                        <li><strong>Legal Requirements:</strong> Retained when required by applicable law or necessary to establish, exercise, or defend legal claims</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>10. International Data Transfers</h2>
+                    <h2>11. International Data Transfers</h2>
                     <p>Your information may be transferred to and processed in countries other than your own. We ensure adequate protection through:</p>
                     <ul>
                         <li>Standard Contractual Clauses (SCCs)</li>
@@ -174,12 +191,12 @@
                 </section>
 
                 <section>
-                    <h2>11. Children's Privacy</h2>
+                    <h2>12. Children's Privacy</h2>
                     <p>Our services are not directed to children under 13. We do not knowingly collect personal information from children under 13. If we become aware of such collection, we will delete the information immediately.</p>
                 </section>
 
                 <section>
-                    <h2>12. Changes to This Policy</h2>
+                    <h2>13. Changes to This Policy</h2>
                     <p>We may update this Privacy Policy periodically. We will notify you of material changes by:</p>
                     <ul>
                         <li>Posting the updated policy on our website</li>
@@ -189,21 +206,11 @@
                 </section>
 
                 <section>
-                    <h2>13. Contact Information</h2>
+                    <h2>14. Contact Information</h2>
                     <p>For privacy-related questions or to exercise your rights, contact us:</p>
                     <div class="contact-info">
                         <p><strong>Email:</strong> learningbyshorts@gmail.com (Subject: Privacy Request)</p>
-                        <p><strong>Address:</strong> LearnByShorts, Bangalore, India</p>
-                        <p><strong>Response Time:</strong> We will respond within 30 days</p>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>14. Data Protection Officer</h2>
-                    <p>For GDPR-related inquiries, you may contact our Data Protection Officer:</p>
-                    <div class="contact-info">
-                        <p><strong>Email:</strong> learningbyshorts@gmail.com (Subject: GDPR Request)</p>
-                        <p><strong>Role:</strong> Ensuring GDPR compliance and handling data protection matters</p>
+                        <p><strong>Request:</strong> Include enough information for us to identify the account or interaction, but do not email passwords or highly sensitive documents.</p>
                     </div>
                 </section>
             </div>
@@ -245,13 +252,11 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
+                    <p>&copy; 2026 LearnByShorts. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="js/rate-limiter.js"></script>
-    <script src="js/header-auth.js"></script>
 </body>
 </html>
