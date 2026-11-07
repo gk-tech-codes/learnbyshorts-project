@@ -1,177 +1,172 @@
-// Simple CourseDetailPage that works immediately
-document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const courseId = urlParams.get('id');
-    
-    if (!courseId) {
-        showError('Course not found');
-        return;
-    }
-    
-    // Load course data
-    loadCourseData(courseId);
-});
+(() => {
+    'use strict';
 
-async function loadCourseData(courseId) {
-    try {
-        const response = await fetch(`data/courses.json?v=${Date.now()}`);
-        const data = await response.json();
-        const course = data.courses.find(c => c.id === courseId);
-        
-        if (!course) {
-            showError('Course not found');
+    const CATEGORY_DETAILS = {
+        'design-patterns': {
+            label: 'Design patterns',
+            href: 'design-patterns.html'
+        },
+        'programming-fundamentals': {
+            label: 'Programming fundamentals',
+            href: 'modern-skills/'
+        },
+        algorithms: {
+            label: 'Algorithms',
+            href: 'modern-skills/'
+        },
+        javascript: {
+            label: 'JavaScript',
+            href: 'modern-skills/'
+        },
+        'system-design': {
+            label: 'System design',
+            href: 'modern-skills/'
+        },
+        'computer-science-fundamentals': {
+            label: 'Computer science',
+            href: 'modern-skills/'
+        },
+        'artificial-intelligence': {
+            label: 'AI skills',
+            href: 'ai-era-lab/'
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const courseId = new URLSearchParams(window.location.search).get('id');
+        if (!courseId) {
+            showError();
             return;
         }
-        
-        renderCourse(course);
-    } catch (error) {
-        console.error('Error loading course:', error);
-        showError('Failed to load course data');
-    }
-}
 
-function renderCourse(course) {
-    // Render slider
-    renderCourseSlider(course);
-    
-    // Render topics
-    renderTopics(course);
-    
-    // Render learning outcomes
-    renderLearningOutcomes(course);
-    
-    // Render prerequisites
-    renderPrerequisites(course);
-}
+        loadCourseData(courseId);
+    });
 
-function renderCourseSlider(course) {
-    // Get course-specific topics
-    const topics = getTopicsForCourse(course.id);
-    
-    const slides = [
-        {
-            type: 'intro',
-            icon: course.icon || '🏗️',
-            title: course.title,
-            description: course.description,
-            background: 'radial-gradient(circle at 82% 18%, rgba(185, 246, 207, 0.16), transparent 28%), linear-gradient(135deg, #14211d 0%, #26362f 100%)'
-        },
-        ...topics.map((topic, index) => ({
-            type: 'topic',
-            icon: getTopicIcon(course.id, index),
-            title: topic.title,
-            description: topic.description,
-            duration: topic.duration,
-            background: 'radial-gradient(circle at 82% 18%, rgba(185, 246, 207, 0.16), transparent 28%), linear-gradient(135deg, #14211d 0%, #26362f 100%)',
-            topicIndex: index
-        }))
-    ];
+    async function loadCourseData(courseId) {
+        try {
+            const response = await fetch('data/courses.json?v=20261107-2');
+            if (!response.ok) throw new Error(`Course data returned ${response.status}`);
 
-    // Render progress dots
-    const progressDots = document.getElementById('progressDots');
-    progressDots.innerHTML = slides.map((_, index) => 
-        `<div class="progress-dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></div>`
-    ).join('');
+            const data = await response.json();
+            const course = data.courses.find(item => item.id === courseId && item.published !== false);
+            if (!course) {
+                showError();
+                return;
+            }
 
-    // Render slides
-    const sliderContent = document.getElementById('sliderContent');
-    sliderContent.innerHTML = slides.map((slide, index) => `
-        <div class="slide ${slide.type} ${index === 0 ? 'active' : ''}" data-index="${index}">
-            <div class="slide-background" style="background: ${slide.background}"></div>
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-                <div class="slide-icon">${slide.icon}</div>
-                <h2 class="slide-title">${slide.title}</h2>
-                <p class="slide-description">${slide.description}</p>
-                
-                <div class="slide-actions">
-                    ${slide.type === 'intro' ? `
-                        <button class="slide-btn primary" onclick="startCourse('${course.id}')">
-                            <i class="fas fa-play"></i>
-                            Start Learning
-                        </button>
-                    ` : `
-                        <button class="slide-btn primary" onclick="goToTopic('${course.id}', ${slide.topicIndex})">
-                            <i class="fas fa-book-open"></i>
-                            Read Story
-                        </button>
-                    `}
-                </div>
-            </div>
-        </div>
-    `).join('');
-
-    // Setup slider controls
-    setupSliderControls(slides.length);
-}
-
-let currentSlide = 0;
-let totalSlides = 0;
-
-function setupSliderControls(slideCount) {
-    totalSlides = slideCount;
-    
-    document.getElementById('prevSlide').addEventListener('click', () => {
-        if (currentSlide > 0) {
-            goToSlide(currentSlide - 1);
+            renderCourse(course);
+        } catch (error) {
+            console.error('Unable to load course detail:', error);
+            showError();
         }
-    });
-    
-    document.getElementById('nextSlide').addEventListener('click', () => {
-        if (currentSlide < totalSlides - 1) {
-            goToSlide(currentSlide + 1);
-        }
-    });
-    
-    updateSliderControls();
-}
-
-function goToSlide(index) {
-    if (index < 0 || index >= totalSlides) return;
-    
-    // Update slides
-    document.querySelectorAll('.slide').forEach((slide, i) => {
-        slide.classList.remove('active', 'prev');
-        if (i === index) {
-            slide.classList.add('active');
-        } else if (i < index) {
-            slide.classList.add('prev');
-        }
-    });
-    
-    // Update progress dots
-    document.querySelectorAll('.progress-dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-    
-    currentSlide = index;
-    updateSliderControls();
-}
-
-function updateSliderControls() {
-    document.getElementById('prevSlide').disabled = currentSlide === 0;
-    document.getElementById('nextSlide').disabled = currentSlide === totalSlides - 1;
-}
-
-function startCourse(courseId) {
-    if (courseId === 'prompt-engineering') {
-        window.location.href = 'ai-era-lab/index.html';
-        return;
     }
-    window.location.href = `topic-story.html?course=${courseId}&index=0`;
-}
 
-function goToTopic(courseId, topicIndex) {
-    if (courseId === 'prompt-engineering') {
-        window.location.href = `ai-era-lab/index.html#roadmap`;
-        return;
+    function renderCourse(course) {
+        const topics = buildTopics(course);
+        const category = CATEGORY_DETAILS[course.categoryId] || {
+            label: 'Courses',
+            href: 'modern-skills/'
+        };
+        const firstTopicUrl = buildTopicUrl(course, 0);
+        document.title = `${course.title} | LearnByShorts`;
+
+        const descriptionMeta = document.querySelector('meta[name="description"]');
+        if (descriptionMeta) descriptionMeta.content = course.description;
+
+        setText('[data-course-title]', course.title);
+        setText('[data-course-breadcrumb]', course.title);
+        setText('[data-course-description]', course.description);
+        setText('[data-course-level]', course.difficulty || 'Progressive');
+        setText('[data-course-duration]', course.duration || 'Self-paced');
+        setText('[data-course-concepts]', `${topics.length} short stories`);
+        setText('[data-course-icon]', course.icon || '↗');
+        setText('[data-first-topic-title]', topics[0].title);
+        setText('[data-first-topic-description]', topics[0].description);
+        setText(
+            '[data-final-course-copy]',
+            `${topics.length} focused missions are ready for ${course.title}.`
+        );
+
+        document.querySelectorAll('[data-course-category]').forEach(element => {
+            element.textContent = category.label;
+        });
+
+        const categoryLink = document.querySelector('[data-category-link]');
+        if (categoryLink) categoryLink.href = category.href;
+
+        document.querySelectorAll('[data-start-course], [data-card-start], [data-final-start]')
+            .forEach(link => {
+                link.href = firstTopicUrl;
+            });
+
+        const playerLink = document.querySelector('[data-player-link]');
+        if (playerLink) {
+            playerLink.href = `course-player.html?id=${encodeURIComponent(course.id)}`;
+        }
+
+        renderTopics(course, topics);
+        renderOutcomeList(course.learningOutcomes, [
+            `Explain the core decisions behind ${course.title}`,
+            'Recognize the tradeoffs before applying the idea',
+            'Use the concept in a realistic engineering scenario'
+        ]);
+        renderList('[data-course-prerequisites]', course.prerequisites, [
+            'Basic programming familiarity',
+            'Willingness to pause and predict'
+        ]);
+        renderList('[data-course-tags]', course.tags, ['Software design']);
+        updateStructuredData(course, topics.length);
+        setupShare(course);
+
+        const page = document.querySelector('[data-course-page]');
+        page?.setAttribute('aria-busy', 'false');
     }
-    window.location.href = `topic-story.html?course=${courseId}&index=${topicIndex}`;
-}
 
-function previewCourse(courseId) {
-    window.location.href = `course-story-viewer.html?id=${courseId}`;
-}
+    function buildTopics(course) {
+        const configuredTopics = getTopicsForCourse(course.id);
+        if (configuredTopics.length) return configuredTopics;
+
+        const outcomes = Array.isArray(course.learningOutcomes) ? course.learningOutcomes : [];
+        const targetCount = Math.max(1, Number(course.concepts) || outcomes.length || 4);
+
+        return Array.from({ length: targetCount }, (_, index) => {
+            const outcome = outcomes[index % Math.max(outcomes.length, 1)];
+            return {
+                title: outcome || `${course.title}: Practice ${index + 1}`,
+                description: outcome
+                    ? `Learn the idea in context, make a decision, and prove you can ${lowercaseFirst(outcome)}.`
+                    : `Work through a short applied story and explain the decision behind ${course.title}.`,
+                duration: '8–12 min'
+            };
+        });
+    }
+
+    function buildTopicUrl(course, index) {
+        if (course.id === 'prompt-engineering') {
+            return index === 0 ? 'ai-era-lab/' : `ai-era-lab/#level-${index + 1}`;
+        }
+
+        return `topic-story.html?course=${encodeURIComponent(course.id)}&index=${index}`;
+    }
+
+    function lowercaseFirst(value) {
+        if (!value) return '';
+        return value.charAt(0).toLowerCase() + value.slice(1);
+    }
+
+    function escapeHtml(value) {
+        return String(value)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+    }
+
+    function setText(selector, value) {
+        const element = document.querySelector(selector);
+        if (element) element.textContent = value;
+    }
 
 function getTopicsForCourse(courseId) {
     const topicConfigs = {
@@ -332,110 +327,118 @@ function getTopicIcon(courseId, index) {
     return icons[index] || '📚';
 }
 
-function renderTopics(course) {
-    const container = document.getElementById('courseTopics');
-    const topics = getTopicsForCourse(course.id);
-    
-    container.innerHTML = topics.map((topic, i) => `
-        <div class="topic-card" onclick="goToTopic('${course.id}', ${i})">
-            <div class="topic-number">${getTopicIcon(course.id, i)}</div>
-            <div class="topic-info">
-                <h3 class="topic-title">${topic.title}</h3>
-                <p class="topic-description">${topic.description}</p>
-            </div>
-            <div class="topic-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-        </div>
-    `).join('');
-}
+    function renderTopics(course, topics) {
+        const container = document.querySelector('[data-course-modules]');
+        if (!container) return;
 
-function renderLearningOutcomes(course) {
-    const container = document.getElementById('learningObjectives');
-    const outcomes = course.learningOutcomes || [
-        'Understand the Singleton pattern structure and purpose',
-        'Implement thread-safe Singleton in multiple ways',
-        'Identify when to use Singleton vs alternatives',
-        'Avoid common Singleton pitfalls and anti-patterns',
-        'Apply Singleton pattern in real-world scenarios'
-    ];
-    
-    container.innerHTML = `<div class="outcome-grid">
-        ${outcomes.map(outcome => `
-            <div class="outcome-item">
-                <div class="outcome-icon"><i class="fas fa-check"></i></div>
-                <div class="outcome-text">${outcome}</div>
-            </div>
-        `).join('')}
-    </div>`;
-}
+        container.innerHTML = topics.map((topic, index) => {
+            const number = String(index + 1).padStart(2, '0');
+            const icon = getTopicIcon(course.id, index);
+            const url = buildTopicUrl(course, index);
 
-function renderDescription(course) {
-    const container = document.getElementById('detailedDescription');
-    container.innerHTML = `
-        <p><strong>Welcome to the most engaging way to learn the Singleton Design Pattern!</strong></p>
-        
-        <p>Join Sharma Ji, a senior developer, as he navigates through office chaos caused by multiple printer managers. Through his hilarious adventures, you'll master one of the most important design patterns in software development.</p>
-        
-        <h3>🎭 Story-Based Learning</h3>
-        <p>Each topic is presented as an engaging story with real characters, office scenarios, and practical problems. You'll learn through narrative, making complex concepts memorable and fun.</p>
-        
-        <h3>💻 Real Code Examples</h3>
-        <p>Every story includes working code examples, from basic implementation to advanced thread-safe versions. All code is production-ready and follows industry best practices.</p>
-        
-        <h3>🎯 Practical Application</h3>
-        <p>Learn not just HOW to implement Singleton, but WHEN to use it, WHEN to avoid it, and what alternatives exist in modern software development.</p>
-        
-        <h3>📚 Complete Coverage</h3>
-        <ul>
-            <li>Basic Singleton implementation</li>
-            <li>Thread-safe variations (synchronized, double-checked locking, enum)</li>
-            <li>Common pitfalls (reflection, serialization, cloning)</li>
-            <li>Modern alternatives (dependency injection, service locators)</li>
-            <li>Real-world use cases and anti-patterns</li>
-        </ul>
-        
-        <p><em>By the end of this course, you'll not only understand Singleton inside and out, but you'll also know when to use it and when to choose better alternatives.</em></p>
-    `;
-}
+            return `
+                <li class="course-module">
+                    <a href="${escapeHtml(url)}">
+                        <span class="course-module-number">${number}</span>
+                        <div class="course-module-copy">
+                            <h3><span aria-hidden="true">${escapeHtml(icon)}</span> ${escapeHtml(topic.title)}</h3>
+                            <p>${escapeHtml(topic.description)}</p>
+                        </div>
+                        <span class="course-module-meta">
+                            ${escapeHtml(topic.duration || '8–12 min')}
+                            <i aria-hidden="true">→</i>
+                        </span>
+                    </a>
+                </li>
+            `;
+        }).join('');
+    }
 
-function renderPrerequisites(course) {
-    const container = document.getElementById('coursePrerequisites');
-    const prerequisites = course.prerequisites || [
-        'Basic understanding of Object-Oriented Programming',
-        'Familiarity with classes and objects',
-        'Basic knowledge of Java or similar language'
-    ];
-    
-    container.innerHTML = prerequisites.map(prereq => `
-        <div class="prerequisite-item">
-            <i class="fas fa-check-circle"></i>
-            <span>${prereq}</span>
-        </div>
-    `).join('');
-}
+    function renderList(selector, values, fallback) {
+        const container = document.querySelector(selector);
+        if (!container) return;
 
-function getStatusLabel(status) {
-    const labels = {
-        'available': 'Start',
-        'completed': 'Completed', 
-        'in-progress': 'Continue',
-        'locked': 'Locked'
-    };
-    return labels[status] || status;
-}
+        const items = Array.isArray(values) && values.length ? values : fallback;
+        container.innerHTML = items.map(item => `<li>${escapeHtml(item)}</li>`).join('');
+    }
 
-function goToTopic(courseId, index) {
-    window.location.href = `topic-story.html?course=${courseId}&index=${index}`;
-}
+    function renderOutcomeList(values, fallback) {
+        const container = document.querySelector('[data-learning-outcomes]');
+        if (!container) return;
 
-function showError(message) {
-    document.querySelector('.main-content').innerHTML = `
-        <div class="error-message" style="text-align: center; padding: 3rem; background: #fee2e2; border-radius: 12px; border: 1px solid #fecaca;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
-            <h3 style="color: #dc2626; margin-bottom: 1rem;">Oops! Something went wrong</h3>
-            <p style="color: #7f1d1d; margin-bottom: 1.5rem;">${message}</p>
-            <button onclick="location.reload()" style="padding: 0.75rem 1.5rem; background: #dc2626; color: white; border: none; border-radius: 8px; cursor: pointer;">Try Again</button>
-        </div>
-    `;
-}
+        const items = Array.isArray(values) && values.length ? values : fallback;
+        container.innerHTML = items.map(item => `
+            <li>
+                <span class="course-outcome-mark" aria-hidden="true">✓</span>
+                <span>${escapeHtml(item)}</span>
+            </li>
+        `).join('');
+    }
+
+    function setupShare(course) {
+        const button = document.querySelector('[data-share-course]');
+        const status = document.querySelector('[data-share-status]');
+        if (!button || !status) return;
+
+        button.addEventListener('click', async () => {
+            const shareData = {
+                title: `${course.title} | LearnByShorts`,
+                text: `Learn ${course.title} through short stories and practical decisions.`,
+                url: window.location.href
+            };
+
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                    status.textContent = 'Course shared.';
+                    return;
+                }
+
+                await navigator.clipboard.writeText(window.location.href);
+                status.textContent = 'Course link copied.';
+            } catch (error) {
+                if (error?.name !== 'AbortError') {
+                    status.textContent = 'Copy the course URL from your browser to share it.';
+                }
+            }
+        });
+    }
+
+    function updateStructuredData(course, topicCount) {
+        const script = document.getElementById('courseStructuredData');
+        if (!script) return;
+
+        script.textContent = JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Course',
+            name: course.title,
+            description: course.description,
+            provider: {
+                '@type': 'EducationalOrganization',
+                name: 'LearnByShorts',
+                url: 'https://www.learnbyshorts.com/'
+            },
+            educationalLevel: course.difficulty || 'Progressive',
+            timeRequired: course.duration || undefined,
+            numberOfCredits: topicCount,
+            isAccessibleForFree: true,
+            inLanguage: 'en'
+        });
+    }
+
+    function showError() {
+        const page = document.querySelector('[data-course-page]');
+        const errorSection = document.querySelector('[data-course-error]');
+
+        page?.querySelectorAll(
+            '.course-detail-hero, .course-proof-strip, .course-overview-section, ' +
+            '.course-modules-section, .course-method-section, .course-final-section'
+        ).forEach(section => {
+            section.hidden = true;
+        });
+
+        if (errorSection) errorSection.hidden = false;
+        page?.setAttribute('aria-busy', 'false');
+        document.title = 'Course not found | LearnByShorts';
+    }
+})();
