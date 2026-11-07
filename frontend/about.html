@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'; upgrade-insecure-requests;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
@@ -258,18 +258,7 @@
         </div>
     </footer>
 
-    <script>
-        // Force HTTPS redirect
-        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
-            location.replace('https:' + window.location.href.substring(window.location.protocol.length));
-        }
-        
-        // Force www redirect for consistency
-        if (location.hostname === 'learnbyshorts.com' && !location.hostname.startsWith('www.')) {
-            const newUrl = 'https://www.' + location.hostname + location.pathname + location.search + location.hash;
-            location.replace(newUrl);
-        }
-    </script>
+    <script src="js/canonical-host.js?v=20261107-1"></script>
     <script src="js/mobile-menu.js?v=1.5.2"></script>
     <script src="js/header-auth.js"></script>
 </body>

@@ -21,4 +21,22 @@ if rg -n \
   exit 1
 fi
 
+while IFS= read -r file; do
+  case "$file" in
+    frontend/course-detail.html|frontend/course-story.html)
+      ;;
+    *)
+      echo "Unexpected unsafe-inline policy found in $file." >&2
+      exit 1
+      ;;
+  esac
+done < <(rg -l "'unsafe-inline'" frontend --glob '*.html' || true)
+
+if rg -n \
+  '(emailjs\.init|api\.emailjs\.com|cdn\.jsdelivr\.net/npm/@emailjs|console\.log\(.{0,80}(email|message|templateParams))' \
+  frontend/*.html frontend/js >/dev/null; then
+  echo "Client-side contact transmission or sensitive contact logging found." >&2
+  exit 1
+fi
+
 echo "Security checks passed."

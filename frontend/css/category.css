@@ -344,6 +344,16 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.design-patterns-hero { background-color: #6366f1; }
+.pattern-icon.icon-indigo { background-color: #667eea; }
+.pattern-icon.icon-blue { background-color: #3b82f6; }
+.pattern-icon.icon-sky { background-color: #0ea5e9; }
+.pattern-icon.icon-amber { background-color: #f59e0b; }
+.pattern-icon.icon-green { background-color: #10b981; }
+.pattern-icon.icon-purple { background-color: #8b5cf6; }
+.pattern-icon.icon-cyan { background-color: #06b6d4; }
+.pattern-icon.icon-red { background-color: #ef4444; }
+
 .pattern-card h4 {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
