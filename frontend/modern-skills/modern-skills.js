@@ -200,7 +200,10 @@
             top.append(mark, meta);
 
             const category = element('span', 'course-category', track.category);
-            const title = element('h3', '', track.title);
+            const title = element('h3');
+            const titleLink = element('a', '', track.title);
+            titleLink.href = `../courses/${track.id}/`;
+            title.append(titleLink);
             const description = element('p', 'course-description', track.description);
             const tags = element('ul', 'course-tags');
             track.tags.forEach(tag => tags.append(element('li', '', tag)));
@@ -216,11 +219,16 @@
             meterValue.style.width = `${progress.percent}%`;
             meter.append(meterValue);
 
-            const button = element('button', 'course-open', progress.count > 0 ? 'Continue proof sprint →' : 'Open proof sprint →');
+            const actions = element('div', 'course-actions');
+            const fullCourse = element('a', 'course-open course-open-primary', progress.count > 0 ? 'Continue full path →' : 'Start full path →');
+            fullCourse.href = `../courses/${track.id}/`;
+            fullCourse.dataset.courseLanding = track.id;
+            const button = element('button', 'course-open course-open-secondary', 'Quick preview');
             button.type = 'button';
             button.dataset.openTrack = track.id;
+            actions.append(fullCourse, button);
 
-            card.append(top, category, title, description, tags, why, progressTop, meter, button);
+            card.append(top, category, title, description, tags, why, progressTop, meter, actions);
             refs.courseGrid.append(card);
         });
     }
@@ -382,8 +390,10 @@
         refs.finderReason.textContent = recommendationReasons[track.id] || track.whyNow;
         refs.finderDuration.textContent = `${track.duration} · ${[15, 30, 60].includes(pace) ? pace : 30} min/day`;
         refs.finderOpen.dataset.finderTrack = track.id;
+        refs.finderOpen.href = `../courses/${track.id}/`;
         refs.finderResult.hidden = false;
         refs.finderResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        window.Analytics?.trackPathFinderComplete?.(goal, level, pace, track.id);
     }
 
     refs.filters.forEach(button => {
@@ -408,10 +418,15 @@
 
     refs.finderOpen?.addEventListener('click', () => {
         const trackId = safeId(refs.finderOpen.dataset.finderTrack);
-        if (trackId) openTrack(trackId);
+        if (trackId) window.Analytics?.trackCourseLandingClick?.(trackId, 'path_finder');
     });
 
     refs.courseGrid?.addEventListener('click', event => {
+        const landing = event.target.closest('[data-course-landing]');
+        if (landing) {
+            window.Analytics?.trackCourseLandingClick?.(landing.dataset.courseLanding, 'catalog');
+            return;
+        }
         const button = event.target.closest('[data-open-track]');
         if (button) openTrack(button.dataset.openTrack);
     });

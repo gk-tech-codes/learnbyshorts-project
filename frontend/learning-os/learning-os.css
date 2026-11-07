@@ -553,6 +553,77 @@ footer nav a {
     font-size: .72rem;
 }
 
+.weekly-challenge {
+    display: grid;
+    grid-template-columns: 1fr minmax(220px, .45fr);
+    gap: 2rem;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(200, 255, 104, .28);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 92% 12%, rgba(200, 255, 104, .12), transparent 32%),
+        var(--ink);
+    color: #fff;
+}
+
+.weekly-challenge > div:first-child > span {
+    color: var(--acid);
+    font-size: .62rem;
+    font-weight: 850;
+    letter-spacing: .1em;
+}
+
+.weekly-challenge h3 {
+    margin: .25rem 0;
+    font-size: 1.2rem;
+}
+
+.weekly-challenge p {
+    margin: 0;
+    color: #96a69e;
+    font-size: .72rem;
+}
+
+.weekly-progress strong {
+    display: block;
+    color: #dce5e1;
+    font-size: .72rem;
+    text-align: right;
+}
+
+.weekly-progress strong b {
+    color: var(--acid);
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.weekly-progress > div {
+    height: 8px;
+    overflow: hidden;
+    margin: .5rem 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .12);
+}
+
+.weekly-progress i {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--acid);
+    transition: width .25s ease;
+}
+
+.weekly-progress small {
+    display: block;
+    color: #98a8a0;
+    font-size: .62rem;
+    text-align: right;
+}
+
 .mission-card {
     overflow: hidden;
     background: var(--white);
@@ -1267,6 +1338,10 @@ footer nav a {
     }
 
     .mission-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .weekly-challenge {
         grid-template-columns: 1fr;
     }
 

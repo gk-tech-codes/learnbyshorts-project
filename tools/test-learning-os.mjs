@@ -7,7 +7,8 @@ import {
     deriveLearningSnapshot,
     masteryBands,
     normalizeLearningState,
-    parseStoredValue
+    parseStoredValue,
+    weeklyMissionSummary
 } from '../frontend/learning-os/engine.mjs';
 
 const now = new Date('2026-11-07T12:00:00.000Z');
@@ -33,6 +34,12 @@ const records = {
             behavioral: 2,
             project: 1,
             ai: 2
+        }
+    },
+    'lbs2:modern-skills': {
+        activeTrack: 'ai-evals-reliability',
+        completed: {
+            'ai-evals-reliability': ['eval-contract', 'eval-dataset']
         }
     },
     'lbs2:learning-os': {
@@ -72,6 +79,8 @@ assert.equal(snapshot.java.completedSteps, 4);
 assert.equal(snapshot.java.dueReviews, 1);
 assert.equal(snapshot.ai.completedLevels, 2);
 assert.equal(snapshot.interview.hasPlan, true);
+assert.equal(snapshot.modern.activeTrack, 'ai-evals-reliability');
+assert.equal(snapshot.modern.percent, 50);
 assert.equal(snapshot.streak, 2);
 assert.equal(snapshot.evidence.proofCount, 1);
 
@@ -81,6 +90,7 @@ assert.equal(mission.steps.reduce((sum, step) => sum + step.minutes, 0), 10);
 assert.equal(mission.steps[0].id, 'recall');
 assert.equal(mission.steps[0].title, '1 Java review ready');
 assert.equal(mission.steps[1].id, 'focus');
+assert.match(mission.steps[1].href, /courses\/ai-evals-reliability/);
 assert.equal(mission.steps[2].id, 'prove');
 
 const calibration = calibrationSummary([
@@ -93,11 +103,16 @@ assert.equal(calibration.confidence, 90);
 assert.equal(calibration.gap, 40);
 
 const bands = masteryBands(snapshot);
-assert.equal(bands.length, 4);
+assert.equal(bands.length, 5);
 assert.ok(bands.every(band => band.percent >= 0 && band.percent <= 100));
 
 const proof = createProofSummary(snapshot);
 assert.match(proof, /completion metadata only/i);
 assert.doesNotMatch(proof, /private learner note/i);
+
+const weekly = weeklyMissionSummary(records['lbs2:learning-os'].missions, now);
+assert.equal(weekly.completed, 2);
+assert.equal(weekly.remaining, 1);
+assert.equal(weekly.percent, 67);
 
 console.log('Learning OS QA passed: state normalization, adaptive mission, streak, calibration, mastery, and proof export.');

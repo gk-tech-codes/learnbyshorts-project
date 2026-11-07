@@ -31,39 +31,6 @@
           "patterns": ["observer", "strategy"]
         }
       ]
-    },
-    {
-      "id": "algorithms",
-      "title": "Algorithms & Data Structures",
-      "description": "Learn fundamental algorithms and data structures with interactive visualizations",
-      "icon": "⚡",
-      "color": "#10b981",
-      "courseCount": 0,
-      "difficulty": "Coming Soon",
-      "estimatedTime": "Coming Soon",
-      "featured": false
-    },
-    {
-      "id": "system-design",
-      "title": "System Design",
-      "description": "Understand large-scale system architecture through real-world case studies",
-      "icon": "🏛️",
-      "color": "#f59e0b",
-      "courseCount": 0,
-      "difficulty": "Coming Soon",
-      "estimatedTime": "Coming Soon",
-      "featured": false
-    },
-    {
-      "id": "web-development",
-      "title": "Web Development",
-      "description": "Modern web development concepts from frontend to backend",
-      "icon": "🌐",
-      "color": "#ef4444",
-      "courseCount": 0,
-      "difficulty": "Coming Soon",
-      "estimatedTime": "Coming Soon",
-      "featured": false
     }
   ]
 }

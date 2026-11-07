@@ -381,8 +381,10 @@ button, input, select { color: inherit; font: inherit; }
     font-size: .72rem;
 }
 .path-finder-panel form > button,
-.path-finder-result > button {
+.path-finder-result > a {
+    display: grid;
     min-height: 50px;
+    place-items: center;
     border: 0;
     border-radius: 11px;
     background: var(--lime);
@@ -390,6 +392,7 @@ button, input, select { color: inherit; font: inherit; }
     cursor: pointer;
     font-size: .73rem;
     font-weight: 850;
+    text-decoration: none;
 }
 .path-finder-panel form > button {
     margin-top: .35rem;
@@ -454,7 +457,7 @@ button, input, select { color: inherit; font: inherit; }
     font-size: .56rem;
     font-weight: 750;
 }
-.path-finder-result > button { width: 100%; background: var(--ink); color: #fff; }
+.path-finder-result > a { width: 100%; background: var(--ink); color: #fff; }
 .finder-privacy {
     margin: .8rem 0 0;
     color: #7f9289;
@@ -554,6 +557,7 @@ button, input, select { color: inherit; font: inherit; }
     text-transform: uppercase;
 }
 .course-card h3 { margin: .35rem 0 .7rem; font-size: 1.5rem; letter-spacing: -.05em; line-height: 1.05; }
+.course-card h3 a { text-decoration: none; }
 .course-description { margin: 0; color: #5d6963; font-size: .75rem; }
 .course-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 1rem 0; padding: 0; list-style: none; }
 .course-tags li {
@@ -576,15 +580,22 @@ button, input, select { color: inherit; font: inherit; }
 }
 .course-progress-meter span { display: block; height: 100%; border-radius: inherit; background: #3ca66b; }
 .course-open {
+    display: grid;
+    min-width: 0;
     min-height: 44px;
+    place-items: center;
+    padding: .55rem .65rem;
     border: 1px solid var(--ink);
     border-radius: 10px;
-    background: var(--ink);
-    color: #fff;
     cursor: pointer;
     font-size: .68rem;
     font-weight: 820;
+    text-align: center;
+    text-decoration: none;
 }
+.course-actions { display: grid; grid-template-columns: 1.35fr .65fr; gap: .5rem; }
+.course-open-primary { background: var(--ink); color: #fff; }
+.course-open-secondary { background: transparent; color: var(--ink); }
 
 .video-lab-section { background: var(--ink); color: #fff; }
 .video-heading > p { color: #9aa8a1; }

@@ -3,7 +3,8 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 export const learningTotals = Object.freeze({
     javaSteps: 19,
     aiLevels: 7,
-    interviewSkills: 6
+    interviewSkills: 6,
+    modernMissions: 4
 });
 
 const goalOrder = Object.freeze({
@@ -14,6 +15,13 @@ const goalOrder = Object.freeze({
 });
 
 const focusLibrary = Object.freeze({
+    modern: {
+        id: 'modern',
+        label: 'Advance your proof path',
+        title: 'Continue your active modern skills course',
+        description: 'Complete the next proof mission and save an artifact another person can inspect.',
+        href: '../modern-skills/index.html'
+    },
     java: {
         id: 'java',
         label: 'Build with code',
@@ -144,6 +152,25 @@ function interviewMastery(interviewState) {
     return Math.round(total / (learningTotals.interviewSkills * 2) * 100);
 }
 
+function modernMastery(modernState) {
+    const activeTrack = /^[a-z0-9-]{1,64}$/.test(String(modernState.activeTrack || ''))
+        ? String(modernState.activeTrack)
+        : '';
+    const completed = activeTrack
+        ? [...new Set(
+            safeArray(safeObject(modernState.completed)[activeTrack])
+                .map(String)
+                .filter(id => /^[a-z0-9-]{1,64}$/.test(id))
+        )].slice(0, learningTotals.modernMissions)
+        : [];
+    return {
+        activeTrack,
+        completedMissions: completed.length,
+        percent: Math.round(completed.length / learningTotals.modernMissions * 100),
+        hasActive: Boolean(activeTrack)
+    };
+}
+
 function evidenceMastery(osState) {
     const completedMissions = osState.missions.filter(mission => mission.completed).length;
     const proofCount = osState.proofs.length;
@@ -173,6 +200,7 @@ export function deriveLearningSnapshot(records, nowValue = new Date()) {
     const javaState = safeObject(source['lbs2:oop-java-migrated']);
     const aiState = safeObject(source['lbs2:ai-fluency']);
     const interviewState = safeObject(source['lbs:interview-plan-v1']);
+    const modernState = safeObject(source['lbs2:modern-skills']);
     const osState = normalizeLearningState(source['lbs2:learning-os']);
     const javaSteps = completedJavaSteps(javaState);
     const aiLevels = safeArray(aiState.completedLevels).length;
@@ -199,6 +227,7 @@ export function deriveLearningSnapshot(records, nowValue = new Date()) {
             percent: interviewMastery(interviewState),
             hasPlan: Object.keys(safeObject(interviewState.scores)).length > 0
         },
+        modern: modernMastery(modernState),
         evidence: {
             percent: evidenceMastery(osState),
             proofCount: osState.proofs.length,
@@ -211,9 +240,18 @@ export function deriveLearningSnapshot(records, nowValue = new Date()) {
 
 export function buildDailyMission(snapshot, preferences = {}) {
     const selected = normalizePreferences(preferences);
-    const order = goalOrder[selected.goal] || goalOrder.build;
+    const baseOrder = goalOrder[selected.goal] || goalOrder.build;
+    const order = snapshot.modern?.hasActive && snapshot.modern.percent < 100
+        ? ['modern', ...baseOrder]
+        : baseOrder;
     const focusId = order.find(id => snapshot[id]?.percent < 100) || order[0];
-    const focus = focusLibrary[focusId];
+    const baseFocus = focusLibrary[focusId];
+    const focus = focusId === 'modern' && snapshot.modern?.activeTrack
+        ? {
+            ...baseFocus,
+            href: `../courses/${snapshot.modern.activeTrack}/`
+        }
+        : baseFocus;
     const recallMinutes = selected.minutes === 5 ? 1 : selected.minutes === 10 ? 2 : 4;
     const proofMinutes = selected.minutes === 5 ? 1 : selected.minutes === 10 ? 3 : 5;
     const focusMinutes = selected.minutes - recallMinutes - proofMinutes;
@@ -258,6 +296,29 @@ export function buildDailyMission(snapshot, preferences = {}) {
     };
 }
 
+export function weeklyMissionSummary(missions, nowValue = new Date(), target = 3) {
+    const today = new Date(`${dayKey(nowValue)}T00:00:00.000Z`);
+    const mondayOffset = (today.getUTCDay() + 6) % 7;
+    const start = new Date(today.getTime() - mondayOffset * DAY_MS);
+    const end = new Date(start.getTime() + 6 * DAY_MS);
+    const completed = new Set(
+        safeArray(missions)
+            .filter(mission => mission?.completed === true && validDay(mission.date))
+            .map(mission => mission.date)
+            .filter(date => date >= dayKey(start) && date <= dayKey(end))
+    ).size;
+    const normalizedTarget = clamp(target, 1, 7);
+    return {
+        completed,
+        target: normalizedTarget,
+        remaining: Math.max(0, normalizedTarget - completed),
+        percent: Math.min(100, Math.round(completed / normalizedTarget * 100)),
+        complete: completed >= normalizedTarget,
+        start: dayKey(start),
+        end: dayKey(end)
+    };
+}
+
 export function calibrationSummary(attempts) {
     const values = safeArray(attempts)
         .map(item => ({
@@ -298,6 +359,14 @@ export function calibrationSummary(attempts) {
 
 export function masteryBands(snapshot) {
     return [
+        {
+            id: 'modern',
+            label: 'Active proof path',
+            percent: clamp(snapshot.modern?.percent, 0, 100),
+            detail: snapshot.modern?.hasActive
+                ? `${snapshot.modern.completedMissions} of ${learningTotals.modernMissions} course missions`
+                : 'Choose a modern skills course'
+        },
         {
             id: 'java',
             label: 'Code foundations',

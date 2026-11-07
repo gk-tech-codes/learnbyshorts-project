@@ -6,7 +6,8 @@ import {
     deriveLearningSnapshot,
     masteryBands,
     normalizeLearningState,
-    parseStoredValue
+    parseStoredValue,
+    weeklyMissionSummary
 } from './engine.mjs';
 
 const stateKey = 'lbs2:learning-os';
@@ -15,6 +16,7 @@ const sourceKeys = [
     'lbs2:oop-java-migrated',
     'lbs2:ai-fluency',
     'lbs:interview-plan-v1',
+    'lbs2:modern-skills',
     stateKey
 ];
 
@@ -55,6 +57,7 @@ const questions = [
 ];
 
 const explainPrompts = {
+    modern: 'Explain the proof mission you practiced: state the decision, evidence, one test or example, and one limitation.',
     java: 'Explain the Java decision you practiced: state the design claim, why it works, one concrete example, and one failure case.',
     ai: 'Explain the AI workflow you practiced: state the boundary, how you verified output, one useful example, and when a human must stop it.',
     interview: 'Explain your interview approach: state the signal, how you make reasoning visible, one example, and one mistake you will avoid.'
@@ -126,7 +129,11 @@ const refs = {
     exportProof: document.querySelector('[data-export-proof]'),
     coachPrompt: document.querySelector('[data-coach-prompt]'),
     copyCoach: document.querySelector('[data-copy-coach]'),
-    copyStatus: document.querySelector('[data-copy-status]')
+    copyStatus: document.querySelector('[data-copy-status]'),
+    weeklyCopy: document.querySelector('[data-weekly-copy]'),
+    weeklyCount: document.querySelector('[data-weekly-count]'),
+    weeklyMeter: document.querySelector('[data-weekly-meter]'),
+    weeklyStatus: document.querySelector('[data-weekly-status]')
 };
 
 function currentMissionRecord() {
@@ -140,8 +147,8 @@ function currentMissionRecord() {
 function statePercent(sourceSnapshot = snapshot) {
     const todayRecord = currentMissionRecord();
     const missionScore = todayRecord.completedSteps.length / 3 * 45;
-    const masteryScore = masteryBands(sourceSnapshot)
-        .reduce((sum, band) => sum + band.percent, 0) / 4 * 0.55;
+    const bands = masteryBands(sourceSnapshot);
+    const masteryScore = bands.reduce((sum, band) => sum + band.percent, 0) / bands.length * 0.55;
     return Math.round(Math.min(100, missionScore + masteryScore));
 }
 
@@ -271,6 +278,20 @@ function renderMastery() {
     refs.vaultStreak.textContent = String(snapshot.streak);
 }
 
+function renderWeeklyChallenge() {
+    const weekly = weeklyMissionSummary(state.missions, new Date(`${snapshot.today}T12:00:00Z`));
+    refs.weeklyCount.textContent = String(weekly.completed);
+    refs.weeklyMeter.style.width = `${weekly.percent}%`;
+    refs.weeklyStatus.textContent = weekly.complete
+        ? 'Weekly proof sprint complete'
+        : `${weekly.remaining} mission${weekly.remaining === 1 ? '' : 's'} remaining`;
+    refs.weeklyCopy.textContent = weekly.complete
+        ? 'You closed three learning loops. Keep the streak honest: return only when you can retrieve, practice, and prove.'
+        : weekly.completed === 0
+            ? 'One finished mission today starts the loop.'
+            : 'Your next completed mission strengthens the habit without rewarding passive screen time.';
+}
+
 function renderCalibrationSummary() {
     const summary = calibrationSummary(state.calibration);
     refs.calibrationLabel.textContent = summary.label;
@@ -349,6 +370,7 @@ function renderAll() {
     renderWeek();
     renderMission();
     renderMastery();
+    renderWeeklyChallenge();
     renderCalibrationSummary();
     renderCoach();
 }
@@ -395,6 +417,14 @@ refs.missionSteps.addEventListener('click', event => {
     }
     renderAll();
     window.Analytics?.trackLearningOsStep?.(stepId, completedSteps.length, completed);
+    if (completed) {
+        const weekly = weeklyMissionSummary(state.missions, new Date(`${snapshot.today}T12:00:00Z`));
+        window.Analytics?.trackWeeklyChallenge?.(
+            state.preferences.goal,
+            weekly.completed,
+            weekly.complete ? 'complete' : 'in_progress'
+        );
+    }
 });
 
 refs.confidenceButtons.forEach(button => {

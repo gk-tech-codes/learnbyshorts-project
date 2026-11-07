@@ -240,6 +240,44 @@ const Analytics = {
         });
     },
 
+    trackPathFinderComplete: function(goal, level, pace, trackId) {
+        sendEvent('path_finder_complete', {
+            learning_goal: goal,
+            learner_level: level,
+            planned_minutes: pace,
+            recommended_track_id: trackId
+        });
+    },
+
+    trackCourseLandingClick: function(trackId, location) {
+        sendEvent('course_landing_click', {
+            track_id: trackId,
+            location
+        });
+    },
+
+    trackCourseLanding: function(trackId, acquisitionMode, completedMissions) {
+        sendEvent('course_landing_view', {
+            track_id: trackId,
+            acquisition_mode: acquisitionMode,
+            completed_missions: completedMissions
+        });
+    },
+
+    trackCourseShare: function(trackId, method) {
+        sendEvent('course_share', {
+            track_id: trackId,
+            share_method: method
+        });
+    },
+
+    trackCourseCompleteOffer: function(trackId, state) {
+        sendEvent('course_complete_offer', {
+            track_id: trackId,
+            offer_state: state
+        });
+    },
+
     trackCuratedVideoOpen: function(videoId, category) {
         sendEvent('curated_video_open', {
             video_id: videoId,
@@ -283,11 +321,97 @@ const Analytics = {
             role_id: roleId,
             prompt_id: promptId
         });
+    },
+
+    trackReadinessShare: function(primarySkill, scoreBand, method) {
+        sendEvent('interview_readiness_share', {
+            primary_skill: primarySkill,
+            score_band: scoreBand,
+            share_method: method
+        });
+    },
+
+    trackWeeklyChallenge: function(goal, completedMissions, challengeState) {
+        sendEvent('weekly_challenge_update', {
+            learning_goal: goal,
+            completed_missions: completedMissions,
+            challenge_state: challengeState
+        });
     }
 };
 
+function pageType() {
+    const path = window.location.pathname;
+    if (/^\/courses\//.test(path)) return 'course';
+    if (/^\/job-paths\//.test(path)) return 'job_path';
+    if (path.includes('interview')) return 'interview';
+    if (path.includes('learning-os')) return 'learning_os';
+    if (path === '/' || path.endsWith('/index.html')) return 'homepage_or_lab';
+    return 'content';
+}
+
+function acquisitionChannel() {
+    if (!document.referrer) return 'direct';
+    try {
+        const referrer = new URL(document.referrer);
+        if (referrer.hostname === window.location.hostname) return 'internal';
+        if (/google|bing|duckduckgo|yahoo|brave|ecosia/i.test(referrer.hostname)) return 'search';
+        if (/linkedin|youtube|youtu\.be|reddit|twitter|t\.co|facebook|instagram/i.test(referrer.hostname)) return 'social';
+        return 'external';
+    } catch {
+        return 'unknown';
+    }
+}
+
+function trackPrivacySafeReturn() {
+    const key = 'lbs2:growth-session';
+    const now = new Date();
+    const today = now.toISOString().slice(0, 10);
+    try {
+        const previous = JSON.parse(localStorage.getItem(key));
+        const firstSeen = /^\d{4}-\d{2}-\d{2}$/.test(previous?.firstSeen)
+            ? previous.firstSeen
+            : today;
+        const elapsedDays = Math.max(
+            0,
+            Math.floor((Date.parse(`${today}T00:00:00Z`) - Date.parse(`${firstSeen}T00:00:00Z`)) / 86400000)
+        );
+        const returnWindow = elapsedDays >= 30
+            ? 'd30_plus'
+            : elapsedDays >= 7
+                ? 'd7'
+                : elapsedDays >= 1
+                    ? 'd1'
+                    : 'first_day';
+        const trackedDays = Array.isArray(previous?.trackedDays)
+            ? previous.trackedDays.filter(day => /^\d{4}-\d{2}-\d{2}$/.test(day)).slice(-30)
+            : [];
+        if (!trackedDays.includes(today)) {
+            sendEvent('learner_return', {
+                return_window: returnWindow,
+                page_type: pageType()
+            });
+            trackedDays.push(today);
+        }
+        localStorage.setItem(key, JSON.stringify({
+            version: 1,
+            firstSeen,
+            lastSeen: today,
+            visitDays: Math.min(365, Number(previous?.visitDays || 0) + (previous?.lastSeen === today ? 0 : 1)),
+            trackedDays: trackedDays.slice(-30)
+        }));
+    } catch {
+        // Analytics remains optional when browser storage is restricted.
+    }
+}
+
 // Auto-track external links
 document.addEventListener('DOMContentLoaded', function() {
+    sendEvent('landing_view', {
+        page_type: pageType(),
+        acquisition_channel: acquisitionChannel()
+    });
+    trackPrivacySafeReturn();
     // Track external links automatically
     document.querySelectorAll('a[href^="http"]').forEach(link => {
         if (!link.href.includes(window.location.hostname)) {

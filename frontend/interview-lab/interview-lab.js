@@ -8,6 +8,11 @@
     const resultCopy = document.querySelector('[data-result-copy]');
     const planGrid = document.querySelector('[data-plan-grid]');
     const resetButton = document.querySelector('[data-reset-plan]');
+    const scoreValue = document.querySelector('[data-readiness-score]');
+    const scoreBand = document.querySelector('[data-readiness-band]');
+    const shareButton = document.querySelector('[data-share-plan]');
+    const shareStatus = document.querySelector('[data-share-status]');
+    let currentPlan = null;
 
     const skills = {
         coding: {
@@ -40,6 +45,34 @@
         return Object.entries(scores).sort((a, b) => a[1] - b[1]);
     }
 
+    function readiness(scores) {
+        const total = Object.values(scores).reduce((sum, score) => sum + Number(score || 0), 0);
+        const percent = Math.round(total / (Object.keys(skills).length * 2) * 100);
+        return {
+            total,
+            percent,
+            band: percent >= 84
+                ? 'Simulation ready'
+                : percent >= 59
+                    ? 'Practice foundation'
+                    : 'Build core signals',
+            analyticsBand: percent >= 84 ? 'high' : percent >= 59 ? 'medium' : 'low'
+        };
+    }
+
+    function planCard(kicker, title, copy) {
+        const card = document.createElement('article');
+        card.className = 'plan-card';
+        const cardKicker = document.createElement('span');
+        cardKicker.textContent = kicker;
+        const cardTitle = document.createElement('strong');
+        cardTitle.textContent = title;
+        const cardCopy = document.createElement('p');
+        cardCopy.textContent = copy;
+        card.append(cardKicker, cardTitle, cardCopy);
+        return card;
+    }
+
     function renderPlan(plan, shouldScroll) {
         if (!result || !resultTitle || !resultCopy || !planGrid) return;
 
@@ -47,10 +80,21 @@
         const primary = skills[ranked[0][0]];
         const secondary = skills[ranked[1][0]];
         const strongest = skills[ranked[ranked.length - 1][0]];
+        const score = readiness(plan.scores);
+        currentPlan = {
+            ...plan,
+            primaryId: ranked[0][0],
+            primary,
+            secondary,
+            strongest,
+            readiness: score
+        };
 
         resultTitle.textContent = `Start with ${primary.label.toLowerCase()}.`;
         resultCopy.textContent =
             `Your second priority is ${secondary.label.toLowerCase()}. Keep ${strongest.label.toLowerCase()} warm while you build the weaker signals.`;
+        scoreValue.textContent = String(score.percent);
+        scoreBand.textContent = score.band;
 
         const cards = [
             ['Days 1–3 · Primary', primary.label, primary.practice],
@@ -59,13 +103,7 @@
             ['Week 2 · Evidence loop', 'Review and repeat', 'Watch the recording or review your notes. Identify one reasoning gap, one communication gap, and one concrete improvement before repeating.']
         ];
 
-        planGrid.innerHTML = cards.map(([kicker, title, copy]) => `
-            <article class="plan-card">
-                <span>${kicker}</span>
-                <strong>${title}</strong>
-                <p>${copy}</p>
-            </article>
-        `).join('');
+        planGrid.replaceChildren(...cards.map(card => planCard(...card)));
 
         result.hidden = false;
         if (shouldScroll) result.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -84,8 +122,39 @@
         renderPlan(plan, true);
 
         const primary = rankedSkills(scores)[0][0];
-        const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
-        window.Analytics?.trackInterviewDiagnostic?.(primary, total);
+        window.Analytics?.trackInterviewDiagnostic?.(primary, readiness(scores).percent);
+    }
+
+    async function sharePlan() {
+        if (!currentPlan) return;
+        const shareData = {
+            title: 'My LearnByShorts Interview Readiness Plan',
+            text: `My self-reported interview practice score is ${currentPlan.readiness.percent}/100. My next focus is ${currentPlan.primary.label.toLowerCase()}. Build your private plan:`,
+            url: window.location.href.split('#')[0]
+        };
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+                shareStatus.textContent = 'Readiness plan shared.';
+                window.Analytics?.trackReadinessShare?.(
+                    currentPlan.primaryId,
+                    currentPlan.readiness.analyticsBand,
+                    'native'
+                );
+                return;
+            }
+            await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+            shareStatus.textContent = 'Privacy-safe result copied. No answers were included.';
+            window.Analytics?.trackReadinessShare?.(
+                currentPlan.primaryId,
+                currentPlan.readiness.analyticsBand,
+                'clipboard'
+            );
+        } catch (error) {
+            if (error?.name !== 'AbortError') {
+                shareStatus.textContent = 'Sharing was blocked. Copy the page address instead.';
+            }
+        }
     }
 
     form?.addEventListener('submit', event => {
@@ -109,8 +178,12 @@
         }
         form?.reset();
         if (result) result.hidden = true;
+        currentPlan = null;
+        if (shareStatus) shareStatus.textContent = '';
         form?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+    shareButton?.addEventListener('click', sharePlan);
 
     try {
         const saved = JSON.parse(localStorage.getItem(storageKey));

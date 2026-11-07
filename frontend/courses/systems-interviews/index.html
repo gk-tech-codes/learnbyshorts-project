@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'; upgrade-insecure-requests;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+    <title>System Design, Debugging &amp; Modern Interviews Learning Path | LearnByShorts</title>
+    <meta name="description" content="Prepare for the complete engineering signal: coding, debugging, systems, project depth, behavioral impact, and responsible AI use.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#101816">
+    <link rel="canonical" href="https://www.learnbyshorts.com/courses/systems-interviews/">
+    <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../course-page.css?v=20261107-1">
+    <meta property="og:title" content="System Design, Debugging &amp; Modern Interviews | LearnByShorts">
+    <meta property="og:description" content="Prepare for the complete engineering signal: coding, debugging, systems, project depth, behavioral impact, and responsible AI use.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.learnbyshorts.com/courses/systems-interviews/">
+    <meta property="og:image" content="https://www.learnbyshorts.com/assets/learnbyshorts-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="LearnByShorts">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="System Design, Debugging &amp; Modern Interviews | LearnByShorts">
+    <meta name="twitter:description" content="Prepare for the complete engineering signal: coding, debugging, systems, project depth, behavioral impact, and responsible AI use.">
+    <meta name="twitter:image" content="https://www.learnbyshorts.com/assets/learnbyshorts-social.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Course",
+      "@id": "https://www.learnbyshorts.com/courses/systems-interviews/#course",
+      "name": "System Design, Debugging & Modern Interviews",
+      "description": "Prepare for the complete engineering signal: coding, debugging, systems, project depth, behavioral impact, and responsible AI use.",
+      "url": "https://www.learnbyshorts.com/courses/systems-interviews/",
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "LearnByShorts",
+        "url": "https://www.learnbyshorts.com/"
+      },
+      "educationalLevel": "Intermediate to advanced",
+      "timeRequired": "2 weeks",
+      "isAccessibleForFree": true,
+      "inLanguage": "en",
+      "teaches": [
+        "System design",
+        "Debugging",
+        "Behavioral",
+        "AI judgment"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "online",
+        "courseWorkload": "4 proof missions",
+        "instructor": {
+          "@type": "Organization",
+          "name": "LearnByShorts"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "LearnByShorts",
+          "item": "https://www.learnbyshorts.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Modern Skills",
+          "item": "https://www.learnbyshorts.com/modern-skills/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "System Design, Debugging & Modern Interviews",
+          "item": "https://www.learnbyshorts.com/courses/systems-interviews/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is the System Design, Debugging & Modern Interviews learning path free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The four proof missions and device-local progress tracking are free to use without an account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What will I build in System Design, Debugging & Modern Interviews?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A company-aware interview plan, two recorded simulations, and an evidence-backed project narrative."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does LearnByShorts measure progress?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Progress is based on completed proof missions, explanations, tests, and artifacts—not passive watch time."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5413RZXDET"></script>
+    <script src="../../js/analytics.js?v=20261107-10"></script>
+</head>
+<body data-course-id="systems-interviews" style="--course-accent:#aaa5ff">
+    <a class="skip-link" href="#main-content">Skip to course</a>
+    <header class="course-header">
+        <div class="shell course-nav">
+            <a class="brand" href="../../">
+                <img src="../../assets/logo.svg" alt="" width="38" height="38">
+                <span><strong>LearnByShorts</strong><small>Proof-driven course</small></span>
+            </a>
+            <nav aria-label="Course navigation">
+                <a href="#missions">Missions</a>
+                <a href="#sources">Sources</a>
+                <a class="nav-cta" href="../../learning-os/?track=systems-interviews">Daily mission →</a>
+            </nav>
+        </div>
+    </header>
+    <main id="main-content">
+        <section class="course-hero">
+            <div class="shell">
+                <p class="breadcrumbs"><a href="../../">Home</a> / <a href="../../modern-skills/">Modern Skills</a> / System Design, Debugging &amp; Modern Interviews</p>
+                <div class="hero-grid">
+                    <div>
+                        <p class="eyebrow">career · Intermediate to advanced</p>
+                        <h1>System Design, Debugging &amp; Modern Interviews</h1>
+                        <p class="hero-description">Prepare for the complete engineering signal: coding, debugging, systems, project depth, behavioral impact, and responsible AI use.</p>
+                        <div class="hero-actions">
+                            <a class="button button-primary" href="#missions">Start four proof missions</a>
+                            <button class="button button-secondary" type="button" data-share-course>Share this path</button>
+                        </div>
+                        <small data-share-status aria-live="polite"></small>
+                    </div>
+                    <aside class="hero-card">
+                        <span class="course-mark">SI</span>
+                        <dl>
+                            <div><dt>Level</dt><dd>Intermediate to advanced</dd></div>
+                            <div><dt>Suggested pace</dt><dd>2 weeks</dd></div>
+                            <div><dt>Learning contract</dt><dd>4 inspectable artifacts</dd></div>
+                        </dl>
+                        <p><strong>Why now:</strong> Hiring loops increasingly measure real engineering judgment beyond isolated algorithm recall.</p>
+                    </aside>
+                </div>
+            </div>
+        </section>
+        <section class="proof-strip" aria-label="Course promise">
+            <div class="shell proof-grid">
+                <div><strong>Learn actively</strong><span>Short decisions before explanation</span></div>
+                <div><strong>Verify independently</strong><span>Tests, sources, and failure cases</span></div>
+                <div><strong>Finish with proof</strong><span>Artifacts another person can inspect</span></div>
+            </div>
+        </section>
+        <section class="section outcome-section">
+            <div class="shell outcome-grid">
+                <article class="outcome-card">
+                    <span>Course outcome</span>
+                    <h2>What you will be able to show</h2>
+                    <p>A company-aware interview plan, two recorded simulations, and an evidence-backed project narrative.</p>
+                </article>
+                <article class="outcome-card">
+                    <span>Capability map</span>
+                    <h2>Skills practiced in context</h2>
+                    <ul class="tag-list"><li>System design</li><li>Debugging</li><li>Behavioral</li><li>AI judgment</li></ul>
+                </article>
+            </div>
+        </section>
+        <section id="missions" class="section mission-section">
+            <div class="shell">
+                <div class="section-heading">
+                    <span>Four-mission proof sprint</span>
+                    <h2>Do the work. Keep the evidence.</h2>
+                    <p>Check a mission only after the proof exists. Progress stays in this browser and also appears in the Modern Skills catalog.</p>
+                </div>
+                <ol class="mission-list">
+                    <li class="mission">
+                        <input type="checkbox" data-mission-id="interview-diagnostic" aria-label="Mark Diagnose the weakest signal complete">
+                        <span class="mission-number">01</span>
+                        <div>
+                            <h3>Diagnose the weakest signal</h3>
+                            <p>Score coding, debugging, systems, project depth, behavior, and AI judgment honestly.</p>
+                            <small><strong>Proof:</strong> A prioritized two-week plan.</small>
+                        </div>
+                    </li>
+                    <li class="mission">
+                        <input type="checkbox" data-mission-id="interview-systems" aria-label="Mark Design and debug complete">
+                        <span class="mission-number">02</span>
+                        <div>
+                            <h3>Design and debug</h3>
+                            <p>Design one service, then diagnose a realistic failure inside it.</p>
+                            <small><strong>Proof:</strong> An architecture plus hypothesis-driven incident review.</small>
+                        </div>
+                    </li>
+                    <li class="mission">
+                        <input type="checkbox" data-mission-id="interview-project" aria-label="Mark Defend a real project complete">
+                        <span class="mission-number">03</span>
+                        <div>
+                            <h3>Defend a real project</h3>
+                            <p>Explain constraints, your contribution, alternatives, failure, and measured impact.</p>
+                            <small><strong>Proof:</strong> A ten-minute recorded deep-dive.</small>
+                        </div>
+                    </li>
+                    <li class="mission">
+                        <input type="checkbox" data-mission-id="interview-sim" aria-label="Mark Run the full simulation complete">
+                        <span class="mission-number">04</span>
+                        <div>
+                            <h3>Run the full simulation</h3>
+                            <p>Combine a timed technical task with behavioral follow-up and self-review.</p>
+                            <small><strong>Proof:</strong> A rubric score and targeted repeat.</small>
+                        </div>
+                    </li>
+                </ol>
+                <div class="progress-panel">
+                    <strong data-progress-copy>0 of 4 proof missions complete</strong>
+                    <span data-progress-percent>0%</span>
+                    <div class="progress-track"><i data-progress-meter></i></div>
+                </div>
+                <article class="completion-offer" data-completion-offer hidden>
+                    <div>
+                        <span>Proof sprint complete</span>
+                        <h3>Want structured feedback and deeper practice?</h3>
+                        <p>The free path remains yours. Founding access helps shape future mock interviews, review rubrics, and portfolio verification.</p>
+                    </div>
+                    <a class="button" data-founding-link href="mailto:hello@learnbyshorts.com?subject=LearnByShorts%20Founding%20Access&body=I%20completed%20the%20System%20Design%2C%20Debugging%20%26%20Modern%20Interviews%20proof%20sprint%20and%20want%20founding%20access.">Explore $29 founding access</a>
+                </article>
+            </div>
+        </section>
+        <section id="sources" class="section reference-section">
+            <div class="shell">
+                <div class="section-heading">
+                    <span>Primary learning sources</span>
+                    <h2>Go deeper without entering an endless feed.</h2>
+                    <p>These external resources are optional benchmarks. Complete the LearnByShorts mission and bring back one useful artifact.</p>
+                </div>
+                <div class="reference-grid">
+                    <a class="reference-card" href="../../interview-lab/index.html" target="_blank" rel="noopener noreferrer">
+                        <small>LearnByShorts</small>
+                        <strong>Modern Interview Lab</strong>
+                        <span>Open primary learning source ↗</span>
+                    </a>
+                    <a class="reference-card" href="../../interview-companies.html" target="_blank" rel="noopener noreferrer">
+                        <small>LearnByShorts</small>
+                        <strong>Company Interview Explorer</strong>
+                        <span>Open primary learning source ↗</span>
+                    </a>
+                    <a class="reference-card" href="https://www.nand2tetris.org/" target="_blank" rel="noopener noreferrer">
+                        <small>Hebrew University of Jerusalem</small>
+                        <strong>Nand to Tetris</strong>
+                        <span>Open primary learning source ↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="section related-section">
+            <div class="shell">
+                <div class="section-heading">
+                    <span>Build the adjacent capability</span>
+                    <h2>Continue with a related proof path.</h2>
+                </div>
+                <div class="related-grid">
+                    <a class="related-card" href="../ai-fluency/">
+                        <span>ai</span>
+                        <strong>AI Fluency &amp; Verification</strong>
+                        <small>All levels · 2 weeks</small>
+                    </a>
+                    <a class="related-card" href="../agentic-engineering/">
+                        <span>ai</span>
+                        <strong>Agentic Software Engineering</strong>
+                        <small>Intermediate · 3 weeks</small>
+                    </a>
+                    <a class="related-card" href="../ai-product-engineering/">
+                        <span>build</span>
+                        <strong>Build &amp; Ship AI Products</strong>
+                        <small>Intermediate · 3 weeks</small>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="course-footer">
+        <div class="shell footer-grid">
+            <span>© 2026 LearnByShorts · Free, local-first learning</span>
+            <nav><a href="../../modern-skills/">All courses</a><a href="../../interview-lab/">Interview Lab</a><a href="../../privacy-policy.html">Privacy</a></nav>
+        </div>
+    </footer>
+    <script src="../course-page.js?v=20261107-1"></script>
+</body>
+</html>
