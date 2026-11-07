@@ -24,6 +24,7 @@ every material entry.
 | Security baseline | S3 Block Public Access enabled; CloudFront Origin Access Control is the only public delivery path |
 | Recovery baseline | S3 object versioning enabled |
 | Learning experience | 19-step interactive Java OOP preview with recall, quizzes, code challenges, XP, local progress, streak protection, and spaced review |
+| AI-era curriculum | Seven-level AI Fluency Lab with a local Skill Studio, coding confidence gate, official source library, and multi-model practice across ChatGPT, Claude, Grok, and Gemini |
 | Privacy posture | Learning events exclude answers and personally identifiable information; GPC and Do Not Track are respected |
 | Revenue experiment | $29 one-time founding learner offer; no claim of sales until payment records exist |
 | Operating model | Static/offline-generated content delivered through S3 and CloudFront to avoid always-on AI or application-server cost |
@@ -37,6 +38,7 @@ every material entry.
 | 2026-11-07 | `fc233d0` | Repaired legacy learning pages and dashboard auth | Git commit, test results |
 | 2026-11-07 | `a24213b` | Privacy-safe learning metrics and search discovery | Git commit, GA4 event definitions, sitemap |
 | 2026-11-07 | `5ed1e29` | Production analytics compatibility fix | Git commit, live QA record |
+| 2026-11-07 | Pending final commit | AI Fluency Lab, reusable-skill curriculum, and secure Cognito account implementation | Git commit, production screenshots, browser checks, security checks, AWS configuration export |
 
 ## Metric definitions
 
@@ -52,6 +54,8 @@ Use consistent definitions so results remain credible.
 | Founding interest rate | `founding_access_interest` divided by activated learners | GA4 |
 | Paid conversion | Confirmed payments divided by founding-access requests | Payment and request records |
 | Independent adoption | Named schools, teams, teachers, or communities actively using the product | Written confirmation or public URL |
+| AI roadmap depth | Number of the seven AI Fluency levels marked practiced in the local learner state | Local product event or permissioned study export |
+| Skill artifact completion | Learner generates and tests a reusable skill contract | Permissioned pilot record; never collect private skill text by default |
 
 ## Monthly snapshot
 

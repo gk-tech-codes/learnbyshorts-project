@@ -5,6 +5,7 @@ Allow: /
 Disallow: /dashboard.html
 Disallow: /login.html
 Disallow: /signup.html
+Disallow: /auth/
 Disallow: /csp-test.html
 Disallow: /security-test.html
 Disallow: /rate-limit-test.html

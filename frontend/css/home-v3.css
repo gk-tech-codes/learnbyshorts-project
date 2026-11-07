@@ -168,6 +168,24 @@ button {
     transition: transform .2s ease, background .2s ease;
 }
 
+.nav-actions {
+    display: flex;
+    gap: .9rem;
+    align-items: center;
+    justify-self: end;
+}
+
+.nav-signin {
+    color: #45524d;
+    font-size: .82rem;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.nav-signin:hover {
+    color: #000;
+}
+
 .nav-cta:hover {
     background: #26332f;
     transform: translateY(-1px);
@@ -833,6 +851,11 @@ button {
     box-shadow: inset 0 0 0 1px rgba(226, 130, 115, .18);
 }
 
+.path-ai {
+    background: #f1f8df;
+    box-shadow: inset 0 0 0 1px rgba(146, 181, 80, .18);
+}
+
 .path-top {
     display: flex;
     align-items: center;
@@ -1451,7 +1474,7 @@ button {
     }
 
     .desktop-nav,
-    .nav-cta {
+    .nav-actions {
         display: none;
     }
 

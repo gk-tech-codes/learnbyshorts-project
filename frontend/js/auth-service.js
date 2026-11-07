@@ -1,29 +1,37 @@
 /**
- * LearnByShorts authentication client.
+ * Cognito Authorization Code + PKCE client.
  *
- * Production authentication is intentionally fail-closed: no mock users,
- * synthetic tokens, or placeholder API endpoints are accepted.
+ * Tokens stay in sessionStorage. Decoded ID-token claims are used only for
+ * display; API Gateway independently verifies the access token before Lambda.
  */
 class AuthService {
     constructor() {
-        this.apiBaseUrl = this.readMeta('api-base-url').replace(/\/+$/, '');
-        this.googleClientId = this.readMeta('google-client-id');
+        this.config = window.LearnByShortsAuthConfig || {};
+        this.keys = {
+            access: 'lbs:auth:access',
+            id: 'lbs:auth:id',
+            refresh: 'lbs:auth:refresh',
+            verifier: 'lbs:auth:verifier',
+            state: 'lbs:auth:state',
+            nonce: 'lbs:auth:nonce',
+            returnTo: 'lbs:auth:return-to'
+        };
         this.currentUser = null;
-        this.token = sessionStorage.getItem('auth_token');
-        this.googleInitialized = false;
         this.initialized = this.init();
-    }
-
-    readMeta(name) {
-        return document.querySelector(`meta[name="${name}"]`)?.content?.trim() || '';
     }
 
     isConfigured() {
         try {
-            const url = new URL(this.apiBaseUrl);
-            return url.protocol === 'https:' &&
-                !url.hostname.includes('your-') &&
-                this.googleClientId.endsWith('.apps.googleusercontent.com');
+            const domain = new URL(this.config.domain);
+            const api = new URL(this.config.apiBaseUrl);
+            const callback = new URL(this.config.redirectUri);
+            const logout = new URL(this.config.logoutUri);
+            return domain.protocol === 'https:' &&
+                api.protocol === 'https:' &&
+                callback.origin === window.location.origin &&
+                logout.origin === window.location.origin &&
+                /^[A-Za-z0-9]+$/.test(this.config.clientId || '') &&
+                /^us-[a-z]+-\d+_[A-Za-z0-9]+$/.test(this.config.userPoolId || '');
         } catch {
             return false;
         }
@@ -32,218 +40,342 @@ class AuthService {
     async init() {
         if (!this.isConfigured()) {
             this.clearSession();
-            this.triggerAuthEvent('unavailable', null);
+            this.emit('unavailable');
             return;
         }
-
-        if (this.token) {
-            await this.verifyToken();
+        if (!this.read(this.keys.access)) {
+            this.emit('ready');
+            return;
         }
-
-        await this.waitForGoogle();
-        if (window.google?.accounts?.id) {
-            window.google.accounts.id.initialize({
-                client_id: this.googleClientId,
-                callback: response => this.handleGoogleResponse(response),
-                auto_select: false,
-                cancel_on_tap_outside: true
-            });
-            this.googleInitialized = true;
-            this.triggerAuthEvent('ready', this.currentUser);
+        try {
+            await this.ensureAccessToken();
+            await this.loadProfile();
+            this.emit('verified');
+        } catch {
+            this.clearSession();
+            this.emit('ready');
         }
     }
 
-    async waitForGoogle() {
-        for (let attempt = 0; attempt < 40 && !window.google; attempt += 1) {
-            await new Promise(resolve => setTimeout(resolve, 100));
+    read(key) {
+        try {
+            return sessionStorage.getItem(key) || '';
+        } catch {
+            return '';
         }
     }
 
-    async request(path, options = {}) {
+    write(key, value) {
+        try {
+            if (value) sessionStorage.setItem(key, value);
+        } catch {
+            // Public lessons continue to work when browser storage is blocked.
+        }
+    }
+
+    base64Url(bytes) {
+        let binary = '';
+        bytes.forEach(byte => {
+            binary += String.fromCharCode(byte);
+        });
+        return btoa(binary)
+            .replace(/\+/g, '-')
+            .replace(/\//g, '_')
+            .replace(/=+$/g, '');
+    }
+
+    randomValue(length = 32) {
+        const bytes = new Uint8Array(length);
+        crypto.getRandomValues(bytes);
+        return this.base64Url(bytes);
+    }
+
+    async pkceChallenge(verifier) {
+        const digest = await crypto.subtle.digest(
+            'SHA-256',
+            new TextEncoder().encode(verifier)
+        );
+        return this.base64Url(new Uint8Array(digest));
+    }
+
+    decodeJwt(token) {
+        try {
+            const value = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+            return JSON.parse(atob(value.padEnd(Math.ceil(value.length / 4) * 4, '=')));
+        } catch {
+            return null;
+        }
+    }
+
+    tokenIsCurrent(token, minimumSeconds = 30) {
+        const claims = this.decodeJwt(token);
+        return Boolean(
+            claims?.exp &&
+            claims.exp > Math.floor(Date.now() / 1000) + minimumSeconds
+        );
+    }
+
+    validateIdToken(token, expectedNonce = '') {
+        const claims = this.decodeJwt(token);
+        const issuer =
+            `https://cognito-idp.${this.config.region}.amazonaws.com/${this.config.userPoolId}`;
+        if (!claims ||
+            claims.iss !== issuer ||
+            claims.aud !== this.config.clientId ||
+            claims.token_use !== 'id' ||
+            !this.tokenIsCurrent(token, 0) ||
+            (expectedNonce && claims.nonce !== expectedNonce)) {
+            throw new Error('The identity response could not be validated.');
+        }
+        return claims;
+    }
+
+    safeReturnPath(candidate) {
+        try {
+            const target = new URL(candidate || '/', window.location.origin);
+            if (target.origin !== window.location.origin) return '/';
+            if (target.pathname.endsWith('/auth/callback.html')) return '/dashboard.html';
+            return `${target.pathname}${target.search}${target.hash}`;
+        } catch {
+            return '/';
+        }
+    }
+
+    async signIn(mode = 'login') {
         if (!this.isConfigured()) {
-            throw new Error('Sign-in is not configured.');
+            throw new Error('Account sign-in is temporarily unavailable.');
         }
 
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 10000);
-        try {
-            const response = await fetch(`${this.apiBaseUrl}${path}`, {
-                ...options,
-                credentials: 'omit',
-                cache: 'no-store',
-                signal: controller.signal,
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...(options.headers || {})
-                }
-            });
-            const data = await response.json().catch(() => ({}));
-            if (!response.ok) {
-                throw new Error(data.error || 'Authentication request failed.');
-            }
-            return data;
-        } finally {
-            clearTimeout(timeout);
-        }
+        const verifier = this.randomValue(64);
+        const state = this.randomValue();
+        const nonce = this.randomValue();
+        const requestedReturn = new URLSearchParams(window.location.search).get('redirect');
+        this.write(this.keys.verifier, verifier);
+        this.write(this.keys.state, state);
+        this.write(this.keys.nonce, nonce);
+        this.write(
+            this.keys.returnTo,
+            this.safeReturnPath(requestedReturn || '/dashboard.html')
+        );
+
+        const authorize = new URL('/oauth2/authorize', this.config.domain);
+        authorize.search = new URLSearchParams({
+            client_id: this.config.clientId,
+            response_type: 'code',
+            redirect_uri: this.config.redirectUri,
+            scope: this.config.scopes.join(' '),
+            state,
+            nonce,
+            code_challenge: await this.pkceChallenge(verifier),
+            code_challenge_method: 'S256',
+            ...(mode === 'signup' ? { screen_hint: 'signup' } : {})
+        }).toString();
+        window.location.assign(authorize.href);
     }
 
-    async handleGoogleResponse(response) {
-        if (!response?.credential) {
-            this.triggerAuthEvent('error', { message: 'Google did not return a credential.' });
-            return false;
+    async exchangeToken(parameters) {
+        const response = await fetch(new URL('/oauth2/token', this.config.domain), {
+            method: 'POST',
+            credentials: 'omit',
+            cache: 'no-store',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(parameters)
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.access_token) {
+            throw new Error('The secure sign-in session could not be completed.');
         }
-
-        try {
-            const result = await this.request('/auth/google', {
-                method: 'POST',
-                body: JSON.stringify({ credential: response.credential })
-            });
-            if (!result.token || !result.user) {
-                throw new Error('The authentication response was incomplete.');
-            }
-
-            this.token = result.token;
-            this.currentUser = result.user;
-            sessionStorage.setItem('auth_token', this.token);
-            this.triggerAuthEvent('login', this.currentUser);
-            this.redirectAfterLogin();
-            return true;
-        } catch (error) {
-            this.clearSession();
-            this.triggerAuthEvent('error', { message: error.message });
-            return false;
-        }
+        return data;
     }
 
-    redirectAfterLogin() {
-        const redirect = new URLSearchParams(window.location.search).get('redirect');
-        if (redirect) {
-            try {
-                const target = new URL(redirect, window.location.origin);
-                if (target.origin === window.location.origin) {
-                    window.location.assign(target.href);
-                    return;
-                }
-            } catch {
-                // Invalid redirects fall back to the home page.
-            }
-        }
-
-        if (window.location.pathname.endsWith('/login.html')) {
-            window.location.assign('index.html');
-        }
+    storeTokens(tokens) {
+        this.write(this.keys.access, tokens.access_token);
+        this.write(this.keys.id, tokens.id_token);
+        if (tokens.refresh_token) this.write(this.keys.refresh, tokens.refresh_token);
     }
 
-    async verifyToken() {
-        if (!this.token) return false;
+    clearLoginState() {
         try {
-            const result = await this.request('/auth/verify', {
-                method: 'POST',
-                headers: { Authorization: `Bearer ${this.token}` }
-            });
-            this.currentUser = result.user;
-            this.triggerAuthEvent('verified', this.currentUser);
-            return true;
+            [this.keys.verifier, this.keys.state, this.keys.nonce]
+                .forEach(key => sessionStorage.removeItem(key));
         } catch {
-            this.clearSession();
-            this.triggerAuthEvent('logout', null);
-            return false;
+            // Ignore restricted storage.
         }
     }
 
-    async logout() {
-        const token = this.token;
-        this.clearSession();
-        this.triggerAuthEvent('logout', null);
-        if (!token || !this.isConfigured()) return;
-
-        try {
-            await this.request('/auth/logout', {
-                method: 'POST',
-                headers: { Authorization: `Bearer ${token}` }
-            });
-        } catch {
-            // The local session is already cleared. Avoid trapping the user.
+    async completeSignIn() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('error')) {
+            throw new Error('Sign-in was cancelled or could not be completed.');
         }
+
+        const code = params.get('code');
+        const returnedState = params.get('state');
+        const expectedState = this.read(this.keys.state);
+        const verifier = this.read(this.keys.verifier);
+        const nonce = this.read(this.keys.nonce);
+        if (!code || !returnedState || returnedState !== expectedState || !verifier) {
+            throw new Error('The sign-in response did not match this browser session.');
+        }
+
+        const tokens = await this.exchangeToken({
+            grant_type: 'authorization_code',
+            client_id: this.config.clientId,
+            code,
+            redirect_uri: this.config.redirectUri,
+            code_verifier: verifier
+        });
+        this.validateIdToken(tokens.id_token, nonce);
+        this.storeTokens(tokens);
+        this.clearLoginState();
+        await this.loadProfile();
+        this.emit('login');
+
+        const destination = this.safeReturnPath(this.read(this.keys.returnTo));
+        try {
+            sessionStorage.removeItem(this.keys.returnTo);
+        } catch {
+            // Ignore restricted storage.
+        }
+        window.location.replace(destination || '/dashboard.html');
     }
 
-    async saveProgress(courseId, topicIndex, completedTopics = [], totalTopics = 0) {
-        if (!this.token) return false;
-        try {
-            await this.request('/user/progress', {
-                method: 'POST',
-                headers: { Authorization: `Bearer ${this.token}` },
-                body: JSON.stringify({
-                    course_id: courseId,
-                    topic_index: topicIndex,
-                    completed_topics: completedTopics,
-                    total_topics: totalTopics
-                })
-            });
-            return true;
-        } catch {
-            return false;
+    async refreshSession() {
+        const refreshToken = this.read(this.keys.refresh);
+        if (!refreshToken) throw new Error('No refresh session is available.');
+        const tokens = await this.exchangeToken({
+            grant_type: 'refresh_token',
+            client_id: this.config.clientId,
+            refresh_token: refreshToken
+        });
+        if (tokens.id_token) this.validateIdToken(tokens.id_token);
+        this.storeTokens(tokens);
+        return tokens.access_token;
+    }
+
+    async ensureAccessToken() {
+        const accessToken = this.read(this.keys.access);
+        if (this.tokenIsCurrent(accessToken)) return accessToken;
+        return this.refreshSession();
+    }
+
+    async apiRequest(path, options = {}, retry = true) {
+        const accessToken = await this.ensureAccessToken();
+        const response = await fetch(`${this.config.apiBaseUrl}${path}`, {
+            ...options,
+            credentials: 'omit',
+            cache: 'no-store',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${accessToken}`,
+                ...(options.headers || {})
+            }
+        });
+        if (response.status === 401 && retry) {
+            await this.refreshSession();
+            return this.apiRequest(path, options, false);
         }
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || 'The account request failed.');
+        return data;
+    }
+
+    async loadProfile() {
+        const profile = await this.apiRequest('/v1/me');
+        const claims = this.decodeJwt(this.read(this.keys.id)) || {};
+        this.currentUser = {
+            id: profile.userId || claims.sub,
+            email: profile.email || claims.email || '',
+            name: profile.name || claims.name || claims.given_name ||
+                claims.email || 'Learner',
+            avatar: profile.avatar || claims.picture || ''
+        };
+        return this.currentUser;
     }
 
     async getProgress() {
-        if (!this.token) return {};
+        return this.apiRequest('/v1/progress');
+    }
+
+    async getCourseProgress(courseId) {
+        return this.apiRequest(`/v1/progress/${encodeURIComponent(courseId)}`);
+    }
+
+    async saveProgress(courseId, state) {
+        if (!this.isAuthenticated()) return false;
         try {
-            const result = await this.request('/user/progress', {
-                method: 'GET',
-                headers: { Authorization: `Bearer ${this.token}` }
+            await this.apiRequest(`/v1/progress/${encodeURIComponent(courseId)}`, {
+                method: 'PUT',
+                body: JSON.stringify(state)
             });
-            return result.progress || {};
+            return true;
         } catch {
-            return {};
+            return false;
         }
     }
 
-    renderGoogleSignInButton(containerId) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        container.replaceChildren();
-
-        if (!this.isConfigured()) {
-            const message = document.createElement('p');
-            message.className = 'auth-status-message';
-            message.textContent = 'Account sign-in is temporarily unavailable. All public lessons remain free.';
-            container.appendChild(message);
-            return;
+    async syncLocalProgress() {
+        const courses = {};
+        for (let index = 0; index < localStorage.length; index += 1) {
+            const key = localStorage.key(index);
+            if (!key?.startsWith('lbs2:')) continue;
+            try {
+                courses[key.slice(5)] = JSON.parse(localStorage.getItem(key));
+            } catch {
+                // Ignore malformed local progress.
+            }
         }
-
-        if (!this.googleInitialized || !window.google?.accounts?.id) {
-            const message = document.createElement('p');
-            message.className = 'auth-status-message';
-            message.textContent = 'Loading secure Google sign-in…';
-            container.appendChild(message);
-            return;
-        }
-
-        window.google.accounts.id.renderButton(container, {
-            theme: 'outline',
-            size: 'large',
-            text: 'signin_with',
-            shape: 'rectangular',
-            width: Math.min(container.clientWidth || 320, 400)
+        return this.apiRequest('/v1/sync', {
+            method: 'POST',
+            body: JSON.stringify({ courses })
         });
     }
 
-    clearSession() {
-        this.token = null;
-        this.currentUser = null;
-        sessionStorage.removeItem('auth_token');
-        localStorage.removeItem('auth_token');
+    async logout() {
+        const refreshToken = this.read(this.keys.refresh);
+        if (refreshToken) {
+            fetch(new URL('/oauth2/revoke', this.config.domain), {
+                method: 'POST',
+                credentials: 'omit',
+                keepalive: true,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    client_id: this.config.clientId,
+                    token: refreshToken
+                })
+            }).catch(() => {});
+        }
+        this.clearSession();
+        this.emit('logout');
+        const logout = new URL('/logout', this.config.domain);
+        logout.search = new URLSearchParams({
+            client_id: this.config.clientId,
+            logout_uri: this.config.logoutUri
+        }).toString();
+        window.location.assign(logout.href);
     }
 
-    triggerAuthEvent(type, user) {
+    clearSession() {
+        this.currentUser = null;
+        try {
+            Object.values(this.keys).forEach(key => sessionStorage.removeItem(key));
+            localStorage.removeItem('auth_token');
+        } catch {
+            // Ignore restricted storage.
+        }
+    }
+
+    emit(type) {
         window.dispatchEvent(new CustomEvent('authStateChanged', {
-            detail: { type, user }
+            detail: { type, user: this.currentUser }
         }));
     }
 
     isAuthenticated() {
-        return Boolean(this.currentUser && this.token);
+        return Boolean(
+            this.currentUser &&
+            this.tokenIsCurrent(this.read(this.keys.access), 0)
+        );
     }
 
     getUser() {
@@ -251,18 +383,4 @@ class AuthService {
     }
 }
 
-const authService = new AuthService();
-window.authService = authService;
-
-window.addEventListener('authStateChanged', event => {
-    const user = event.detail?.user;
-    document.querySelectorAll('.auth-required').forEach(element => {
-        element.hidden = !user;
-    });
-    document.querySelectorAll('.guest-only').forEach(element => {
-        element.hidden = Boolean(user);
-    });
-    document.querySelectorAll('.google-signin-container[id]').forEach(container => {
-        authService.renderGoogleSignInButton(container.id);
-    });
-});
+window.authService = new AuthService();

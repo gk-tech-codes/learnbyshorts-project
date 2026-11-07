@@ -15,8 +15,8 @@ if [[ -n "$tracked_secret_files" ]]; then
 fi
 
 if rg -n \
-  '(mock_token_|prod_token_|learnbyshorts-jwt-secret|Access-Control-Allow-Origin.{0,30}\*)' \
-  frontend/js backend/lambda_auth.py >/dev/null; then
+  '(mock_token_|prod_token_|learnbyshorts-jwt-secret|Access-Control-Allow-Origin.{0,30}\*|client_secret[[:space:]]*[:=][[:space:]]*["'\''][^"'\'']+)' \
+  frontend/js backend/cognito-api backend/lambda_auth.py >/dev/null; then
   echo "Insecure authentication fallback or wildcard CORS found." >&2
   exit 1
 fi

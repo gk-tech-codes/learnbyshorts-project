@@ -161,6 +161,27 @@ const Analytics = {
             primary_skill: primarySkill,
             total_score: totalScore
         });
+    },
+
+    trackAiLevel: function(level, completed, practicedCount) {
+        sendEvent('ai_fluency_level_update', {
+            level,
+            completion_state: completed ? 'practiced' : 'reset',
+            practiced_count: practicedCount
+        });
+    },
+
+    trackSkillStudioPreset: function(preset) {
+        sendEvent('ai_skill_studio_start', {
+            preset
+        });
+    },
+
+    trackAiVerification: function(gatesCompleted) {
+        sendEvent('ai_coding_gate_update', {
+            gates_completed: gatesCompleted,
+            gate_state: gatesCompleted === 5 ? 'ready' : 'incomplete'
+        });
     }
 };
 

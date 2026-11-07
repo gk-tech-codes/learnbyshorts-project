@@ -10,6 +10,7 @@ is indexed; deployment does not guarantee ranking or immediate inclusion.
 - Robots: https://www.learnbyshorts.com/robots.txt
 - Primary course: https://www.learnbyshorts.com/learn-v2/index.html
 - Modern interview lab: https://www.learnbyshorts.com/interview-lab/index.html
+- AI fluency lab: https://www.learnbyshorts.com/ai-era-lab/index.html
 
 ## Webmaster setup
 
@@ -24,7 +25,8 @@ is indexed; deployment does not guarantee ranking or immediate inclusion.
 
 IndexNow is also configured for engines that participate in the protocol. The
 public verification key is intentionally served from the site root. After
-deploying a material homepage, Java OOP lab, or interview lab change, run:
+deploying a material homepage, Java OOP lab, interview lab, or AI Fluency Lab
+change, run:
 
 ```bash
 tools/submit-indexnow.sh

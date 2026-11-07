@@ -3,82 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://learnbyshorts-v3-464994449735.auth.us-east-1.amazoncognito.com https://iheztk69z7.execute-api.us-east-1.amazonaws.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="no-referrer">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
     <title>Secure Sign In | LearnByShorts</title>
-    <meta name="description" content="Securely sign in to LearnByShorts and continue your learning journey.">
-    <meta name="api-base-url" content="">
-    <meta name="google-client-id" content="1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com">
+    <meta name="description" content="Securely sign in to sync LearnByShorts progress across devices.">
     <meta name="robots" content="noindex,follow">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/mobile-menu.css">
-    <link rel="stylesheet" href="css/header-auth.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { background: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; }
-        main { flex: 1; display: grid; place-items: center; padding: 3rem 1rem; }
-        .login-card { width: min(100%, 430px); padding: 2rem; background: #fff; border: 1px solid #e2e8f0;
-            border-radius: 18px; box-shadow: 0 18px 50px rgba(15, 23, 42, .08); text-align: center; }
-        .login-card img { width: 52px; height: 52px; }
-        .login-card h2 { margin: 1rem 0 .5rem; color: #172033; }
-        .login-card > p { color: #64748b; line-height: 1.6; }
-        .google-signin-container { min-height: 54px; margin: 1.5rem 0 1rem; display: grid; place-items: center; }
-        .auth-status-message { padding: 1rem; background: #fff7ed; border: 1px solid #fed7aa;
-            border-radius: 12px; color: #9a3412; line-height: 1.5; }
-        .security-note { font-size: .85rem; color: #64748b; }
-        .back-link { display: inline-block; margin-top: 1.25rem; color: #4f46e5; font-weight: 600; }
-    </style>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta name="theme-color" content="#111a18">
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/account-v2.css?v=20261107-4">
 </head>
-<body>
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="index.html">
-                        <img src="assets/logo.svg" alt="" class="brand-logo">
-                        <div class="brand-text">
-                            <h1>LearnByShorts</h1>
-                            <span class="tagline">Master Computer Science Through Stories</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="nav-menu">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#courses" class="nav-link">Courses</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </div>
-                <div class="hamburger"><span></span><span></span><span></span></div>
-            </div>
-        </nav>
-        <div class="menu-overlay"></div>
+<body class="account-page" data-auth-mode="login">
+    <a class="skip-link" href="#account-main">Skip to sign in</a>
+    <header class="account-header">
+        <a class="account-brand" href="index.html">
+            <img src="assets/logo.svg" alt="" width="40" height="40">
+            <span><strong>LearnByShorts</strong><small>Secure learner account</small></span>
+        </a>
+        <a class="account-back" href="index.html">Continue without an account →</a>
     </header>
 
-    <main>
-        <section class="login-card" aria-labelledby="login-title">
-            <img src="assets/logo.svg" alt="">
-            <h2 id="login-title">Secure sign in</h2>
-            <p>Use Google sign-in when the verified authentication service is available.</p>
-            <div id="google-signin-btn" class="google-signin-container" aria-live="polite"></div>
-            <p class="security-note">LearnByShorts never asks for your Google password.</p>
-            <a class="back-link" href="index.html#courses">Continue learning without an account →</a>
+    <main id="account-main" class="account-main">
+        <section class="account-story">
+            <p class="account-eyebrow">One account · every device</p>
+            <h1>Your learning should continue where you left it.</h1>
+            <p>Sign in to sync course progress and practice plans. Free public lessons remain available without an account.</p>
+            <ol class="account-benefits">
+                <li><span>01</span><div><strong>Private authentication</strong><p>Your password is handled by Amazon Cognito—not stored by LearnByShorts.</p></div></li>
+                <li><span>02</span><div><strong>Minimal profile data</strong><p>We store only the information needed for your learning experience.</p></div></li>
+                <li><span>03</span><div><strong>Local-first learning</strong><p>You can keep practicing even when you choose not to sign in.</p></div></li>
+            </ol>
+        </section>
+
+        <section class="account-card" aria-labelledby="account-title">
+            <div class="account-mark"><img src="assets/logo.svg" alt="" width="48" height="48"></div>
+            <p class="card-kicker">Welcome back</p>
+            <h2 id="account-title">Continue securely.</h2>
+            <p class="card-copy">Use your email—including a Gmail address—to access the secure LearnByShorts sign-in page.</p>
+            <button class="account-primary" type="button" data-auth-action>
+                Continue to secure sign in <span aria-hidden="true">→</span>
+            </button>
+            <p class="account-status" data-auth-status aria-live="polite">Your credentials never pass through this website.</p>
+            <div class="account-divider"><span>New to LearnByShorts?</span></div>
+            <a class="account-secondary" href="signup.html">Create a learner account</a>
+            <p class="account-legal">By continuing, you agree to the <a href="terms-of-service.html">Terms</a> and acknowledge the <a href="privacy-policy.html">Privacy Policy</a>.</p>
         </section>
     </main>
 
-    <script src="js/mobile-menu.js"></script>
-    <script src="js/auth-service.js"></script>
-    <script src="js/header-auth.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            window.authService?.renderGoogleSignInButton('google-signin-btn');
-        });
-        window.addEventListener('authStateChanged', event => {
-            if (event.detail?.type === 'error') {
-                const container = document.getElementById('google-signin-btn');
-                const message = document.createElement('p');
-                message.className = 'auth-status-message';
-                message.textContent = 'Sign-in failed safely. Please try again later.';
-                container.replaceChildren(message);
-            }
-        });
-    </script>
+    <footer class="account-footer"><span>© 2026 LearnByShorts</span><span>Authentication powered by Amazon Cognito.</span></footer>
+    <script src="js/auth-config.js?v=20261107-4"></script>
+    <script src="js/auth-service.js?v=20261107-4"></script>
+    <script src="js/auth-page.js?v=20261107-4"></script>
 </body>
 </html>

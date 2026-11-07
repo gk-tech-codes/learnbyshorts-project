@@ -13,18 +13,52 @@ exposed:
 
 Never place replacement credentials in this repository or in shell scripts.
 
-## Required production configuration
+## Current authentication architecture
 
-Authentication fails closed unless all of these are configured:
+The supported account path uses Amazon Cognito Authorization Code flow with
+PKCE. LearnByShorts does not receive, hash, log, or store learner passwords.
 
-- `JWT_SECRET`: at least 32 random characters, stored outside Git.
-- `GOOGLE_CLIENT_ID`: the public Google OAuth client ID.
-- `ALLOWED_ORIGINS`: comma-separated HTTPS origins for the production site.
-- `TABLE_NAME`: DynamoDB table name.
-- A real HTTPS API base URL supplied to the frontend.
+- Cognito owns account creation, email verification, password policy, recovery,
+  token issuance, and token revocation.
+- The static frontend stores short-lived tokens in `sessionStorage`, not
+  persistent `localStorage`.
+- API Gateway validates the Cognito access token and required OAuth scope before
+  invoking Lambda.
+- Lambda trusts only verified API Gateway JWT claims and rejects missing or
+  non-access tokens.
+- DynamoDB stores non-secret learner profile and course-progress records only.
+- Browser origins are allowlisted explicitly; wildcard credentialed CORS is not
+  permitted.
+- Request bodies, course identifiers, nested values, and maximum sizes are
+  validated before DynamoDB writes.
 
-Do not re-enable email/password fields until a complete password-reset,
-verification, rate-limiting, and secure password-hashing flow exists.
+Never store passwords, OAuth client secrets, refresh tokens, or provider API
+keys in S3, DynamoDB, frontend JavaScript, analytics, or Git.
+
+Google federation can be added through Cognito only after a Google OAuth client
+is created and its secret is stored in Cognito. Do not add a decorative Google
+button that bypasses the configured identity provider.
+
+## Production auth rollout
+
+Use `tools/deploy-secure-auth.sh` only after reviewing the dry-run description
+and confirming the account ID. The script updates existing frugal resources; it
+does not create a second user pool, API, Lambda function, or DynamoDB table.
+
+Required verification after deployment:
+
+1. An anonymous request to every `/v1/*` route returns `401`.
+2. Cognito callback and logout URLs exactly match the production and approved
+   local origins.
+3. A new verified account can sign in with Authorization Code + PKCE.
+4. The access token can read and update only that learner's progress.
+5. A second account cannot read the first account's records.
+6. CORS rejects an unlisted origin.
+7. No token, email, progress body, or secret appears in application logs.
+
+The legacy `learnbyshorts-auth` Lambda and API must be retired only after this
+path is verified. Until retirement, narrow its CORS and DynamoDB permissions
+and do not expand its custom JWT design.
 
 ## Hosting baseline
 

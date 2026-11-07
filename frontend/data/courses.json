@@ -450,38 +450,43 @@
       "id": "prompt-engineering",
       "categoryId": "ai-skills",
       "subcategoryId": "prompt-design",
-      "title": "Prompt Engineering Mastery",
-      "description": "Master AI communication through Arjun's journey from ChatGPT chaos to AI expertise.",
-      "difficulty": "Beginner",
-      "duration": "75 minutes",
-      "concepts": 8,
-      "type": "story",
-      "storyUrl": "course-story.html?id=prompt-engineering",
+      "title": "AI Fluency: User to Systems Builder",
+      "description": "Learn durable AI skills across ChatGPT, Claude, Grok, Gemini, coding assistants, reusable skills, tools, agents, evaluation, and responsible verification.",
+      "difficulty": "Beginner to Advanced",
+      "duration": "6 hours",
+      "concepts": 7,
+      "type": "interactive",
+      "storyUrl": "ai-era-lab/index.html",
       "tags": [
-        "AI Communication",
-        "Prompt Design",
+        "AI Fluency",
+        "Context Engineering",
+        "AI Coding",
+        "AI Skills",
+        "Agents",
+        "Evaluation",
         "ChatGPT",
-        "LLM Optimization"
+        "Claude",
+        "Grok",
+        "Gemini"
       ],
       "prerequisites": [
-        "Basic understanding of AI tools",
-        "Familiarity with ChatGPT or similar AI"
+        "No AI experience required",
+        "Curiosity and willingness to verify results"
       ],
       "learningOutcomes": [
-        "Master the CLEAR framework for effective prompts",
-        "Design advanced chain-of-thought prompts",
-        "Create few-shot learning examples",
-        "Optimize prompts for different AI models",
-        "Build business automation workflows",
-        "Implement ethical AI practices",
-        "Develop prompt libraries and templates",
-        "Transform career with AI expertise"
+        "Turn vague requests into testable AI task specifications",
+        "Build compact, trustworthy context for complex work",
+        "Use AI coding assistants while retaining the code's mental model",
+        "Connect structured outputs and narrow tools safely",
+        "Write reusable AI skills with triggers, workflows, guardrails, and proof",
+        "Create evaluation sets for agentic workflows",
+        "Choose models using task evidence instead of permanent rankings"
       ],
       "featured": true,
       "published": true,
-      "audioEnabled": true,
+      "audioEnabled": false,
       "icon": "🤖",
-      "color": "#8b5cf6"
+      "color": "#c8ff68"
     },
     {
       "id": "singleton-pattern",

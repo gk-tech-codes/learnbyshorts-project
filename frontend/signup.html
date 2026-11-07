@@ -3,16 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create an Account | LearnByShorts</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://learnbyshorts-v3-464994449735.auth.us-east-1.amazoncognito.com https://iheztk69z7.execute-api.us-east-1.amazonaws.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="no-referrer">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+    <title>Create a Secure Account | LearnByShorts</title>
+    <meta name="description" content="Create a secure LearnByShorts learner account and sync progress across devices.">
     <meta name="robots" content="noindex,follow">
-    <link rel="stylesheet" href="css/styles.css">
-    <meta http-equiv="refresh" content="0;url=login.html">
+    <meta name="theme-color" content="#111a18">
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/account-v2.css?v=20261107-4">
 </head>
-<body>
-    <main class="container" style="padding:4rem 1rem;text-align:center">
-        <h1>Account creation uses secure Google sign-in</h1>
-        <p>Redirecting you to the secure sign-in page.</p>
-        <p><a class="btn btn-primary" href="login.html">Continue to sign in</a></p>
+<body class="account-page" data-auth-mode="signup">
+    <a class="skip-link" href="#account-main">Skip to account creation</a>
+    <header class="account-header">
+        <a class="account-brand" href="index.html">
+            <img src="assets/logo.svg" alt="" width="40" height="40">
+            <span><strong>LearnByShorts</strong><small>Secure learner account</small></span>
+        </a>
+        <a class="account-back" href="index.html">Continue without an account →</a>
+    </header>
+
+    <main id="account-main" class="account-main">
+        <section class="account-story">
+            <p class="account-eyebrow">Free learner profile</p>
+            <h1>Keep the progress. Skip the credential risk.</h1>
+            <p>Amazon Cognito manages account authentication. LearnByShorts receives a verified identity token and stores only learning-related data.</p>
+            <ol class="account-benefits">
+                <li><span>01</span><div><strong>Create securely</strong><p>Choose an email and strong password on the hosted authentication page.</p></div></li>
+                <li><span>02</span><div><strong>Verify your email</strong><p>Email verification helps prevent unauthorized account creation.</p></div></li>
+                <li><span>03</span><div><strong>Sync deliberately</strong><p>Move local lesson progress to your profile after signing in.</p></div></li>
+            </ol>
+        </section>
+
+        <section class="account-card" aria-labelledby="account-title">
+            <div class="account-mark"><img src="assets/logo.svg" alt="" width="48" height="48"></div>
+            <p class="card-kicker">Start learning</p>
+            <h2 id="account-title">Create your account.</h2>
+            <p class="card-copy">You will continue to a secure hosted page to choose your email and password.</p>
+            <button class="account-primary" type="button" data-auth-action>
+                Continue to account creation <span aria-hidden="true">→</span>
+            </button>
+            <p class="account-status" data-auth-status aria-live="polite">No password is stored in S3, DynamoDB, or this browser.</p>
+            <div class="account-divider"><span>Already have an account?</span></div>
+            <a class="account-secondary" href="login.html">Sign in instead</a>
+            <p class="account-legal">By continuing, you agree to the <a href="terms-of-service.html">Terms</a> and acknowledge the <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        </section>
     </main>
+
+    <footer class="account-footer"><span>© 2026 LearnByShorts</span><span>Authentication powered by Amazon Cognito.</span></footer>
+    <script src="js/auth-config.js?v=20261107-4"></script>
+    <script src="js/auth-service.js?v=20261107-4"></script>
+    <script src="js/auth-page.js?v=20261107-4"></script>
 </body>
 </html>

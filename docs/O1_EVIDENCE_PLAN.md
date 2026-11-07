@@ -23,6 +23,8 @@ work is important beyond the founder's own statements.
 Potential product evidence:
 
 - A clearly documented learning method and technically original implementation.
+- A documented AI Fluency method that produces inspectable learner artifacts
+  and measures verification behavior rather than passive content consumption.
 - Independent adoption by schools, educators, employers, or developer groups.
 - Reproducible learner outcomes, with a defined methodology and honest limits.
 - Expert letters that explain specifically what is original, how the expert
@@ -82,6 +84,9 @@ Possible path:
 1. Establish the baseline in `docs/IMPACT_LEDGER.md`.
 2. Publish releases with dates, test evidence, architecture decisions, and
    security posture.
+   Preserve `docs/AI_FLUENCY_CURRICULUM.md`, the interactive Skill Studio,
+   screenshots, source attribution, and the corresponding Git history as
+   technical authorship evidence—not as proof of significance by themselves.
 3. Run small, permissioned pilots with educators or developer communities.
 4. Measure activation, completion, return behavior, and learning outcomes
    consistently; report failures and limitations as well as successes.

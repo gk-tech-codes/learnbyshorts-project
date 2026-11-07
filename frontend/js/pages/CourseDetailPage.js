@@ -154,10 +154,18 @@ function updateSliderControls() {
 }
 
 function startCourse(courseId) {
+    if (courseId === 'prompt-engineering') {
+        window.location.href = 'ai-era-lab/index.html';
+        return;
+    }
     window.location.href = `topic-story.html?course=${courseId}&index=0`;
 }
 
 function goToTopic(courseId, topicIndex) {
+    if (courseId === 'prompt-engineering') {
+        window.location.href = `ai-era-lab/index.html#roadmap`;
+        return;
+    }
     window.location.href = `topic-story.html?course=${courseId}&index=${topicIndex}`;
 }
 
@@ -272,14 +280,13 @@ function getTopicsForCourse(courseId) {
             { title: 'Chain of Responsibility Mastery', description: 'Marcus\'s keynote presentation and support system transformation success', duration: '6 min' }
         ],
         'prompt-engineering': [
-            { title: 'The AI Miscommunication Crisis', description: 'Arjun\'s marketing disasters with ChatGPT and the chaos of vague prompts', duration: '8 min' },
-            { title: 'The CLEAR Framework Discovery', description: 'Priya introduces systematic prompt engineering with Context, Length, Examples, Audience, Role', duration: '10 min' },
-            { title: 'Advanced Prompt Techniques', description: 'Chain-of-thought reasoning, few-shot learning, and role-playing mastery', duration: '12 min' },
-            { title: 'Creative AI Collaboration', description: 'Content creation workflows for blogs, social media, and marketing campaigns', duration: '10 min' },
-            { title: 'Business Applications Mastery', description: 'Email automation, report generation, and data analysis with AI assistants', duration: '11 min' },
-            { title: 'Multi-Model Expertise', description: 'GPT-4, Claude, Gemini differences and optimization strategies for each platform', duration: '9 min' },
-            { title: 'Ethical AI Practices', description: 'Bias prevention, responsible AI usage, and building inclusive prompt libraries', duration: '8 min' },
-            { title: 'The Prompt Engineering Empire', description: 'Arjun becomes company AI consultant and transforms his career path', duration: '7 min' }
+            { title: 'AI Literacy and Safe Habits', description: 'Understand models, hallucinations, privacy boundaries, evidence, and when not to use AI', duration: '20 min' },
+            { title: 'Prompt Specifications', description: 'Turn a vague wish into an outcome with context, constraints, examples, format, and acceptance criteria', duration: '35 min' },
+            { title: 'Context Engineering', description: 'Build the smallest trustworthy context pack using sources, files, examples, schemas, and explicit unknowns', duration: '45 min' },
+            { title: 'AI-Assisted Coding', description: 'Orient, plan, patch, test, review, secure, and explain code without losing the mental model', duration: '60 min' },
+            { title: 'Structured Outputs and Tools', description: 'Use schemas, function calls, narrow permissions, validation, retries, and human approval', duration: '60 min' },
+            { title: 'Reusable AI Skills', description: 'Package expertise with trigger rules, required inputs, checkable workflow steps, safety boundaries, and proof', duration: '75 min' },
+            { title: 'Agents and Evaluation', description: 'Build evaluation sets, trace agent loops, measure success, control cost, and recover from tool failures', duration: '90 min' }
         ],
         'operating-systems': [
             { title: "Maya's First Crisis: When Servers Go Silent", description: "Learn OS fundamentals through Maya's first day as SRE when a critical system failure teaches her about kernel architecture", duration: "75 min" },
@@ -318,7 +325,7 @@ function getTopicIcon(courseId, index) {
         'facade-pattern': ['💥', '🏛️', '🏗️', '🤔', '🌍', '🏆'],
         'bridge-pattern': ['💥', '🌉', '🔧', '⚖️', '🌍', '🏆'],
         'chain-of-responsibility-pattern': ['🚨', '⛓️', '🔧', '🏭', '🏆'],
-        'prompt-engineering': ['🤖', '💬', '🧠', '⚡', '🎯', '🚀', '🔮', '👑']
+        'prompt-engineering': ['🧭', '🎯', '📚', '💻', '🔧', '🧩', '📊']
     };
     
     const icons = iconConfigs[courseId] || ['📚'];
