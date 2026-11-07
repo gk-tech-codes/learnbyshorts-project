@@ -25,6 +25,7 @@ const BaseModel = require('./models/BaseModel');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const BIND_HOST = process.env.LBS_BIND_HOST || '127.0.0.1';
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Security middleware
@@ -221,13 +222,13 @@ const startServer = async () => {
         await initializeDatabase();
         
         // Start HTTP server
-        const server = app.listen(PORT, () => {
+        const server = app.listen(PORT, BIND_HOST, () => {
             console.log(`
 🚀 LearnByShorts Server Started Successfully!
 📍 Environment: ${NODE_ENV}
-🌐 Server: http://localhost:${PORT}
-📚 API Docs: http://localhost:${PORT}/api/docs
-💚 Health Check: http://localhost:${PORT}/api/health
+🌐 Server: http://${BIND_HOST}:${PORT}
+📚 API Docs: http://${BIND_HOST}:${PORT}/api/docs
+💚 Health Check: http://${BIND_HOST}:${PORT}/api/health
             `);
         });
 
