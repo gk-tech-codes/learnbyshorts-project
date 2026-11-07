@@ -1,0 +1,315 @@
+{
+  "id": "oop-java-migrated",
+  "title": "Object-Oriented Programming with Java",
+  "description": "Master OOP concepts through real-world Java applications and modern development practices",
+  "difficulty": "progressive",
+  "icon": "☕",
+  "color": "#f59e0b",
+  "topics": [
+    {
+      "id": "maya-s-onboarding-challenge-understandin",
+      "title": "Maya's Onboarding Challenge: Understanding Objects and Classes",
+      "blocks": [
+        {
+          "id": "section-1-story",
+          "type": "story",
+          "concept": "the-codebase-tour",
+          "xp": 10,
+          "character": "Maya",
+          "title": "The Codebase Tour",
+          "text": "\"Welcome to FinTech Solutions, Alex!\" Maya Chen smiled as she pulled up a chair next to the new junior developer. \"I know your first day can be overwhelming, but I'm here to help you understand our payment processing system.\" Alex Rodriguez looked at the screen filled with Java code, feeling a bit intimidated. \"Thanks, Maya. I learned basic Java syntax in bootcamp, but this looks... complex.\" \"Don't worry,\" Maya laughed. \"It looks complex because it's built using object-oriented programming. Think of it like this - instead of writing one giant program, we break everything into smaller, managea"
+        },
+        {
+          "id": "section-1-recall",
+          "type": "recall",
+          "concept": "the-codebase-tour",
+          "xp": 10,
+          "front": "Key idea from \"The Codebase Tour\"?",
+          "back": "Classes are blueprints or templates that define the structure and behavior of objects"
+        },
+        {
+          "id": "section-1-code",
+          "type": "code",
+          "concept": "the-codebase-tour",
+          "xp": 25,
+          "title": "Basic Class and Object Creation",
+          "prompt": "This example shows how a single class (PaymentProcessor) serves as a blueprint for creating multiple objects. Each object has its own copy of the instance variables and can call the methods defined in the class.",
+          "starter": "",
+          "solutionIncludes": [
+            "Class",
+            "public",
+            "class",
+            "PaymentProcessor"
+          ]
+        },
+        {
+          "id": "section-2-story",
+          "type": "story",
+          "concept": "building-your-first-class",
+          "xp": 10,
+          "character": "Maya",
+          "title": "Building Your First Class",
+          "text": "\"Now it's your turn, Alex,\" Maya said, opening a new file. \"Let's create a User class for our system. Every good payment system needs to track users.\" Alex cracked his knuckles. \"Okay, so I need to think about what data a user should have and what they should be able to do?\" \"Perfect thinking!\" Maya encouraged. \"What information do we need to store about each user?\" Alex thought for a moment. \"Well, they'd need a name, email address, maybe an account balance?\" \"Great start! And what actions should a user be able to perform?\" \"They should be able to... update their profile? Check their balance?"
+        },
+        {
+          "id": "section-2-recall",
+          "type": "recall",
+          "concept": "building-your-first-class",
+          "xp": 10,
+          "front": "Key idea from \"Building Your First Class\"?",
+          "back": "Instance variables store the data that each object will have"
+        },
+        {
+          "id": "section-2-code",
+          "type": "code",
+          "concept": "building-your-first-class",
+          "xp": 25,
+          "title": "Complete User Class with Instance Variables and Methods",
+          "prompt": "This User class demonstrates how instance variables store data specific to each object, and methods operate on that data. The 'this' keyword explicitly refers to the current object, making the code clearer.",
+          "starter": "",
+          "solutionIncludes": [
+            "public",
+            "class",
+            "User",
+            "Instance"
+          ]
+        },
+        {
+          "id": "section-3-story",
+          "type": "story",
+          "concept": "the-constructor-mystery",
+          "xp": 10,
+          "character": "Maya",
+          "title": "The Constructor Mystery",
+          "text": "\"The problem you identified is exactly why we need constructors,\" Maya explained. \"A constructor is a special method that runs automatically when we create an object. It's where we set up the initial state.\" Alex looked puzzled. \"But I don't see any constructor in our User class.\" \"That's because Java provides a default constructor automatically if we don't write one. But the default constructor doesn't do much - it just creates an empty object.\" Maya pulled up the Java documentation. \"Watch what happens when we try to use our current User class:\" \"That's not very useful,\" Alex observed. \"Exac"
+        },
+        {
+          "id": "section-3-recall",
+          "type": "recall",
+          "concept": "the-constructor-mystery",
+          "xp": 10,
+          "front": "Key idea from \"The Constructor Mystery\"?",
+          "back": "Constructors are special methods that initialize objects when they're created"
+        },
+        {
+          "id": "section-3-code",
+          "type": "code",
+          "concept": "the-constructor-mystery",
+          "xp": 25,
+          "title": "User Class with Multiple Constructors",
+          "prompt": "This example shows constructor overloading - providing multiple ways to create objects. Each constructor initializes the object differently based on the parameters provided.",
+          "starter": "",
+          "solutionIncludes": [
+            "public",
+            "class",
+            "User",
+            "private"
+          ]
+        },
+        {
+          "id": "section-4-story",
+          "type": "story",
+          "concept": "objects-in-action",
+          "xp": 10,
+          "character": "Maya",
+          "title": "Objects in Action",
+          "text": "\"Now let's see our objects working together in a real scenario,\" Maya said excitedly. \"Let's simulate a simple transaction between users.\" Alex was getting more confident. \"So we'll create some users and have them interact with each other?\" \"Exactly! Let's build a simple transaction system.\" Maya opened a new file: \"But wait,\" Alex noticed, \"how do users actually send money to each other? Our User class can only make payments, not receive them.\" \"Great observation! Let's add a method to receive payments:\" Maya updated the User class: \"Now let's create a transfer method that coordinates between"
+        },
+        {
+          "id": "section-4-recall",
+          "type": "recall",
+          "concept": "objects-in-action",
+          "xp": 10,
+          "front": "Key idea from \"Objects in Action\"?",
+          "back": "Objects can interact with each other through method calls"
+        },
+        {
+          "id": "section-4-code",
+          "type": "code",
+          "concept": "objects-in-action",
+          "xp": 25,
+          "title": "Complete Transaction System with Interacting Objects",
+          "prompt": "This complete example shows objects interacting in a real-world scenario. Users can send and receive payments, demonstrating how objects maintain independent state while communicating through method calls.",
+          "starter": "",
+          "solutionIncludes": [
+            "public",
+            "class",
+            "User",
+            "private"
+          ]
+        },
+        {
+          "id": "section-5-story",
+          "type": "story",
+          "concept": "code-review-and-best-practices",
+          "xp": 10,
+          "character": "Maya",
+          "title": "Code Review and Best Practices",
+          "text": "\"Great work, Alex!\" Maya said as she reviewed the code they'd written together. \"But before we wrap up, let me show you some best practices that will make your code even better.\" Alex pulled up their User class. \"What could we improve?\" \"Well, let's start with naming conventions. In Java, we follow specific patterns:\" Maya highlighted different parts of the code: \"Also, notice how we organize our code?\" Maya pointed to the class structure: \"What about error handling?\" Alex asked. \"What if someone tries to create a user with a negative balance?\" \"Excellent thinking! Let's add some validation to"
+        },
+        {
+          "id": "section-5-recall",
+          "type": "recall",
+          "concept": "code-review-and-best-practices",
+          "xp": 10,
+          "front": "Key idea from \"Code Review and Best Practices\"?",
+          "back": "Follow Java naming conventions: PascalCase for classes, camelCase for methods and variables"
+        },
+        {
+          "id": "section-5-code",
+          "type": "code",
+          "concept": "code-review-and-best-practices",
+          "xp": 25,
+          "title": "Well-Structured User Class with Best Practices",
+          "prompt": "This example demonstrates professional Java code structure with proper naming conventions, input validation, documentation, and error handling. The code is organized logically and includes helpful comments.",
+          "starter": "",
+          "solutionIncludes": [
+            "Represents",
+            "FinTech",
+            "Manages",
+            "public"
+          ]
+        },
+        {
+          "id": "quiz-1",
+          "type": "quiz",
+          "concept": "topic-quiz",
+          "difficulty": 2,
+          "xp": 15,
+          "title": "What is the relationship between a class and an object?",
+          "options": [
+            {
+              "text": "A class is an instance of an object",
+              "correct": false
+            },
+            {
+              "text": "A class is a blueprint for creating objects",
+              "correct": true
+            },
+            {
+              "text": "Classes and objects are the same thing",
+              "correct": false
+            },
+            {
+              "text": "Objects contain classes",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "id": "quiz-2",
+          "type": "quiz",
+          "concept": "topic-quiz",
+          "difficulty": 2,
+          "xp": 15,
+          "title": "Which keyword is used to create an object in Java?",
+          "options": [
+            {
+              "text": "create",
+              "correct": false
+            },
+            {
+              "text": "new",
+              "correct": true
+            },
+            {
+              "text": "make",
+              "correct": false
+            },
+            {
+              "text": "object",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "id": "quiz-3",
+          "type": "quiz",
+          "concept": "topic-quiz",
+          "difficulty": 2,
+          "xp": 15,
+          "title": "What is the purpose of a constructor?",
+          "options": [
+            {
+              "text": "To destroy objects",
+              "correct": false
+            },
+            {
+              "text": "To initialize objects when they are created",
+              "correct": true
+            },
+            {
+              "text": "To define methods",
+              "correct": false
+            },
+            {
+              "text": "To create classes",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "id": "boss",
+          "type": "boss",
+          "title": "Maya's Onboarding Challenge: Understanding Objects and Classes",
+          "xp": 50,
+          "timeLimitSec": 120,
+          "questions": [
+            {
+              "id": "boss-q1",
+              "type": "quiz",
+              "concept": "topic-quiz",
+              "difficulty": 2,
+              "xp": 15,
+              "title": "What is the relationship between a class and an object?",
+              "options": [
+                {
+                  "text": "A class is an instance of an object",
+                  "correct": false
+                },
+                {
+                  "text": "A class is a blueprint for creating objects",
+                  "correct": true
+                },
+                {
+                  "text": "Classes and objects are the same thing",
+                  "correct": false
+                },
+                {
+                  "text": "Objects contain classes",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "id": "boss-q2",
+              "type": "quiz",
+              "concept": "topic-quiz",
+              "difficulty": 2,
+              "xp": 15,
+              "title": "Which keyword is used to create an object in Java?",
+              "options": [
+                {
+                  "text": "create",
+                  "correct": false
+                },
+                {
+                  "text": "new",
+                  "correct": true
+                },
+                {
+                  "text": "make",
+                  "correct": false
+                },
+                {
+                  "text": "object",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

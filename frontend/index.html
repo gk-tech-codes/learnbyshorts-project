@@ -20,8 +20,8 @@
     <meta name="pragma" content="no-cache">
     
     <!-- SEO Meta Tags -->
-    <title>LearnByShorts - Master Design Patterns Through Interactive Stories</title>
-    <meta name="description" content="Learn software design patterns through engaging stories and interactive examples. Master Observer, Strategy, Command, Facade patterns and more with real-world scenarios.">
+    <title>LearnByShorts | Learn Computer Science by Solving Stories</title>
+    <meta name="description" content="Learn computer science through short interactive stories, active recall, quizzes, and coding challenges. Try a free Java OOP lesson with no signup.">
     <meta name="keywords" content="design patterns, software engineering, programming, observer pattern, strategy pattern, command pattern, facade pattern, coding tutorials, software architecture, learn programming, design patterns tutorial">
     <meta name="author" content="LearnByShorts">
     <meta name="robots" content="index, follow">
@@ -29,9 +29,9 @@
     <meta name="revisit-after" content="7 days">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="LearnByShorts - Master Design Patterns Through Interactive Stories">
-    <meta property="og:description" content="Learn software design patterns through engaging stories and interactive examples. Master Observer, Strategy, Command, Facade patterns and more.">
-    <meta property="og:image" content="https://www.learnbyshorts.com/assets/og-image.jpg">
+    <meta property="og:title" content="LearnByShorts | Learn Computer Science by Solving Stories">
+    <meta property="og:description" content="Short interactive stories, quizzes, recall, and coding challenges that make difficult computer science concepts stick.">
+    <meta property="og:image" content="https://www.learnbyshorts.com/assets/hero-video-thumb.jpg">
     <meta property="og:url" content="https://www.learnbyshorts.com">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LearnByShorts">
@@ -39,42 +39,47 @@
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LearnByShorts - Master Design Patterns Through Interactive Stories">
-    <meta name="twitter:description" content="Learn software design patterns through engaging stories and interactive examples. Master Observer, Strategy, Command, Facade patterns and more.">
-    <meta name="twitter:image" content="https://www.learnbyshorts.com/assets/twitter-card.jpg">
+    <meta name="twitter:title" content="LearnByShorts | Learn Computer Science by Solving Stories">
+    <meta name="twitter:description" content="Learn through short interactive stories, quizzes, active recall, and coding challenges.">
+    <meta name="twitter:image" content="https://www.learnbyshorts.com/assets/hero-video-thumb.jpg">
     <meta name="twitter:site" content="@learnbyshorts">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.learnbyshorts.com/">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
     
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "LearnByShorts",
-        "description": "Learn software design patterns through engaging stories and interactive examples",
-        "url": "https://www.learnbyshorts.com",
-        "logo": "https://www.learnbyshorts.com/assets/logo.svg",
-        "sameAs": [
-            "https://twitter.com/learnbyshorts",
-            "https://github.com/learnbyshorts"
-        ],
-        "offers": {
-            "@type": "Course",
-            "name": "Design Patterns Mastery",
-            "description": "Master software design patterns through interactive stories",
-            "provider": {
-                "@type": "Organization",
-                "name": "LearnByShorts"
+        "@graph": [
+            {
+                "@type": "EducationalOrganization",
+                "@id": "https://www.learnbyshorts.com/#organization",
+                "name": "LearnByShorts",
+                "description": "Interactive computer science learning through stories, recall, quizzes, and coding challenges.",
+                "url": "https://www.learnbyshorts.com/",
+                "logo": "https://www.learnbyshorts.com/assets/logo.svg"
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://www.learnbyshorts.com/#website",
+                "name": "LearnByShorts",
+                "url": "https://www.learnbyshorts.com/",
+                "publisher": {"@id": "https://www.learnbyshorts.com/#organization"}
+            },
+            {
+                "@type": "Course",
+                "name": "Interactive Java Object-Oriented Programming",
+                "description": "Learn Java OOP through interactive stories, active recall, quizzes, and coding challenges.",
+                "url": "https://www.learnbyshorts.com/learn-v2/",
+                "provider": {"@id": "https://www.learnbyshorts.com/#organization"},
+                "isAccessibleForFree": true,
+                "inLanguage": "en"
             }
-        }
+        ]
     }
     </script>
     <!-- Google Analytics 4 -->
@@ -83,6 +88,7 @@
     
     <link rel="stylesheet" href="/css/styles.css?v=1.5.9">
     <link rel="stylesheet" href="/css/homepage.css?v=2.5.0">
+    <link rel="stylesheet" href="/css/growth.css?v=1.0.0">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1.5.2">
     <link rel="stylesheet" href="css/header-auth.css">
     <link rel="stylesheet" href="css/video-tile.css">
@@ -97,7 +103,7 @@
                     <a href="index.html">
                         <img src="assets/logo.svg" alt="LearnByShorts" class="brand-logo">
                         <div class="brand-text">
-                            <h1>LearnByShorts</h1>
+                            <span class="brand-name">LearnByShorts</span>
                             <span class="tagline">Master Computer Science Through Stories</span>
                         </div>
                     </a>
@@ -106,6 +112,7 @@
                     <a href="#home" class="nav-link">Home</a>
                     <a href="#courses" class="nav-link">Courses</a>
                     <a href="#features" class="nav-link">Features</a>
+                    <a href="learn-v2/index.html" class="nav-link">Interactive Lab ✨</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </div>
                 <div class="hamburger">
@@ -127,20 +134,21 @@
                 <div class="hero-content">
                     <div class="hero-text">
                         <h1 class="hero-title">
-                            Master Computer Science Through 
-                            <span class="highlight">Visual Stories</span>
+                            Learn Computer Science by
+                            <span class="highlight">Solving the Story</span>
                         </h1>
                         <p class="hero-description">
-                            Learn complex computer science concepts through engaging visual narratives. 
-                            Transform abstract programming ideas into memorable stories with real-world examples, 
-                            interactive learning, and bite-sized content that makes difficult topics easy to understand.
+                            Make a choice, retrieve the idea, and fix the code. Each short lesson
+                            turns an abstract concept into a memorable decision you actively solve.
                         </p>
                         <div class="hero-actions">
-                            <a href="#courses" class="btn btn-primary btn-large" aria-label="Start learning computer science concepts">
+                            <a href="learn-v2/index.html" class="btn btn-primary btn-large" aria-label="Try a free interactive Java lesson">
                                 <span class="btn-icon">🚀</span>
-                                Start Learning Now
+                                Try a Free 5-Minute Lesson
                             </a>
+                            <a href="#courses" class="btn btn-secondary btn-large">Explore Courses</a>
                         </div>
+                        <p class="hero-proof">No signup · Learn by doing · Progress saved on this device</p>
                     </div>
                 <div class="hero-visual">
                     <div class="hero-image">
@@ -249,59 +257,50 @@
         </div>
     </section>
 
-    <!-- Tech News Shorts Section -->
-    <section id="tech-shorts" class="tech-shorts-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">🚀 Latest Tech Insights & Jobs</h2>
-                <p class="section-description">
-                    Stay updated with the latest AI developments and discover new tech opportunities
-                </p>
-            </div>
-            
-            <div class="shorts-container">
-                <!-- Tech Jobs Slider -->
-                <div class="jobs-showcase">
-                    <h3 class="showcase-title">💼 Latest Tech Jobs</h3>
-                    <div class="jobs-viewer" id="jobsViewer">
-                        <!-- Jobs will be loaded here -->
-                    </div>
-                    <div class="jobs-navigation">
-                        <button class="nav-btn" id="jobsPrevBtn">‹</button>
-                        <div class="jobs-indicators" id="jobsIndicators"></div>
-                        <button class="nav-btn" id="jobsNextBtn">›</button>
-                    </div>
-                </div>
-                
-                <!-- Tech Shorts Slider -->
-                <div class="shorts-showcase">
-                    <h3 class="showcase-title">📰 Tech News Shorts</h3>
-                    <div class="shorts-viewer" id="shortsViewer">
-                        <!-- Shorts will be loaded here -->
-                    </div>
-                    <div class="shorts-navigation">
-                        <button class="nav-btn prev-btn" id="prevBtn">‹</button>
-                        <div class="shorts-indicators" id="shortsIndicators"></div>
-                        <button class="nav-btn next-btn" id="nextBtn">›</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Courses Section -->
     <section id="courses" class="courses-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Popular Course Categories</h2>
+                <h2 class="section-title">Choose Your Learning Path</h2>
                 <p class="section-description">
-                    Explore our comprehensive collection of programming courses, 
-                    each designed with engaging stories and visual explanations.
+                    Start with a free interactive lesson, then explore story-driven courses.
                 </p>
             </div>
             
             <div class="courses-grid" id="coursesGrid">
                 <!-- Main Course Categories -->
+                <div class="course-tile featured-course" data-category="oop-java">
+                    <div class="course-tile-header">
+                        <div class="course-icon">☕</div>
+                        <div class="course-badge">Free Preview</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Interactive Java OOP Lab</h3>
+                        <p class="course-description">
+                            Learn objects and classes through a guided story with retrieval
+                            practice, quizzes, real Java code, XP, and spaced review.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-level">Beginner</span>
+                            <span class="course-duration">5-minute preview</span>
+                        </div>
+                        <div class="course-topics">
+                            <span class="topic-tag">Active recall</span>
+                            <span class="topic-tag">Code challenges</span>
+                            <span class="topic-tag">Instant feedback</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-format">
+                            <span class="format-icon">⚡</span>
+                            <span class="format-text">Learn by doing</span>
+                        </div>
+                        <a href="learn-v2/index.html" class="course-btn">
+                            Try It Free <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="course-tile" data-category="design-patterns">
                     <div class="course-tile-header">
                         <div class="course-icon">🏗️</div>
@@ -507,10 +506,11 @@
                 </div>
             </div>
             
-            <div class="section-footer">                <p class="more-courses-text">Want to see all our courses?</p>
-                <a href="#contact" class="btn btn-outline">
-                    View All Courses
-                    <span class="btn-icon">📚</span>
+            <div class="section-footer">
+                <p class="more-courses-text">Want the complete interactive curriculum?</p>
+                <a href="#pricing" class="btn btn-outline">
+                    See Founding Access
+                    <span class="btn-icon">✨</span>
                 </a>
             </div>
         </div>
@@ -575,11 +575,11 @@
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Focused Learning</h3>
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">Active Recall</h3>
                     <p class="feature-description">
-                        Each concept broken into digestible 2-10 second visual stories 
-                        that make complex ideas simple to understand.
+                        Retrieve the idea before seeing the answer, strengthening the
+                        concept instead of merely rereading it.
                     </p>
                 </div>
                 
@@ -593,39 +593,66 @@
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3 class="feature-title">Visual Learning</h3>
-                    <p class="feature-description">
-                        Rich visual elements, diagrams, and interactive examples 
-                        that cater to different learning styles.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Quick Mastery</h3>
-                    <p class="feature-description">
-                        Learn faster with our story-based methodology that aims to reduce 
-                        learning time while improving retention.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
                     <div class="feature-icon">💻</div>
-                    <h3 class="feature-title">Hands-on Practice</h3>
+                    <h3 class="feature-title">Code Immediately</h3>
                     <p class="feature-description">
-                        Interactive code examples and exercises that let you 
-                        practice concepts immediately after learning.
+                        Complete small code challenges inside the lesson and receive
+                        instant, specific feedback.
                     </p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3 class="feature-title">Story-Driven Learning</h3>
+                    <div class="feature-icon">🔁</div>
+                    <h3 class="feature-title">Spaced Review</h3>
                     <p class="feature-description">
-                        Learn through engaging character adventures like Sharma Ji's office chaos 
-                        and Maya's pizza empire - making complex patterns memorable and fun.
+                        Concepts return when they are due for review, helping knowledge
+                        survive beyond the first session.
                     </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Visible Progress</h3>
+                    <p class="feature-description">
+                        Build XP and a learning streak tied to completed practice—not
+                        passive screen time.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Adaptive Challenge</h3>
+                    <p class="feature-description">
+                        The learning engine tracks accuracy so future challenges can meet
+                        you at the right level.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="pricing-card">
+                <div>
+                    <p class="pricing-eyebrow">Founding learner offer</p>
+                    <h2>Help shape the complete interactive curriculum</h2>
+                    <p>Get the first full Java OOP course, all design-pattern labs as they
+                        launch, and direct influence over what we build next.</p>
+                    <ul class="pricing-list">
+                        <li>Lifetime access to the founding curriculum</li>
+                        <li>Interactive stories, recall, quizzes, and code challenges</li>
+                        <li>Founding price locked in—no recurring subscription</li>
+                    </ul>
+                </div>
+                <div class="pricing-offer">
+                    <span class="pricing-label">Founding access</span>
+                    <strong><span>$</span>29</strong>
+                    <span class="pricing-once">one time</span>
+                    <a class="btn btn-primary btn-large" href="mailto:hello@learnbyshorts.com?subject=LearnByShorts%20Founding%20Access&amp;body=I%27d%20like%20to%20join%20the%20%2429%20founding%20learner%20offer.">
+                        Request Founding Access
+                    </a>
+                    <small>We’ll reply personally with access and payment details.</small>
                 </div>
             </div>
         </div>
@@ -635,14 +662,14 @@
     <section id="contact" class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">Ready to Start Your Learning Journey?</h2>
+                <h2 class="cta-title">Understand one difficult idea today</h2>
                 <p class="cta-description">
-                    Experience computer science concepts through engaging stories and memorable characters.
+                    Try the interactive Java lesson free. No signup and no credit card.
                 </p>
                 <div class="cta-actions">
-                    <a href="#courses" class="btn btn-primary btn-large">
+                    <a href="learn-v2/index.html" class="btn btn-primary btn-large">
                         <span class="btn-icon">🚀</span>
-                        Start Learning Now
+                        Start the Free Lesson
                     </a>
                     <a href="mailto:hello@learnbyshorts.com" class="btn btn-primary btn-large">
                         <span class="btn-icon">📧</span>
@@ -689,8 +716,6 @@
                         <ul>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li><a href="#careers">Careers</a></li>
-                            <li><a href="#blog">Blog</a></li>
                         </ul>
                     </div>
                     
@@ -707,7 +732,7 @@
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
+                    <p>&copy; 2026 LearnByShorts. All rights reserved.</p>
                     <div class="footer-meta">
                         <span>Made with ❤️ for learners</span>
                     </div>
@@ -718,8 +743,9 @@
 
     <!-- Scripts -->
     <script>
-        // Force HTTPS redirect
-        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+        // Force HTTPS in production while preserving loopback-only local testing.
+        const localDevHosts = new Set(['localhost', '127.0.0.1', '::1']);
+        if (location.protocol !== 'https:' && !localDevHosts.has(location.hostname)) {
             location.replace('https:' + window.location.href.substring(window.location.protocol.length));
         }
         
@@ -794,530 +820,6 @@
     <script src="js/social-sharing.js?v=1.3.6"></script>
     <script src="js/services/VideoService.js"></script>
     <script src="js/header-auth.js"></script>
-    
-    <!-- Tech Shorts Integration -->
-    <script>
-        class HomepageTechShorts {
-            constructor() {
-                this.currentIndex = 0;
-                this.shorts = [];
-                this.viewer = null;
-                this.indicators = null;
-            }
 
-            async loadShorts() {
-                try {
-                    console.log('🔄 Loading tech shorts from JSON...');
-                    
-                    // Use XMLHttpRequest to bypass rate limiter
-                    const data = await new Promise((resolve, reject) => {
-                        const xhr = new XMLHttpRequest();
-                        xhr.open('GET', './data/tech-shorts.json?v=' + Date.now(), true);
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState === 4) {
-                                if (xhr.status === 200) {
-                                    try {
-                                        resolve(JSON.parse(xhr.responseText));
-                                    } catch (e) {
-                                        reject(e);
-                                    }
-                                } else {
-                                    reject(new Error(`HTTP ${xhr.status}`));
-                                }
-                            }
-                        };
-                        xhr.send();
-                    });
-                    
-                    console.log('📊 Raw data loaded:', data);
-                    
-                    if (!data.featuredShorts || !Array.isArray(data.featuredShorts)) {
-                        throw new Error('Invalid data structure');
-                    }
-                    
-                    this.shorts = data.featuredShorts.slice(0, 4).map(short => ({
-                        title: short.title.replace(/🤖 AI Update: |📱 Tech News: /, ''),
-                        category: short.category || 'Tech',
-                        preview: short.preview || 'No preview available',
-                        sourceUrl: short.sourceUrl || '#',
-                        sourceName: short.sourceName || 'Unknown'
-                    }));
-                    
-                    console.log(`✅ Loaded ${this.shorts.length} fresh tech shorts`);
-                    return true;
-                } catch (error) {
-                    console.error('❌ Failed to load tech shorts:', error);
-                    // Use today's sample data as fallback
-                    this.shorts = [
-                        {
-                            "title": "YouTube unveils new AI tools for creators",
-                            "category": "AI",
-                            "preview": "YouTube announced major updates to Studio, YouTube Live, and new generative AI tools at Made on YouTube event.",
-                            "sourceUrl": "https://techcrunch.com/2025/09/20/updates-to-studio-youtube-live-new-gen-ai-tools-and-everything-else-announced-at-made-on-youtube/",
-                            "sourceName": "TechCrunch"
-                        },
-                        {
-                            "title": "Lincoln Center explores tech in performing arts",
-                            "category": "Tech",
-                            "preview": "Lincoln Center's Collider Fellows program examines how technology could transform the performing arts industry.",
-                            "sourceUrl": "https://techcrunch.com/2025/09/20/lincoln-centers-collider-fellows-explore-how-tech-could-transform-the-performing-arts/",
-                            "sourceName": "TechCrunch"
-                        },
-                        {
-                            "title": "TechCrunch Disrupt 2025 early bird ends soon",
-                            "category": "Events",
-                            "preview": "Only 7 days left to save on TechCrunch Disrupt 2025 tickets with Regular Bird pricing.",
-                            "sourceUrl": "https://techcrunch.com/2025/09/20/only-7-days-left-to-save-on-techcrunch-disrupt-2025-tickets-lock-in-regular-bird-pricing-now/",
-                            "sourceName": "TechCrunch"
-                        }
-                    ];
-                    return true;
-                }
-            }
-
-            formatDate(dateString) {
-                const date = new Date(dateString);
-                const now = new Date();
-                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-                const articleDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-                const diffTime = today - articleDate;
-                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                
-                if (diffDays === 0) return "Today";
-                if (diffDays === 1) return "Yesterday";
-                if (diffDays <= 7) return `${diffDays} days ago`;
-                return date.toLocaleDateString();
-            }
-
-            formatDate(dateString) {
-                const date = new Date(dateString);
-                const now = new Date();
-                
-                // Reset time to compare just dates
-                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-                const articleDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-                
-                const diffTime = today - articleDate;
-                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                
-                if (diffDays === 0) return "Today";
-                if (diffDays === 1) return "Yesterday";
-                if (diffDays <= 7) return `${diffDays} days ago`;
-                return date.toLocaleDateString();
-            }
-
-            createShortHTML(short, index) {
-                // Generate different bullet points for each short
-                const bulletPointSets = [
-                    [
-                        "First comprehensive AI safety legislation in the US",
-                        "Requires transparency in AI training processes",
-                        "Could influence federal AI regulation nationwide"
-                    ],
-                    [
-                        "500 data annotation workers affected by layoffs",
-                        "Strategic pivot from general to specialized AI",
-                        "Reflects broader AI industry consolidation trends"
-                    ],
-                    [
-                        "$300 billion infrastructure partnership announced",
-                        "Oracle's cloud strategy gains major validation",
-                        "Challenges AWS and Microsoft market dominance"
-                    ]
-                ];
-
-                // Different dates for each short
-                const dates = ["2025-09-13", "2025-09-13", "2025-09-12"];
-                const shortDate = dates[index] || "2025-09-13";
-
-                const keyPoints = bulletPointSets[index] || [
-                    "Significant technology industry development",
-                    "Major implications for market dynamics",
-                    "Important trends in business strategy"
-                ];
-
-                return `
-                    <div class="short-item ${index === 0 ? 'active' : ''}" data-index="${index}" style="display: ${index === 0 ? 'block' : 'none'}; opacity: ${index === 0 ? '1' : '0'};">
-                        <div class="short-header">
-                            <div class="short-meta">
-                                <div class="short-category">${short.category}</div>
-                                <div class="short-date">${this.formatDate(shortDate)}</div>
-                            </div>
-                            <h3 class="short-title">${short.title}</h3>
-                        </div>
-                        <div class="short-content">
-                            <p class="short-summary">${short.preview}</p>
-                            <div class="key-insights">
-                                <h4 class="insights-title">Key Insights</h4>
-                                ${keyPoints.map(point => `
-                                    <div class="insight-item">
-                                        <span class="bullet">•</span>
-                                        <span class="insight-text">${point}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        <div class="short-footer">
-                            <div class="footer-content">
-                                <div class="source-info">📰 ${short.sourceName}</div>
-                                <button class="read-more-btn" onclick="window.open('${short.sourceUrl}', '_blank')">
-                                    Read More
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            render() {
-                this.viewer = document.getElementById('shortsViewer');
-                this.indicators = document.getElementById('shortsIndicators');
-                
-                if (!this.viewer || !this.shorts.length) {
-                    console.log('❌ Viewer or shorts not found');
-                    return;
-                }
-
-                console.log(`📱 Rendering ${this.shorts.length} shorts`);
-
-                // Create shorts HTML
-                this.viewer.innerHTML = this.shorts.map((short, index) => 
-                    this.createShortHTML(short, index)
-                ).join('');
-
-                // Create indicators
-                this.indicators.innerHTML = this.shorts.map((_, index) => 
-                    `<div class="indicator ${index === 0 ? 'active' : ''}" onclick="techShorts.goToShort(${index})"></div>`
-                ).join('');
-
-                // Setup navigation
-                this.setupNavigation();
-                
-                // Force display of first short
-                setTimeout(() => {
-                    this.updateDisplay();
-                    console.log('✅ First short displayed');
-                }, 100);
-            }
-
-            setupNavigation() {
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
-
-                prevBtn.addEventListener('click', () => this.previousShort());
-                nextBtn.addEventListener('click', () => this.nextShort());
-
-                this.updateNavigation();
-            }
-
-            goToShort(index) {
-                if (index >= 0 && index < this.shorts.length) {
-                    this.currentIndex = index;
-                    this.updateDisplay();
-                }
-            }
-
-            nextShort() {
-                if (this.currentIndex < this.shorts.length - 1) {
-                    this.currentIndex++;
-                    this.updateDisplay();
-                }
-            }
-
-            previousShort() {
-                if (this.currentIndex > 0) {
-                    this.currentIndex--;
-                    this.updateDisplay();
-                }
-            }
-
-            updateDisplay() {
-                const items = document.querySelectorAll('.short-item');
-                const indicators = document.querySelectorAll('.indicator');
-
-                // Hide all items first
-                items.forEach((item, index) => {
-                    item.style.display = 'none';
-                    item.style.opacity = '0';
-                    item.classList.remove('active');
-                });
-
-                // Show current item
-                if (items[this.currentIndex]) {
-                    items[this.currentIndex].style.display = 'block';
-                    items[this.currentIndex].style.opacity = '1';
-                    items[this.currentIndex].classList.add('active');
-                }
-
-                // Update indicators
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === this.currentIndex);
-                });
-
-                this.updateNavigation();
-                
-                // Debug log
-                console.log(`Showing short ${this.currentIndex + 1} of ${this.shorts.length}`);
-            }
-
-            updateNavigation() {
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
-
-                if (prevBtn) prevBtn.disabled = this.currentIndex === 0;
-                if (nextBtn) nextBtn.disabled = this.currentIndex === this.shorts.length - 1;
-            }
-
-            async init() {
-                const loaded = await this.loadShorts();
-                if (loaded) {
-                    this.render();
-                    console.log('✅ Homepage tech shorts loaded');
-                } else {
-                    console.log('❌ Failed to load homepage tech shorts');
-                }
-            }
-        }
-
-        // Initialize tech shorts
-        const techShorts = new HomepageTechShorts();
-        
-        // Tech Jobs Class
-        class HomepageTechJobs {
-            constructor() {
-                this.currentIndex = 0;
-                this.jobs = [];
-                this.viewer = null;
-                this.indicators = null;
-            }
-
-            async loadJobs() {
-                try {
-                    console.log('🔄 Loading tech jobs from JSON...');
-                    
-                    // Use XMLHttpRequest to bypass rate limiter
-                    const data = await new Promise((resolve, reject) => {
-                        const xhr = new XMLHttpRequest();
-                        xhr.open('GET', './data/tech-jobs.json?v=' + Date.now(), true);
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState === 4) {
-                                if (xhr.status === 200) {
-                                    try {
-                                        resolve(JSON.parse(xhr.responseText));
-                                    } catch (e) {
-                                        reject(e);
-                                    }
-                                } else {
-                                    reject(new Error(`HTTP ${xhr.status}`));
-                                }
-                            }
-                        };
-                        xhr.send();
-                    });
-                    
-                    console.log('📊 Jobs data loaded:', data);
-                    console.log('📋 First job:', data.featuredJobs[0]);
-                    
-                    if (!data.featuredJobs || !Array.isArray(data.featuredJobs)) {
-                        throw new Error('Invalid jobs data structure');
-                    }
-                    
-                    this.jobs = data.featuredJobs.slice(0, 6); // Show 6 jobs
-                    console.log(`✅ Loaded ${this.jobs.length} fresh tech jobs`);
-                    console.log('🎯 Jobs loaded:', this.jobs.map(j => `${j.title} at ${j.company}`));
-                    return true;
-                } catch (error) {
-                    console.error('❌ Failed to load tech jobs:', error);
-                    console.log('🔄 Using fallback data...');
-                    // Use today's sample jobs as fallback
-                    this.jobs = [
-                        {
-                            "title": "Data Scientist",
-                            "company": "Paytm",
-                            "location": "Pune, India",
-                            "job_type": "Hybrid",
-                            "salary_range": "₹31L - ₹41L",
-                            "posted_date": "2025-09-20",
-                            "description": "Join Paytm as a Data Scientist and work on cutting-edge fintech projects.",
-                            "requirements": ["4+ years data science experience", "Python, SQL, Machine Learning", "Fintech domain knowledge"],
-                            "apply_url": "https://www.linkedin.com/jobs/search/?keywords=paytm%20data%20scientist"
-                        },
-                        {
-                            "title": "Mobile Developer",
-                            "company": "Meta",
-                            "location": "San Francisco, CA, USA",
-                            "job_type": "Hybrid",
-                            "salary_range": "$168K - $218K",
-                            "posted_date": "2025-09-19",
-                            "description": "Build mobile experiences for billions of users at Meta.",
-                            "requirements": ["3+ years React Native/Flutter", "iOS/Android development", "Performance optimization"],
-                            "apply_url": "https://www.linkedin.com/jobs/search/?keywords=meta%20mobile%20developer"
-                        },
-                        {
-                            "title": "UI/UX Designer",
-                            "company": "TCS",
-                            "location": "Mumbai, India",
-                            "job_type": "Remote",
-                            "salary_range": "₹8L - ₹18L",
-                            "posted_date": "2025-09-19",
-                            "description": "Design user experiences for enterprise applications at TCS.",
-                            "requirements": ["3+ years UI/UX design", "Figma, Adobe Creative Suite", "Enterprise software experience"],
-                            "apply_url": "https://www.linkedin.com/jobs/search/?keywords=tcs%20ui%20ux%20designer"
-                        }
-                    ];
-                    return true;
-                }
-            }
-
-            formatJobDate(dateString) {
-                const date = new Date(dateString);
-                const now = new Date();
-                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-                const jobDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-                const diffTime = today - jobDate;
-                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                
-                if (diffDays === 0) return "Today";
-                if (diffDays === 1) return "Yesterday";
-                if (diffDays <= 7) return `${diffDays} days ago`;
-                return date.toLocaleDateString();
-            }
-
-            createJobHTML(job, index) {
-                return `
-                    <div class="job-item ${index === 0 ? 'active' : ''}" data-index="${index}" style="display: ${index === 0 ? 'block' : 'none'}; opacity: ${index === 0 ? '1' : '0'};">
-                        <div class="job-header">
-                            <div class="job-meta">
-                                <div class="job-type">${job.job_type}</div>
-                                <div class="job-posted">${this.formatJobDate(job.posted_date)}</div>
-                            </div>
-                            <h3 class="job-title">${job.title}</h3>
-                            <div class="job-company">${job.company}</div>
-                        </div>
-                        <div class="job-content">
-                            <div class="job-details">
-                                <div class="job-location">📍 ${job.location}</div>
-                                <div class="job-salary">💰 ${job.salary_range}</div>
-                            </div>
-                            <p class="job-description">${job.description}</p>
-                            <div class="job-requirements">
-                                <h4 class="requirements-title">Requirements</h4>
-                                ${job.requirements.map(req => `
-                                    <div class="requirement-item">
-                                        <span class="requirement-bullet">•</span>
-                                        <span class="requirement-text">${req}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        <div class="job-footer">
-                            <div class="job-footer-content">
-                                <div class="job-source">💼 ${job.company} Careers</div>
-                                <button class="apply-btn" onclick="window.open('${job.apply_url}', '_blank')">
-                                    Apply Now
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            render() {
-                this.viewer = document.getElementById('jobsViewer');
-                this.indicators = document.getElementById('jobsIndicators');
-                
-                if (!this.viewer || !this.jobs.length) return;
-
-                this.viewer.innerHTML = this.jobs.map((job, index) => 
-                    this.createJobHTML(job, index)
-                ).join('');
-
-                this.indicators.innerHTML = this.jobs.map((_, index) => 
-                    `<div class="indicator ${index === 0 ? 'active' : ''}" onclick="techJobs.goToJob(${index})"></div>`
-                ).join('');
-
-                this.setupNavigation();
-                setTimeout(() => this.updateDisplay(), 100);
-            }
-
-            setupNavigation() {
-                const prevBtn = document.getElementById('jobsPrevBtn');
-                const nextBtn = document.getElementById('jobsNextBtn');
-
-                prevBtn.addEventListener('click', () => this.previousJob());
-                nextBtn.addEventListener('click', () => this.nextJob());
-                this.updateNavigation();
-            }
-
-            goToJob(index) {
-                if (index >= 0 && index < this.jobs.length) {
-                    this.currentIndex = index;
-                    this.updateDisplay();
-                }
-            }
-
-            nextJob() {
-                if (this.currentIndex < this.jobs.length - 1) {
-                    this.currentIndex++;
-                    this.updateDisplay();
-                }
-            }
-
-            previousJob() {
-                if (this.currentIndex > 0) {
-                    this.currentIndex--;
-                    this.updateDisplay();
-                }
-            }
-
-            updateDisplay() {
-                const items = document.querySelectorAll('.job-item');
-                const indicators = document.querySelectorAll('#jobsIndicators .indicator');
-
-                items.forEach((item, index) => {
-                    item.style.display = 'none';
-                    item.style.opacity = '0';
-                    item.classList.remove('active');
-                });
-
-                if (items[this.currentIndex]) {
-                    items[this.currentIndex].style.display = 'block';
-                    items[this.currentIndex].style.opacity = '1';
-                    items[this.currentIndex].classList.add('active');
-                }
-
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === this.currentIndex);
-                });
-
-                this.updateNavigation();
-            }
-
-            updateNavigation() {
-                const prevBtn = document.getElementById('jobsPrevBtn');
-                const nextBtn = document.getElementById('jobsNextBtn');
-
-                if (prevBtn) prevBtn.disabled = this.currentIndex === 0;
-                if (nextBtn) nextBtn.disabled = this.currentIndex === this.jobs.length - 1;
-            }
-
-            async init() {
-                const loaded = await this.loadJobs();
-                if (loaded) {
-                    this.render();
-                    console.log('✅ Homepage tech jobs loaded');
-                }
-            }
-        }
-
-        // Initialize both sliders
-        const techJobs = new HomepageTechJobs();
-        
-        // Add to existing DOMContentLoaded listener
-        document.addEventListener('DOMContentLoaded', () => {
-            techShorts.init();
-            techJobs.init();
-        });
-    </script>
 </body>
 </html>

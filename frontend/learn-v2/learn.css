@@ -1,0 +1,263 @@
+:root {
+  color-scheme: light;
+  --ink: #172033;
+  --muted: #64748b;
+  --line: #dbe3f0;
+  --brand: #4f46e5;
+  --brand-dark: #3730a3;
+  --gold: #f59e0b;
+  --success: #15803d;
+  --danger: #b91c1c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(99, 102, 241, .12), transparent 30rem),
+    #f8fafc;
+  color: var(--ink);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.lab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1180px;
+  margin: auto;
+  padding: 1.25rem 1.5rem;
+}
+
+.brand {
+  display: flex;
+  gap: .65rem;
+  align-items: center;
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand img { width: 34px; height: 34px; }
+
+.founding-link {
+  padding: .65rem .95rem;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: var(--brand-dark);
+  font-size: .88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lab-shell {
+  display: grid;
+  grid-template-columns: minmax(270px, .78fr) minmax(0, 1.35fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  max-width: 1180px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.lesson-intro {
+  align-self: start;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 .6rem;
+  color: var(--brand);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.06;
+  letter-spacing: -.04em;
+}
+
+.lesson-promise {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.progress-copy {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.progress-track {
+  height: 10px;
+  margin-top: .55rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+#progress-bar {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--brand), #8b5cf6);
+  transition: width .35s ease;
+}
+
+.hud {
+  margin-top: 1rem;
+  padding: .85rem 1rem;
+  border: 1px solid #c7d2fe;
+  border-radius: 12px;
+  background: #eef2ff;
+  color: var(--brand-dark);
+  font-size: .86rem;
+  font-weight: 700;
+}
+
+.method-card {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .72);
+}
+
+.method-card ul {
+  display: grid;
+  gap: .55rem;
+  margin: .8rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.lesson-stage {
+  min-height: 580px;
+  padding: clamp(1.4rem, 4vw, 3rem);
+  border: 1px solid rgba(203, 213, 225, .9);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 24px 70px rgba(51, 65, 85, .12);
+}
+
+.block { animation: enter .3s ease-out; }
+.block-kicker { color: var(--brand); font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.block h2 { margin: .45rem 0 1rem; font-size: clamp(1.65rem, 3vw, 2.35rem); line-height: 1.15; }
+.block p { color: #334155; font-size: 1.04rem; line-height: 1.75; }
+.who { color: var(--muted) !important; font-style: italic; }
+
+.answers, .grade { display: grid; gap: .75rem; margin-top: 1.5rem; }
+
+.block button,
+.completion-card a {
+  width: 100%;
+  margin-top: .8rem;
+  padding: .9rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: 600 1rem Inter, sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .15s, transform .15s, background .15s;
+}
+
+.block button:hover { border-color: var(--brand); transform: translateY(-1px); }
+.block button.primary { background: var(--brand); border-color: var(--brand); color: #fff; text-align: center; }
+.block button.ok { background: #dcfce7; border-color: #22c55e; color: #166534; }
+.block button.bad { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+.block button:disabled { cursor: default; transform: none; }
+
+textarea {
+  width: 100%;
+  min-height: 220px;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #94a3b8;
+  border-radius: 12px;
+  background: #111827;
+  color: #e5e7eb;
+  font: 500 .9rem/1.6 "JetBrains Mono", monospace;
+  resize: vertical;
+}
+
+.feedback {
+  min-height: 1.5rem;
+  font-weight: 700;
+}
+
+.timer { color: var(--danger) !important; font-weight: 800; }
+
+.completion-card {
+  display: grid;
+  place-items: center;
+  min-height: 480px;
+  text-align: center;
+}
+
+.completion-card .celebration { font-size: 4rem; }
+.completion-card a { display: inline-block; width: auto; padding: .9rem 1.25rem; background: var(--brand); color: #fff; text-decoration: none; }
+
+#flash {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  z-index: 20;
+  transform: translateX(-50%);
+  padding: .7rem 1.2rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .22);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1180px;
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+footer a { color: var(--brand); font-weight: 700; text-decoration: none; }
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 800px) {
+  .lab-shell { grid-template-columns: 1fr; margin-top: .5rem; }
+  .lesson-intro { position: static; }
+  .method-card { display: none; }
+  .lesson-stage { min-height: 480px; }
+}
+
+@media (max-width: 520px) {
+  .lab-header { padding: 1rem; }
+  .brand span { font-size: .95rem; }
+  .founding-link { font-size: .75rem; }
+  .lab-shell { padding: 0 1rem; }
+  .lesson-stage { padding: 1.25rem; border-radius: 18px; }
+  footer { flex-direction: column; padding: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
