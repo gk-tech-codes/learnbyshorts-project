@@ -7,11 +7,27 @@ export class ProgressStore {
   }
 
   _load() {
-    try { return JSON.parse(localStorage.getItem(this.key)) || this._empty(); }
+    try { return this._normalize(JSON.parse(localStorage.getItem(this.key))); }
     catch { return this._empty(); }
   }
 
   _empty() { return { completed: [], position: 0, game: {}, reviews: {} }; }
+
+  _normalize(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return this._empty();
+    return {
+      completed: Array.isArray(value.completed)
+        ? [...new Set(value.completed.filter(item => typeof item === 'string'))]
+        : [],
+      position: Number.isInteger(value.position) && value.position >= 0 ? value.position : 0,
+      game: value.game && typeof value.game === 'object' && !Array.isArray(value.game)
+        ? value.game
+        : {},
+      reviews: value.reviews && typeof value.reviews === 'object' && !Array.isArray(value.reviews)
+        ? value.reviews
+        : {}
+    };
+  }
 
   get() { return this.data; }
 
@@ -21,7 +37,12 @@ export class ProgressStore {
 
   save(patch = {}) {
     Object.assign(this.data, patch);
-    localStorage.setItem(this.key, JSON.stringify(this.data));
+    try {
+      localStorage.setItem(this.key, JSON.stringify(this.data));
+    } catch {
+      return false;
+    }
     if (this.apiSync) Promise.resolve(this.apiSync(this.data)).catch(() => {});
+    return true;
   }
 }

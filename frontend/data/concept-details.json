@@ -321,8 +321,7 @@
           "description": "Many UI libraries use Builder patterns to construct complex components with many configuration options."
         }
       ]
-    }
-,
+    },
     "observer-pattern-detail": {
       "id": "observer-pattern-detail",
       "title": "The Village Crier and the Observer Pattern",
@@ -438,3 +437,5 @@
         }
       ]
     }
+  }
+}

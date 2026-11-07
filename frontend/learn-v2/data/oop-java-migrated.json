@@ -17,7 +17,7 @@
           "xp": 10,
           "character": "Maya",
           "title": "The Codebase Tour",
-          "text": "\"Welcome to FinTech Solutions, Alex!\" Maya Chen smiled as she pulled up a chair next to the new junior developer. \"I know your first day can be overwhelming, but I'm here to help you understand our payment processing system.\" Alex Rodriguez looked at the screen filled with Java code, feeling a bit intimidated. \"Thanks, Maya. I learned basic Java syntax in bootcamp, but this looks... complex.\" \"Don't worry,\" Maya laughed. \"It looks complex because it's built using object-oriented programming. Think of it like this - instead of writing one giant program, we break everything into smaller, managea"
+          "text": "\"Welcome to FinTech Solutions, Alex!\" Maya said. The payment code looked intimidating, so she started with one idea: a class is a blueprint that groups related data and behavior, while each object is an independent instance created from that blueprint. Alex would begin by repairing a small PaymentProcessor class before exploring the larger system."
         },
         {
           "id": "section-1-recall",
@@ -32,14 +32,40 @@
           "type": "code",
           "concept": "the-codebase-tour",
           "xp": 25,
-          "title": "Basic Class and Object Creation",
-          "prompt": "This example shows how a single class (PaymentProcessor) serves as a blueprint for creating multiple objects. Each object has its own copy of the instance variables and can call the methods defined in the class.",
-          "starter": "",
-          "solutionIncludes": [
-            "Class",
-            "public",
-            "class",
-            "PaymentProcessor"
+          "title": "Debug a class and create its first object",
+          "prompt": "The starter has three defects. Repair the field declaration, construct PaymentProcessor correctly, and finish the method call. Run the checks when the file looks valid.",
+          "starter": "public class PaymentProcessor {\n    private String processorId\n\n    public void processPayment(double amount) {\n        System.out.println(\"Processing $\" + amount);\n    }\n}\n\nclass PaymentDemo {\n    public static void main(String[] args) {\n        PaymentProcessor processor = PaymentProcessor();\n        processor.processPayment(100.00)\n    }\n}",
+          "checks": [
+            {
+              "id": "processor-class",
+              "label": "Declares the PaymentProcessor class",
+              "pattern": "public\\s+class\\s+PaymentProcessor\\b",
+              "hint": "Use a public class declaration named PaymentProcessor."
+            },
+            {
+              "id": "processor-field",
+              "label": "Terminates the private processorId field",
+              "pattern": "private\\s+String\\s+processorId\\s*;",
+              "hint": "Java field declarations end with a semicolon."
+            },
+            {
+              "id": "processor-method",
+              "label": "Keeps processPayment(double amount)",
+              "pattern": "void\\s+processPayment\\s*\\(\\s*double\\s+amount\\s*\\)",
+              "hint": "Keep a void processPayment method with one double parameter."
+            },
+            {
+              "id": "processor-object",
+              "label": "Creates an object with new PaymentProcessor()",
+              "pattern": "new\\s+PaymentProcessor\\s*\\(\\s*\\)",
+              "hint": "Java object construction needs the new keyword."
+            },
+            {
+              "id": "processor-call",
+              "label": "Calls processPayment and terminates the statement",
+              "pattern": "processor\\.processPayment\\s*\\(\\s*100(?:\\.0+)?\\s*\\)\\s*;",
+              "hint": "End the processor.processPayment(100.00) call with a semicolon."
+            }
           ]
         },
         {
@@ -49,7 +75,7 @@
           "xp": 10,
           "character": "Maya",
           "title": "Building Your First Class",
-          "text": "\"Now it's your turn, Alex,\" Maya said, opening a new file. \"Let's create a User class for our system. Every good payment system needs to track users.\" Alex cracked his knuckles. \"Okay, so I need to think about what data a user should have and what they should be able to do?\" \"Perfect thinking!\" Maya encouraged. \"What information do we need to store about each user?\" Alex thought for a moment. \"Well, they'd need a name, email address, maybe an account balance?\" \"Great start! And what actions should a user be able to perform?\" \"They should be able to... update their profile? Check their balance?"
+          "text": "Maya asked Alex to model a user without exposing its state. They chose private fields for name, email, and account balance, then added methods that operate on those fields. When a parameter and a field represent the same idea, this.field makes the target object explicit and keeps updates readable."
         },
         {
           "id": "section-2-recall",
@@ -64,14 +90,34 @@
           "type": "code",
           "concept": "building-your-first-class",
           "xp": 25,
-          "title": "Complete User Class with Instance Variables and Methods",
-          "prompt": "This User class demonstrates how instance variables store data specific to each object, and methods operate on that data. The 'this' keyword explicitly refers to the current object, making the code clearer.",
-          "starter": "",
-          "solutionIncludes": [
-            "public",
-            "class",
-            "User",
-            "Instance"
+          "title": "Make object state explicit",
+          "prompt": "The fields and methods exist, but updateProfile assigns parameters ambiguously. Change the two assignments so they explicitly update this object's fields.",
+          "starter": "public class User {\n    private String name;\n    private String email;\n    private double accountBalance;\n\n    public void updateProfile(String newName, String newEmail) {\n        name = newName;\n        email = newEmail;\n    }\n\n    public double checkBalance() {\n        return accountBalance;\n    }\n}",
+          "checks": [
+            {
+              "id": "user-private-state",
+              "label": "Keeps User state private",
+              "pattern": "private\\s+String\\s+name\\s*;[\\s\\S]*private\\s+String\\s+email\\s*;[\\s\\S]*private\\s+double\\s+accountBalance\\s*;",
+              "hint": "Keep name, email, and accountBalance as private fields."
+            },
+            {
+              "id": "user-name-assignment",
+              "label": "Updates this.name",
+              "pattern": "this\\.name\\s*=\\s*newName\\s*;",
+              "hint": "Assign the newName parameter to this.name."
+            },
+            {
+              "id": "user-email-assignment",
+              "label": "Updates this.email",
+              "pattern": "this\\.email\\s*=\\s*newEmail\\s*;",
+              "hint": "Assign the newEmail parameter to this.email."
+            },
+            {
+              "id": "user-balance-method",
+              "label": "Exposes balance through a method",
+              "pattern": "double\\s+checkBalance\\s*\\(\\s*\\)",
+              "hint": "Keep the checkBalance method instead of exposing the field."
+            }
           ]
         },
         {
@@ -81,7 +127,7 @@
           "xp": 10,
           "character": "Maya",
           "title": "The Constructor Mystery",
-          "text": "\"The problem you identified is exactly why we need constructors,\" Maya explained. \"A constructor is a special method that runs automatically when we create an object. It's where we set up the initial state.\" Alex looked puzzled. \"But I don't see any constructor in our User class.\" \"That's because Java provides a default constructor automatically if we don't write one. But the default constructor doesn't do much - it just creates an empty object.\" Maya pulled up the Java documentation. \"Watch what happens when we try to use our current User class:\" \"That's not very useful,\" Alex observed. \"Exac"
+          "text": "Maya explained that constructors establish a valid initial state when an object is created. One constructor can accept every required value, while a smaller overload can delegate to it with a safe default. Constructor delegation avoids duplicating initialization logic and keeps both creation paths consistent."
         },
         {
           "id": "section-3-recall",
@@ -96,14 +142,35 @@
           "type": "code",
           "concept": "the-constructor-mystery",
           "xp": 25,
-          "title": "User Class with Multiple Constructors",
-          "prompt": "This example shows constructor overloading - providing multiple ways to create objects. Each constructor initializes the object differently based on the parameters provided.",
-          "starter": "",
-          "solutionIncludes": [
-            "public",
-            "class",
-            "User",
-            "private"
+          "title": "Add a safe overloaded constructor",
+          "prompt": "Keep the full constructor, then add a second User(String name, String email) constructor that delegates to it with a zero starting balance.",
+          "starter": "public class User {\n    private String name;\n    private String email;\n    private double accountBalance;\n\n    public User(String name, String email, double initialBalance) {\n        this.name = name;\n        this.email = email;\n        this.accountBalance = initialBalance;\n    }\n}",
+          "checks": [
+            {
+              "id": "user-constructors",
+              "label": "Provides two User constructors",
+              "pattern": "public\\s+User\\s*\\(",
+              "minMatches": 2,
+              "hint": "Add another public User constructor below the existing one."
+            },
+            {
+              "id": "full-constructor",
+              "label": "Keeps the three-parameter constructor",
+              "pattern": "public\\s+User\\s*\\(\\s*String\\s+name\\s*,\\s*String\\s+email\\s*,\\s*double\\s+initialBalance\\s*\\)",
+              "hint": "Keep the constructor that accepts name, email, and initialBalance."
+            },
+            {
+              "id": "short-constructor",
+              "label": "Adds the name-and-email constructor",
+              "pattern": "public\\s+User\\s*\\(\\s*String\\s+name\\s*,\\s*String\\s+email\\s*\\)",
+              "hint": "The overload should accept only name and email."
+            },
+            {
+              "id": "constructor-delegation",
+              "label": "Delegates with a zero balance",
+              "pattern": "this\\s*\\(\\s*name\\s*,\\s*email\\s*,\\s*0(?:\\.0+)?\\s*\\)\\s*;",
+              "hint": "Call this(name, email, 0.0); as the overload's first statement."
+            }
           ]
         },
         {
@@ -113,7 +180,7 @@
           "xp": 10,
           "character": "Maya",
           "title": "Objects in Action",
-          "text": "\"Now let's see our objects working together in a real scenario,\" Maya said excitedly. \"Let's simulate a simple transaction between users.\" Alex was getting more confident. \"So we'll create some users and have them interact with each other?\" \"Exactly! Let's build a simple transaction system.\" Maya opened a new file: \"But wait,\" Alex noticed, \"how do users actually send money to each other? Our User class can only make payments, not receive them.\" \"Great observation! Let's add a method to receive payments:\" Maya updated the User class: \"Now let's create a transfer method that coordinates between"
+          "text": "A transfer is useful only when objects collaborate correctly. The sender must approve and apply the debit before the receiver is credited. Maya asked Alex to trace both success and failure paths so the method never reports success while silently skipping the receiver update."
         },
         {
           "id": "section-4-recall",
@@ -128,14 +195,34 @@
           "type": "code",
           "concept": "objects-in-action",
           "xp": 25,
-          "title": "Complete Transaction System with Interacting Objects",
-          "prompt": "This complete example shows objects interacting in a real-world scenario. Users can send and receive payments, demonstrating how objects maintain independent state while communicating through method calls.",
-          "starter": "",
-          "solutionIncludes": [
-            "public",
-            "class",
-            "User",
-            "private"
+          "title": "Finish the object interaction",
+          "prompt": "The sender is charged, but the receiver never gets the money. Complete the successful branch so the two objects interact correctly.",
+          "starter": "class User {\n    public boolean makePayment(double amount) {\n        return amount > 0;\n    }\n\n    public void receivePayment(double amount) {\n        System.out.println(\"Received $\" + amount);\n    }\n}\n\npublic class TransactionSystem {\n    public static boolean transferMoney(User sender, User receiver, double amount) {\n        if (sender.makePayment(amount)) {\n            // TODO: credit the receiver\n            return true;\n        }\n        return false;\n    }\n}",
+          "checks": [
+            {
+              "id": "transfer-method",
+              "label": "Defines transferMoney with two users and an amount",
+              "pattern": "transferMoney\\s*\\(\\s*User\\s+sender\\s*,\\s*User\\s+receiver\\s*,\\s*double\\s+amount\\s*\\)",
+              "hint": "Keep the transferMoney method signature."
+            },
+            {
+              "id": "charge-sender",
+              "label": "Checks sender.makePayment(amount)",
+              "pattern": "sender\\.makePayment\\s*\\(\\s*amount\\s*\\)",
+              "hint": "Charge the sender before crediting the receiver."
+            },
+            {
+              "id": "credit-receiver",
+              "label": "Calls receiver.receivePayment(amount)",
+              "pattern": "receiver\\.receivePayment\\s*\\(\\s*amount\\s*\\)\\s*;",
+              "hint": "Inside the successful branch, call receiver.receivePayment(amount);"
+            },
+            {
+              "id": "failure-result",
+              "label": "Returns false when payment fails",
+              "pattern": "return\\s+false\\s*;",
+              "hint": "Keep the failure return after the if block."
+            }
           ]
         },
         {
@@ -145,7 +232,7 @@
           "xp": 10,
           "character": "Maya",
           "title": "Code Review and Best Practices",
-          "text": "\"Great work, Alex!\" Maya said as she reviewed the code they'd written together. \"But before we wrap up, let me show you some best practices that will make your code even better.\" Alex pulled up their User class. \"What could we improve?\" \"Well, let's start with naming conventions. In Java, we follow specific patterns:\" Maya highlighted different parts of the code: \"Also, notice how we organize our code?\" Maya pointed to the class structure: \"What about error handling?\" Alex asked. \"What if someone tries to create a user with a negative balance?\" \"Excellent thinking! Let's add some validation to"
+          "text": "During review, Maya focused on invariants rather than style alone. A User should never begin with a missing name or a negative balance. Validating constructor inputs before assignment makes failure immediate, keeps invalid objects out of the system, and gives callers a clear error to handle."
         },
         {
           "id": "section-5-recall",
@@ -160,14 +247,35 @@
           "type": "code",
           "concept": "code-review-and-best-practices",
           "xp": 25,
-          "title": "Well-Structured User Class with Best Practices",
-          "prompt": "This example demonstrates professional Java code structure with proper naming conventions, input validation, documentation, and error handling. The code is organized logically and includes helpful comments.",
-          "starter": "",
-          "solutionIncludes": [
-            "Represents",
-            "FinTech",
-            "Manages",
-            "public"
+          "title": "Protect the User constructor",
+          "prompt": "Add fail-fast validation: reject a missing or blank name and reject a negative initial balance with IllegalArgumentException before assigning fields.",
+          "starter": "public class User {\n    private String name;\n    private double accountBalance;\n\n    public User(String name, double initialBalance) {\n        this.name = name;\n        this.accountBalance = initialBalance;\n    }\n}",
+          "checks": [
+            {
+              "id": "name-validation",
+              "label": "Rejects a null or blank name",
+              "pattern": "name\\s*==\\s*null|name\\.trim\\s*\\(\\s*\\)\\.isEmpty\\s*\\(\\s*\\)|name\\.isBlank\\s*\\(\\s*\\)",
+              "hint": "Check null plus either trim().isEmpty() or isBlank()."
+            },
+            {
+              "id": "balance-validation",
+              "label": "Rejects a negative initial balance",
+              "pattern": "initialBalance\\s*<\\s*0",
+              "hint": "Add a condition for initialBalance < 0."
+            },
+            {
+              "id": "fail-fast",
+              "label": "Throws IllegalArgumentException",
+              "pattern": "throw\\s+new\\s+IllegalArgumentException\\s*\\(",
+              "minMatches": 2,
+              "hint": "Each invalid input should throw a clear IllegalArgumentException."
+            },
+            {
+              "id": "assign-after-validation",
+              "label": "Keeps explicit field assignments",
+              "pattern": "this\\.name\\s*=\\s*name\\s*;[\\s\\S]*this\\.accountBalance\\s*=\\s*initialBalance\\s*;",
+              "hint": "Keep the field assignments after validation succeeds."
+            }
           ]
         },
         {

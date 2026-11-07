@@ -23,8 +23,8 @@ every material entry.
 | Public source | https://github.com/gk-tech-codes/learnbyshorts-project |
 | Security baseline | S3 Block Public Access enabled; CloudFront Origin Access Control is the only public delivery path |
 | Recovery baseline | S3 object versioning enabled |
-| Learning experience | 19-step interactive Java OOP preview with recall, quizzes, code challenges, XP, local progress, streak protection, and spaced review |
-| AI-era curriculum | Seven-level AI Fluency Lab with a local Skill Studio, coding confidence gate, official source library, and multi-model practice across ChatGPT, Claude, Grok, and Gemini |
+| Learning experience | 19-step interactive Java OOP preview with recall, quizzes, five private browser-debugging challenges, XP, resilient local progress, streak protection, and spaced review |
+| AI-era curriculum | Eight role-based starting paths, a seven-level AI Fluency Lab, research-linked learning loops, a local Skill Studio, a coding confidence gate, failure-case practice, and multi-model work across ChatGPT, Claude, Grok, and Gemini |
 | Privacy posture | Learning events exclude answers and personally identifiable information; GPC and Do Not Track are respected |
 | Revenue experiment | $29 one-time founding learner offer; no claim of sales until payment records exist |
 | Operating model | Static/offline-generated content delivered through S3 and CloudFront to avoid always-on AI or application-server cost |
@@ -38,7 +38,8 @@ every material entry.
 | 2026-11-07 | `fc233d0` | Repaired legacy learning pages and dashboard auth | Git commit, test results |
 | 2026-11-07 | `a24213b` | Privacy-safe learning metrics and search discovery | Git commit, GA4 event definitions, sitemap |
 | 2026-11-07 | `5ed1e29` | Production analytics compatibility fix | Git commit, live QA record |
-| 2026-11-07 | Pending final commit | AI Fluency Lab, reusable-skill curriculum, and secure Cognito account implementation | Git commit, production screenshots, browser checks, security checks, AWS configuration export |
+| 2026-11-07 | `ef10641` | AI Fluency Lab, reusable-skill curriculum, and secure Cognito account implementation | Git commit, production screenshots, browser checks, security checks, AWS configuration export |
+| 2026-11-07 | Pending QA commit | Eight role-based paths, research-linked learning loop, Java debugger repair, content recovery, and expanded QA automation | Git commit, QA report, browser screenshots, automated check output |
 
 ## Metric definitions
 
@@ -55,6 +56,7 @@ Use consistent definitions so results remain credible.
 | Paid conversion | Confirmed payments divided by founding-access requests | Payment and request records |
 | Independent adoption | Named schools, teams, teachers, or communities actively using the product | Written confirmation or public URL |
 | AI roadmap depth | Number of the seven AI Fluency levels marked practiced in the local learner state | Local product event or permissioned study export |
+| AI path selection | Selected role-based starting path; never includes learner-entered prompt or skill text | Aggregate GA4 event or permissioned study export |
 | Skill artifact completion | Learner generates and tests a reusable skill contract | Permissioned pilot record; never collect private skill text by default |
 
 ## Monthly snapshot

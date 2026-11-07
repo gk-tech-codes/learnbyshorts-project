@@ -171,6 +171,12 @@ const Analytics = {
         });
     },
 
+    trackAiTrack: function(track) {
+        sendEvent('ai_fluency_track_select', {
+            track
+        });
+    },
+
     trackSkillStudioPreset: function(preset) {
         sendEvent('ai_skill_studio_start', {
             preset

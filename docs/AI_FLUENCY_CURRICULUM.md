@@ -19,6 +19,29 @@ The public lab expresses this as:
 
 > Ask → inspect → test → explain → improve
 
+## Eight role-based starting paths
+
+The same durable capabilities are introduced through eight practical contexts:
+
+1. first-time AI user;
+2. student and learner;
+3. software developer;
+4. job seeker;
+5. researcher and analyst;
+6. creator and marketer;
+7. manager and founder;
+8. automation builder.
+
+Each four-session start follows the same support-fading loop:
+
+1. **Worked example:** observe a complete, narrated example.
+2. **Guided attempt:** perform the pattern with bounded support.
+3. **Delayed retrieval:** return later and reconstruct it from memory.
+4. **Independent transfer:** use it in a new context and explain the result.
+
+“Easy” means removing unnecessary cognitive load, not removing the thinking
+that creates durable skill.
+
 ## Seven levels
 
 | Level | Capability | Required proof |
@@ -82,6 +105,45 @@ show:
 - failure detection and rollback thinking.
 
 Passing the gate reduces risk but never transfers accountability to the model.
+
+The free Java lab applies the same principle with a local code debugger. It
+checks balanced structure and explicit lesson requirements without uploading or
+executing learner code. The interface must call this a browser checker, not a
+compiler, and keep the successful result visible until the learner chooses to
+continue.
+
+## Research basis and claim standard
+
+The curriculum uses six evidence-informed design ideas:
+
+- retrieval practice rather than repeated exposure alone;
+- spacing practice over time;
+- worked examples for novices followed by faded support;
+- self-explanation to make the learner's mental model visible;
+- AI guardrails that protect productive struggle and unassisted performance;
+- structured tutoring that is evaluated in its specific learning context.
+
+Public lessons link directly to the relevant research. These sources support
+the mechanisms, not a claim that LearnByShorts itself improves learning.
+Until a credible product-specific study is completed, the correct description
+is **research-informed learning design**.
+
+Any future outcome claim must publish the study method, sample, comparison,
+measures, uncertainty, limitations, and negative as well as positive results.
+
+## Failure-case coverage
+
+Every path must practice recurring failures, not only ideal outputs:
+
+- confident inaccuracies and stale information;
+- sensitive-data exposure and prompt injection;
+- code regressions and fabricated citations;
+- bias and unsafe over-automation;
+- tool failure and runaway cost;
+- ambiguous intent and learner dependence on AI.
+
+No finite matrix covers every future failure. Course maintenance should add a
+case when a new incident reveals a distinct, reusable failure category.
 
 ## Interview policy
 

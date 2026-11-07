@@ -6,6 +6,7 @@ import process from 'node:process';
 
 const siteRoot = path.resolve('frontend');
 const htmlFiles = [];
+const jsonFiles = [];
 const failures = [];
 
 function walk(directory) {
@@ -13,8 +14,9 @@ function walk(directory) {
         const fullPath = path.join(directory, entry.name);
         if (entry.isDirectory()) {
             walk(fullPath);
-        } else if (entry.isFile() && entry.name.endsWith('.html')) {
-            htmlFiles.push(fullPath);
+        } else if (entry.isFile()) {
+            if (entry.name.endsWith('.html')) htmlFiles.push(fullPath);
+            if (entry.name.endsWith('.json')) jsonFiles.push(fullPath);
         }
     }
 }
@@ -62,12 +64,52 @@ function checkLocalLinks(file, html) {
     }
 }
 
+function checkHtmlIntegrity(file, html) {
+    const relative = path.relative(siteRoot, file);
+    const ids = [...html.matchAll(/\bid=["']([^"']+)["']/gi)].map(match => match[1]);
+    const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+    for (const id of new Set(duplicates)) {
+        failures.push(`${relative} contains duplicate id "${id}"`);
+    }
+
+    for (const match of html.matchAll(/<img\b[^>]*>/gi)) {
+        if (!/\balt=["'][^"']*["']/i.test(match[0])) {
+            failures.push(`${relative} contains an image without alt text`);
+        }
+    }
+
+    for (const match of html.matchAll(/<a\b[^>]*\btarget=["']_blank["'][^>]*>/gi)) {
+        if (!/\brel=["'][^"']*\bnoopener\b[^"']*["']/i.test(match[0])) {
+            failures.push(`${relative} opens a new tab without rel="noopener"`);
+        }
+    }
+
+    if (!/<html\b[^>]*\blang=["'][^"']+["']/i.test(html)) {
+        failures.push(`${relative} is missing an html lang attribute`);
+    }
+    if (!/<meta\b[^>]*\bname=["']viewport["']/i.test(html)) {
+        failures.push(`${relative} is missing a viewport meta tag`);
+    }
+    if (!/<title\b[^>]*>[^<]+<\/title>/i.test(html)) {
+        failures.push(`${relative} is missing a document title`);
+    }
+}
+
 walk(siteRoot);
 
 for (const file of htmlFiles) {
     const html = fs.readFileSync(file, 'utf8');
     checkJsonLd(file, html);
     checkLocalLinks(file, html);
+    checkHtmlIntegrity(file, html);
+}
+
+for (const file of jsonFiles) {
+    try {
+        JSON.parse(fs.readFileSync(file, 'utf8'));
+    } catch (error) {
+        failures.push(`${path.relative(siteRoot, file)} has invalid JSON: ${error.message}`);
+    }
 }
 
 if (failures.length > 0) {
@@ -75,4 +117,7 @@ if (failures.length > 0) {
     process.exit(1);
 }
 
-console.log(`Validated JSON-LD and local links in ${htmlFiles.length} HTML files.`);
+console.log(
+    `Validated links, metadata, accessibility basics, ${jsonFiles.length} JSON files, ` +
+    `and JSON-LD in ${htmlFiles.length} HTML files.`
+);

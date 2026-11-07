@@ -24,11 +24,12 @@ async function main() {
   $('#title').textContent = course.title;
   document.title = `${course.title} | LearnByShorts`;
 
-  let idx = progress.get().position || 0;
   const total = seq.length;
+  let idx = Math.min(total, Math.max(0, progress.get().position || 0));
   const byId = Object.fromEntries(seq.map((b, i) => [b.id, i]));
   window.Analytics?.trackLessonStart?.(course.id, isReturningLearner);
   let completionTracked = false;
+  let storageWarningShown = false;
 
   // Honest "come back" trigger: surface concepts due for review.
   const dueCount = reviews.due().length;
@@ -96,10 +97,35 @@ async function main() {
   }
 
   function persist() {
-    progress.save({ position: idx, game: game.toJSON(), reviews: reviews.toJSON() });
+    const saved = progress.save({
+      position: idx,
+      game: game.toJSON(),
+      reviews: reviews.toJSON()
+    });
+    if (!saved && !storageWarningShown) {
+      storageWarningShown = true;
+      flash('Progress could not be saved in this browser.');
+    }
   }
 
   step();
 }
 
-main().catch(e => { document.body.innerHTML = `<pre style="color:red">${e.message}</pre>`; });
+main().catch(() => {
+  const stage = document.querySelector('#stage');
+  if (!stage) return;
+  stage.replaceChildren();
+  const card = document.createElement('div');
+  card.className = 'completion-card';
+  const body = document.createElement('div');
+  const title = document.createElement('h2');
+  const copy = document.createElement('p');
+  const retry = document.createElement('a');
+  title.textContent = 'The lesson could not load.';
+  copy.textContent = 'Check your connection and try again. Your saved progress has not been removed.';
+  retry.href = window.location.href;
+  retry.textContent = 'Retry lesson';
+  body.append(title, copy, retry);
+  card.append(body);
+  stage.append(card);
+});

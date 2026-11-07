@@ -1,11 +1,14 @@
 // GameEngine: XP, levels, streaks. Pure-ish state container.
 export class GameEngine {
   constructor(state = {}) {
-    this.xp = state.xp || 0;
-    this.lastDay = state.lastDay || null;   // ISO date string
-    this.streak = state.streak || 0;
-    this.freezes = state.freezes ?? 2;      // safety valve: auto-covers missed days
-    this.badges = new Set(state.badges || []);
+    const value = state && typeof state === 'object' && !Array.isArray(state) ? state : {};
+    this.xp = Number.isFinite(value.xp) && value.xp >= 0 ? Math.floor(value.xp) : 0;
+    this.lastDay = /^\d{4}-\d{2}-\d{2}$/.test(value.lastDay) ? value.lastDay : null;
+    this.streak = Number.isFinite(value.streak) && value.streak >= 0 ? Math.floor(value.streak) : 0;
+    this.freezes = Number.isFinite(value.freezes) && value.freezes >= 0 ? Math.floor(value.freezes) : 2;
+    this.badges = new Set(Array.isArray(value.badges)
+      ? value.badges.filter(badge => typeof badge === 'string')
+      : []);
   }
 
   // 100 XP per level, level grows with sqrt for a gentle curve.
@@ -13,7 +16,7 @@ export class GameEngine {
   get xpInLevel() { const b = 50 * (this.level - 1) ** 2; return this.xp - b; }
 
   award(points) {
-    this.xp += Math.max(0, points | 0);
+    this.xp += Number.isFinite(points) ? Math.max(0, Math.floor(points)) : 0;
     if (this.xp >= 500) this.badges.add('rising-star');
     return this.xp;
   }

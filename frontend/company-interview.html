@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script>
-        // Redirect to course-detail.html with company parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const company = urlParams.get('company');
-        if (company) {
-            window.location.replace(`course-detail.html?id=${company}`);
-        } else {
-            window.location.replace('interview-companies.html');
-        }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,follow">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <title>Opening Interview Course | LearnByShorts</title>
+    <script src="js/company-interview-redirect.js" defer></script>
 </head>
 <body>
     <p>Redirecting...</p>
+    <noscript><a href="interview-companies.html">Browse interview courses</a></noscript>
 </body>
 </html>

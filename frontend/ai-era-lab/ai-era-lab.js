@@ -17,6 +17,10 @@
     const copyButton = document.querySelector('[data-copy-skill]');
     const copyStatus = document.querySelector('[data-copy-status]');
     const verification = document.querySelector('[data-verification]');
+    const trackButtons = [...document.querySelectorAll('[data-track]')];
+    const trackTitle = document.querySelector('[data-track-title]');
+    const trackCopy = document.querySelector('[data-track-copy]');
+    const trackPlan = document.querySelector('[data-track-plan]');
 
     const presets = {
         'code-review': {
@@ -63,6 +67,89 @@
             ].join('\n'),
             safety: 'Do not claim knowledge of a company interview process without a current source. Do not provide leaked questions. Avoid demographic or personality judgments. Do not solve the exercise before the learner attempts it unless they explicitly request a walkthrough.',
             done: 'The learner receives rubric-based feedback, a concrete next exercise, and an explanation of how to make reasoning visible. Any company-specific claim is sourced or clearly labeled uncertain.'
+        }
+    };
+
+    const tracks = {
+        beginner: {
+            title: 'First-time AI user',
+            copy: 'Learn what AI can and cannot know, then complete one useful task without giving away private information.',
+            plan: [
+                ['Watch', 'See a worked example that turns a vague request into a safe, specific outcome.'],
+                ['Try', 'Complete the same pattern on a low-risk task using no private or confidential data.'],
+                ['Retrieve', 'The next day, rebuild the request from memory and verify one factual claim.'],
+                ['Transfer', 'Use the pattern on a new task and explain when AI should not be used.']
+            ]
+        },
+        student: {
+            title: 'Student & learner',
+            copy: 'Use AI as a tutor that asks, hints, and checks—not as an answer machine that removes productive struggle.',
+            plan: [
+                ['Diagnose', 'Answer three short questions before AI explains anything.'],
+                ['Learn', 'Study one worked example, then complete a partially solved example.'],
+                ['Retrieve', 'Return after a delay and explain the idea without notes or AI.'],
+                ['Transfer', 'Solve a new problem and ask AI to critique the reasoning, not replace it.']
+            ]
+        },
+        developer: {
+            title: 'Software developer',
+            copy: 'Use AI for planning, implementation, debugging, testing, and review while keeping correctness and security evidence in human hands.',
+            plan: [
+                ['Constrain', 'Give the smallest relevant files, expected behavior, boundaries, and definition of done.'],
+                ['Patch', 'Generate one reviewable change and inspect the complete diff before accepting it.'],
+                ['Verify', 'Run focused tests, add an edge case, and check auth, data, secrets, and failure paths.'],
+                ['Own', 'Explain the design without AI and document monitoring and rollback.']
+            ]
+        },
+        interview: {
+            title: 'Job seeker',
+            copy: 'Practice modern interviews with visible reasoning, tool-policy awareness, realistic time boxes, and evidence-backed project stories.',
+            plan: [
+                ['Baseline', 'Attempt one coding, design, or behavioral prompt before receiving hints.'],
+                ['Coach', 'Use AI to ask follow-ups and score observable evidence against a rubric.'],
+                ['Repeat', 'Redo the weakest section later without notes, autocomplete, or solution access.'],
+                ['Simulate', 'Complete a timed mock under the target interview’s stated AI-tool policy.']
+            ]
+        },
+        researcher: {
+            title: 'Researcher & analyst',
+            copy: 'Build source-grounded briefs that separate verified facts, disagreement, inference, dates, and uncertainty.',
+            plan: [
+                ['Frame', 'State the decision, freshness requirement, scope, and evidence standard.'],
+                ['Source', 'Find primary sources first and record publication and effective dates.'],
+                ['Challenge', 'Actively search for conflicting evidence and test important calculations.'],
+                ['Synthesize', 'Write a cited conclusion that labels inference and remaining uncertainty.']
+            ]
+        },
+        creator: {
+            title: 'Creator & marketer',
+            copy: 'Move from original insight to brief, draft, critique, and distribution without flattening your voice or inventing evidence.',
+            plan: [
+                ['Originate', 'Capture your audience insight, point of view, examples, and source material first.'],
+                ['Brief', 'Define the promise, format, voice constraints, proof, and prohibited claims.'],
+                ['Critique', 'Ask AI for alternatives and objections, then make the editorial decision yourself.'],
+                ['Validate', 'Check originality, citations, factual claims, accessibility, and audience response.']
+            ]
+        },
+        leader: {
+            title: 'Manager & founder',
+            copy: 'Choose valuable AI uses, set policy and approval boundaries, measure return, and keep accountable humans in the loop.',
+            plan: [
+                ['Select', 'Rank use cases by user value, frequency, error cost, data sensitivity, and reversibility.'],
+                ['Bound', 'Define approved data, tools, spending limits, review owners, and prohibited actions.'],
+                ['Pilot', 'Run a small reversible test with a baseline and explicit success metric.'],
+                ['Decide', 'Compare quality, time, cost, incidents, and adoption before scaling.']
+            ]
+        },
+        builder: {
+            title: 'Automation builder',
+            copy: 'Turn a repeated workflow into a bounded skill or agent with tools, evaluations, observability, and safe recovery.',
+            plan: [
+                ['Contract', 'Define the trigger, inputs, workflow, permissions, budget, and proof of completion.'],
+                ['Connect', 'Use schemas and least-privilege tools with timeouts, validation, and idempotency.'],
+                ['Evaluate', 'Test normal, edge, adversarial, refusal, tool-failure, and recovery cases.'],
+                ['Operate', 'Add traces, cost ceilings, approvals, rollback, and a human escalation path.']
+            ]
         }
     };
 
@@ -129,10 +216,60 @@
     let completedLevels = Array.isArray(savedProgress)
         ? savedProgress
         : savedProgress.completedLevels || [];
+    let selectedTrack = !Array.isArray(savedProgress) && tracks[savedProgress.selectedTrack]
+        ? savedProgress.selectedTrack
+        : 'beginner';
     if (!Array.isArray(completedLevels)) completedLevels = [];
     completedLevels = completedLevels.filter(value =>
         levelButtons.some(button => button.dataset.completeLevel === value)
     );
+
+    function saveAiProgress() {
+        writeJson(progressKey, {
+            completedLevels,
+            selectedTrack,
+            percent: Math.round((completedLevels.length / levelButtons.length) * 100),
+            updatedAt: new Date().toISOString()
+        });
+    }
+
+    function renderTrack(trackId) {
+        const track = tracks[trackId] || tracks.beginner;
+        selectedTrack = tracks[trackId] ? trackId : 'beginner';
+
+        trackButtons.forEach(button => {
+            button.setAttribute('aria-pressed', String(button.dataset.track === selectedTrack));
+        });
+        if (trackTitle) trackTitle.textContent = track.title;
+        if (trackCopy) trackCopy.textContent = track.copy;
+        if (trackPlan) {
+            trackPlan.replaceChildren();
+            track.plan.forEach(([label, description], index) => {
+                const item = document.createElement('li');
+                const number = document.createElement('span');
+                const body = document.createElement('div');
+                const heading = document.createElement('strong');
+                const detail = document.createElement('p');
+
+                number.textContent = String(index + 1).padStart(2, '0');
+                heading.textContent = label;
+                detail.textContent = description;
+                body.append(heading, detail);
+                item.append(number, body);
+                trackPlan.append(item);
+            });
+        }
+    }
+
+    trackButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            renderTrack(button.dataset.track);
+            saveAiProgress();
+            window.Analytics?.trackAiTrack?.(selectedTrack);
+        });
+    });
+
+    renderTrack(selectedTrack);
     updateProgress(completedLevels);
 
     levelButtons.forEach(button => {
@@ -141,11 +278,7 @@
             completedLevels = completedLevels.includes(level)
                 ? completedLevels.filter(value => value !== level)
                 : [...completedLevels, level];
-            writeJson(progressKey, {
-                completedLevels,
-                percent: Math.round((completedLevels.length / levelButtons.length) * 100),
-                updatedAt: new Date().toISOString()
-            });
+            saveAiProgress();
             updateProgress(completedLevels);
             window.Analytics?.trackAiLevel?.(
                 level,
@@ -157,11 +290,7 @@
 
     resetProgress?.addEventListener('click', () => {
         completedLevels = [];
-        writeJson(progressKey, {
-            completedLevels,
-            percent: 0,
-            updatedAt: new Date().toISOString()
-        });
+        saveAiProgress();
         updateProgress(completedLevels);
     });
 

@@ -1,6 +1,8 @@
 // BlockRenderer: render a block to HTML and wire interaction.
 // onResult({ xp, concept, quality, correct, next }) is called when the
 // learner completes a block. quality (0-3) feeds spaced repetition.
+import { evaluateJavaChallenge } from './CodeValidator.js';
+
 export const BlockRenderer = {
   render(block, mount, onResult) {
     mount.innerHTML = '';
@@ -80,16 +82,87 @@ export const BlockRenderer = {
   },
 
   _code(b, mount, done) {
-    const el = this._h(`<p class="block-kicker">Code challenge</p><h2>${this._e(b.title || 'Code Challenge')}</h2><p>${this._e(b.prompt || '')}</p>
-      <textarea rows="6" spellcheck="false" aria-label="Code challenge editor">${this._e(b.starter || '')}</textarea>
-      <button class="primary">Check my code</button><p class="feedback"></p>`);
-    el.querySelector('button').onclick = () => {
-      const code = el.querySelector('textarea').value;
-      const pass = (b.solutionIncludes || []).every(s => code.includes(s));
-      el.querySelector('.feedback').textContent = pass
-        ? '✅ Passed — your code includes the required pieces.'
-        : 'Try again — check the prompt and the class or method names.';
-      if (pass) done({ xp: b.xp ?? 25, concept: b.concept, correct: true, quality: 3 });
+    const el = this._h(`<p class="block-kicker">Code debugger</p><h2>${this._e(b.title || 'Code Challenge')}</h2><p>${this._e(b.prompt || '')}</p>
+      <div class="code-workbench">
+        <div class="code-workbench-head"><strong>Java practice file</strong><span>Private browser checks · nothing uploaded</span></div>
+        <textarea rows="12" maxlength="12000" spellcheck="false" aria-label="Code challenge editor">${this._e(b.starter || '')}</textarea>
+        <div class="code-actions">
+          <button type="button" class="primary" data-code-action="check">Run checks</button>
+          <button type="button" data-code-action="reset">Reset starter</button>
+        </div>
+        <div class="code-report" aria-live="polite">
+          <strong data-code-summary>Fix the starter code, then run the checks.</strong>
+          <p>This fast checker validates the lesson requirements and balanced Java structure. It is not a full compiler.</p>
+          <ul class="code-requirements"></ul>
+          <ul class="code-diagnostics" hidden></ul>
+        </div>
+        <button type="button" class="primary code-continue" data-code-action="continue" hidden>Continue with verified code</button>
+      </div>`);
+    const editor = el.querySelector('textarea');
+    const runButton = el.querySelector('[data-code-action="check"]');
+    const resetButton = el.querySelector('[data-code-action="reset"]');
+    const continueButton = el.querySelector('[data-code-action="continue"]');
+    const summary = el.querySelector('[data-code-summary]');
+    const requirements = el.querySelector('.code-requirements');
+    const diagnostics = el.querySelector('.code-diagnostics');
+    let latestPassed = false;
+
+    const renderReport = result => {
+      requirements.replaceChildren();
+      result.checks.forEach(check => {
+        const item = document.createElement('li');
+        item.className = check.passed ? 'ok' : 'bad';
+        const label = document.createElement('strong');
+        const hint = document.createElement('span');
+        label.textContent = `${check.passed ? '✓' : '○'} ${check.label}`;
+        hint.textContent = check.passed ? 'Requirement detected.' : check.hint;
+        item.append(label, hint);
+        requirements.append(item);
+      });
+
+      diagnostics.replaceChildren();
+      result.diagnostics.forEach(message => {
+        const item = document.createElement('li');
+        item.textContent = message;
+        diagnostics.append(item);
+      });
+      diagnostics.hidden = result.diagnostics.length === 0;
+      latestPassed = result.pass;
+      continueButton.hidden = !result.pass;
+      runButton.disabled = result.pass;
+      summary.textContent = result.pass
+        ? 'All checks pass. Inspect the code once more, then continue.'
+        : `${result.checks.filter(check => check.passed).length} of ${result.checks.length} requirements pass. Keep debugging.`;
+      el.querySelector('.code-report').classList.toggle('is-ready', result.pass);
+    };
+
+    runButton.onclick = () => {
+      renderReport(evaluateJavaChallenge(b, editor.value));
+    };
+    resetButton.onclick = () => {
+      editor.value = b.starter || '';
+      latestPassed = false;
+      runButton.disabled = false;
+      continueButton.hidden = true;
+      requirements.replaceChildren();
+      diagnostics.replaceChildren();
+      diagnostics.hidden = true;
+      summary.textContent = 'Starter restored. Fix the code, then run the checks.';
+      el.querySelector('.code-report').classList.remove('is-ready');
+      editor.focus();
+    };
+    editor.addEventListener('input', () => {
+      if (!latestPassed) return;
+      latestPassed = false;
+      runButton.disabled = false;
+      continueButton.hidden = true;
+      summary.textContent = 'Code changed. Run the checks again before continuing.';
+      el.querySelector('.code-report').classList.remove('is-ready');
+    });
+    continueButton.onclick = () => {
+      if (!latestPassed) return;
+      continueButton.disabled = true;
+      done({ xp: b.xp ?? 25, concept: b.concept, correct: true, quality: 3 });
     };
     mount.append(el);
   },
@@ -99,17 +172,30 @@ export const BlockRenderer = {
       <p class="timer"></p><div class="q"></div>`);
     mount.append(el);
     const qs = b.questions || [];
-    let i = 0, score = 0, left = b.timeLimitSec || 60;
+    let i = 0, score = 0, left = b.timeLimitSec || 60, finished = false, timer;
     const timerEl = el.querySelector('.timer');
-    const timer = setInterval(() => {
-      timerEl.textContent = `⏱ ${--left}s`;
-      if (left <= 0) finish();
-    }, 1000);
-    const finish = () => { clearInterval(timer); done({ xp: Math.round((b.xp ?? 50) * score / Math.max(1, qs.length)), concept: b.concept, correct: score === qs.length }); };
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      clearInterval(timer);
+      el.querySelectorAll('button').forEach(button => { button.disabled = true; });
+      done({
+        xp: Math.round((b.xp ?? 50) * score / Math.max(1, qs.length)),
+        concept: b.concept,
+        correct: score === qs.length
+      });
+    };
     const next = () => {
+      if (finished) return;
       if (i >= qs.length) return finish();
       this._quiz(qs[i], el.querySelector('.q'), r => { if (r.correct) score++; i++; next(); });
     };
+    timerEl.textContent = `⏱ ${left}s`;
+    timer = setInterval(() => {
+      left -= 1;
+      timerEl.textContent = `⏱ ${Math.max(0, left)}s`;
+      if (left <= 0) finish();
+    }, 1000);
     next();
   }
 };
