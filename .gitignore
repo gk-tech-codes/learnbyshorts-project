@@ -1,4 +1,7 @@
-# Scripts and tools directory (contains AWS credentials and deployment scripts)
+# Local design sandbox
+revamp/
+
+# Scripts and tools directory (contains legacy local deployment configuration)
 scripts/
 
 # Dependencies
@@ -13,6 +16,17 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env.*
+!.env.example
+
+# Cloud and developer credentials
+.aws/
+credentials
+credentials.json
+service-account*.json
+token*.json
+*.secret
+*.secrets
 
 # AWS and deployment files
 aws-credentials.txt

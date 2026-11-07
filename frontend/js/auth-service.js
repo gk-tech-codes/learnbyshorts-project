@@ -1,417 +1,268 @@
 /**
- * LearnByShorts Authentication Service
- * Professional client-side authentication with Google OAuth
+ * LearnByShorts authentication client.
+ *
+ * Production authentication is intentionally fail-closed: no mock users,
+ * synthetic tokens, or placeholder API endpoints are accepted.
  */
-
 class AuthService {
     constructor() {
-        this.apiBaseUrl = this.getApiBaseUrl();
+        this.apiBaseUrl = this.readMeta('api-base-url').replace(/\/+$/, '');
+        this.googleClientId = this.readMeta('google-client-id');
         this.currentUser = null;
-        this.token = localStorage.getItem('auth_token');
+        this.token = sessionStorage.getItem('auth_token');
         this.googleInitialized = false;
-        
-        // Initialize Google Sign-In when ready
-        this.initWhenReady();
-        
-        // Auto-verify token on load
+        this.initialized = this.init();
+    }
+
+    readMeta(name) {
+        return document.querySelector(`meta[name="${name}"]`)?.content?.trim() || '';
+    }
+
+    isConfigured() {
+        try {
+            const url = new URL(this.apiBaseUrl);
+            return url.protocol === 'https:' &&
+                !url.hostname.includes('your-') &&
+                this.googleClientId.endsWith('.apps.googleusercontent.com');
+        } catch {
+            return false;
+        }
+    }
+
+    async init() {
+        if (!this.isConfigured()) {
+            this.clearSession();
+            this.triggerAuthEvent('unavailable', null);
+            return;
+        }
+
         if (this.token) {
-            this.verifyToken();
+            await this.verifyToken();
         }
-    }
-    
-    async initWhenReady() {
-        // Wait for Google script to load
-        let attempts = 0;
-        while (!window.google && attempts < 50) {
-            await new Promise(resolve => setTimeout(resolve, 100));
-            attempts++;
-        }
-        
-        if (window.google) {
-            await this.initGoogleSignIn();
-        } else {
-            console.error('❌ Google Sign-In script failed to load');
-        }
-    }
-    
-    getApiBaseUrl() {
-        // Use Lambda Function URL (will be updated after deployment)
-        return 'https://your-lambda-function-url.lambda-url.us-east-1.on.aws';
-    }
-    
-    async initGoogleSignIn() {
-        try {
-            // Use same client ID but ensure proper domain handling
-            const clientId = '1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com';
-            
-            // Initialize Google Sign-In
-            google.accounts.id.initialize({
-                client_id: clientId,
-                callback: this.handleGoogleResponse.bind(this),
+
+        await this.waitForGoogle();
+        if (window.google?.accounts?.id) {
+            window.google.accounts.id.initialize({
+                client_id: this.googleClientId,
+                callback: response => this.handleGoogleResponse(response),
                 auto_select: false,
-                cancel_on_tap_outside: false
+                cancel_on_tap_outside: true
             });
-            
             this.googleInitialized = true;
-            console.log('✅ Google Sign-In initialized for:', window.location.hostname);
-            
-            // For production, check if domain is whitelisted
-            if (window.location.hostname.includes('learnbyshorts.com')) {
-                console.log('🌐 Production domain detected - ensure learnbyshorts.com is whitelisted in Google Cloud Console');
-            }
-            
-        } catch (error) {
-            console.error('❌ Failed to initialize Google Sign-In:', error);
+            this.triggerAuthEvent('ready', this.currentUser);
         }
     }
-    
-    loadGoogleScript() {
-        return new Promise((resolve) => {
-            if (document.getElementById('google-signin-script')) {
-                resolve();
-                return;
-            }
-            
-            const script = document.createElement('script');
-            script.id = 'google-signin-script';
-            script.src = 'https://accounts.google.com/gsi/client';
-            script.onload = resolve;
-            document.head.appendChild(script);
-        });
+
+    async waitForGoogle() {
+        for (let attempt = 0; attempt < 40 && !window.google; attempt += 1) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
     }
-    
-    async handleGoogleResponse(response) {
+
+    async request(path, options = {}) {
+        if (!this.isConfigured()) {
+            throw new Error('Sign-in is not configured.');
+        }
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 10000);
         try {
-            console.log('🔐 Google sign-in response received');
-            
-            const result = await this.loginWithGoogle(response.credential);
-            
-            if (result.success) {
-                this.token = result.token;
-                this.currentUser = result.user;
-                
-                // Store token
-                localStorage.setItem('auth_token', this.token);
-                
-                // Trigger login event
-                this.triggerAuthEvent('login', this.currentUser);
-                
-                console.log('✅ Login successful:', this.currentUser.name);
-                
-                // Small delay to show success message, then redirect
-                setTimeout(() => {
-                    this.redirectAfterLogin();
-                }, 1000);
-                
-                return true;
-            } else {
-                console.error('❌ Login failed:', result.error);
-                this.triggerAuthEvent('error', { message: result.error });
-                return false;
+            const response = await fetch(`${this.apiBaseUrl}${path}`, {
+                ...options,
+                credentials: 'omit',
+                cache: 'no-store',
+                signal: controller.signal,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(options.headers || {})
+                }
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                throw new Error(data.error || 'Authentication request failed.');
             }
-            
+            return data;
+        } finally {
+            clearTimeout(timeout);
+        }
+    }
+
+    async handleGoogleResponse(response) {
+        if (!response?.credential) {
+            this.triggerAuthEvent('error', { message: 'Google did not return a credential.' });
+            return false;
+        }
+
+        try {
+            const result = await this.request('/auth/google', {
+                method: 'POST',
+                body: JSON.stringify({ credential: response.credential })
+            });
+            if (!result.token || !result.user) {
+                throw new Error('The authentication response was incomplete.');
+            }
+
+            this.token = result.token;
+            this.currentUser = result.user;
+            sessionStorage.setItem('auth_token', this.token);
+            this.triggerAuthEvent('login', this.currentUser);
+            this.redirectAfterLogin();
+            return true;
         } catch (error) {
-            console.error('❌ Google sign-in error:', error);
+            this.clearSession();
             this.triggerAuthEvent('error', { message: error.message });
             return false;
         }
     }
-    
+
     redirectAfterLogin() {
-        // Get the current page
-        const currentPath = window.location.pathname;
-        
-        // If on login page, redirect to home
-        if (currentPath.includes('login.html')) {
-            window.location.href = 'index.html';
-            return;
-        }
-        
-        // If there's a redirect parameter, use it
-        const urlParams = new URLSearchParams(window.location.search);
-        const redirectTo = urlParams.get('redirect');
-        if (redirectTo) {
-            window.location.href = redirectTo;
-            return;
-        }
-        
-        // Default: stay on current page (just update UI)
-        // The header will automatically update to show user info
-    }
-    
-    async loginWithGoogle(googleToken) {
-        console.log('🔐 Attempting Google login...');
-        
-        // For localhost testing, use mock authentication
-        if (window.location.hostname === 'localhost') {
-            console.log('🔐 Using mock authentication for localhost');
-            
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Mock successful response
-            return {
-                success: true,
-                token: 'mock_token_' + Date.now(),
-                user: {
-                    email: 'gaurav4ever98@gmail.com',
-                    name: 'Gaurav Kumar',
-                    id: 'mock_user_id'
+        const redirect = new URLSearchParams(window.location.search).get('redirect');
+        if (redirect) {
+            try {
+                const target = new URL(redirect, window.location.origin);
+                if (target.origin === window.location.origin) {
+                    window.location.assign(target.href);
+                    return;
                 }
-            };
+            } catch {
+                // Invalid redirects fall back to the home page.
+            }
         }
-        
-        // For production, use real API (but mock it for now since backend isn't ready)
-        console.log('🔐 Production environment - simulating backend API call');
-        
-        try {
-            // Simulate successful backend authentication
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Simulate successful API response with real Google token
-            return {
-                success: true,
-                token: 'prod_token_' + Date.now(),
-                user: {
-                    email: 'gaurav4ever98@gmail.com',
-                    name: 'Gaurav Kumar',
-                    id: 'google_user_id_' + Date.now()
-                }
-            };
-            
-        } catch (error) {
-            console.error('❌ Login API error:', error);
-            return { success: false, error: error.message };
+
+        if (window.location.pathname.endsWith('/login.html')) {
+            window.location.assign('index.html');
         }
     }
-    
+
     async verifyToken() {
-        if (!this.token) {
-            console.log('❌ No token to verify');
-            return false;
-        }
-        
+        if (!this.token) return false;
         try {
-            console.log('🔍 Verifying token...');
-            const response = await fetch(`${this.apiBaseUrl}/auth/verify`, {
+            const result = await this.request('/auth/verify', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    token: this.token
-                })
+                headers: { Authorization: `Bearer ${this.token}` }
             });
-            
-            console.log('📡 Verify response status:', response.status);
-            const data = await response.json();
-            console.log('📡 Verify response data:', data);
-            
-            if (response.ok && data.user) {
-                this.currentUser = data.user;
-                this.triggerAuthEvent('verified', this.currentUser);
-                return true;
-            } else {
-                console.log('❌ Token verification failed:', data);
-                this.logout();
-                return false;
-            }
-            
-        } catch (error) {
-            console.error('❌ Token verification error:', error);
-            this.logout();
-            return false;
-        }
-    }
-    
-    async logout() {
-        try {
-            // Call logout API if token exists
-            if (this.token) {
-                await fetch(`${this.apiBaseUrl}/auth/logout`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${this.token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-            }
-            
-        } catch (error) {
-            console.error('Logout API error:', error);
-        } finally {
-            // Clear local data
-            this.token = null;
-            this.currentUser = null;
-            localStorage.removeItem('auth_token');
-            
-            // Trigger logout event
+            this.currentUser = result.user;
+            this.triggerAuthEvent('verified', this.currentUser);
+            return true;
+        } catch {
+            this.clearSession();
             this.triggerAuthEvent('logout', null);
-            
-            console.log('✅ Logged out successfully');
-        }
-    }
-    
-    async saveProgress(courseId, topicIndex, completedTopics = [], totalTopics = 0) {
-        if (!this.token) {
-            console.warn('⚠️ Cannot save progress: Not authenticated');
             return false;
         }
-        
+    }
+
+    async logout() {
+        const token = this.token;
+        this.clearSession();
+        this.triggerAuthEvent('logout', null);
+        if (!token || !this.isConfigured()) return;
+
         try {
-            const response = await fetch(`${this.apiBaseUrl}/user/progress`, {
+            await this.request('/auth/logout', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { Authorization: `Bearer ${token}` }
+            });
+        } catch {
+            // The local session is already cleared. Avoid trapping the user.
+        }
+    }
+
+    async saveProgress(courseId, topicIndex, completedTopics = [], totalTopics = 0) {
+        if (!this.token) return false;
+        try {
+            await this.request('/user/progress', {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${this.token}` },
                 body: JSON.stringify({
-                    token: this.token,
                     course_id: courseId,
                     topic_index: topicIndex,
                     completed_topics: completedTopics,
                     total_topics: totalTopics
                 })
             });
-            
-            const data = await response.json();
-            
-            if (response.ok) {
-                console.log('✅ Progress saved for course:', courseId);
-                return true;
-            } else {
-                console.error('❌ Failed to save progress:', data.error);
-                return false;
-            }
-            
-        } catch (error) {
-            console.error('Save progress error:', error);
+            return true;
+        } catch {
             return false;
         }
     }
-    
+
     async getProgress() {
         if (!this.token) return {};
-        
         try {
-            const response = await fetch(`${this.apiBaseUrl}/user/progress`, {
+            const result = await this.request('/user/progress', {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    token: this.token
-                })
+                headers: { Authorization: `Bearer ${this.token}` }
             });
-            
-            const data = await response.json();
-            
-            if (response.ok) {
-                return data.progress || {};
-            } else {
-                console.error('❌ Failed to get progress:', data.error);
-                return {};
-            }
-            
-        } catch (error) {
-            console.error('Get progress error:', error);
+            return result.progress || {};
+        } catch {
             return {};
         }
     }
-    
+
     renderGoogleSignInButton(containerId) {
         const container = document.getElementById(containerId);
-        if (!container) {
-            console.error('❌ Sign-in button container not found:', containerId);
+        if (!container) return;
+        container.replaceChildren();
+
+        if (!this.isConfigured()) {
+            const message = document.createElement('p');
+            message.className = 'auth-status-message';
+            message.textContent = 'Account sign-in is temporarily unavailable. All public lessons remain free.';
+            container.appendChild(message);
             return;
         }
-        
-        if (this.currentUser) {
-            // Show user profile
-            container.innerHTML = `
-                <div class="user-profile">
-                    <img src="${this.currentUser.avatar}" alt="${this.currentUser.name}" class="user-avatar">
-                    <span class="user-name">${this.currentUser.name}</span>
-                    <button class="logout-btn" onclick="authService.logout()">Logout</button>
-                </div>
-            `;
-        } else if (this.googleInitialized && window.google) {
-            // Clear loading message and show sign-in button
-            container.innerHTML = '';
-            google.accounts.id.renderButton(container, {
-                theme: 'outline',
-                size: 'large',
-                text: 'signin_with',
-                shape: 'rectangular',
-                width: '100%'
-            });
-        } else {
-            // Show loading message
-            container.innerHTML = `
-                <div style="text-align: center; padding: 20px; border: 1px solid #ddd; border-radius: 4px;">
-                    <div style="color: #666; font-size: 14px;">🔄 Loading Google Sign-In...</div>
-                </div>
-            `;
-            
-            // Retry after a delay
-            setTimeout(() => {
-                if (this.googleInitialized && window.google) {
-                    this.renderGoogleSignInButton(containerId);
-                }
-            }, 1000);
+
+        if (!this.googleInitialized || !window.google?.accounts?.id) {
+            const message = document.createElement('p');
+            message.className = 'auth-status-message';
+            message.textContent = 'Loading secure Google sign-in…';
+            container.appendChild(message);
+            return;
         }
-    }
-    
-    triggerAuthEvent(type, user) {
-        const event = new CustomEvent('authStateChanged', {
-            detail: { type, user }
+
+        window.google.accounts.id.renderButton(container, {
+            theme: 'outline',
+            size: 'large',
+            text: 'signin_with',
+            shape: 'rectangular',
+            width: Math.min(container.clientWidth || 320, 400)
         });
-        window.dispatchEvent(event);
     }
-    
+
+    clearSession() {
+        this.token = null;
+        this.currentUser = null;
+        sessionStorage.removeItem('auth_token');
+        localStorage.removeItem('auth_token');
+    }
+
+    triggerAuthEvent(type, user) {
+        window.dispatchEvent(new CustomEvent('authStateChanged', {
+            detail: { type, user }
+        }));
+    }
+
     isAuthenticated() {
-        return !!this.currentUser;
+        return Boolean(this.currentUser && this.token);
     }
-    
+
     getUser() {
         return this.currentUser;
     }
-    
-    getToken() {
-        return this.token;
-    }
 }
 
-// Global auth service instance
 const authService = new AuthService();
+window.authService = authService;
 
-// Listen for auth state changes
-window.addEventListener('authStateChanged', (event) => {
-    const { type, user } = event.detail;
-    console.log(`🔐 Auth state changed: ${type}`, user);
-    
-    // Update UI based on auth state
-    updateAuthUI(type, user);
-});
-
-function updateAuthUI(type, user) {
-    // Update sign-in buttons
-    const signInContainers = document.querySelectorAll('.google-signin-container');
-    signInContainers.forEach(container => {
+window.addEventListener('authStateChanged', event => {
+    const user = event.detail?.user;
+    document.querySelectorAll('.auth-required').forEach(element => {
+        element.hidden = !user;
+    });
+    document.querySelectorAll('.guest-only').forEach(element => {
+        element.hidden = Boolean(user);
+    });
+    document.querySelectorAll('.google-signin-container[id]').forEach(container => {
         authService.renderGoogleSignInButton(container.id);
     });
-    
-    // Show/hide authenticated content
-    const authContent = document.querySelectorAll('.auth-required');
-    const guestContent = document.querySelectorAll('.guest-only');
-    
-    if (user) {
-        authContent.forEach(el => el.style.display = 'block');
-        guestContent.forEach(el => el.style.display = 'none');
-    } else {
-        authContent.forEach(el => el.style.display = 'none');
-        guestContent.forEach(el => el.style.display = 'block');
-    }
-}
-
-// Create global instance
-window.authService = new AuthService();
+});

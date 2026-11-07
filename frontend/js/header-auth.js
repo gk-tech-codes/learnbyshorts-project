@@ -1,150 +1,75 @@
 /**
- * Header Authentication Management
- * Handles login state, user display, and mobile menu
+ * Header authentication display.
+ * Trust only the verified state emitted by AuthService.
  */
-
 class HeaderAuth {
     constructor() {
         this.currentUser = null;
-        this.token = localStorage.getItem('auth_token');
-        this.init();
-    }
-
-    init() {
         this.createAuthElements();
-        this.checkAuthState();
-        
-        // Listen for auth state changes
-        window.addEventListener('authStateChanged', (event) => {
-            const { type, user } = event.detail;
-            if (type === 'login') {
-                this.currentUser = user;
-                this.updateAuthDisplay();
-            } else if (type === 'logout') {
-                this.currentUser = null;
-                this.updateAuthDisplay();
-            }
+        window.addEventListener('authStateChanged', event => {
+            this.currentUser = event.detail?.user || null;
+            this.updateAuthDisplay();
         });
     }
 
     createAuthElements() {
-        // Find nav menu and add auth link
         const navMenu = document.querySelector('.nav-menu');
-        if (!navMenu) return;
+        if (!navMenu || document.getElementById('auth-guest')) return;
 
-        // Create auth elements
-        const authGuest = document.createElement('a');
-        authGuest.href = 'login.html';
-        authGuest.className = 'nav-link login-btn';
-        authGuest.id = 'auth-guest';
-        authGuest.textContent = 'Login';
+        this.guestLink = document.createElement('a');
+        this.guestLink.href = 'login.html';
+        this.guestLink.className = 'nav-link login-btn';
+        this.guestLink.id = 'auth-guest';
+        this.guestLink.textContent = 'Login';
 
-        const authUser = document.createElement('div');
-        authUser.className = 'user-menu';
-        authUser.id = 'auth-user';
-        authUser.style.display = 'none';
-        authUser.innerHTML = `
-            <button class="user-btn" id="user-btn">
-                <span class="user-name" id="user-name">User</span>
-                <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M7 10l5 5 5-5z"/>
-                </svg>
-            </button>
-            <div class="user-dropdown" id="user-dropdown">
-                <a href="#" class="dropdown-item" id="logout-btn">Sign Out</a>
-            </div>
-        `;
+        this.userMenu = document.createElement('div');
+        this.userMenu.className = 'user-menu';
+        this.userMenu.id = 'auth-user';
+        this.userMenu.hidden = true;
 
-        // Add to nav menu
-        navMenu.appendChild(authGuest);
-        navMenu.appendChild(authUser);
+        const button = document.createElement('button');
+        button.className = 'user-btn';
+        button.type = 'button';
+        button.setAttribute('aria-expanded', 'false');
+        this.userName = document.createElement('span');
+        this.userName.className = 'user-name';
+        this.userName.textContent = 'Learner';
+        button.append(this.userName);
 
-        // Setup event listeners
-        this.setupAuthEvents();
-    }
+        const dropdown = document.createElement('div');
+        dropdown.className = 'user-dropdown';
+        const logout = document.createElement('button');
+        logout.className = 'dropdown-item';
+        logout.type = 'button';
+        logout.textContent = 'Sign Out';
+        dropdown.append(logout);
+        this.userMenu.append(button, dropdown);
+        navMenu.append(this.guestLink, this.userMenu);
 
-    setupAuthEvents() {
-        // User menu toggle
-        const userBtn = document.getElementById('user-btn');
-        const userDropdown = document.getElementById('user-dropdown');
-        
-        if (userBtn && userDropdown) {
-            userBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                userDropdown.classList.toggle('show');
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', () => {
-                userDropdown.classList.remove('show');
-            });
-        }
-
-        // Logout functionality
-        const logoutBtn = document.getElementById('logout-btn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.logout();
-            });
-        }
-    }
-
-    checkAuthState() {
-        if (this.token) {
-            // Try to get user info from token or make API call
-            try {
-                // For now, simulate user from token
-                const mockUser = {
-                    email: 'gaurav4ever98@gmail.com',
-                    name: 'Gaurav Kumar'
-                };
-                this.currentUser = mockUser;
-                this.updateAuthDisplay();
-            } catch (error) {
-                console.error('Auth check failed:', error);
-                this.logout();
-            }
-        }
+        button.addEventListener('click', event => {
+            event.stopPropagation();
+            const open = dropdown.classList.toggle('show');
+            button.setAttribute('aria-expanded', String(open));
+        });
+        logout.addEventListener('click', () => window.authService?.logout());
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('show');
+            button.setAttribute('aria-expanded', 'false');
+        });
     }
 
     updateAuthDisplay() {
-        const guestAuth = document.getElementById('auth-guest');
-        const userAuth = document.getElementById('auth-user');
-        const userName = document.getElementById('user-name');
-
-        if (!guestAuth || !userAuth || !userName) return;
-
-        if (this.currentUser) {
-            // Show user menu, hide login link
-            guestAuth.style.display = 'none';
-            userAuth.style.display = 'block';
-            
-            // Extract first part of email (before @)
-            const displayName = this.currentUser.email.split('@')[0];
-            userName.textContent = displayName;
-        } else {
-            // Show login link, hide user menu
-            guestAuth.style.display = 'block';
-            userAuth.style.display = 'none';
+        if (!this.guestLink || !this.userMenu) return;
+        const authenticated = Boolean(this.currentUser);
+        this.guestLink.hidden = authenticated;
+        this.userMenu.hidden = !authenticated;
+        if (authenticated) {
+            this.userName.textContent =
+                this.currentUser.name?.split(/\s+/)[0] ||
+                this.currentUser.email?.split('@')[0] ||
+                'Learner';
         }
-    }
-
-    logout() {
-        localStorage.removeItem('auth_token');
-        this.currentUser = null;
-        this.token = null;
-        this.updateAuthDisplay();
-        
-        // Trigger logout event
-        const event = new CustomEvent('authStateChanged', {
-            detail: { type: 'logout', user: null }
-        });
-        window.dispatchEvent(event);
     }
 }
 
-// Initialize header auth when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new HeaderAuth();
-});
+document.addEventListener('DOMContentLoaded', () => new HeaderAuth());

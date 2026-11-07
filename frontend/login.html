@@ -3,313 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - LearnByShorts</title>
-    <meta name="description" content="Sign in to your LearnByShorts account and continue your learning journey with bite-sized educational content.">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
+    <title>Secure Sign In | LearnByShorts</title>
+    <meta name="description" content="Securely sign in to LearnByShorts and continue your learning journey.">
+    <meta name="api-base-url" content="">
+    <meta name="google-client-id" content="1029422633354-g3po2rrk765unqn98fsirmod4muipt4l.apps.googleusercontent.com">
+    <meta name="robots" content="noindex,follow">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mobile-menu.css">
     <link rel="stylesheet" href="css/header-auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8fafc;
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
-        .login-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .login-header {
-            background: white;
-            padding: 24px 30px 16px;
-            text-align: center;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .logo {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .login-header h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: #1e293b;
-        }
-
-        .login-header p {
-            font-size: 14px;
-            color: #64748b;
-            font-weight: 400;
-        }
-
-        .login-body {
-            padding: 30px 30px 40px;
-        }
-
-        .google-signin-section {
-            margin-bottom: 30px;
-        }
-
-        .google-btn {
-            width: 100%;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 16px 20px;
-            font-size: 16px;
-            font-weight: 500;
-            color: #374151;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .google-btn:hover {
-            border-color: #d1d5db;
-            background: #f9fafb;
-            transform: translateY(-1px);
-        }
-
-        .google-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 30px 0;
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #e5e7eb;
-        }
-
-        .divider span {
-            padding: 0 16px;
-            background: white;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 8px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: border-color 0.2s ease;
-            background: white;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-
-        .form-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .checkbox-container input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: #4f46e5;
-        }
-
-        .forgot-link {
-            color: #4f46e5;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .forgot-link:hover {
-            text-decoration: underline;
-        }
-
-        .signin-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .signin-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
-        }
-
-        .signin-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .signup-link {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid #e5e7eb;
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        .signup-link a {
-            color: #4f46e5;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .signup-link a:hover {
-            text-decoration: underline;
-        }
-
-        .loading {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .loading.show {
-            display: flex;
-        }
-
-        .loading-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #4f46e5;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            color: white;
-            margin-top: 20px;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                margin: 10px;
-            }
-            
-            .login-header {
-                padding: 30px 20px;
-            }
-            
-            .login-body {
-                padding: 30px 20px;
-            }
-        }
+        body { background: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; }
+        main { flex: 1; display: grid; place-items: center; padding: 3rem 1rem; }
+        .login-card { width: min(100%, 430px); padding: 2rem; background: #fff; border: 1px solid #e2e8f0;
+            border-radius: 18px; box-shadow: 0 18px 50px rgba(15, 23, 42, .08); text-align: center; }
+        .login-card img { width: 52px; height: 52px; }
+        .login-card h2 { margin: 1rem 0 .5rem; color: #172033; }
+        .login-card > p { color: #64748b; line-height: 1.6; }
+        .google-signin-container { min-height: 54px; margin: 1.5rem 0 1rem; display: grid; place-items: center; }
+        .auth-status-message { padding: 1rem; background: #fff7ed; border: 1px solid #fed7aa;
+            border-radius: 12px; color: #9a3412; line-height: 1.5; }
+        .security-note { font-size: .85rem; color: #64748b; }
+        .back-link { display: inline-block; margin-top: 1.25rem; color: #4f46e5; font-weight: 600; }
     </style>
-    
-    <!-- Google Sign-In -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
                     <a href="index.html">
-                        <img src="assets/logo.svg" alt="LearnByShorts" class="brand-logo">
+                        <img src="assets/logo.svg" alt="" class="brand-logo">
                         <div class="brand-text">
                             <h1>LearnByShorts</h1>
                             <span class="tagline">Master Computer Science Through Stories</span>
@@ -317,265 +42,43 @@
                     </a>
                 </div>
                 <div class="nav-menu">
-                    <a href="index.html#home" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link">Home</a>
                     <a href="index.html#courses" class="nav-link">Courses</a>
-                    <a href="index.html#features" class="nav-link">Features</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </div>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <div class="hamburger"><span></span><span></span><span></span></div>
             </div>
         </nav>
         <div class="menu-overlay"></div>
     </header>
 
-    <!-- Login Content -->
-    <main style="padding: 40px 0;">
-    <div class="login-container">
-        <div class="login-header">
-            <div class="logo">
-                <img src="assets/logo.svg" alt="LearnByShorts" />
-            </div>
-            <h1>Welcome Back</h1>
-            <p>Continue your learning journey</p>
-        </div>
-        
-        <div class="login-body">
-            <!-- Google Sign-In Section -->
-            <div class="google-signin-section">
-                <div id="google-signin-btn">
-                    <button class="google-btn" id="google-signin-fallback">
-                        <svg class="google-icon" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                        Continue with Google
-                    </button>
-                </div>
-            </div>
-            
-            <div class="divider">
-                <span>or continue with email</span>
-            </div>
-            
-            <!-- Email/Password Form -->
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email">
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Enter your password">
-                </div>
-                
-                <div class="form-options">
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Remember me</label>
-                    </div>
-                    <a href="#" class="forgot-link">Forgot password?</a>
-                </div>
-                
-                <button type="submit" class="signin-btn">Sign In</button>
-            </form>
-        </div>
-    </div>
+    <main>
+        <section class="login-card" aria-labelledby="login-title">
+            <img src="assets/logo.svg" alt="">
+            <h2 id="login-title">Secure sign in</h2>
+            <p>Use Google sign-in when the verified authentication service is available.</p>
+            <div id="google-signin-btn" class="google-signin-container" aria-live="polite"></div>
+            <p class="security-note">LearnByShorts never asks for your Google password.</p>
+            <a class="back-link" href="index.html#courses">Continue learning without an account →</a>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Brand Section -->
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <span class="logo-icon">📚</span>
-                        <span class="logo-text">LearnByShorts</span>
-                    </div>
-                    <p class="footer-description">
-                        Making computer science concepts accessible through engaging visual stories and narratives.
-                    </p>
-                </div>
-
-                <!-- Links Sections -->
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Support</h4>
-                        <ul>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
-                    <div class="footer-meta">
-                        <span>Made with ❤️ for learners</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Loading Overlay -->
-    <div id="loading" class="loading">
-        <div class="loading-content">
-            <div class="spinner"></div>
-            <div class="loading-text">Signing you in...</div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
     <script src="js/mobile-menu.js"></script>
     <script src="js/auth-service.js"></script>
     <script src="js/header-auth.js"></script>
     <script>
-        // Form submission
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            showLoading();
-            
-            // Simulate API call
-            setTimeout(() => {
-                hideLoading();
-                alert('Email/password login not implemented yet. Use Google Sign-In.');
-            }, 1000);
+        document.addEventListener('DOMContentLoaded', () => {
+            window.authService?.renderGoogleSignInButton('google-signin-btn');
         });
-
-        // Google Sign-In fallback button
-        document.getElementById('google-signin-fallback').addEventListener('click', function() {
-            // For localhost, directly trigger mock authentication
-            if (window.location.hostname === 'localhost') {
-                showLoading();
-                
-                // Simulate Google Sign-In response with mock data
-                setTimeout(() => {
-                    if (window.authService) {
-                        // Trigger mock authentication directly
-                        window.authService.handleGoogleResponse({
-                            credential: 'mock_google_credential_token'
-                        });
-                    } else {
-                        hideLoading();
-                        alert('Authentication service not available. Please refresh the page.');
-                    }
-                }, 500);
-                return;
-            }
-            
-            // For production, use real Google Sign-In
-            if (window.authService && window.authService.googleInitialized && window.google) {
-                showLoading();
-                
-                // Set timeout for production
-                const loadingTimeout = setTimeout(() => {
-                    hideLoading();
-                    alert('Google Sign-In is taking too long. Please check your internet connection and try again.');
-                }, 15000);
-                
-                // Clear timeout if auth state changes
-                const authListener = (event) => {
-                    clearTimeout(loadingTimeout);
-                    window.removeEventListener('authStateChanged', authListener);
-                };
-                window.addEventListener('authStateChanged', authListener);
-                
-                // Trigger Google Sign-In
-                try {
-                    google.accounts.id.prompt();
-                } catch (error) {
-                    clearTimeout(loadingTimeout);
-                    hideLoading();
-                    console.error('Google Sign-In error:', error);
-                    alert('Google Sign-In failed. Please refresh the page and try again.');
-                }
-            } else {
-                alert('Google Sign-In is not available. Please refresh the page and try again.');
+        window.addEventListener('authStateChanged', event => {
+            if (event.detail?.type === 'error') {
+                const container = document.getElementById('google-signin-btn');
+                const message = document.createElement('p');
+                message.className = 'auth-status-message';
+                message.textContent = 'Sign-in failed safely. Please try again later.';
+                container.replaceChildren(message);
             }
         });
-
-        // Loading functions
-        function showLoading() {
-            document.getElementById('loading').classList.add('show');
-        }
-
-        function hideLoading() {
-            document.getElementById('loading').classList.remove('show');
-        }
-
-        // Initialize auth service
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.authService) {
-                // Try to render Google button
-                setTimeout(() => {
-                    if (window.authService.googleInitialized && window.google) {
-                        const container = document.getElementById('google-signin-btn');
-                        container.innerHTML = '';
-                        google.accounts.id.renderButton(container, {
-                            theme: 'outline',
-                            size: 'large',
-                            text: 'continue_with',
-                            shape: 'rectangular',
-                            width: 320 // Fixed width instead of 100%
-                        });
-                    }
-                }, 2000);
-            }
-        });
-
-        // Listen for auth state changes
-        window.addEventListener('authStateChanged', (event) => {
-            const { type, user } = event.detail;
-            if (type === 'login' && user) {
-                // Show success message briefly before redirect
-                document.querySelector('.loading-text').textContent = 'Login successful! Redirecting...';
-                // Let auth service handle redirect (already implemented)
-                // This will redirect to index.html from login page
-            } else if (type === 'error') {
-                hideLoading();
-                alert('Login failed. Please try again.');
-            }
-        });
-
-        // Hide loading on page errors or if Google Sign-In fails to initialize
-        window.addEventListener('error', function() {
-            hideLoading();
-        });
-
-        // Check if Google Sign-In is available after page load
-        setTimeout(() => {
-            if (!window.google || !window.authService?.googleInitialized) {
-                console.warn('Google Sign-In may not be available. Check network connection or OAuth configuration.');
-            }
-        }, 5000);
     </script>
 </body>
 </html>
