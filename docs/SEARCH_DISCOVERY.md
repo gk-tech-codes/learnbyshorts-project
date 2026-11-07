@@ -21,6 +21,18 @@ is indexed; deployment does not guarantee ranking or immediate inclusion.
 5. Add only real, useful course pages to the sitemap. Do not generate thin or
    duplicated keyword pages.
 
+IndexNow is also configured for engines that participate in the protocol. The
+public verification key is intentionally served from the site root. After
+deploying a material homepage or Java OOP lab change, run:
+
+```bash
+tools/submit-indexnow.sh
+tools/submit-indexnow.sh --apply
+```
+
+The first command is a safe dry run. The second submits only the two production
+URLs listed in the script.
+
 Official operational references:
 
 - Google sitemap guidance:
