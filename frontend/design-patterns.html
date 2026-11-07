@@ -81,8 +81,10 @@
     <link rel="stylesheet" href="css/mobile-menu.css?v=1.5.4">
     <link rel="stylesheet" href="css/homepage.css?v=1.5.4">
     <link rel="stylesheet" href="css/header-auth.css">
+    <link rel="stylesheet" href="css/course-theme-v3.css?v=20261107-1">
 </head>
-<body>
+<body class="course-theme-v3 design-patterns-page">
+    <a class="skip-link" href="#course-catalog">Skip to course catalog</a>
     <!-- Header -->
     <nav class="navbar">
         <div class="nav-container">
@@ -127,14 +129,43 @@
     <section class="category-hero design-patterns-hero">
         <div class="container">
             <div class="category-hero-content">
-                <div class="category-icon">🏗️</div>
-                <h1>Design Patterns</h1>
-                <p>Master software design patterns through engaging stories and visual narratives. Learn how to solve common software design problems with elegant, reusable solutions.</p>
-                <div class="category-meta">
-                    <span class="difficulty">Intermediate</span>
-                    <span class="time">2-4 hours per pattern</span>
+                <div>
+                    <div class="category-icon">🏗️</div>
+                    <div class="hero-kicker">Pattern decision lab</div>
+                    <h1>Stop memorizing.<br><em>Start deciding.</em></h1>
+                    <p>Learn the design pressure behind each pattern, compare tradeoffs, read working code, and practice explaining the decision like a senior engineer in an interview.</p>
+                    <div class="category-meta">
+                        <span class="difficulty">12 high-value patterns</span>
+                        <span class="time">Story + code + interview proof</span>
+                        <span>Free to start</span>
+                    </div>
                 </div>
+                <aside class="pattern-hero-panel" aria-label="Pattern decision method">
+                    <span>The decision loop</span>
+                    <h2>One repeatable way to learn every pattern.</h2>
+                    <div class="decision-step">
+                        <b>01</b>
+                        <div><strong>Spot the pressure</strong><small>What is changing, coupled, duplicated, or becoming hard to test?</small></div>
+                    </div>
+                    <div class="decision-step">
+                        <b>02</b>
+                        <div><strong>Compare options</strong><small>Understand when the pattern helps and when a simpler solution wins.</small></div>
+                    </div>
+                    <div class="decision-step">
+                        <b>03</b>
+                        <div><strong>Build the proof</strong><small>Turn the lesson into code and a concise interview-ready explanation.</small></div>
+                    </div>
+                </aside>
             </div>
+        </div>
+    </section>
+
+    <section class="catalog-proof" aria-label="Course experience highlights">
+        <div class="container proof-grid">
+            <div><strong>12 patterns</strong><span>Selected for practical impact</span></div>
+            <div><strong>3 categories</strong><span>Creational, structural, behavioral</span></div>
+            <div><strong>Short missions</strong><span>Learn in focused sessions</span></div>
+            <div><strong>Interview ready</strong><span>Explain tradeoffs with confidence</span></div>
         </div>
     </section>
 
@@ -142,26 +173,27 @@
     <section class="category-description">
         <div class="container">
             <div class="description-content">
-                <h2>About Design Patterns</h2>
-                <p>Design patterns are reusable solutions to common software design problems. They represent best practices evolved over time by experienced software developers. While there are 23 classic design patterns in total, we focus on studying the most important and frequently used ones that will have the greatest impact on your daily coding. Learning these essential design patterns helps you write more maintainable, flexible, and scalable code. Our visual storytelling approach makes these abstract concepts concrete and memorable.</p>
-                
-                <p>Design patterns are typically categorized into three main groups:</p>
-                
-                <ul>
-                    <li><strong>Creational Patterns:</strong> These patterns deal with object creation mechanisms, trying to create objects in a manner suitable to the situation.</li>
-                    <li><strong>Structural Patterns:</strong> These patterns deal with object composition or the structure of classes and objects. They help ensure that if one part of a system changes, the entire system doesn't need to change.</li>
-                    <li><strong>Behavioral Patterns:</strong> These patterns deal with communication between objects, how objects interact and distribute responsibility.</li>
-                </ul>
-                
-                <p>Each pattern in our collection is presented through an engaging story that makes the abstract concept concrete and memorable. We use relatable characters and scenarios to help you understand not just how to implement the pattern, but when and why you should use it.</p>
+                <div class="description-heading">
+                    <span class="section-label">Learn the engineering judgment</span>
+                    <h2>Patterns are choices, not recipes.</h2>
+                </div>
+                <div class="description-copy">
+                    <p>Strong engineers do not reach for a pattern because they remember a diagram. They recognize a recurring design pressure, consider simpler alternatives, and choose a structure whose benefits justify its cost.</p>
+                    <p>Each LearnByShorts lesson starts with a relatable system problem, reveals the pattern through a story, then connects it to implementation and interview reasoning. The goal is durable judgment—not vocabulary.</p>
+                    <div class="pattern-method">
+                        <article><strong>Recognize</strong><span>See the signal in a real product or codebase.</span></article>
+                        <article><strong>Implement</strong><span>Translate the structure into readable, testable code.</span></article>
+                        <article><strong>Defend</strong><span>Explain benefits, tradeoffs, and alternatives.</span></article>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Pattern Categories -->
-    <section class="pattern-categories">
+    <section class="pattern-categories" id="course-catalog">
         <div class="container">
-            <h2>Pattern Categories</h2>
+            <h2>Choose the pressure you need to solve.</h2>
             
             <!-- Creational Patterns -->
             <div class="pattern-category">
@@ -329,8 +361,8 @@
                     <p>Understand how objects communicate with Observer and Strategy patterns.</p>
                 </li>
                 <li>
-                    <h3>Tackle Advanced Patterns</h3>
-                    <p>Dive into more complex patterns like Visitor and Interpreter once you're comfortable with the basics.</p>
+                    <h3>Practice the Tradeoffs</h3>
+                    <p>Compare Builder, Command, Bridge, and Chain of Responsibility, then explain when you would avoid them.</p>
                 </li>
             </ol>
         </div>
@@ -376,7 +408,7 @@
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2025 LearnByShorts. All rights reserved.</p>
+                    <p>&copy; 2026 LearnByShorts. All rights reserved.</p>
                     <div class="footer-meta">
                         <span>Made with ❤️ for learners</span>
                     </div>

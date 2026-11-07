@@ -99,13 +99,15 @@ class CoursePlayer {
     }
 
     async loadCourse() {
-        try {
-            // Get course ID from URL parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const courseId = urlParams.get('id') || 1;
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('id') || 'singleton-pattern';
 
-            // Load course data
+        try {
             const response = await fetch(`/api/courses/${courseId}`);
+            if (!response.ok) {
+                throw new Error(`Course API returned ${response.status}`);
+            }
+
             const result = await response.json();
 
             if (result.success) {
@@ -113,12 +115,81 @@ class CoursePlayer {
                 this.renderCourse();
                 this.loadConcept(0);
             } else {
-                this.showError('Failed to load course');
+                throw new Error('Course API did not return course data');
             }
         } catch (error) {
-            console.error('Error loading course:', error);
+            console.info('Course API unavailable; loading the static course bundle instead.');
+            await this.loadStaticCourse(courseId);
+        }
+    }
+
+    async loadStaticCourse(requestedCourseId) {
+        try {
+            const [coursesResponse, storiesResponse] = await Promise.all([
+                fetch('data/courses.json'),
+                fetch('data/story-content.json')
+            ]);
+
+            if (!coursesResponse.ok || !storiesResponse.ok) {
+                throw new Error('Static course data is unavailable');
+            }
+
+            const [coursesData, storiesData] = await Promise.all([
+                coursesResponse.json(),
+                storiesResponse.json()
+            ]);
+
+            let course = coursesData.courses.find(item => item.id === requestedCourseId);
+            if (!course && /^\d+$/.test(requestedCourseId)) {
+                course = coursesData.courses[Math.max(0, Number(requestedCourseId) - 1)];
+            }
+
+            if (!course) {
+                throw new Error('Course not found');
+            }
+
+            const storyTopics = storiesData[course.id] || [];
+            const fallbackLessons = course.learningOutcomes?.length
+                ? course.learningOutcomes
+                : [course.description];
+            const sourceLessons = storyTopics.length
+                ? storyTopics
+                : fallbackLessons.map((description, index) => ({
+                    title: `Mission ${index + 1}`,
+                    duration: '8 min',
+                    story: description
+                }));
+
+            const concepts = sourceLessons.map((lesson, index) => {
+                const plainStory = this.toPlainText(lesson.story || lesson.description || course.description);
+                return {
+                    id: `${course.id}-concept-${index + 1}`,
+                    title: lesson.title || `Mission ${index + 1}`,
+                    description: plainStory.slice(0, 180) || course.description,
+                    detailedExplanation: plainStory || course.description,
+                    duration: 8,
+                    images: ['assets/course-visual.svg?v=20261107-1'],
+                    keyPoints: course.learningOutcomes?.slice(0, 4) || [course.description],
+                    relatedConcepts: course.tags?.slice(0, 4) || []
+                };
+            });
+
+            this.currentCourse = { ...course, concepts };
+            this.renderCourse();
+            this.loadConcept(0);
+        } catch (error) {
+            console.error('Error loading static course:', error);
             this.showError('Failed to load course');
         }
+    }
+
+    toPlainText(html) {
+        const documentFragment = new DOMParser().parseFromString(String(html), 'text/html');
+        const contentBlocks = documentFragment.body.querySelectorAll('h1, h2, h3, h4, p, li, blockquote, pre');
+        const text = contentBlocks.length
+            ? Array.from(contentBlocks, element => element.textContent.trim()).filter(Boolean).join(' ')
+            : documentFragment.body.textContent;
+        return text.replace(/\s+/g, ' ').trim();
     }
 
     renderCourse() {
@@ -187,8 +258,14 @@ class CoursePlayer {
         // For now, just load the first image
         // In a full implementation, this would cycle through all images
         const imageElement = document.getElementById('concept-image');
+        imageElement.onerror = () => {
+            imageElement.onerror = null;
+            imageElement.src = 'assets/course-visual.svg?v=20261107-1';
+        };
         if (concept.images && concept.images.length > 0) {
             imageElement.src = concept.images[0];
+        } else {
+            imageElement.src = 'assets/course-visual.svg?v=20261107-1';
         }
         
         // Set concept duration

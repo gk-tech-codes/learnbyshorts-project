@@ -54,7 +54,7 @@ function renderCourseSlider(course) {
             icon: course.icon || '🏗️',
             title: course.title,
             description: course.description,
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+            background: 'radial-gradient(circle at 82% 18%, rgba(185, 246, 207, 0.16), transparent 28%), linear-gradient(135deg, #14211d 0%, #26362f 100%)'
         },
         ...topics.map((topic, index) => ({
             type: 'topic',
@@ -62,7 +62,7 @@ function renderCourseSlider(course) {
             title: topic.title,
             description: topic.description,
             duration: topic.duration,
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'radial-gradient(circle at 82% 18%, rgba(185, 246, 207, 0.16), transparent 28%), linear-gradient(135deg, #14211d 0%, #26362f 100%)',
             topicIndex: index
         }))
     ];

@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="css/topic-quiz.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/course-theme-v3.css?v=20261107-1">
 </head>
-<body>
+<body class="course-theme-v3">
+    <a class="skip-link" href="#quizContainer">Skip to quiz</a>
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
@@ -70,20 +72,38 @@
                     return;
                 }
 
-                // Update breadcrumb for prompt-engineering
-                if (this.courseId === 'prompt-engineering') {
-                    document.getElementById('courseBreadcrumb').textContent = 'Prompt Engineering';
-                    document.getElementById('courseBreadcrumb').href = 'course-detail.html?id=prompt-engineering';
-                    document.getElementById('categoryLink').textContent = 'Courses';
-                    document.getElementById('categoryLink').href = 'index.html#courses';
-                }
-
                 try {
+                    await this.updateCourseContext();
                     await this.loadQuestions();
                     this.renderQuiz();
                 } catch (error) {
                     console.error('Error loading quiz:', error);
                     this.showError('Failed to load quiz');
+                }
+            }
+
+            async updateCourseContext() {
+                const response = await fetch('data/courses.json');
+                if (!response.ok) return;
+
+                const data = await response.json();
+                const course = data.courses.find(item => item.id === this.courseId);
+                if (!course) return;
+
+                const courseBreadcrumb = document.getElementById('courseBreadcrumb');
+                const categoryLink = document.getElementById('categoryLink');
+                const quizTitle = document.getElementById('quizTitle');
+
+                courseBreadcrumb.textContent = course.title;
+                courseBreadcrumb.href = `course-detail.html?id=${encodeURIComponent(course.id)}`;
+                quizTitle.textContent = `${course.title} Quiz`;
+
+                if (course.categoryId === 'design-patterns') {
+                    categoryLink.textContent = 'Design Patterns';
+                    categoryLink.href = 'design-patterns.html';
+                } else {
+                    categoryLink.textContent = 'Courses';
+                    categoryLink.href = 'index.html#courses';
                 }
             }
 
