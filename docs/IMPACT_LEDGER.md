@@ -39,7 +39,8 @@ every material entry.
 | 2026-11-07 | `a24213b` | Privacy-safe learning metrics and search discovery | Git commit, GA4 event definitions, sitemap |
 | 2026-11-07 | `5ed1e29` | Production analytics compatibility fix | Git commit, live QA record |
 | 2026-11-07 | `ef10641` | AI Fluency Lab, reusable-skill curriculum, and secure Cognito account implementation | Git commit, production screenshots, browser checks, security checks, AWS configuration export |
-| 2026-11-07 | Pending QA commit | Eight role-based paths, research-linked learning loop, Java debugger repair, content recovery, and expanded QA automation | Git commit, QA report, browser screenshots, automated check output |
+| 2026-11-07 | `3bdb292` | Eight role-based paths, research-linked learning loop, Java debugger repair, content recovery, and expanded QA automation | Git commit, QA report, browser screenshots, automated check output |
+| 2026-11-07 | `3bdb292` + production rollout | Secure Cognito/API/Lambda/DynamoDB foundation and the full frontend released to production | AWS configuration exports, CloudFront invalidation `I1V7QFTHD4J41IBJXWZ83P8V36`, live browser QA, IndexNow HTTP `200` |
 
 ## Metric definitions
 
