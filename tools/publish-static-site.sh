@@ -8,14 +8,15 @@ S3_BUCKET_NAME="${S3_BUCKET_NAME:-learnbyshorts-app-464994449735}"
 APPLY=false
 ALLOW_PUBLIC_ORIGIN=false
 PRUNE=false
+CONFIRM_PRUNE=false
 
 usage() {
   cat <<'EOF'
-Usage: tools/publish-static-site.sh [--apply] [--prune] [--allow-public-origin]
+Usage: tools/publish-static-site.sh [--apply] [--prune --confirm-prune] [--allow-public-origin]
 
-The default is a safe S3 sync dry run. --apply uploads files. --prune also
-removes remote objects not present locally. --allow-public-origin is temporary
-and should be removed after CloudFront OAC migration.
+The default is a safe S3 sync dry run. --apply uploads files. Destructive
+pruning requires both --prune and --confirm-prune. Production apply also
+requires a clean checkout whose HEAD matches origin/main.
 
 The publisher also creates tiny HTML aliases for every nested index page. This
 allows canonical URLs such as /modern-skills/ and /courses/ai-fluency/ to work
@@ -27,11 +28,37 @@ for arg in "$@"; do
   case "$arg" in
     --apply) APPLY=true ;;
     --prune) PRUNE=true ;;
+    --confirm-prune) CONFIRM_PRUNE=true ;;
     --allow-public-origin) ALLOW_PUBLIC_ORIGIN=true ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $arg" >&2; usage >&2; exit 2 ;;
   esac
 done
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+if [[ "$PRUNE" == "true" && "$CONFIRM_PRUNE" != "true" ]]; then
+  echo "Refusing prune: pass --confirm-prune after reviewing the dry run." >&2
+  exit 1
+fi
+
+tools/security-check.sh
+
+if [[ "$APPLY" == "true" ]]; then
+  if [[ -n "$(git status --porcelain)" ]]; then
+    echo "Refusing deployment: commit or remove all working-tree changes first." >&2
+    exit 1
+  fi
+
+  local_head="$(git rev-parse HEAD)"
+  remote_main="$(git rev-parse --verify refs/remotes/origin/main 2>/dev/null || true)"
+  if [[ -z "$remote_main" || "$local_head" != "$remote_main" ]]; then
+    echo "Refusing deployment: HEAD must match the locally fetched origin/main." >&2
+    echo "Fetch origin/main, verify the commit, and retry." >&2
+    exit 1
+  fi
+fi
 
 account_id="$(AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" \
   aws sts get-caller-identity --query Account --output text)"

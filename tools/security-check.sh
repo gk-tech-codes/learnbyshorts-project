@@ -15,16 +15,51 @@ if [[ -n "$tracked_secret_files" ]]; then
 fi
 
 if rg -n \
-  '(mock_token_|prod_token_|learnbyshorts-jwt-secret|Access-Control-Allow-Origin.{0,30}\*|client_secret[[:space:]]*[:=][[:space:]]*["'\''][^"'\'']+)' \
-  frontend/js backend/cognito-api backend/lambda_auth.py >/dev/null; then
+  '(mock_token_|prod_token_|learnbyshorts-jwt-secret|your-secret-key|process\.env\.JWT_SECRET[[:space:]]*\|\||Access-Control-Allow-Origin.{0,30}\*|client_secret[[:space:]]*[:=][[:space:]]*["'\''][^"'\'']+)' \
+  frontend/js backend \
+  --glob '!backend/boto3/**' --glob '!backend/botocore/**' \
+  --glob '!backend/google/**' --glob '!backend/google_auth_oauthlib/**' \
+  --glob '!backend/oauthlib/**' --glob '!backend/requests_oauthlib/**' \
+  --glob '!backend/rsa/**' --glob '!backend/urllib3/**' \
+  --glob '!backend/*.dist-info/**' >/dev/null; then
   echo "Insecure authentication fallback or wildcard CORS found." >&2
   exit 1
 fi
 
 if rg -n \
-  '(password:[[:space:]]*Admin|admin@learnbyshorts\.com|INSERT[^;]*INTO[[:space:]]+users[^;]*(admin|password_hash))' \
-  backend --glob '!boto3/**' --glob '!botocore/**' --glob '!google/**' >/dev/null; then
+  '(password:[[:space:]]*Admin|admin@learnbyshorts\.com|demo@learnbyshorts\.com|INSERT[^;]*INTO[[:space:]]+users[^;]*(admin|password_hash))' \
+  backend --glob '!backend/boto3/**' --glob '!backend/botocore/**' \
+  --glob '!backend/google/**' --glob '!backend/*.dist-info/**' >/dev/null; then
   echo "A seeded or documented default administrator credential was found." >&2
+  exit 1
+fi
+
+if rg -n \
+  'console\.(log|error)\([^)]*(resetToken|credential|access_token|refresh_token|id_token|Authorization)' \
+  backend frontend/js >/dev/null; then
+  echo "Sensitive authentication material is written to logs." >&2
+  exit 1
+fi
+
+required_auth_files=(
+  frontend/auth/callback.html
+  frontend/css/account-v2.css
+  frontend/js/auth-config.js
+  frontend/js/auth-page.js
+  frontend/js/auth-service.js
+  frontend/login.html
+  frontend/signup.html
+)
+for auth_file in "${required_auth_files[@]}"; do
+  if [[ ! -s "$auth_file" ]]; then
+    echo "Required secure authentication asset is missing: $auth_file" >&2
+    exit 1
+  fi
+done
+
+if ! rg -q 'code_challenge_method:[[:space:]]*'\''S256'\''' \
+  frontend/js/auth-service.js; then
+  echo "Cognito Authorization Code + PKCE enforcement was not found." >&2
   exit 1
 fi
 

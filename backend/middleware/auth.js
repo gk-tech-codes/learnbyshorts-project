@@ -4,6 +4,7 @@
 
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { requireJwtSecret } = require('../config/security');
 
 const userModel = new User();
 
@@ -24,7 +25,7 @@ const authenticateToken = async (req, res, next) => {
         }
 
         // Verify JWT token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
+        const decoded = jwt.verify(token, requireJwtSecret());
         
         // Check if session is still valid
         const isValidSession = await userModel.isValidSession(token);
@@ -190,7 +191,7 @@ const optionalAuth = async (req, res, next) => {
             return next();
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
+        const decoded = jwt.verify(token, requireJwtSecret());
         const user = await userModel.findById(decoded.id);
         
         if (user && user.is_active) {
@@ -227,16 +228,13 @@ const requireOwnership = (resourceIdParam = 'id', userIdField = 'user_id') => {
                 return next();
             }
 
-            // For other users, check ownership
-            // This would typically involve checking the resource in the database
-            // For now, we'll pass the check to the controller to handle
-            req.requireOwnershipCheck = {
-                userId: user.id,
-                resourceId,
-                userIdField
-            };
-
-            next();
+            // Ownership lookup is not implemented in this legacy middleware.
+            // Fail closed instead of marking the request and relying on every
+            // downstream controller to remember an optional check.
+            return res.status(501).json({
+                success: false,
+                message: `Ownership authorization for ${userIdField} is not configured`
+            });
 
         } catch (error) {
             console.error('Ownership check error:', error);
@@ -255,14 +253,9 @@ const logAuthEvent = (eventType) => {
     return (req, res, next) => {
         try {
             const user = req.user;
-            const ip = req.ip || req.connection.remoteAddress;
-            const userAgent = req.get('User-Agent');
-
             console.log(`Auth Event: ${eventType}`, {
                 userId: user?.id,
-                email: user?.email,
-                ip,
-                userAgent,
+                requestId: req.get('X-Request-Id')?.slice(0, 128),
                 timestamp: new Date().toISOString()
             });
 

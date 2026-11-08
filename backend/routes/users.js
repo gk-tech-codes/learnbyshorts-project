@@ -1,25 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { requireJwtSecret } = require('../config/security');
 const router = express.Router();
 
-// Mock user data (replace with database later)
-let mockUsers = [
-    {
-        id: 1,
-        email: 'demo@learnbyshorts.com',
-        password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        name: 'Demo User',
-        createdAt: new Date().toISOString(),
-        preferences: {
-            categories: ['science', 'technology'],
-            difficulty: 'intermediate'
-        }
-    }
-];
-
-// JWT Secret (in production, use environment variable)
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+// Legacy in-memory route retained for local compatibility only. It starts
+// empty and never ships a seeded account or shared password.
+const mockUsers = [];
 
 // Middleware to verify JWT token
 const authenticateToken = (req, res, next) => {
@@ -33,7 +20,7 @@ const authenticateToken = (req, res, next) => {
         });
     }
 
-    jwt.verify(token, JWT_SECRET, (err, user) => {
+    jwt.verify(token, requireJwtSecret(), (err, user) => {
         if (err) {
             return res.status(403).json({
                 success: false,
@@ -89,7 +76,7 @@ router.post('/register', async (req, res) => {
         // Generate JWT token
         const token = jwt.sign(
             { id: newUser.id, email: newUser.email },
-            JWT_SECRET,
+            requireJwtSecret(),
             { expiresIn: '24h' }
         );
 
@@ -146,7 +133,7 @@ router.post('/login', async (req, res) => {
         // Generate JWT token
         const token = jwt.sign(
             { id: user.id, email: user.email },
-            JWT_SECRET,
+            requireJwtSecret(),
             { expiresIn: '24h' }
         );
 

@@ -9,6 +9,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 require('dotenv').config();
+const { getAllowedOrigins } = require('./config/security');
 
 // Import routes
 const userRoutes = require('./routes/userRoutes');
@@ -44,10 +45,15 @@ app.use(helmet({
 }));
 
 // CORS configuration
+const allowedOrigins = getAllowedOrigins(NODE_ENV);
 const corsOptions = {
-    origin: NODE_ENV === 'production' 
-        ? ['https://yourdomain.com'] // Replace with your production domain
-        : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+            return;
+        }
+        callback(new Error('Origin is not allowed by CORS'));
+    },
     credentials: true,
     optionsSuccessStatus: 200
 };
@@ -56,8 +62,8 @@ app.use(cors(corsOptions));
 // Basic middleware
 app.use(compression());
 app.use(cookieParser());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(express.json({ limit: '128kb' }));
+app.use(express.urlencoded({ extended: true, limit: '128kb' }));
 
 // Request sanitization
 app.use(sanitizeRequest);
@@ -74,7 +80,7 @@ app.use((req, res, next) => {
         console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`, {
             ip: req.ip,
             userAgent: req.get('User-Agent'),
-            user: req.user?.email || 'anonymous'
+            userId: req.user?.id || 'anonymous'
         });
     }
     next();

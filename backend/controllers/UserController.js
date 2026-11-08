@@ -7,6 +7,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
+const { requireJwtSecret } = require('../config/security');
 
 class UserController extends BaseController {
     constructor() {
@@ -445,11 +446,10 @@ class UserController extends BaseController {
             }
 
             // Generate reset token
-            const resetToken = await this.userModel.generatePasswordResetToken(user.id);
+            await this.userModel.generatePasswordResetToken(user.id);
 
-            // In a real application, you would send an email here
-            // For now, we'll just log it (remove in production)
-            console.log(`Password reset token for ${email}: ${resetToken}`);
+            // This legacy service has no email delivery implementation. Never
+            // log or return the reset credential. Production uses Cognito.
 
             this.logRequest(req, 'REQUEST_PASSWORD_RESET');
             return this.sendSuccess(res, null, 'If the email exists, a reset link has been sent');
@@ -586,7 +586,7 @@ class UserController extends BaseController {
                 email: user.email, 
                 role: user.role 
             },
-            process.env.JWT_SECRET || 'your-secret-key',
+            requireJwtSecret(),
             { expiresIn }
         );
     }
