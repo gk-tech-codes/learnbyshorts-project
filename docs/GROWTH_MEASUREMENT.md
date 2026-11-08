@@ -9,6 +9,8 @@ learning outcomes.
 | Stage | Event | Success measure |
 | --- | --- | --- |
 | Discovery | `landing_view` | Qualified visits by privacy-safe channel |
+| Role intent | `rolesprint_plan_created` | Visitors who generate a role-based practice plan |
+| Role activation | first complete RoleSprint mission | Plan creators who complete all five steps for one day |
 | Direction | `path_finder_complete` | Visitors who receive a recommended path |
 | Course intent | `course_landing_view` | Recommended-path visitors who open a full course |
 | Activation | first proof-mission completion | Visitors who complete meaningful work |
@@ -22,6 +24,11 @@ learning outcomes.
 No event may contain an email address, learner answer, prompt, resume text,
 project text, exact referrer URL, access token, or other learner-provided
 content. Global Privacy Control and Do Not Track remain respected.
+
+RoleSprint is stricter than the site-wide baseline: it does not load its
+analytics library until the visitor explicitly opts in. Its event names and
+fields are allow-listed in code, and its page-view URL excludes query
+parameters so a shared plan configuration is not transmitted.
 
 ## First 30-day decisions
 
@@ -47,6 +54,9 @@ Archive a CSV or PDF export with the date range and definitions.
 
 | Metric | Calculation |
 | --- | --- |
+| RoleSprint plan rate | `rolesprint_plan_created` / qualified RoleSprint sessions |
+| RoleSprint activation | learners completing one five-step day / RoleSprint plan creators |
+| RoleSprint Day-7 retention | plan creators completing a step on days 6–8 / activated RoleSprint learners |
 | Path recommendation rate | `path_finder_complete` / qualified landing sessions |
 | Course activation rate | learners completing one mission / `course_landing_view` learners |
 | Three-mission rate | learners reaching three weekly missions / activated learners |

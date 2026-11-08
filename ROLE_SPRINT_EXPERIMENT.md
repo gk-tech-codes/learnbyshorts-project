@@ -17,7 +17,8 @@ course library is replaced by a role-specific daily loop:
 ## First cohort
 
 - One primary audience: engineers actively preparing for a role change or interview.
-- Target cohort: 20 accepted learners.
+- Target pilot cohort: 15 accepted learners; publish the denominator even if
+  fewer complete the study.
 - Duration: 30 days.
 - Minimum commitment: 30 focused minutes per day.
 - No paid testimonial, fabricated account, or founder/test account in metrics.
@@ -50,9 +51,14 @@ course library is replaced by a role-specific daily loop:
 
 Continue investing in RoleSprint only if the cohort produces both:
 
-- meaningful return behavior, measured from the definitions above; and
+- at least 10/15 activated learners, 6/15 Day-7 retained learners, and 4/15
+  Day-14 retained learners (reported as counts as well as percentages); and
 - qualitative evidence that the Learn → Build → AI → Verify → Interview loop solves a
   problem learners cannot solve as easily with a generic course library or chatbot.
 
 If retention is weak, interview every churned participant and change the product
 before claiming traction.
+
+These are product-learning thresholds, not statistical proof of efficacy and
+not evidence of field-level significance. A later outcome study needs a
+predefined skills assessment, a larger cohort, and independent review.

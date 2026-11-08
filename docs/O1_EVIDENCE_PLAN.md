@@ -87,6 +87,8 @@ Possible path:
    Preserve `docs/AI_FLUENCY_CURRICULUM.md`, the interactive Skill Studio,
    screenshots, source attribution, and the corresponding Git history as
    technical authorship evidence—not as proof of significance by themselves.
+   Preserve the RoleSprint algorithm, validation protocol, privacy design,
+   automated tests, dated screenshots, and Git history on the same basis.
 3. Run small, permissioned pilots with educators or developer communities.
 4. Measure activation, completion, return behavior, and learning outcomes
    consistently; report failures and limitations as well as successes.

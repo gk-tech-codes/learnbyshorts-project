@@ -7,6 +7,20 @@ import {
 
 const STORAGE_KEY = 'learnbyshorts:role-sprint:v1';
 const CONSENT_KEY = 'learnbyshorts:analytics-consent:v1';
+const MEASUREMENT_ID = 'G-5413RZXDET';
+const ANALYTICS_FIELDS = Object.freeze({
+  rolesprint_day_opened: ['role_id', 'day_number', 'focus_track'],
+  rolesprint_step_completed: ['role_id', 'day_number', 'step_type', 'minutes'],
+  rolesprint_plan_created: [
+    'role_id',
+    'duration_days',
+    'minutes_per_day',
+    'readiness_band',
+    'priority_track',
+  ],
+  rolesprint_progress_exported: ['role_id', 'completed_days', 'completion_percent'],
+  rolesprint_plan_shared: ['role_id', 'duration_days'],
+});
 
 const state = {
   catalog: null,
@@ -41,15 +55,53 @@ const elements = {
 };
 
 function analyticsAllowed() {
-  return localStorage.getItem(CONSENT_KEY) === 'granted';
+  return (
+    !privacySignalActive() &&
+    localStorage.getItem(CONSENT_KEY) === 'granted'
+  );
+}
+
+function privacySignalActive() {
+  return (
+    navigator.globalPrivacyControl === true ||
+    navigator.doNotTrack === '1' ||
+    window.doNotTrack === '1'
+  );
+}
+
+function initializeAnalytics() {
+  if (!analyticsAllowed()) return false;
+  if (!window.dataLayer) window.dataLayer = [];
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+  }
+  if (!document.querySelector(`script[data-measurement-id="${MEASUREMENT_ID}"]`)) {
+    const script = document.createElement('script');
+    script.async = true;
+    script.dataset.measurementId = MEASUREMENT_ID;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
+    document.head.append(script);
+    window.gtag('js', new Date());
+    window.gtag('config', MEASUREMENT_ID, {
+      send_page_view: true,
+      page_location: `${window.location.origin}${window.location.pathname}`,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+    });
+  }
+  return true;
 }
 
 function track(name, parameters = {}) {
-  if (!analyticsAllowed() || typeof window.gtag !== 'function') return;
+  const allowedFields = ANALYTICS_FIELDS[name];
+  if (!allowedFields || !initializeAnalytics()) return;
   const safeParameters = {};
-  for (const [key, value] of Object.entries(parameters)) {
+  for (const key of allowedFields) {
+    const value = parameters[key];
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-      safeParameters[key] = value;
+      safeParameters[key] = typeof value === 'string' ? value.slice(0, 64) : value;
     }
   }
   window.gtag('event', name, safeParameters);
@@ -331,27 +383,35 @@ async function sharePlan() {
   } catch {
     setStatus(`Copy this public plan link: ${url}`);
   }
+  track('rolesprint_plan_shared', {
+    role_id: state.plan.roleId,
+    duration_days: state.plan.durationDays,
+  });
 }
 
 function setupConsent() {
   const saved = localStorage.getItem(CONSENT_KEY);
-  elements.consent.hidden = saved === 'granted' || saved === 'denied';
+  if (privacySignalActive()) {
+    localStorage.setItem(CONSENT_KEY, 'denied');
+    elements.consent.hidden = true;
+  } else {
+    elements.consent.hidden = saved === 'granted' || saved === 'denied';
+    if (saved === 'granted') initializeAnalytics();
+  }
   elements.acceptAnalytics.addEventListener('click', () => {
-    const granted = window.LBSAnalyticsConsent
-      ? window.LBSAnalyticsConsent.grant()
-      : false;
+    const granted = !privacySignalActive();
     localStorage.setItem(CONSENT_KEY, granted ? 'granted' : 'denied');
+    if (granted) initializeAnalytics();
     elements.consent.hidden = true;
     setStatus(
       granted
-        ? 'Anonymous analytics enabled. No code, answers, or identity is sent.'
+        ? 'Product analytics enabled. No code, answers, scores, or identity fields are sent.'
         : 'Analytics remains disabled because your browser requested no tracking.',
     );
   });
   elements.declineAnalytics.addEventListener('click', () => {
     localStorage.setItem(CONSENT_KEY, 'denied');
     elements.consent.hidden = true;
-    if (window.LBSAnalyticsConsent) window.LBSAnalyticsConsent.deny();
     setStatus('Analytics remains disabled.');
   });
 }

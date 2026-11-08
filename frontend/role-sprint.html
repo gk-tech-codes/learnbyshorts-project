@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
   <meta name="description" content="Turn a technical role target into a private 14, 30, or 60-day practice plan combining fundamentals, building with AI, independent verification, and interview drills.">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#5b4ef5">
   <title>RoleSprint — A Job-to-Skill Plan | LearnByShorts</title>
   <link rel="canonical" href="https://www.learnbyshorts.com/role-sprint.html">
@@ -12,9 +16,14 @@
   <meta property="og:title" content="RoleSprint — Turn a job target into daily proof of skill">
   <meta property="og:description" content="Build a private role-based practice plan: learn, build with AI, verify alone, and rehearse the interview.">
   <meta property="og:url" content="https://www.learnbyshorts.com/role-sprint.html">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://www.learnbyshorts.com/assets/learnbyshorts-social.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="LearnByShorts">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="RoleSprint by LearnByShorts">
   <meta name="twitter:description" content="A private job-to-skill practice engine for the AI era.">
+  <meta name="twitter:image" content="https://www.learnbyshorts.com/assets/learnbyshorts-social.png">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css?v=1.5.9">
   <link rel="stylesheet" href="css/role-sprint.css?v=1.0.0">
@@ -46,6 +55,12 @@
       <a class="back-link" href="index.html">Explore courses →</a>
     </nav>
   </header>
+
+  <aside class="consent" id="analytics-consent" hidden>
+    <p>Help improve RoleSprint with privacy-limited product events. We never send your code, answers, email, scores, or exported log.</p>
+    <button class="allow" id="accept-analytics" type="button">Allow product analytics</button>
+    <button class="decline" id="decline-analytics" type="button">No thanks</button>
+  </aside>
 
   <main>
     <section class="sprint-hero">
@@ -192,18 +207,10 @@
     </section>
   </main>
 
-  <aside class="consent" id="analytics-consent" hidden>
-    <p>Help improve RoleSprint with anonymous usage events. We never send your code, answers, email, or exported log.</p>
-    <button class="allow" id="accept-analytics" type="button">Allow anonymous analytics</button>
-    <button class="decline" id="decline-analytics" type="button">No thanks</button>
-  </aside>
-
   <footer class="sprint-footer">
     <p>RoleSprint is a practice planner, not a hiring promise or certification. © 2026 LearnByShorts.</p>
   </footer>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5413RZXDET"></script>
-  <script src="js/analytics.js"></script>
-  <script type="module" src="js/role-sprint.js"></script>
+  <script type="module" src="js/role-sprint.js?v=20261108-1"></script>
 </body>
 </html>

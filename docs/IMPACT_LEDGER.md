@@ -34,6 +34,7 @@ every material entry.
 | Date | Commit | What changed | Evidence to preserve |
 | --- | --- | --- | --- |
 | 2026-11-08 | `3956ae9` | Removed legacy predictable JWT fallbacks and seeded demo credentials; stopped reset-token/PII logging; required exact production CORS and loopback-safe configuration; added authentication provenance, clean-main, dry-run, and two-step prune release gates | Git commit, security test output, stale-checkout dry run, production auth hashes, AWS read-only configuration audit |
+| 2026-11-08 | Pending final commit | Added RoleSprint, a deterministic local-first job-to-skill planner with 14, 30, and 60-day Learn → Build → AI → Verify → Interview loops, private progress, allow-listed opt-in analytics, exportable learner-owned practice logs, tests, and a predeclared validation protocol | Final Git commit, automated QA, production screenshots, consent network check, cohort records after real participation |
 | 2026-11-07 | `2ad4247` | Fail-closed authentication and removed embedded fallbacks | Git commit, security checks |
 | 2026-11-07 | `76ccd28` | Interactive Java OOP lab and founding offer | Git commit, production screenshots |
 | 2026-11-07 | `fc233d0` | Repaired legacy learning pages and dashboard auth | Git commit, test results |
@@ -67,6 +68,8 @@ Use consistent definitions so results remain credible.
 | Course activation | Unique browser that completes one proof mission after `course_landing_view` | GA4 aggregate |
 | Weekly challenge completion | Activated learner reaches three proof missions within the local seven-day window | GA4 aggregate |
 | Privacy-safe return | `learner_return` in the 2–7 day or 8–30 day bucket; never an exact return timestamp in analytics | GA4 aggregate |
+| RoleSprint activation | Learner creates a plan and completes all five steps for one day | Opt-in GA4 aggregate or permissioned practice-log export |
+| RoleSprint Day-7 retention | Activated learner completes any mission step on days 6–8 after activation | Opt-in GA4 aggregate or permissioned study record |
 
 ## Monthly snapshot
 

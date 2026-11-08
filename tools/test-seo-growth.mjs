@@ -17,7 +17,7 @@ function fileForUrl(urlValue) {
     return path.join(siteRoot, url.pathname.slice(1));
 }
 
-assert.equal(urls.length, 25, 'sitemap should contain 13 core URLs and 12 modern course URLs');
+assert.equal(urls.length, 26, 'sitemap should contain 14 core URLs and 12 modern course URLs');
 assert.equal(new Set(urls).size, urls.length, 'sitemap URLs must be unique');
 assert.ok(urls.every(url => url.startsWith(`${baseUrl}/`)), 'sitemap must use the canonical www host');
 assert.ok(urls.every(url => !url.endsWith('/index.html')), 'nested canonical URLs must use trailing slashes');
@@ -56,10 +56,16 @@ for (const track of modern.tracks) {
     );
 }
 
+const roleSprint = fs.readFileSync(path.join(siteRoot, 'role-sprint.html'), 'utf8');
+assert.match(roleSprint, /"@type": "WebApplication"/);
+assert.match(roleSprint, /No account required\./);
+assert.match(roleSprint, /Your plan and progress stay in this browser\./);
+assert.doesNotMatch(roleSprint, /hiring promise or certification[^<]*\.<\/p>\s*<script async/i);
+
 for (const obsolete of ['shorts.html', 'singleton-course.html', 'category.html']) {
     const html = fs.readFileSync(path.join(siteRoot, obsolete), 'utf8');
     assert.match(html, /<meta name="robots" content="noindex,follow">/);
     assert.ok(!urls.some(url => url.endsWith(`/${obsolete}`)), `${obsolete} must not be in sitemap`);
 }
 
-console.log('SEO growth QA passed: 25 canonical URLs, 12 crawlable course pages, owned social cards, and obsolete routes excluded.');
+console.log('SEO growth QA passed: 26 canonical URLs, RoleSprint, 12 crawlable course pages, owned social cards, and obsolete routes excluded.');
