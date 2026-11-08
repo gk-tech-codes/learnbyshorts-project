@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "roles": [
+    {
+      "id": "senior-software-engineer",
+      "name": "Senior Software Engineer",
+      "outcome": "Lead ambiguous projects, write production-grade code, and explain system trade-offs clearly.",
+      "tracks": {
+        "coding": 5,
+        "debugging": 5,
+        "systemDesign": 5,
+        "aiFluency": 4,
+        "communication": 5
+      }
+    },
+    {
+      "id": "ai-engineer",
+      "name": "AI Engineer",
+      "outcome": "Build and evaluate reliable AI applications instead of stopping at a model demo.",
+      "tracks": {
+        "coding": 4,
+        "debugging": 4,
+        "systemDesign": 4,
+        "aiFluency": 5,
+        "communication": 3
+      }
+    },
+    {
+      "id": "backend-engineer",
+      "name": "Backend Engineer",
+      "outcome": "Design reliable APIs and data systems, diagnose failures, and defend operational choices.",
+      "tracks": {
+        "coding": 5,
+        "debugging": 5,
+        "systemDesign": 5,
+        "aiFluency": 3,
+        "communication": 4
+      }
+    },
+    {
+      "id": "data-engineer",
+      "name": "Data Engineer",
+      "outcome": "Build trustworthy data pipelines, reason about quality, and communicate trade-offs.",
+      "tracks": {
+        "coding": 4,
+        "debugging": 4,
+        "systemDesign": 5,
+        "aiFluency": 4,
+        "communication": 4
+      }
+    }
+  ],
+  "tracks": {
+    "coding": {
+      "label": "Coding",
+      "icon": "⌨️",
+      "learn": [
+        "Study one reusable problem-solving pattern and write its invariants before seeing code.",
+        "Read a small implementation and identify its time, space, and failure boundaries.",
+        "Compare two solutions to the same problem and explain when each becomes the wrong choice."
+      ],
+      "build": [
+        "Implement the pattern from a blank file, then add three edge-case tests.",
+        "Refactor a working solution for clarity without changing behavior.",
+        "Build a small API or command-line tool with validation and deterministic tests."
+      ],
+      "verify": [
+        "Close every AI tool and reconstruct the solution from its invariants.",
+        "Create an adversarial test that would fail a superficial implementation.",
+        "Explain the algorithm aloud, including the first condition that would invalidate it."
+      ],
+      "interview": [
+        "Solve a medium problem in 30 minutes while narrating trade-offs.",
+        "Take five minutes to clarify requirements before writing code.",
+        "Review your solution as an interviewer and list the strongest follow-up question."
+      ]
+    },
+    "debugging": {
+      "label": "Debugging",
+      "icon": "🧭",
+      "learn": [
+        "Study the difference between symptoms, hypotheses, evidence, and root cause.",
+        "Learn one observability signal and the failure modes it cannot reveal.",
+        "Review a postmortem and separate contributing conditions from the triggering event."
+      ],
+      "build": [
+        "Inject a reproducible defect into a small program and create a minimal failing test.",
+        "Add structured error handling and one useful diagnostic signal to an existing program.",
+        "Reduce a noisy failure to the smallest input that still reproduces it."
+      ],
+      "verify": [
+        "Write three competing hypotheses before inspecting the suspected code.",
+        "Disprove at least one plausible hypothesis with evidence.",
+        "Document the causal chain and the test that prevents regression."
+      ],
+      "interview": [
+        "Debug a broken function aloud without rewriting it immediately.",
+        "Explain what signal you would inspect first during a production incident and why.",
+        "Describe a failure you initially misdiagnosed and how evidence changed your view."
+      ]
+    },
+    "systemDesign": {
+      "label": "System design",
+      "icon": "🏗️",
+      "learn": [
+        "Study one reliability or data-consistency trade-off and name the assumption behind it.",
+        "Trace a request through a distributed system and identify every state boundary.",
+        "Review a reference architecture and list what its diagram leaves unspecified."
+      ],
+      "build": [
+        "Design a small service from requirements through API, data model, and failure handling.",
+        "Add capacity estimates and one explicit degradation strategy to a design.",
+        "Create a decision record comparing two architectures with measurable criteria."
+      ],
+      "verify": [
+        "Attack your design with a traffic spike, dependency outage, and malformed input.",
+        "Identify the first bottleneck and show the calculation supporting it.",
+        "Remove one component and explain the new limitation rather than hiding it."
+      ],
+      "interview": [
+        "Run a 35-minute design session with timed requirements, estimates, and deep dive.",
+        "Explain one trade-off in business language and one in engineering language.",
+        "Answer: what would you build first if the team and budget were cut in half?"
+      ]
+    },
+    "aiFluency": {
+      "label": "AI collaboration",
+      "icon": "✦",
+      "learn": [
+        "Study how task framing, constraints, examples, and evaluation change an AI response.",
+        "Compare retrieval, tools, memory, and fine-tuning as different system choices.",
+        "Learn one common model failure and design a check that detects it."
+      ],
+      "build": [
+        "Ask an AI assistant for three approaches, then write the selection rubric yourself.",
+        "Create a reusable prompt with an explicit success test and refusal boundary.",
+        "Use AI to draft tests before implementation, then audit every generated assertion."
+      ],
+      "verify": [
+        "Re-run the task without AI and compare the assumptions each approach missed.",
+        "Verify every external fact against a primary source.",
+        "Change one input constraint and confirm the output changes for the right reason."
+      ],
+      "interview": [
+        "Explain when AI assistance increases risk instead of productivity.",
+        "Describe a workflow where the model proposes and deterministic checks decide.",
+        "Defend which data must never be sent to a third-party model."
+      ]
+    },
+    "communication": {
+      "label": "Technical communication",
+      "icon": "🎙️",
+      "learn": [
+        "Study a concise design document and identify how it separates facts from decisions.",
+        "Learn the Situation–Task–Action–Result structure without inflating personal impact.",
+        "Compare an explanation for an engineer, a manager, and a customer."
+      ],
+      "build": [
+        "Write a one-page technical decision with context, alternatives, and consequences.",
+        "Record a two-minute explanation of a system you built using no unexplained jargon.",
+        "Turn a vague project claim into five specific, verifiable facts."
+      ],
+      "verify": [
+        "Remove every adjective that is not supported by evidence.",
+        "Ask another person to repeat your main point after one reading.",
+        "Mark which sentences are firsthand facts, estimates, or interpretations."
+      ],
+      "interview": [
+        "Answer one behavioral question with a clear individual contribution and lesson.",
+        "Explain a disagreement while representing the other position fairly.",
+        "Practice a five-minute project deep dive followed by skeptical questions."
+      ]
+    }
+  }
+}
