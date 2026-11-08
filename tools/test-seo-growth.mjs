@@ -49,10 +49,34 @@ for (const track of modern.tracks) {
     assert.match(html, /"@type": "FAQPage"/);
     assert.match(html, /"@type": "BreadcrumbList"/);
     assert.match(html, new RegExp(`data-course-id="${track.id}"`));
+    assert.match(
+        html,
+        /<link rel="alternate" type="text\/markdown" href="index\.md"/,
+        `${track.id} needs an AI-readable Markdown alternate`
+    );
     assert.equal(
         [...html.matchAll(/data-mission-id=/g)].length,
         4,
         `${track.id} must expose four crawlable proof missions`
+    );
+}
+
+const homepage = fs.readFileSync(path.join(siteRoot, 'index.html'), 'utf8');
+assert.match(homepage, /href="\/llms\.txt"/);
+assert.match(homepage, /href="\/learnbyshorts-facts\.md"/);
+
+const modernCatalog = fs.readFileSync(
+    path.join(siteRoot, 'modern-skills/index.html'),
+    'utf8'
+);
+assert.match(modernCatalog, /href="\/course-catalog\.md"/);
+for (const track of modern.tracks) {
+    assert.match(
+        modernCatalog,
+        new RegExp(
+            `"url": "https://www\\.learnbyshorts\\.com/courses/${track.id}/"`
+        ),
+        `${track.id} needs an exact URL in catalog structured data`
     );
 }
 

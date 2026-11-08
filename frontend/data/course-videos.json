@@ -1,0 +1,291 @@
+{
+  "reviewedAt": "2026-11-08",
+  "selectionNote": "Curated for topic fit, teaching quality, creator credibility, and public YouTube availability. Videos are optional inputs to proof missions, not LearnByShorts content.",
+  "courses": {
+    "ai-fluency": [
+      {
+        "youtubeId": "2IK3DFHRFfw",
+        "title": "Generative AI in a Nutshell - how to survive and thrive in the age of AI",
+        "creator": "Henrik Kniberg",
+        "missionIds": ["ai-capabilities", "ai-context"],
+        "why": "A durable visual mental model for capabilities, prompting, context, and human judgment.",
+        "before": "Write your current explanation of how a generative model produces an answer.",
+        "after": "Name two useful capabilities, two failure modes, and one decision that must remain human."
+      },
+      {
+        "youtubeId": "cfqtFvWOfg0",
+        "title": "Why Large Language Models Hallucinate",
+        "creator": "IBM Technology",
+        "missionIds": ["ai-verify", "ai-own"],
+        "why": "Connects confident model output to the need for source checks, abstention, and accountable decisions.",
+        "before": "Predict three situations in which fluent output could still be wrong.",
+        "after": "Add one hallucination test and one human-ownership rule to your verification gate."
+      }
+    ],
+    "agentic-engineering": [
+      {
+        "youtubeId": "EDb37y_MhRw",
+        "title": "Generative vs Agentic AI: Shaping the Future of AI Collaboration",
+        "creator": "IBM Technology",
+        "missionIds": ["agent-boundary", "agent-context"],
+        "why": "Clarifies when a bounded agent is justified and what separates it from a single model response.",
+        "before": "Mark which parts of your target workflow are deterministic, model-driven, or human-approved.",
+        "after": "Revise the boundary so every autonomous step has an explicit stop or escalation condition."
+      },
+      {
+        "youtubeId": "FDVdLrloFOw",
+        "title": "Observability and Evals for AI Agents: A Simple Breakdown",
+        "creator": "LangChain",
+        "missionIds": ["agent-tools", "agent-evals"],
+        "why": "Shows why tool calls need traces and why an agent loop needs task-level evaluation.",
+        "before": "List the inputs, outputs, and failure states you would record for one tool call.",
+        "after": "Add one trace field and two representative failure cases to your agent evaluation set."
+      }
+    ],
+    "ai-product-engineering": [
+      {
+        "youtubeId": "UabBYexBD4k",
+        "title": "Is RAG Still Needed? Choosing the Best Approach for LLMs",
+        "creator": "IBM Technology",
+        "missionIds": ["product-problem", "product-retrieval"],
+        "why": "Frames retrieval as a product and data decision instead of a default architecture.",
+        "before": "Identify which user answers require current, private, or source-citable information.",
+        "after": "Document when your product retrieves, answers from model knowledge, or abstains."
+      },
+      {
+        "youtubeId": "trfUBIDeI1Y",
+        "title": "LLM as a Judge: Scaling AI Evaluation Strategies",
+        "creator": "IBM Technology",
+        "missionIds": ["product-quality"],
+        "why": "Introduces scalable grading while making the case for rubrics and human calibration.",
+        "before": "Write one outcome a deterministic test can grade and one that needs judgment.",
+        "after": "Create a small quality scorecard and record where a model grader needs human review."
+      },
+      {
+        "youtubeId": "lEcULR30-GM",
+        "title": "Master Full-Stack Docker & CI/CD – Build a Production-Ready Pipeline",
+        "creator": "freeCodeCamp.org",
+        "missionIds": ["product-ship"],
+        "why": "Provides a concrete path from a working feature to a repeatable, test-gated release.",
+        "before": "List the checks that must pass before your thin slice can reach users.",
+        "after": "Add one release gate, one rollback step, and one operational metric to your ship plan."
+      }
+    ],
+    "ai-evals-reliability": [
+      {
+        "youtubeId": "1jReCwBgM84",
+        "title": "LLM Evaluation Basics: Datasets & Metrics",
+        "creator": "Generative AI at MIT",
+        "missionIds": ["eval-contract", "eval-dataset"],
+        "why": "A concise foundation for turning vague model quality into datasets and observable metrics.",
+        "before": "Write one useful, harmful, ambiguous, and abstaining example for your task.",
+        "after": "Expand the examples into a versioned test distribution with explicit labels."
+      },
+      {
+        "youtubeId": "trfUBIDeI1Y",
+        "title": "LLM as a Judge: Scaling AI Evaluation Strategies",
+        "creator": "IBM Technology",
+        "missionIds": ["eval-graders"],
+        "why": "Explains model grading tradeoffs and the need to measure agreement with human judgment.",
+        "before": "Separate criteria that can be checked deterministically from criteria that require judgment.",
+        "after": "Run a small agreement study and document one grader blind spot."
+      },
+      {
+        "youtubeId": "vljxQZfJ9wY",
+        "title": "Production Evals For Agentic AI Systems",
+        "creator": "AI Engineer",
+        "missionIds": ["eval-gate"],
+        "why": "Connects offline evaluation to real production behavior and release decisions.",
+        "before": "Choose the quality, safety, latency, and cost thresholds that would block a release.",
+        "after": "Compare two versions and record one regression your gate would stop."
+      }
+    ],
+    "ai-assisted-coding": [
+      {
+        "youtubeId": "mViFYTwWvcM",
+        "title": "Spec-Driven Development: AI Assisted Coding Explained",
+        "creator": "IBM Technology",
+        "missionIds": ["coding-spec", "coding-slice"],
+        "why": "Centers contracts and constrained implementation before asking an AI system to write code.",
+        "before": "Write the invariants, interfaces, acceptance checks, and non-goals for one feature.",
+        "after": "Tighten the task until another engineer could execute it without guessing."
+      },
+      {
+        "youtubeId": "HDEGFNAUkX8",
+        "title": "How to automate code reviews and testing with GitHub Copilot",
+        "creator": "GitHub",
+        "missionIds": ["coding-risk", "coding-review"],
+        "why": "Demonstrates AI-assisted review as an input to testing and human ownership, not an approval shortcut.",
+        "before": "List the boundary, security, concurrency, and failure-state risks in your current diff.",
+        "after": "Add one risk-derived test and write which AI suggestion you rejected and why."
+      }
+    ],
+    "full-stack-delivery": [
+      {
+        "youtubeId": "lEcULR30-GM",
+        "title": "Master Full-Stack Docker & CI/CD – Build a Production-Ready Pipeline",
+        "creator": "freeCodeCamp.org",
+        "missionIds": ["fullstack-slice", "fullstack-test", "fullstack-pipeline"],
+        "why": "Ties a complete application slice to containers, automated checks, and a repeatable delivery pipeline.",
+        "before": "Sketch the UI, API, validation, storage, and failure boundaries of one vertical slice.",
+        "after": "Ship the slice through a pipeline that deliberately catches one failure."
+      },
+      {
+        "youtubeId": "3c-iBn73dDE",
+        "title": "Docker Tutorial for Beginners [FULL COURSE in 3 Hours]",
+        "creator": "TechWorld with Nana",
+        "missionIds": ["fullstack-operate"],
+        "why": "Builds the runtime vocabulary needed to explain images, containers, networks, volumes, and operations.",
+        "before": "Write your current distinction between an image, container, volume, and network.",
+        "after": "Containerize one service and document health, configuration, secrets, and rollback."
+      }
+    ],
+    "data-applied-ml": [
+      {
+        "youtubeId": "WXk7yDqsKxs",
+        "title": "Harvard CS50’s Intro to Databases with SQL – Full University Course",
+        "creator": "freeCodeCamp.org and CS50",
+        "missionIds": ["data-question", "data-quality"],
+        "why": "Provides a rigorous SQL foundation for defining grain, querying defensibly, and checking data quality.",
+        "before": "Write the decision, metric, grain, keys, and minimum data needed for your analysis.",
+        "after": "Create one query plus checks for missing values, duplicates, and time-boundary errors."
+      },
+      {
+        "youtubeId": "aircAruvnKk",
+        "title": "But what is a neural network? | Deep learning chapter 1",
+        "creator": "3Blue1Brown",
+        "missionIds": ["data-baseline", "data-explain"],
+        "why": "A visual foundation that helps learners explain model behavior without hiding behind jargon.",
+        "before": "Sketch how inputs, weights, activations, and outputs might represent your problem.",
+        "after": "Compare the model to a simple baseline and explain the improvement and uncertainty plainly."
+      }
+    ],
+    "backend-distributed-systems": [
+      {
+        "youtubeId": "cQP8WApzIQQ",
+        "title": "Lecture 1: Introduction",
+        "creator": "MIT 6.824: Distributed Systems",
+        "missionIds": ["backend-contract", "backend-state"],
+        "why": "Establishes the core distributed-systems tradeoffs behind state, consistency, and fault tolerance.",
+        "before": "Draw the path of one request and mark every state owner and network boundary.",
+        "after": "Choose a consistency model and record one rejected alternative."
+      },
+      {
+        "youtubeId": "gA4YXUJX7t8",
+        "title": "Lecture 2: RPC and Threads",
+        "creator": "MIT 6.824: Distributed Systems",
+        "missionIds": ["backend-failure"],
+        "why": "Grounds retries, concurrency, duplicate requests, and partial failure in concrete RPC behavior.",
+        "before": "Predict what happens when a request times out after the server has already acted.",
+        "after": "Add idempotency, bounded retry, and recovery behavior to one dependency call."
+      },
+      {
+        "youtubeId": "hLvwoow3XTk",
+        "title": "OpenTelemetry: Simplifying Hybrid Cloud Monitoring",
+        "creator": "IBM Technology",
+        "missionIds": ["backend-observe"],
+        "why": "Connects logs, metrics, and traces to the path of a real user request.",
+        "before": "List the fields needed to correlate one request across service and storage boundaries.",
+        "after": "Trace one failure end to end and define the signal that should alert first."
+      }
+    ],
+    "cloud-finops": [
+      {
+        "youtubeId": "eOBq__h4OJ4",
+        "title": "Introduction to AWS Lambda - Serverless Compute on Amazon Web Services",
+        "creator": "Amazon Web Services",
+        "missionIds": ["cloud-architecture"],
+        "why": "An official foundation for deciding when event-driven serverless compute is the cheapest adequate shape.",
+        "before": "Compare static hosting, serverless functions, containers, and managed services for your traffic profile.",
+        "after": "Record the scaling, availability, cold-start, and cost assumptions behind your chosen shape."
+      },
+      {
+        "youtubeId": "zE-8ZCvTQSk",
+        "title": "Building serverless applications with infrastructure as code",
+        "creator": "AWS Events",
+        "missionIds": ["cloud-iac", "cloud-observe"],
+        "why": "Shows how repeatable infrastructure and operational signals fit a serverless workload.",
+        "before": "List every resource, permission, encryption decision, alarm, and deletion safeguard.",
+        "after": "Review a change set and prove that no datastore or credential is public."
+      },
+      {
+        "youtubeId": "DJzVi9hO2gg",
+        "title": "Mastering Cloud Cost Optimization with FinOps",
+        "creator": "PolarSeven",
+        "missionIds": ["cloud-cost"],
+        "why": "Turns cloud cost from a monthly surprise into explicit budgets, unit economics, and optimization loops.",
+        "before": "Name the usage unit, major cost drivers, and maximum acceptable monthly spend.",
+        "after": "Add a budget threshold, anomaly response, and one right-sizing experiment."
+      }
+    ],
+    "platform-engineering-kubernetes": [
+      {
+        "youtubeId": "X48VuDVv0do",
+        "title": "Kubernetes Tutorial for Beginners [FULL COURSE in 4 Hours]",
+        "creator": "TechWorld with Nana",
+        "missionIds": ["platform-user", "platform-k8s"],
+        "why": "A strong practical foundation for workloads, configuration, networking, storage, and safe operations.",
+        "before": "Map one developer workflow and mark where a container platform reduces or adds friction.",
+        "after": "Deploy one workload with health, resources, configuration, and rollback defined."
+      },
+      {
+        "youtubeId": "pJk6y-PvOoM",
+        "title": "What are Golden Paths in platform engineering?",
+        "creator": "Platform Engineering",
+        "missionIds": ["platform-path", "platform-measure"],
+        "why": "Explains why a platform should offer a supported path while preserving escape hatches and measurable value.",
+        "before": "Choose one repeated developer task that is costly, inconsistent, or unsafe.",
+        "after": "Draft a golden path and define adoption, lead-time, reliability, and satisfaction signals."
+      }
+    ],
+    "secure-engineering": [
+      {
+        "youtubeId": "cVNu9Mxui08",
+        "title": "Operationalizing AI Supply Chain Security with AIBOM",
+        "creator": "OWASP GenAI Security Project",
+        "missionIds": ["security-threats", "security-ai"],
+        "why": "Connects AI-specific attack surfaces to inventory, provenance, abuse boundaries, and operational controls.",
+        "before": "List assets, actors, trust boundaries, model dependencies, and the most harmful plausible outcome.",
+        "after": "Add one prevention, detection, response, and residual-risk decision for an AI abuse case."
+      },
+      {
+        "youtubeId": "Wq9rHd3hCns",
+        "title": "Demystifying end-to-end supply chain security",
+        "creator": "GitHub",
+        "missionIds": ["security-identity", "security-supply"],
+        "why": "Covers identity, dependencies, build provenance, and release integrity across the delivery chain.",
+        "before": "Map who and what can change source, dependencies, builds, artifacts, and production.",
+        "after": "Remove one unnecessary permission and add one verifiable delivery-chain control."
+      }
+    ],
+    "systems-interviews": [
+      {
+        "youtubeId": "L9TfZdODuFQ",
+        "title": "How to Answer System Design Interview Questions (Complete Guide)",
+        "creator": "Aced (formerly Exponent)",
+        "missionIds": ["interview-diagnostic", "interview-systems"],
+        "why": "Provides a structured system-design conversation rather than a memorized architecture dump.",
+        "before": "Write the clarifying questions, scale assumptions, and success criteria you would ask first.",
+        "after": "Redesign one weak answer and explicitly defend two tradeoffs."
+      },
+      {
+        "youtubeId": "J8uAiZJMfzQ",
+        "title": "Debugging Like A Pro",
+        "creator": "ByteByteGo",
+        "missionIds": ["interview-systems"],
+        "why": "Reinforces hypothesis-driven debugging, signal selection, and communicating under uncertainty.",
+        "before": "State your first three hypotheses for a failure and what evidence would eliminate each.",
+        "after": "Run a timed debugging drill and record where your reasoning became unfocused."
+      },
+      {
+        "youtubeId": "T25I2FQ9Mok",
+        "title": "Top 10 Behavioral Software Engineering Interview Questions",
+        "creator": "Aced (formerly Exponent)",
+        "missionIds": ["interview-project", "interview-sim"],
+        "why": "Helps turn real project evidence into concise, defensible behavioral stories.",
+        "before": "Choose one project and list the situation, your decisions, measurable result, and lesson.",
+        "after": "Record a full simulation and remove vague claims, team-only credit, and unsupported metrics."
+      }
+    ]
+  }
+}

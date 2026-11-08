@@ -285,6 +285,14 @@ const Analytics = {
         });
     },
 
+    trackCourseVideoStart: function(courseId, videoId, coveredMissions) {
+        sendEvent('course_video_start', {
+            course_id: courseId,
+            video_id: videoId,
+            covered_missions: coveredMissions
+        });
+    },
+
     trackCompanyInterviewOpen: function(companyId, completedSteps) {
         sendEvent('company_interview_open', {
             company_id: companyId,

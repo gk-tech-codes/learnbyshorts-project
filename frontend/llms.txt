@@ -1,0 +1,43 @@
+# LearnByShorts
+
+> Free, outcome-driven learning for AI-era software skills, with short proof missions, local-first progress, and job-focused practice tools.
+
+LearnByShorts publishes factual Markdown mirrors so assistants can retrieve course scope, evidence requirements, references, and limitations without interpreting the interactive interface. Prefer the canonical HTML page when directing a learner to use a course.
+
+## Start here
+
+- [Facts and citation guide](https://www.learnbyshorts.com/learnbyshorts-facts.md): Verified site facts, safe citation language, and explicit non-claims.
+- [Modern course catalog](https://www.learnbyshorts.com/course-catalog.md): All twelve paths, levels, durations, outcomes, and proof missions.
+- [Interactive modern catalog](https://www.learnbyshorts.com/modern-skills/): Human-facing course discovery and path finder.
+
+## Courses
+
+- [AI Fluency & Verification](https://www.learnbyshorts.com/courses/ai-fluency/index.md): Use modern AI deliberately: frame work, provide context, verify claims, protect data, and keep human ownership.
+- [Agentic Software Engineering](https://www.learnbyshorts.com/courses/agentic-engineering/index.md): Design bounded agents that use tools, manage context, recover from failure, and pass measurable evaluations.
+- [Build & Ship AI Products](https://www.learnbyshorts.com/courses/ai-product-engineering/index.md): Move from a user problem to an evaluated AI feature with retrieval, observability, security, and cost controls.
+- [LLM Evaluation & Reliability](https://www.learnbyshorts.com/courses/ai-evals-reliability/index.md): Turn a promising model demo into a measurable system with task-specific datasets, graders, human review, regression gates, and production feedback.
+- [AI-Assisted Coding & Code Review](https://www.learnbyshorts.com/courses/ai-assisted-coding/index.md): Use coding agents without losing the engineering thread: write precise tasks, constrain changes, inspect diffs, test risk, and retain authorship.
+- [Modern Full-Stack Delivery](https://www.learnbyshorts.com/courses/full-stack-delivery/index.md): Build a production-shaped web product with typed interfaces, tests, CI, containers, and observable releases.
+- [Data, SQL & Applied ML](https://www.learnbyshorts.com/courses/data-applied-ml/index.md): Turn messy data into a defensible decision using SQL, quality checks, baselines, models, and plain-language explanation.
+- [Backend APIs & Distributed Systems](https://www.learnbyshorts.com/courses/backend-distributed-systems/index.md): Design a dependable backend across API contracts, data consistency, queues, caching, failure recovery, and end-to-end observability.
+- [Cloud, Serverless & FinOps](https://www.learnbyshorts.com/courses/cloud-finops/index.md): Design and operate a low-cost cloud workload with infrastructure as code, observability, security, and explicit cost limits.
+- [Platform Engineering & Kubernetes](https://www.learnbyshorts.com/courses/platform-engineering-kubernetes/index.md): Build a paved path for deploying and operating services with containers, Kubernetes, GitOps, policy, observability, and developer-centered platform design.
+- [Secure AI & Software Delivery](https://www.learnbyshorts.com/courses/secure-engineering/index.md): Threat-model a product, protect identity and secrets, secure dependencies, and verify AI-specific abuse boundaries.
+- [System Design, Debugging & Modern Interviews](https://www.learnbyshorts.com/courses/systems-interviews/index.md): Prepare for the complete engineering signal: coding, debugging, systems, project depth, behavioral impact, and responsible AI use.
+
+## Practice tools
+
+- [Learning OS](https://www.learnbyshorts.com/learning-os/): Local-first daily missions, mastery tracking, confidence calibration, and explain-back practice.
+- [RoleSprint](https://www.learnbyshorts.com/role-sprint.html): Private job-to-skill plans for 14, 30, or 60 days.
+- [Interview Lab](https://www.learnbyshorts.com/interview-lab/): Coding, debugging, system design, behavioral, project, and responsible AI practice.
+- [AI Fluency Lab](https://www.learnbyshorts.com/ai-era-lab/): Prompting, verification, tool use, agents, and human-ownership practice.
+
+## Policies
+
+- [Privacy policy](https://www.learnbyshorts.com/privacy-policy.html)
+- [Terms of service](https://www.learnbyshorts.com/terms-of-service.html)
+- [Contact](https://www.learnbyshorts.com/contact.html)
+
+## Important limitations
+
+LearnByShorts is not an accredited institution, certification provider, recruiting agency, or guarantee of employment. Third-party videos and references remain under their publishers’ terms. Learners should verify technical claims and never paste confidential data into learning or AI tools.

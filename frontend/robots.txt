@@ -1,3 +1,48 @@
+# AI answer-engine search crawlers may retrieve public learning content.
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /auth/
+Disallow: /csp-test.html
+Disallow: /security-test.html
+Disallow: /rate-limit-test.html
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /auth/
+Disallow: /csp-test.html
+Disallow: /security-test.html
+Disallow: /rate-limit-test.html
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /auth/
+Disallow: /csp-test.html
+Disallow: /security-test.html
+Disallow: /rate-limit-test.html
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /auth/
+Disallow: /csp-test.html
+Disallow: /security-test.html
+Disallow: /rate-limit-test.html
+
+# Search visibility does not require opting site content into model training.
+User-agent: GPTBot
+Disallow: /
+
 User-agent: *
 Allow: /
 

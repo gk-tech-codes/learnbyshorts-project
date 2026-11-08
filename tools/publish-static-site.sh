@@ -100,6 +100,29 @@ fi
 echo "Publishing with profile $AWS_PROFILE_NAME to account $account_id."
 AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" aws "${sync_args[@]}"
 
+if [[ "$APPLY" == "true" ]]; then
+  while IFS= read -r -d '' markdown_file; do
+    markdown_key="${markdown_file#${publish_frontend}/}"
+    AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" \
+      aws s3api put-object \
+        --bucket "$S3_BUCKET_NAME" \
+        --key "$markdown_key" \
+        --body "$markdown_file" \
+        --content-type "text/markdown; charset=utf-8" \
+        --cache-control "public, max-age=300, must-revalidate" \
+        --region "$AWS_REGION_NAME" >/dev/null
+  done < <(find "$publish_frontend" -type f -name '*.md' -print0 | sort -z)
+
+  AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" \
+    aws s3api put-object \
+      --bucket "$S3_BUCKET_NAME" \
+      --key "llms.txt" \
+      --body "$publish_frontend/llms.txt" \
+      --content-type "text/plain; charset=utf-8" \
+      --cache-control "public, max-age=300, must-revalidate" \
+      --region "$AWS_REGION_NAME" >/dev/null
+fi
+
 alias_count=0
 while IFS= read -r -d '' index_file; do
   alias_key="${index_file#${publish_frontend}/}"

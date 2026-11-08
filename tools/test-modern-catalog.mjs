@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const modern = JSON.parse(fs.readFileSync('frontend/data/modern-skills.json', 'utf8'));
+const courseVideos = JSON.parse(
+    fs.readFileSync('frontend/data/course-videos.json', 'utf8')
+);
 const companies = JSON.parse(fs.readFileSync('frontend/data/company-interviews.json', 'utf8'));
 const jobPaths = JSON.parse(fs.readFileSync('frontend/data/job-prep-paths.json', 'utf8'));
 const modernHtml = fs.readFileSync('frontend/modern-skills/index.html', 'utf8');
@@ -19,12 +22,14 @@ const courseStoryJs = fs.readFileSync(
     'frontend/js/pages/CourseStoryPage.js',
     'utf8'
 );
+const coursePageJs = fs.readFileSync('frontend/courses/course-page.js', 'utf8');
+const analyticsJs = fs.readFileSync('frontend/js/analytics.js', 'utf8');
 
 function unique(values, label) {
     assert.equal(new Set(values).size, values.length, `${label} must be unique`);
 }
 
-assert.equal(modern.reviewedAt, '2026-11-07');
+assert.equal(modern.reviewedAt, '2026-11-08');
 assert.equal(modern.tracks.length, 12);
 assert.equal(modern.videos.length, 5);
 unique(modern.tracks.map(track => track.id), 'track ids');
@@ -61,6 +66,54 @@ for (const video of modern.videos) {
     assert.ok(video.before.length > 20);
     assert.ok(video.after.length > 20);
 }
+
+assert.equal(courseVideos.reviewedAt, '2026-11-08');
+assert.deepEqual(
+    Object.keys(courseVideos.courses).sort(),
+    modern.tracks.map(track => track.id).sort(),
+    'every modern course must have a curated video library'
+);
+for (const track of modern.tracks) {
+    const videos = courseVideos.courses[track.id];
+    assert.ok(videos.length >= 2, `${track.id} needs at least two curated videos`);
+    const missionIds = new Set(track.missions.map(mission => mission.id));
+    const covered = new Set();
+    for (const video of videos) {
+        assert.match(video.youtubeId, /^[A-Za-z0-9_-]{11}$/);
+        assert.ok(video.title.length > 12);
+        assert.ok(video.creator.length > 2);
+        assert.ok(video.why.length > 30);
+        assert.ok(video.before.length > 30);
+        assert.ok(video.after.length > 30);
+        assert.ok(video.missionIds.length > 0);
+        for (const missionId of video.missionIds) {
+            assert.ok(
+                missionIds.has(missionId),
+                `${track.id} video references unknown mission ${missionId}`
+            );
+            covered.add(missionId);
+        }
+    }
+    assert.deepEqual(
+        [...covered].sort(),
+        [...missionIds].sort(),
+        `${track.id} videos must cover all proof missions`
+    );
+
+    const courseHtml = fs.readFileSync(
+        `frontend/courses/${track.id}/index.html`,
+        'utf8'
+    );
+    assert.doesNotMatch(courseHtml, /<iframe\b/i);
+    assert.match(courseHtml, /frame-src https:\/\/www\.youtube-nocookie\.com/);
+    assert.match(courseHtml, /href="#videos">Videos</);
+    assert.match(courseHtml, /course-page\.js\?v=20261108-1/);
+}
+assert.match(coursePageJs, /data\/course-videos\.json/);
+assert.match(coursePageJs, /https:\/\/www\.youtube-nocookie\.com\/embed\//);
+assert.match(coursePageJs, /YouTube loads only after you choose to watch/);
+assert.doesNotMatch(coursePageJs, /innerHTML\s*=/);
+assert.match(analyticsJs, /course_video_start/);
 
 assert.doesNotMatch(modernHtml, /<iframe\b/i);
 assert.match(modernHtml, /frame-src https:\/\/www\.youtube-nocookie\.com/);
@@ -125,6 +178,6 @@ assert.match(courseStoryJs, /this\.escapeHtml\(chapter\.content\)/);
 assert.match(courseStoryJs, /safeImageUrl\(candidate\)/);
 
 console.log(
-    'Modern catalog QA passed: 12 current paths, 48 missions, local path finder, 5 privacy-gated videos, ' +
+    'Modern catalog QA passed: 12 current paths, 48 missions, complete per-course video coverage, ' +
     '6 source-linked company sprints, a private Amazon SDE II job path, and provider-aware sign-in.'
 );

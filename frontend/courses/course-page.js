@@ -3,6 +3,10 @@
 
     const body = document.body;
     const courseId = String(body.dataset.courseId || '');
+    const videoLibraryUrl = new URL(
+        '../data/course-videos.json',
+        document.currentScript.src
+    );
     const storageKey = 'lbs2:modern-skills';
     const checkboxes = [...document.querySelectorAll('[data-mission-id]')];
     const progressCopy = document.querySelector('[data-progress-copy]');
@@ -15,6 +19,13 @@
 
     function safeId(value) {
         return /^[a-z0-9-]{1,64}$/.test(String(value || '')) ? String(value) : '';
+    }
+
+    function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text) node.textContent = text;
+        return node;
     }
 
     function readState() {
@@ -116,10 +127,154 @@
         window.Analytics?.trackCourseCompleteOffer?.(courseId, 'clicked');
     });
 
+    function validVideo(video, missionIds) {
+        return Boolean(
+            video &&
+            /^[A-Za-z0-9_-]{11}$/.test(String(video.youtubeId || '')) &&
+            typeof video.title === 'string' &&
+            typeof video.creator === 'string' &&
+            typeof video.why === 'string' &&
+            typeof video.before === 'string' &&
+            typeof video.after === 'string' &&
+            Array.isArray(video.missionIds) &&
+            video.missionIds.length > 0 &&
+            video.missionIds.every(id => missionIds.has(safeId(id)))
+        );
+    }
+
+    function videoCard(video, missionTitles) {
+        const article = element('article', 'course-video-card');
+        const meta = element('div', 'course-video-meta');
+        meta.append(
+            element('span', '', 'Curated video'),
+            element('strong', '', video.creator)
+        );
+
+        const title = element('h3', '', video.title);
+        const coverage = element('ul', 'course-video-coverage');
+        video.missionIds.forEach(id => {
+            coverage.append(
+                element('li', '', missionTitles.get(id) || 'Proof mission')
+            );
+        });
+
+        const why = element('p', 'course-video-why', video.why);
+        const frame = element('div', 'course-video-frame');
+        const consent = element('div', 'course-video-consent');
+        consent.append(
+            element('span', 'course-video-play', '▶'),
+            element(
+                'p',
+                '',
+                'YouTube loads only after you choose to watch. Its privacy terms then apply.'
+            )
+        );
+        const watch = element('button', 'course-video-watch', 'Load private embed');
+        watch.type = 'button';
+        watch.addEventListener('click', () => {
+            const iframe = document.createElement('iframe');
+            iframe.src =
+                `https://www.youtube-nocookie.com/embed/${video.youtubeId}` +
+                '?rel=0&modestbranding=1';
+            iframe.title = `${video.title} by ${video.creator}`;
+            iframe.loading = 'lazy';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.allow =
+                'accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            frame.replaceChildren(iframe);
+            window.Analytics?.trackCourseVideoStart?.(
+                courseId,
+                video.youtubeId,
+                video.missionIds.length
+            );
+        }, { once: true });
+        consent.append(watch);
+        frame.append(consent);
+
+        const prompts = element('div', 'course-video-prompts');
+        const before = element('div', '');
+        before.append(
+            element('span', '', 'Before watching'),
+            element('p', '', video.before)
+        );
+        const after = element('div', '');
+        after.append(
+            element('span', '', 'Turn it into proof'),
+            element('p', '', video.after)
+        );
+        prompts.append(before, after);
+
+        const source = element('a', 'course-video-source', 'Open on YouTube ↗');
+        source.href = `https://www.youtube.com/watch?v=${video.youtubeId}`;
+        source.target = '_blank';
+        source.rel = 'noopener noreferrer';
+        source.addEventListener('click', () => {
+            window.Analytics?.trackCourseVideoStart?.(
+                courseId,
+                video.youtubeId,
+                video.missionIds.length
+            );
+        });
+
+        article.append(meta, title, coverage, why, frame, prompts, source);
+        return article;
+    }
+
+    async function renderCourseVideos() {
+        const response = await fetch(videoLibraryUrl, { credentials: 'same-origin' });
+        if (!response.ok) return;
+        const library = await response.json();
+        const videos = library?.courses?.[courseId];
+        if (!Array.isArray(videos) || videos.length === 0) return;
+
+        const missionTitles = new Map(
+            checkboxes.map(input => [
+                safeId(input.dataset.missionId),
+                input.closest('.mission')?.querySelector('h3')?.textContent?.trim()
+            ])
+        );
+        const missionIds = new Set(missionTitles.keys());
+        const safeVideos = videos.filter(video => validVideo(video, missionIds));
+        if (safeVideos.length === 0) return;
+
+        const section = element('section', 'section course-video-section');
+        section.id = 'videos';
+        const shell = element('div', 'shell');
+        const heading = element('div', 'section-heading');
+        const headingId = `course-videos-${courseId}`;
+        const headingText = element('h2', '', 'Watch with a mission. Build right after.');
+        headingText.id = headingId;
+        section.setAttribute('aria-labelledby', headingId);
+        heading.append(
+            element('span', '', 'Curated watch-to-work library'),
+            headingText,
+            element(
+                'p',
+                '',
+                'Each video is mapped to a proof mission. Predict first, watch selectively, then produce the artifact—never binge the playlist.'
+            )
+        );
+
+        const grid = element('div', 'course-video-grid');
+        safeVideos.forEach(video => grid.append(videoCard(video, missionTitles)));
+        const legal = element(
+            'p',
+            'course-video-legal',
+            `Reviewed ${library.reviewedAt}. Videos remain owned and controlled by their creators and YouTube; LearnByShorts does not copy, rehost, or certify them. Availability, ads, and recommendations may change.`
+        );
+        shell.append(heading, grid, legal);
+        section.append(shell);
+        document.querySelector('#sources')?.before(section);
+    }
+
     const initialState = readState();
     if (initialState.activeTrack !== courseId) {
         writeState(courseCompleted(initialState));
     }
     const initial = render();
     window.Analytics?.trackCourseLanding?.(courseId, document.referrer ? 'referred' : 'direct', initial.count);
+    renderCourseVideos().catch(() => {
+        // Core missions remain fully usable when the optional video library is unavailable.
+    });
 })();
