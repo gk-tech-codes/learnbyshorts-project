@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import {
@@ -152,4 +153,20 @@ test('share parameters contain configuration but no progress or scores', () => {
   });
   assert.equal(query, 'role=ai-engineer&days=30&minutes=45');
   assert.doesNotMatch(query, /score|completed|email|code/i);
+});
+
+test('mobile layout constrains grid cards and the hidden duration control', () => {
+  const css = readFileSync(
+    new URL('../frontend/css/role-sprint.css', import.meta.url),
+    'utf8',
+  );
+  assert.match(css, /\.sprint-card\s*\{[^}]*min-width:\s*0;/s);
+  assert.match(
+    css,
+    /\.field select\.visually-hidden\s*\{[^}]*width:\s*1px;/s,
+  );
+  assert.match(
+    css,
+    /@media \(max-width:\s*860px\)[\s\S]*?\.sprint-shell\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);/,
+  );
 });
