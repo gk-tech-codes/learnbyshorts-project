@@ -33,6 +33,7 @@ every material entry.
 
 | Date | Commit | What changed | Evidence to preserve |
 | --- | --- | --- | --- |
+| 2026-11-08 | `8c028d9` + production rollout | Fixed a mobile RoleSprint grid overflow discovered during production QA, added a regression guard, released the repair through the private-S3 publisher, and verified all 26 sitemap URLs | Git commit, `docs/QA_REPORT_2026-11-08_ROLE_SPRINT.md`, exact production hashes, live 375px browser measurement, CloudFront invalidation `I39CF73EXHLA9H8U2J5DIMK4QG` |
 | 2026-11-08 | `3956ae9` | Removed legacy predictable JWT fallbacks and seeded demo credentials; stopped reset-token/PII logging; required exact production CORS and loopback-safe configuration; added authentication provenance, clean-main, dry-run, and two-step prune release gates | Git commit, security test output, stale-checkout dry run, production auth hashes, AWS read-only configuration audit |
 | 2026-11-08 | `08d0771` + `b7a6092` | Added RoleSprint, a deterministic local-first job-to-skill planner with 14, 30, and 60-day Learn → Build → AI → Verify → Interview loops, private progress, allow-listed opt-in analytics, exportable learner-owned practice logs, tests, and a predeclared validation protocol; integrated it as the primary homepage learning loop | Git commits, `docs/QA_REPORT_2026-11-08_ROLE_SPRINT.md`, production screenshots after release, cohort records after real participation |
 | 2026-11-07 | `2ad4247` | Fail-closed authentication and removed embedded fallbacks | Git commit, security checks |

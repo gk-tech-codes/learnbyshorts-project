@@ -15,9 +15,9 @@ All checks passed from a clean managed worktree based on current `origin/main`:
 - SEO: 26 canonical URLs, owned social cards, and RoleSprint sitemap coverage.
 - Security configuration and repository secret scanning.
 - CloudFront canonical, legacy, query-preserving, and nested-route behavior.
-- RoleSprint: 6 unit tests covering weighted readiness, priority ranking, time
-  allocation, deterministic plans, completion accounting, and private share
-  parameters.
+- RoleSprint: 7 unit tests covering weighted readiness, priority ranking, time
+  allocation, deterministic plans, completion accounting, private share
+  parameters, and mobile sizing guards.
 
 ## Browser results
 
@@ -38,6 +38,29 @@ breakpoints.
 - The desktop layout used the intended two-column builder/plan grid without
   horizontal overflow.
 - No browser console errors or warnings were produced by the product page.
+
+## Production release results
+
+RoleSprint and its homepage integration were released from committed Git state
+through the guarded private-S3 publisher. CloudFront invalidations
+`ICMTBPYK4BQ9PBX3VYV8CUV51V` and `I39CF73EXHLA9H8U2J5DIMK4QG` were accepted.
+No prune or object deletion was used.
+
+- Public homepage, RoleSprint HTML, RoleSprint CSS and JavaScript, role data,
+  sitemap, and login page returned HTTP `200`.
+- Downloaded production bodies matched the committed files byte for byte.
+- Security responses included HSTS, frame denial, content-type protection,
+  strict-origin referrer policy, and restricted browser permissions.
+- All 26 canonical URLs in the sitemap returned HTTP `200`.
+- The production 14-day Backend Engineer plan accepted URL defaults, generated
+  all 14 day controls and five steps per day, recorded 30 focused minutes and
+  7% completion after day one, and retained progress after reload.
+- No analytics script loaded after declining optional analytics, and the
+  production page produced no console errors or warnings.
+- Production QA found a mobile grid overflow. Commit `8c028d9` constrained grid
+  items and the hidden compatibility control, added a regression test, and
+  bumped the stylesheet version. The repaired public page measured 375px wide
+  with a 375px scroll width and no horizontal overflow.
 
 ## Integrity limits
 
