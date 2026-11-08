@@ -18,6 +18,10 @@ deployment scripts and those scripts use the named AWS profile with an account
 guard. The exposed key still must be deactivated, verified unused, and deleted;
 file cleanup is not credential revocation.
 
+The legacy wildcard Lambda/IAM/API Gateway deployment-policy example was
+removed from the repository. Any future deployment role must be generated from
+the exact existing resource ARNs and actions required by the reviewed rollout.
+
 ## Current authentication architecture
 
 The supported account path uses Amazon Cognito Authorization Code flow with
@@ -25,8 +29,9 @@ PKCE. LearnByShorts does not receive, hash, log, or store learner passwords.
 
 - Cognito owns account creation, email verification, password policy, recovery,
   token issuance, and token revocation.
-- The static frontend stores short-lived tokens in `sessionStorage`, not
-  persistent `localStorage`.
+- The static frontend stores only the short-lived access token in
+  `sessionStorage`, not persistent `localStorage`. It does not persist ID or
+  refresh tokens; an expired session requires a new sign-in.
 - API Gateway validates the Cognito access token and required OAuth scope before
   invoking Lambda.
 - Lambda trusts only verified API Gateway JWT claims and rejects missing or
@@ -95,7 +100,9 @@ Production apply additionally requires:
 - the complete Cognito Authorization Code + PKCE frontend source;
 - a passing repository-wide security check;
 - a clean working tree;
-- local `HEAD` matching the fetched `origin/main`;
+- local `HEAD` matching a freshly fetched `origin/main`;
+- publishing from a temporary archive of tracked files in `HEAD`, so ignored
+  or untracked frontend files cannot enter the S3 sync;
 - both `--prune` and `--confirm-prune` before any remote deletion.
 
 On 2026-11-08, a stale checkout at commit `6bcae5a` was found alongside the
@@ -110,6 +117,10 @@ The legacy Express service also fails closed when `JWT_SECRET` is absent,
 short, or a known placeholder. Production CORS requires exact HTTPS origins,
 request bodies are capped at 128 KiB, no shared demo account is seeded, reset
 tokens are never logged, and incomplete ownership authorization denies access.
+
+Legacy course-story rendering escapes dynamic content and uses a script policy
+limited to same-origin code. Third-party syntax-highlighting JavaScript and
+inline script execution were removed from that page.
 
 Use `tools/configure-cloudfront-edge.sh` for the separate edge hardening. It
 defaults to a no-write plan, targets one fixed distribution, refuses to replace

@@ -1,16 +1,15 @@
 /**
  * Cognito Authorization Code + PKCE client.
  *
- * Tokens stay in sessionStorage. Decoded ID-token claims are used only for
- * display; API Gateway independently verifies the access token before Lambda.
+ * Only the short-lived access token stays in sessionStorage. ID and refresh
+ * tokens are never persisted. API Gateway independently verifies the access
+ * token before Lambda.
  */
 class AuthService {
     constructor() {
         this.config = window.LearnByShortsAuthConfig || {};
         this.keys = {
             access: 'lbs:auth:access',
-            id: 'lbs:auth:id',
-            refresh: 'lbs:auth:refresh',
             verifier: 'lbs:auth:verifier',
             state: 'lbs:auth:state',
             nonce: 'lbs:auth:nonce',
@@ -228,8 +227,6 @@ class AuthService {
 
     storeTokens(tokens) {
         this.write(this.keys.access, tokens.access_token);
-        this.write(this.keys.id, tokens.id_token);
-        if (tokens.refresh_token) this.write(this.keys.refresh, tokens.refresh_token);
     }
 
     clearLoginState() {
@@ -278,26 +275,14 @@ class AuthService {
         window.location.replace(destination || '/dashboard.html');
     }
 
-    async refreshSession() {
-        const refreshToken = this.read(this.keys.refresh);
-        if (!refreshToken) throw new Error('No refresh session is available.');
-        const tokens = await this.exchangeToken({
-            grant_type: 'refresh_token',
-            client_id: this.config.clientId,
-            refresh_token: refreshToken
-        });
-        if (tokens.id_token) this.validateIdToken(tokens.id_token);
-        this.storeTokens(tokens);
-        return tokens.access_token;
-    }
-
     async ensureAccessToken() {
         const accessToken = this.read(this.keys.access);
         if (this.tokenIsCurrent(accessToken)) return accessToken;
-        return this.refreshSession();
+        this.clearSession();
+        throw new Error('Your secure session expired. Please sign in again.');
     }
 
-    async apiRequest(path, options = {}, retry = true) {
+    async apiRequest(path, options = {}) {
         const accessToken = await this.ensureAccessToken();
         const response = await fetch(`${this.config.apiBaseUrl}${path}`, {
             ...options,
@@ -309,9 +294,10 @@ class AuthService {
                 ...(options.headers || {})
             }
         });
-        if (response.status === 401 && retry) {
-            await this.refreshSession();
-            return this.apiRequest(path, options, false);
+        if (response.status === 401) {
+            this.clearSession();
+            this.emit('ready');
+            throw new Error('Your secure session expired. Please sign in again.');
         }
         const data = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(data.error || 'The account request failed.');
@@ -320,13 +306,11 @@ class AuthService {
 
     async loadProfile() {
         const profile = await this.apiRequest('/v1/me');
-        const claims = this.decodeJwt(this.read(this.keys.id)) || {};
         this.currentUser = {
-            id: profile.userId || claims.sub,
-            email: profile.email || claims.email || '',
-            name: profile.name || claims.name || claims.given_name ||
-                claims.email || 'Learner',
-            avatar: profile.avatar || claims.picture || ''
+            id: profile.userId || '',
+            email: profile.email || '',
+            name: profile.name || profile.email || 'Learner',
+            avatar: profile.avatar || ''
         };
         return this.currentUser;
     }
@@ -370,19 +354,6 @@ class AuthService {
     }
 
     async logout() {
-        const refreshToken = this.read(this.keys.refresh);
-        if (refreshToken) {
-            fetch(new URL('/oauth2/revoke', this.config.domain), {
-                method: 'POST',
-                credentials: 'omit',
-                keepalive: true,
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({
-                    client_id: this.config.clientId,
-                    token: refreshToken
-                })
-            }).catch(() => {});
-        }
         this.clearSession();
         this.emit('logout');
         const logout = new URL('/logout', this.config.domain);

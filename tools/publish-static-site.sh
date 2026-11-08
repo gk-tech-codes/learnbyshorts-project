@@ -51,11 +51,11 @@ if [[ "$APPLY" == "true" ]]; then
     exit 1
   fi
 
+  git fetch --quiet origin main
   local_head="$(git rev-parse HEAD)"
   remote_main="$(git rev-parse --verify refs/remotes/origin/main 2>/dev/null || true)"
   if [[ -z "$remote_main" || "$local_head" != "$remote_main" ]]; then
-    echo "Refusing deployment: HEAD must match the locally fetched origin/main." >&2
-    echo "Fetch origin/main, verify the commit, and retry." >&2
+    echo "Refusing deployment: HEAD must match freshly fetched origin/main." >&2
     exit 1
   fi
 fi
@@ -75,7 +75,21 @@ if [[ "$public_status" == "True" && "$ALLOW_PUBLIC_ORIGIN" != "true" ]]; then
   exit 1
 fi
 
-sync_args=(s3 sync frontend/ "s3://$S3_BUCKET_NAME/" --region "$AWS_REGION_NAME")
+publish_frontend="frontend"
+publish_stage=""
+if [[ "$APPLY" == "true" ]]; then
+  publish_stage="$(mktemp -d "${TMPDIR:-/tmp}/learnbyshorts-publish.XXXXXX")"
+  cleanup_publish_stage() {
+    if [[ -n "$publish_stage" && -d "$publish_stage" ]]; then
+      rm -rf -- "$publish_stage"
+    fi
+  }
+  trap cleanup_publish_stage EXIT
+  git archive --format=tar HEAD frontend | tar -xf - -C "$publish_stage"
+  publish_frontend="$publish_stage/frontend"
+fi
+
+sync_args=(s3 sync "$publish_frontend/" "s3://$S3_BUCKET_NAME/" --region "$AWS_REGION_NAME")
 if [[ "$PRUNE" == "true" ]]; then
   sync_args+=(--delete)
 fi
@@ -88,7 +102,7 @@ AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" aws "${sync_args[@
 
 alias_count=0
 while IFS= read -r -d '' index_file; do
-  alias_key="${index_file#frontend/}"
+  alias_key="${index_file#${publish_frontend}/}"
   alias_key="${alias_key%index.html}"
   alias_count=$((alias_count + 1))
 
@@ -104,7 +118,7 @@ while IFS= read -r -d '' index_file; do
   else
     echo "(dryrun) alias: $index_file -> s3://$S3_BUCKET_NAME/$alias_key"
   fi
-done < <(find frontend -mindepth 2 -type f -name index.html -print0 | sort -z)
+done < <(find "$publish_frontend" -mindepth 2 -type f -name index.html -print0 | sort -z)
 
 if [[ "$APPLY" == "true" ]]; then
   echo "Upload complete with $alias_count clean-URL aliases."

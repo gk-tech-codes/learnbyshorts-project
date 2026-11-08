@@ -14,6 +14,11 @@ const sitemap = fs.readFileSync('frontend/sitemap.xml', 'utf8');
 const authConfig = fs.readFileSync('frontend/js/auth-config.js', 'utf8');
 const authService = fs.readFileSync('frontend/js/auth-service.js', 'utf8');
 const loginHtml = fs.readFileSync('frontend/login.html', 'utf8');
+const courseStoryHtml = fs.readFileSync('frontend/course-story.html', 'utf8');
+const courseStoryJs = fs.readFileSync(
+    'frontend/js/pages/CourseStoryPage.js',
+    'utf8'
+);
 
 function unique(values, label) {
     assert.equal(new Set(values).size, values.length, `${label} must be unique`);
@@ -108,8 +113,16 @@ assert.match(sitemap, /job-paths\/amazon-sde-ii\//);
 assert.match(authConfig, /identityProviders:\s*Object\.freeze\(\['COGNITO'\]\)/);
 assert.match(authService, /identity_provider:\s*providerName/);
 assert.match(authService, /hasIdentityProvider\(provider\)/);
+assert.doesNotMatch(authService, /lbs:auth:(id|refresh)/);
+assert.doesNotMatch(authService, /refreshSession\(/);
+assert.doesNotMatch(authService, /grant_type:\s*'refresh_token'/);
 assert.match(loginHtml, /data-auth-provider="Google" hidden/);
 assert.match(loginHtml, /Gmail addresses work/);
+assert.doesNotMatch(courseStoryHtml, /script-src[^;]*unsafe-inline/);
+assert.doesNotMatch(courseStoryHtml, /cdnjs|googletagmanager/);
+assert.doesNotMatch(courseStoryJs, /onclick=/);
+assert.match(courseStoryJs, /this\.escapeHtml\(chapter\.content\)/);
+assert.match(courseStoryJs, /safeImageUrl\(candidate\)/);
 
 console.log(
     'Modern catalog QA passed: 12 current paths, 48 missions, local path finder, 5 privacy-gated videos, ' +

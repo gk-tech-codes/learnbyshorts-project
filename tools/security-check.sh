@@ -14,6 +14,38 @@ if [[ -n "$tracked_secret_files" ]]; then
   exit 1
 fi
 
+frontend_secret_files="$(
+  rg --hidden -Il \
+    '(AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|AWS_SECRET_ACCESS_KEY[[:space:]]*=.+|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY)' \
+    frontend || true
+)"
+
+if [[ -n "$frontend_secret_files" ]]; then
+  echo "Potential secrets found in frontend files, including ignored files:" >&2
+  echo "$frontend_secret_files" >&2
+  exit 1
+fi
+
+risky_frontend_files="$(
+  find frontend -type f \
+    \( -name '.env' -o -name '.env.*' -o -name '*.pem' -o -name '*.key' \
+       -o -name '*.p12' -o -name '*.pfx' -o -name '*.jks' -o -name '*.zip' \
+       -o -name '*.tar' -o -name '*.tar.gz' \) -print
+)"
+
+if [[ -n "$risky_frontend_files" ]]; then
+  echo "Credential or archive file type found under frontend:" >&2
+  echo "$risky_frontend_files" >&2
+  exit 1
+fi
+
+frontend_symlinks="$(find frontend -type l -print)"
+if [[ -n "$frontend_symlinks" ]]; then
+  echo "Symlinks are not allowed in the static publish tree:" >&2
+  echo "$frontend_symlinks" >&2
+  exit 1
+fi
+
 if rg -n \
   '(mock_token_|prod_token_|learnbyshorts-jwt-secret|your-secret-key|process\.env\.JWT_SECRET[[:space:]]*\|\||Access-Control-Allow-Origin.{0,30}\*|client_secret[[:space:]]*[:=][[:space:]]*["'\''][^"'\'']+)' \
   frontend/js backend \
@@ -63,6 +95,11 @@ if ! rg -q 'code_challenge_method:[[:space:]]*'\''S256'\''' \
   exit 1
 fi
 
+if rg -n "script-src[^;]*'unsafe-inline'" frontend --glob '*.html' >/dev/null; then
+  echo "unsafe-inline is not permitted for frontend scripts." >&2
+  exit 1
+fi
+
 while IFS= read -r file; do
   case "$file" in
     frontend/course-detail.html|frontend/course-story.html)
@@ -73,6 +110,13 @@ while IFS= read -r file; do
       ;;
   esac
 done < <(rg -l "'unsafe-inline'" frontend --glob '*.html' || true)
+
+if rg -n \
+  '(lbs:auth:(id|refresh)|this\.keys\.(id|refresh)|grant_type:[[:space:]]*'\''refresh_token'\''|refreshSession\()' \
+  frontend/js/auth-service.js >/dev/null; then
+  echo "Long-lived or unnecessary identity tokens are persisted by the browser client." >&2
+  exit 1
+fi
 
 if rg -n \
   '(emailjs\.init|api\.emailjs\.com|cdn\.jsdelivr\.net/npm/@emailjs|console\.log\(.{0,80}(email|message|templateParams))' \

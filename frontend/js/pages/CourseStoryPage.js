@@ -308,11 +308,19 @@ class CourseStoryPage {
                 chapterItem.classList.add('completed');
             }
             
-            chapterItem.innerHTML = `
-                <span class="chapter-number">${index + 1}</span>
-                <span class="chapter-title">${chapter.title}</span>
-                <span class="chapter-status">${index < this.currentChapterIndex ? '✓' : ''}</span>
-            `;
+            const chapterNumber = document.createElement('span');
+            chapterNumber.className = 'chapter-number';
+            chapterNumber.textContent = String(index + 1);
+
+            const chapterTitle = document.createElement('span');
+            chapterTitle.className = 'chapter-title';
+            chapterTitle.textContent = String(chapter.title || '');
+
+            const chapterStatus = document.createElement('span');
+            chapterStatus.className = 'chapter-status';
+            chapterStatus.textContent = index < this.currentChapterIndex ? '✓' : '';
+
+            chapterItem.append(chapterNumber, chapterTitle, chapterStatus);
             
             // Add click event
             chapterItem.addEventListener('click', () => {
@@ -391,8 +399,11 @@ class CourseStoryPage {
             case 'conclusion':
                 this.renderConclusionChapter(storyContent, currentChapter);
                 break;
-            default:
-                storyContent.innerHTML = `<p>${currentChapter.content}</p>`;
+            default: {
+                const paragraph = document.createElement('p');
+                paragraph.textContent = String(currentChapter.content || '');
+                storyContent.appendChild(paragraph);
+            }
         }
     }
     
@@ -406,17 +417,19 @@ class CourseStoryPage {
         if (this.conceptData.character) {
             const characterSection = document.createElement('div');
             characterSection.className = 'character-section';
-            
+            const characterName = String(this.conceptData.character.name || 'Learner');
+            const characterImage = this.safeImageUrl(this.conceptData.character.image);
+
             characterSection.innerHTML = `
                 <div class="character-info">
                     <div class="character-avatar">
-                        ${this.conceptData.character.image ? 
-                            `<img src="${this.conceptData.character.image}" alt="${this.conceptData.character.name}">` : 
-                            `<div class="character-placeholder">${this.conceptData.character.name.charAt(0)}</div>`}
+                        ${characterImage ?
+                            `<img src="${this.escapeHtml(characterImage)}" alt="${this.escapeHtml(characterName)}">` :
+                            `<div class="character-placeholder">${this.escapeHtml(characterName.charAt(0))}</div>`}
                     </div>
                     <div class="character-details">
-                        <h3>${this.conceptData.character.name}</h3>
-                        <p>${this.conceptData.character.role}</p>
+                        <h3>${this.escapeHtml(characterName)}</h3>
+                        <p>${this.escapeHtml(this.conceptData.character.role)}</p>
                     </div>
                 </div>
             `;
@@ -429,11 +442,11 @@ class CourseStoryPage {
         introContent.className = 'chapter-content';
         
         introContent.innerHTML = `
-            <p class="intro-text">${chapter.content}</p>
-            ${this.conceptData.story.quote ? 
+            <p class="intro-text">${this.escapeHtml(chapter.content)}</p>
+            ${this.conceptData.story.quote ?
                 `<blockquote class="story-quote">
-                    <p>${this.conceptData.story.quote}</p>
-                    <cite>${this.conceptData.character ? this.conceptData.character.name : 'Anonymous'}</cite>
+                    <p>${this.escapeHtml(this.conceptData.story.quote)}</p>
+                    <cite>${this.escapeHtml(this.conceptData.character ? this.conceptData.character.name : 'Anonymous')}</cite>
                 </blockquote>` : ''}
         `;
         
@@ -455,8 +468,8 @@ class CourseStoryPage {
                     <span class="illustration-icon">📚</span>
                 </div>
             </div>
-            <h3>${chapter.title}</h3>
-            <p>${chapter.content}</p>
+            <h3>${this.escapeHtml(chapter.title)}</h3>
+            <p>${this.escapeHtml(chapter.content)}</p>
         `;
         
         container.appendChild(storyContent);
@@ -476,7 +489,7 @@ class CourseStoryPage {
         let html = `
             <div class="tech-header">
                 <h3>Technical Explanation</h3>
-                <p class="tech-definition">${techExp.definition}</p>
+                <p class="tech-definition">${this.escapeHtml(techExp.definition)}</p>
             </div>
         `;
         
@@ -486,7 +499,7 @@ class CourseStoryPage {
                 <div class="tech-section">
                     <h4>Key Characteristics</h4>
                     <ul class="tech-list">
-                        ${techExp.keyCharacteristics.map(item => `<li>${item}</li>`).join('')}
+                        ${techExp.keyCharacteristics.map(item => `<li>${this.escapeHtml(item)}</li>`).join('')}
                     </ul>
                 </div>
             `;
@@ -498,7 +511,7 @@ class CourseStoryPage {
                 <div class="tech-section">
                     <h4>When to Use</h4>
                     <ul class="tech-list">
-                        ${techExp.whenToUse.map(item => `<li>${item}</li>`).join('')}
+                        ${techExp.whenToUse.map(item => `<li>${this.escapeHtml(item)}</li>`).join('')}
                     </ul>
                 </div>
             `;
@@ -510,7 +523,7 @@ class CourseStoryPage {
                 <div class="tech-section">
                     <h4>Advantages</h4>
                     <ul class="tech-list advantages">
-                        ${techExp.advantages.map(item => `<li>${item}</li>`).join('')}
+                        ${techExp.advantages.map(item => `<li>${this.escapeHtml(item)}</li>`).join('')}
                     </ul>
                 </div>
             `;
@@ -521,7 +534,7 @@ class CourseStoryPage {
                 <div class="tech-section">
                     <h4>Disadvantages</h4>
                     <ul class="tech-list disadvantages">
-                        ${techExp.disadvantages.map(item => `<li>${item}</li>`).join('')}
+                        ${techExp.disadvantages.map(item => `<li>${this.escapeHtml(item)}</li>`).join('')}
                     </ul>
                 </div>
             `;
@@ -553,14 +566,18 @@ class CourseStoryPage {
         codeExamples.forEach(example => {
             const codeExample = document.createElement('div');
             codeExample.className = 'code-example';
-            
+            const language = String(example.language || 'text')
+                .toLowerCase()
+                .replace(/[^a-z0-9_-]/g, '')
+                .slice(0, 32) || 'text';
+
             codeExample.innerHTML = `
                 <div class="code-example-header">
-                    <h4>${example.title}</h4>
-                    <span class="code-language">${example.language}</span>
+                    <h4>${this.escapeHtml(example.title)}</h4>
+                    <span class="code-language">${this.escapeHtml(language)}</span>
                 </div>
-                <div class="code-filename">${example.filename}</div>
-                <pre><code class="language-${example.language}">${this.escapeHtml(example.code)}</code></pre>
+                <div class="code-filename">${this.escapeHtml(example.filename)}</div>
+                <pre><code class="language-${language}">${this.escapeHtml(example.code)}</code></pre>
             `;
             
             codeContent.appendChild(codeExample);
@@ -568,10 +585,6 @@ class CourseStoryPage {
         
         container.appendChild(codeContent);
         
-        // Initialize syntax highlighting
-        if (window.hljs) {
-            window.hljs.highlightAll();
-        }
     }
     
     /**
@@ -593,8 +606,8 @@ class CourseStoryPage {
             <div class="applications-grid">
                 ${applications.map(app => `
                     <div class="application-card">
-                        <h4>${app.title}</h4>
-                        <p>${app.description}</p>
+                        <h4>${this.escapeHtml(app.title)}</h4>
+                        <p>${this.escapeHtml(app.description)}</p>
                     </div>
                 `).join('')}
             </div>
@@ -615,7 +628,7 @@ class CourseStoryPage {
         conclusionContent.innerHTML = `
             <div class="conclusion-icon">🎉</div>
             <h3>Congratulations!</h3>
-            <p>${chapter.content}</p>
+            <p>${this.escapeHtml(chapter.content)}</p>
             <div class="conclusion-actions">
                 <button class="btn-primary" id="backToCourseDetailBtn">
                     Back to Course Details
@@ -632,14 +645,16 @@ class CourseStoryPage {
         const backToCourseDetailBtn = document.getElementById('backToCourseDetailBtn');
         if (backToCourseDetailBtn) {
             backToCourseDetailBtn.addEventListener('click', () => {
-                window.location.href = `course-detail.html?id=${this.courseId}`;
+                window.location.href =
+                    `course-detail.html?id=${encodeURIComponent(this.courseId)}`;
             });
         }
         
         const exploreMoreBtn = document.getElementById('exploreMoreBtn');
         if (exploreMoreBtn) {
             exploreMoreBtn.addEventListener('click', () => {
-                window.location.href = `category.html?id=${this.courseData.categoryId}`;
+                window.location.href =
+                    `category.html?id=${encodeURIComponent(this.courseData.categoryId || '')}`;
             });
         }
     }
@@ -757,7 +772,8 @@ class CourseStoryPage {
         const backToCourseBtn = document.getElementById('backToCourseBtn');
         if (backToCourseBtn) {
             backToCourseBtn.addEventListener('click', () => {
-                window.location.href = `course-detail.html?id=${this.courseId}`;
+                window.location.href =
+                    `course-detail.html?id=${encodeURIComponent(this.courseId)}`;
             });
         }
         
@@ -789,8 +805,24 @@ class CourseStoryPage {
      */
     escapeHtml(html) {
         const div = document.createElement('div');
-        div.textContent = html;
+        div.textContent = String(html ?? '');
         return div.innerHTML;
+    }
+
+    /**
+     * Allow only same-origin image paths from reviewed course data.
+     * @param {string} candidate - Candidate image URL
+     * @returns {string} - Safe same-origin path or an empty string
+     */
+    safeImageUrl(candidate) {
+        if (!candidate) return '';
+        try {
+            const image = new URL(String(candidate), window.location.href);
+            if (image.origin !== window.location.origin) return '';
+            return `${image.pathname}${image.search}`;
+        } catch {
+            return '';
+        }
     }
     
     /**
@@ -805,10 +837,12 @@ class CourseStoryPage {
         errorElement.innerHTML = `
             <div class="error-icon">⚠️</div>
             <h3>Oops! Something went wrong</h3>
-            <p>${message}</p>
-            <button class="btn-retry" onclick="location.reload()">Try Again</button>
+            <p>${this.escapeHtml(message)}</p>
+            <button class="btn-retry" type="button">Try Again</button>
         `;
-        
+        errorElement.querySelector('.btn-retry')
+            ?.addEventListener('click', () => window.location.reload());
+
         container.prepend(errorElement);
     }
 }
