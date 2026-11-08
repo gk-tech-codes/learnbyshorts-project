@@ -58,6 +58,21 @@ Archive a CSV or PDF export with the date range and definitions.
 Segment only by broad page family, selected catalog path, and privacy-safe
 acquisition channel. Do not create small cohorts that could identify a learner.
 
+## Infrastructure baseline — not a user metric
+
+For the 28-day UTC period ending 2026-11-08, CloudWatch reported:
+
+| Metric | Observed value | Interpretation |
+| --- | ---: | --- |
+| CloudFront requests | 27,835 | Includes pages, assets, bots, crawlers, QA, and repeat requests; never report as users |
+| Bytes downloaded | 310,614,254 | About 296 MiB delivered |
+| Maximum observed 5xx error rate | 0.0% | No CloudFront 5xx rate was reported for the period |
+
+Several daily 4xx-rate observations were elevated. Investigate broken URLs,
+crawler behavior, and client errors before using request growth as evidence.
+Human users, activation, and retention must come from privacy-filtered product
+analytics, not CloudFront request counts.
+
 ## Cost guardrails
 
 - Keep free learning, progress, path finding, and readiness scoring in the

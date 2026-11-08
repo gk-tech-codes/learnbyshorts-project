@@ -33,6 +33,7 @@ every material entry.
 
 | Date | Commit | What changed | Evidence to preserve |
 | --- | --- | --- | --- |
+| 2026-11-08 | `3956ae9` | Removed legacy predictable JWT fallbacks and seeded demo credentials; stopped reset-token/PII logging; required exact production CORS and loopback-safe configuration; added authentication provenance, clean-main, dry-run, and two-step prune release gates | Git commit, security test output, stale-checkout dry run, production auth hashes, AWS read-only configuration audit |
 | 2026-11-07 | `2ad4247` | Fail-closed authentication and removed embedded fallbacks | Git commit, security checks |
 | 2026-11-07 | `76ccd28` | Interactive Java OOP lab and founding offer | Git commit, production screenshots |
 | 2026-11-07 | `fc233d0` | Repaired legacy learning pages and dashboard auth | Git commit, test results |
@@ -74,6 +75,11 @@ Export and archive this table on the first day of each month.
 | Month | Activated learners | Completion rate | Returning rate | Resume conversion | Founding requests | Paid learners | Independent adopters | Source archive |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | 2026-11 | Not measured | Not measured | Not measured | Not measured | 0 recorded | 0 recorded | 0 recorded | Add export path |
+
+Infrastructure context for the 28-day UTC period ending 2026-11-08: 27,835
+CloudFront requests and 310,614,254 bytes downloaded, with a reported maximum
+5xx error rate of 0.0%. These are delivery metrics, not learner or retention
+metrics.
 
 ## Independent evidence log
 

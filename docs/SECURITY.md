@@ -13,6 +13,11 @@ exposed:
 
 Never place replacement credentials in this repository or in shell scripts.
 
+As of 2026-11-08, the plaintext key was removed from the ignored local
+deployment scripts and those scripts use the named AWS profile with an account
+guard. The exposed key still must be deactivated, verified unused, and deleted;
+file cleanup is not credential revocation.
+
 ## Current authentication architecture
 
 The supported account path uses Amazon Cognito Authorization Code flow with
@@ -84,6 +89,27 @@ AWS account, defaults to a dry run, and refuses to publish through a public S3
 origin unless explicitly overridden during the migration window. The publisher
 also creates exact nested-path aliases, so canonical trailing-slash URLs work
 with the private S3 REST origin.
+
+Production apply additionally requires:
+
+- the complete Cognito Authorization Code + PKCE frontend source;
+- a passing repository-wide security check;
+- a clean working tree;
+- local `HEAD` matching the fetched `origin/main`;
+- both `--prune` and `--confirm-prune` before any remote deletion.
+
+On 2026-11-08, a stale checkout at commit `6bcae5a` was found alongside the
+production-aligned GitHub main branch at `9f9b9a8`. A destructive dry run from
+the stale checkout would have deleted the Cognito callback, modern courses,
+Learning OS, styles, data, and other production assets. Its ignored
+`deploy-to-s3.sh` is now a fail-closed wrapper that refuses to run without the
+reviewed publisher. Do not deploy from that checkout until its preserved local
+changes are reconciled with current main.
+
+The legacy Express service also fails closed when `JWT_SECRET` is absent,
+short, or a known placeholder. Production CORS requires exact HTTPS origins,
+request bodies are capped at 128 KiB, no shared demo account is seeded, reset
+tokens are never logged, and incomplete ownership authorization denies access.
 
 Use `tools/configure-cloudfront-edge.sh` for the separate edge hardening. It
 defaults to a no-write plan, targets one fixed distribution, refuses to replace
