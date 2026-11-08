@@ -34,7 +34,7 @@ every material entry.
 | Date | Commit | What changed | Evidence to preserve |
 | --- | --- | --- | --- |
 | 2026-11-08 | `3956ae9` | Removed legacy predictable JWT fallbacks and seeded demo credentials; stopped reset-token/PII logging; required exact production CORS and loopback-safe configuration; added authentication provenance, clean-main, dry-run, and two-step prune release gates | Git commit, security test output, stale-checkout dry run, production auth hashes, AWS read-only configuration audit |
-| 2026-11-08 | Pending final commit | Added RoleSprint, a deterministic local-first job-to-skill planner with 14, 30, and 60-day Learn → Build → AI → Verify → Interview loops, private progress, allow-listed opt-in analytics, exportable learner-owned practice logs, tests, and a predeclared validation protocol | Final Git commit, automated QA, production screenshots, consent network check, cohort records after real participation |
+| 2026-11-08 | `08d0771` + `b7a6092` | Added RoleSprint, a deterministic local-first job-to-skill planner with 14, 30, and 60-day Learn → Build → AI → Verify → Interview loops, private progress, allow-listed opt-in analytics, exportable learner-owned practice logs, tests, and a predeclared validation protocol; integrated it as the primary homepage learning loop | Git commits, `docs/QA_REPORT_2026-11-08_ROLE_SPRINT.md`, production screenshots after release, cohort records after real participation |
 | 2026-11-07 | `2ad4247` | Fail-closed authentication and removed embedded fallbacks | Git commit, security checks |
 | 2026-11-07 | `76ccd28` | Interactive Java OOP lab and founding offer | Git commit, production screenshots |
 | 2026-11-07 | `fc233d0` | Repaired legacy learning pages and dashboard auth | Git commit, test results |
