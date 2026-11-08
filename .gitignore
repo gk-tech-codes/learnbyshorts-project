@@ -50,6 +50,7 @@ monitor-*.sh
 secure-*.sh
 update-*.sh
 verify-*.sh
+!tools/verify-production-security.sh
 
 # Lambda deployment packages
 *.zip

@@ -97,14 +97,10 @@ AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" \
       https://www.learnbyshorts.com/auth/callback.html \
       http://127.0.0.1:4173/auth/callback.html \
       http://localhost:4173/auth/callback.html \
-      http://localhost:3000/auth/callback \
-      http://localhost:3001/auth/callback \
     --logout-urls \
       https://www.learnbyshorts.com/ \
       http://127.0.0.1:4173/ \
       http://localhost:4173/ \
-      http://localhost:3000 \
-      http://localhost:3001 \
     --allowed-o-auth-flows code \
     --allowed-o-auth-scopes openid email profile \
     --allowed-o-auth-flows-user-pool-client \
@@ -144,7 +140,7 @@ AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" \
   aws apigatewayv2 update-api \
     --api-id "$API_ID" \
     --cors-configuration \
-      'AllowOrigins=["https://www.learnbyshorts.com","http://127.0.0.1:4173","http://localhost:4173","http://localhost:3000","http://localhost:3001"],AllowMethods=["GET","POST","PUT","OPTIONS"],AllowHeaders=["authorization","content-type"],MaxAge=3600' >/dev/null
+      'AllowOrigins=["https://www.learnbyshorts.com","http://127.0.0.1:4173","http://localhost:4173"],AllowMethods=["GET","POST","PUT","OPTIONS"],AllowHeaders=["authorization","content-type"],MaxAge=3600' >/dev/null
 
 AWS_PROFILE="$AWS_PROFILE_NAME" AWS_REGION="$AWS_REGION_NAME" \
   aws lambda update-function-code \

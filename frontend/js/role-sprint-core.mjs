@@ -191,4 +191,33 @@ export function publicPlanParameters({ roleId, durationDays, minutesPerDay }) {
   return params.toString();
 }
 
+export function parsePublicPlanParameters(search, validRoleIds = []) {
+  const params =
+    search instanceof URLSearchParams
+      ? search
+      : new URLSearchParams(String(search || '').replace(/^\?/, ''));
+  const validRoles = new Set(validRoleIds);
+  const configuration = {};
+
+  const roleId = params.get('role');
+  if (roleId && validRoles.has(roleId)) configuration.roleId = roleId;
+
+  const durationDays = params.get('days');
+  if (['14', '30', '60'].includes(durationDays)) {
+    configuration.durationDays = Number(durationDays);
+  }
+
+  const minutesPerDay = params.get('minutes');
+  if (
+    minutesPerDay &&
+    /^\d{2,3}$/.test(minutesPerDay) &&
+    Number(minutesPerDay) >= 20 &&
+    Number(minutesPerDay) <= 120
+  ) {
+    configuration.minutesPerDay = Number(minutesPerDay);
+  }
+
+  return Object.keys(configuration).length > 0 ? configuration : null;
+}
+
 export { TRACK_KEYS };

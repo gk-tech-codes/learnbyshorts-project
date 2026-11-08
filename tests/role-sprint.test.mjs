@@ -6,6 +6,7 @@ import {
   allocateMinutes,
   buildPlan,
   completionSummary,
+  parsePublicPlanParameters,
   publicPlanParameters,
   rankTracks,
   scoreReadiness,
@@ -153,6 +154,34 @@ test('share parameters contain configuration but no progress or scores', () => {
   });
   assert.equal(query, 'role=ai-engineer&days=30&minutes=45');
   assert.doesNotMatch(query, /score|completed|email|code/i);
+});
+
+test('shared plan parameters are validated before overriding local defaults', () => {
+  assert.deepEqual(
+    parsePublicPlanParameters(
+      '?role=ai-engineer&days=14&minutes=30&utm_source=share',
+      ['ai-engineer', 'backend-engineer'],
+    ),
+    {
+      roleId: 'ai-engineer',
+      durationDays: 14,
+      minutesPerDay: 30,
+    },
+  );
+  assert.deepEqual(
+    parsePublicPlanParameters(
+      '?role=unknown&days=60&minutes=999',
+      ['ai-engineer'],
+    ),
+    { durationDays: 60 },
+  );
+  assert.equal(
+    parsePublicPlanParameters(
+      '?role=unknown&days=365&minutes=0&utm_source=share',
+      ['ai-engineer'],
+    ),
+    null,
+  );
 });
 
 test('mobile layout constrains grid cards and the hidden duration control', () => {

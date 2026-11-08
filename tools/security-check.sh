@@ -125,4 +125,17 @@ if rg -n \
   exit 1
 fi
 
+if rg -n \
+  'localhost:(3000|3001)' \
+  tools/deploy-secure-auth.sh >/dev/null; then
+  echo "Obsolete Cognito callback or API CORS origins found." >&2
+  exit 1
+fi
+
+if ! rg -q -- '--supported-identity-providers COGNITO' \
+  tools/deploy-secure-auth.sh; then
+  echo "The reviewed Cognito provider allowlist was not found." >&2
+  exit 1
+fi
+
 echo "Security checks passed."

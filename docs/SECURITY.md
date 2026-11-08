@@ -59,12 +59,17 @@ Required verification after deployment:
 
 1. An anonymous request to every `/v1/*` route returns `401`.
 2. Cognito callback and logout URLs exactly match the production and approved
-   local origins.
+   local preview origins (`127.0.0.1:4173` and `localhost:4173` only).
 3. A new verified account can sign in with Authorization Code + PKCE.
 4. The access token can read and update only that learner's progress.
 5. A second account cannot read the first account's records.
 6. CORS rejects an unlisted origin.
 7. No token, email, progress body, or secret appears in application logs.
+
+Run `tools/verify-production-security.sh` after an auth or hosting deployment.
+It is read-only, refuses to inspect an unexpected AWS account, verifies the
+approved Cognito and CORS origins, checks DynamoDB retention safeguards, and
+confirms anonymous API and direct S3 access remain denied.
 
 The legacy `learnbyshorts-auth` Lambda and API must be retired only after this
 path is verified. Until retirement, narrow its CORS and DynamoDB permissions

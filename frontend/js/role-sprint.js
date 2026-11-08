@@ -2,6 +2,7 @@ import {
   TRACK_KEYS,
   buildPlan,
   completionSummary,
+  parsePublicPlanParameters,
   publicPlanParameters,
 } from './role-sprint-core.mjs';
 
@@ -284,20 +285,28 @@ function render() {
 }
 
 function applyQueryDefaults() {
-  const params = new URLSearchParams(window.location.search);
-  const role = params.get('role');
-  const days = params.get('days');
-  const minutes = params.get('minutes');
-  if (state.catalog.roles.some((item) => item.id === role)) elements.role.value = role;
-  if (['14', '30', '60'].includes(days)) {
-    const durationChoice = document.querySelector(`[name="duration"][value="${days}"]`);
-    if (durationChoice) durationChoice.checked = true;
-    elements.duration.value = days;
+  const configuration = parsePublicPlanParameters(
+    window.location.search,
+    state.catalog.roles.map((role) => role.id),
+  );
+  if (!configuration) {
+    elements.minutesOutput.textContent = `${elements.minutes.value} minutes`;
+    return false;
   }
-  if (minutes && Number(minutes) >= 20 && Number(minutes) <= 120) {
-    elements.minutes.value = String(Number(minutes));
+
+  if (configuration.roleId) elements.role.value = configuration.roleId;
+  if (configuration.durationDays) {
+    const durationChoice = document.querySelector(
+      `[name="duration"][value="${configuration.durationDays}"]`,
+    );
+    if (durationChoice) durationChoice.checked = true;
+    elements.duration.value = String(configuration.durationDays);
+  }
+  if (configuration.minutesPerDay) {
+    elements.minutes.value = String(configuration.minutesPerDay);
   }
   elements.minutesOutput.textContent = `${elements.minutes.value} minutes`;
+  return true;
 }
 
 function createPlan(event) {
@@ -426,7 +435,7 @@ async function init() {
     option.textContent = role.name;
     elements.role.append(option);
   });
-  applyQueryDefaults();
+  const sharedConfigurationLoaded = applyQueryDefaults();
   elements.minutes.addEventListener('input', () => {
     elements.minutesOutput.textContent = `${elements.minutes.value} minutes`;
   });
@@ -440,8 +449,13 @@ async function init() {
   elements.exportButton.addEventListener('click', exportProgress);
   elements.shareButton.addEventListener('click', sharePlan);
   setupConsent();
-  restore();
+  if (!sharedConfigurationLoaded) restore();
   render();
+  if (sharedConfigurationLoaded) {
+    setStatus(
+      'Shared plan settings loaded. Review your baseline, then generate a fresh private plan.',
+    );
+  }
 }
 
 init().catch((error) => {
