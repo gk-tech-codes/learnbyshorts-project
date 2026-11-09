@@ -5,7 +5,7 @@ import {
   completionSummary,
   parsePublicPlanParameters,
   publicPlanParameters,
-} from './role-sprint-core.mjs';
+} from './role-sprint-core.mjs?v=20261109-2';
 
 const STORAGE_KEY = 'learnbyshorts:role-sprint:v2';
 const CONSENT_KEY = 'learnbyshorts:analytics-consent:v1';
@@ -655,7 +655,9 @@ function setupConsent() {
 }
 
 async function init() {
-  const response = await fetch('data/role-sprints.json', { credentials: 'same-origin' });
+  const response = await fetch('data/role-sprints.json?v=20261109-2', {
+    credentials: 'same-origin',
+  });
   if (!response.ok) throw new Error(`Role catalog unavailable (${response.status})`);
   state.catalog = await response.json();
   state.catalog.roles.forEach((role) => {
