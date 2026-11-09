@@ -6,9 +6,9 @@
     },
     "navigation": [
       { "id": "home", "text": "Home", "url": "index.html", "active": true },
-      { "id": "categories", "text": "Categories", "url": "#categories" },
+      { "id": "courses", "text": "Modern Courses", "url": "modern-skills/" },
       { "id": "design-patterns", "text": "Design Patterns", "url": "design-patterns.html" },
-      { "id": "about", "text": "About", "url": "#about" }
+      { "id": "about", "text": "About", "url": "about.html" }
     ],
     "buttons": [
       { "id": "login", "text": "Login", "class": "btn-login", "action": "login" }
@@ -117,26 +117,25 @@
         "title": "Quick Links",
         "links": [
           { "text": "Home", "url": "index.html" },
-          { "text": "Categories", "url": "index.html#categories" },
-          { "text": "About", "url": "#about" },
-          { "text": "Contact", "url": "#contact" }
+          { "text": "Modern Courses", "url": "modern-skills/" },
+          { "text": "About", "url": "about.html" },
+          { "text": "Contact", "url": "contact.html" }
         ]
       },
       {
-        "title": "Popular Categories",
+        "title": "Learning Paths",
         "links": [
-          { "text": "Design Patterns", "url": "category.html?id=design-patterns" },
-          { "text": "Algorithms", "url": "category.html?id=algorithms" },
-          { "text": "System Design", "url": "category.html?id=system-design" },
-          { "text": "Web Development", "url": "category.html?id=web-development" }
+          { "text": "Design Patterns", "url": "design-patterns.html" },
+          { "text": "Modern Skills", "url": "modern-skills/" },
+          { "text": "Interview Preparation", "url": "interview-lab/" },
+          { "text": "Java OOP Lab", "url": "learn-v2/" }
         ]
       },
       {
         "title": "Support",
         "links": [
-          { "text": "Help Center", "url": "#help" },
-          { "text": "Privacy Policy", "url": "#privacy" },
-          { "text": "Terms of Service", "url": "#terms" }
+          { "text": "Privacy Policy", "url": "privacy-policy.html" },
+          { "text": "Terms of Service", "url": "terms-of-service.html" }
         ]
       }
     ]

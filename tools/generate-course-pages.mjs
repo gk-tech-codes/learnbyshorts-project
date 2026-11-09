@@ -177,6 +177,7 @@ ${safeJson(schema)}
             </a>
             <nav aria-label="Course navigation">
                 <a href="#missions">Missions</a>
+                <a href="#videos" data-video-link data-dynamic-target="#videos" hidden>Videos</a>
                 <a href="#sources">Sources</a>
                 <a class="nav-cta" href="../../learning-os/?track=${escapeHtml(track.id)}">Daily mission →</a>
             </nav>
@@ -282,7 +283,7 @@ ${safeJson(schema)}
             <nav><a href="../../modern-skills/">All courses</a><a href="../../interview-lab/">Interview Lab</a><a href="../../privacy-policy.html">Privacy</a></nav>
         </div>
     </footer>
-    <script src="../course-page.js?v=20261107-1"></script>
+    <script src="../course-page.js?v=20261109-1"></script>
 </body>
 </html>
 `;

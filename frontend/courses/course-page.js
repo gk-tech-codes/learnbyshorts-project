@@ -16,6 +16,7 @@
     const shareButton = document.querySelector('[data-share-course]');
     const shareStatus = document.querySelector('[data-share-status]');
     const foundingLink = document.querySelector('[data-founding-link]');
+    const videoLinks = [...document.querySelectorAll('[data-video-link]')];
 
     function safeId(value) {
         return /^[a-z0-9-]{1,64}$/.test(String(value || '')) ? String(value) : '';
@@ -265,7 +266,12 @@
         );
         shell.append(heading, grid, legal);
         section.append(shell);
-        document.querySelector('#sources')?.before(section);
+        const sources = document.querySelector('#sources');
+        if (!sources) return;
+        sources.before(section);
+        videoLinks.forEach(link => {
+            link.hidden = false;
+        });
     }
 
     const initialState = readState();

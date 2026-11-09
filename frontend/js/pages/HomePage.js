@@ -64,8 +64,8 @@ class HomePage {
                 },
                 navigation: [
                     { id: 'home', text: 'Home', url: 'index.html', active: true },
-                    { id: 'shorts', text: 'Shorts', url: 'shorts.html' },
-                    { id: 'categories', text: 'Categories', url: '#categories' }
+                    { id: 'courses', text: 'Modern Courses', url: 'modern-skills/' },
+                    { id: 'about', text: 'About', url: 'about.html' }
                 ],
                 buttons: [
                     { id: 'login', text: 'Login', class: 'btn-login', action: 'login' }
@@ -373,7 +373,7 @@ class HomePage {
         
         // Global action handlers
         window.scrollToCategories = () => this.scrollToElement('#categories');
-        window.viewShorts = () => window.location.href = 'shorts.html';
+        window.viewShorts = () => window.location.href = 'modern-skills/';
     }
 
     /**

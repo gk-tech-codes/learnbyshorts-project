@@ -477,16 +477,26 @@ class Section extends Component {
             buttonsElement.className = 'cta-buttons';
             
             buttons.forEach(button => {
-                const buttonElement = document.createElement('a');
+                const url = String(button?.url || '').trim();
+                const action = String(button?.action || '').trim();
+                if ((!url || url === '#' || /^javascript:/i.test(url)) && !action) {
+                    return;
+                }
+
+                const buttonElement = document.createElement(url && url !== '#' ? 'a' : 'button');
                 buttonElement.className = button.class || 'btn-cta-primary';
-                buttonElement.href = button.url || '#';
                 buttonElement.textContent = button.text;
+                if (buttonElement.tagName === 'A') {
+                    buttonElement.href = url;
+                } else {
+                    buttonElement.type = 'button';
+                }
                 
-                if (button.action) {
+                if (action) {
                     buttonElement.addEventListener('click', (e) => {
                         e.preventDefault();
-                        if (typeof window[button.action] === 'function') {
-                            window[button.action]();
+                        if (typeof window[action] === 'function') {
+                            window[action]();
                         }
                     });
                 }

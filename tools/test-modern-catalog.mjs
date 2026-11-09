@@ -106,12 +106,16 @@ for (const track of modern.tracks) {
     );
     assert.doesNotMatch(courseHtml, /<iframe\b/i);
     assert.match(courseHtml, /frame-src https:\/\/www\.youtube-nocookie\.com/);
-    assert.match(courseHtml, /href="#videos">Videos</);
-    assert.match(courseHtml, /course-page\.js\?v=20261108-1/);
+    assert.match(
+        courseHtml,
+        /href="#videos" data-video-link data-dynamic-target="#videos" hidden>Videos</
+    );
+    assert.match(courseHtml, /course-page\.js\?v=20261109-1/);
 }
 assert.match(coursePageJs, /data\/course-videos\.json/);
 assert.match(coursePageJs, /https:\/\/www\.youtube-nocookie\.com\/embed\//);
 assert.match(coursePageJs, /YouTube loads only after you choose to watch/);
+assert.match(coursePageJs, /link\.hidden = false/);
 assert.doesNotMatch(coursePageJs, /innerHTML\s*=/);
 assert.match(analyticsJs, /course_video_start/);
 

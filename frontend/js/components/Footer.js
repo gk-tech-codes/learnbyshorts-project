@@ -71,6 +71,12 @@ class Footer extends Component {
         // Footer sections
         if (sections && sections.length > 0) {
             sections.forEach(section => {
+                const safeLinks = (section.links || []).filter(link => {
+                    const url = String(link?.url || '').trim();
+                    return url && url !== '#' && !/^javascript:/i.test(url);
+                });
+                if (safeLinks.length === 0) return;
+
                 const sectionElement = document.createElement('div');
                 sectionElement.className = 'footer-section';
                 
@@ -78,20 +84,16 @@ class Footer extends Component {
                 sectionTitle.textContent = section.title;
                 sectionElement.appendChild(sectionTitle);
                 
-                if (section.links && section.links.length > 0) {
-                    const linksList = document.createElement('ul');
-                    
-                    section.links.forEach(link => {
-                        const listItem = document.createElement('li');
-                        const linkElement = document.createElement('a');
-                        linkElement.href = link.url;
-                        linkElement.textContent = link.text;
-                        listItem.appendChild(linkElement);
-                        linksList.appendChild(listItem);
-                    });
-                    
-                    sectionElement.appendChild(linksList);
-                }
+                const linksList = document.createElement('ul');
+                safeLinks.forEach(link => {
+                    const listItem = document.createElement('li');
+                    const linkElement = document.createElement('a');
+                    linkElement.href = link.url;
+                    linkElement.textContent = link.text;
+                    listItem.appendChild(linkElement);
+                    linksList.appendChild(listItem);
+                });
+                sectionElement.appendChild(linksList);
                 
                 footerContent.appendChild(sectionElement);
             });
@@ -104,7 +106,10 @@ class Footer extends Component {
             const socialSection = document.createElement('div');
             socialSection.className = 'footer-social';
             
-            social.forEach(item => {
+            social.filter(item => {
+                const url = String(item?.url || '').trim();
+                return url && url !== '#' && !/^javascript:/i.test(url);
+            }).forEach(item => {
                 const socialLink = document.createElement('a');
                 socialLink.href = item.url;
                 socialLink.className = `social-icon ${item.platform}`;
