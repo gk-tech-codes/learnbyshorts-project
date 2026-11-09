@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "roles": [
     {
       "id": "senior-software-engineer",
@@ -54,6 +54,8 @@
     "coding": {
       "label": "Coding",
       "icon": "⌨️",
+      "proof": "one tested implementation you can rebuild and explain",
+      "signals": ["algorithms", "data structures", "python", "java", "javascript", "typescript", "c++", "golang", "coding", "code review", "testing", "unit tests"],
       "learn": [
         "Study one reusable problem-solving pattern and write its invariants before seeing code.",
         "Read a small implementation and identify its time, space, and failure boundaries.",
@@ -78,6 +80,8 @@
     "debugging": {
       "label": "Debugging",
       "icon": "🧭",
+      "proof": "one minimal reproduction and evidence-backed root-cause note",
+      "signals": ["debugging", "troubleshooting", "root cause", "observability", "monitoring", "incident", "on-call", "logs", "metrics", "reliability", "performance", "profiling"],
       "learn": [
         "Study the difference between symptoms, hypotheses, evidence, and root cause.",
         "Learn one observability signal and the failure modes it cannot reveal.",
@@ -102,6 +106,8 @@
     "systemDesign": {
       "label": "System design",
       "icon": "🏗️",
+      "proof": "one architecture diagram and a short decision record",
+      "signals": ["system design", "distributed systems", "scalability", "architecture", "microservices", "api design", "databases", "caching", "queues", "consistency", "availability", "cloud"],
       "learn": [
         "Study one reliability or data-consistency trade-off and name the assumption behind it.",
         "Trace a request through a distributed system and identify every state boundary.",
@@ -126,6 +132,8 @@
     "aiFluency": {
       "label": "AI collaboration",
       "icon": "✦",
+      "proof": "one reusable AI workflow with an explicit evaluation check",
+      "signals": ["artificial intelligence", "generative ai", "llm", "machine learning", "prompt engineering", "agents", "agentic", "rag", "retrieval", "model evaluation", "copilot", "ai tools"],
       "learn": [
         "Study how task framing, constraints, examples, and evaluation change an AI response.",
         "Compare retrieval, tools, memory, and fine-tuning as different system choices.",
@@ -150,6 +158,8 @@
     "communication": {
       "label": "Technical communication",
       "icon": "🎙️",
+      "proof": "one concise project story or technical walkthrough recording",
+      "signals": ["communication", "collaboration", "stakeholders", "leadership", "mentoring", "cross-functional", "influence", "presentations", "written communication", "ownership", "customer", "requirements"],
       "learn": [
         "Study a concise design document and identify how it separates facts from decisions.",
         "Learn the Situation–Task–Action–Result structure without inflating personal impact.",

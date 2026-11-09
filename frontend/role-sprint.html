@@ -7,14 +7,14 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
-  <meta name="description" content="Turn a technical role target into a private 14, 30, or 60-day practice plan combining fundamentals, building with AI, independent verification, and interview drills.">
+  <meta name="description" content="Paste a job description or choose a technical role, assess your starting point, and get a private 14, 30, or 60-day interview practice roadmap with daily proof-of-skill missions.">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#5b4ef5">
-  <title>RoleSprint — A Job-to-Skill Plan | LearnByShorts</title>
+  <meta name="theme-color" content="#5145e5">
+  <title>RoleSprint — Your Job-to-Interview Roadmap | LearnByShorts</title>
   <link rel="canonical" href="https://www.learnbyshorts.com/role-sprint.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="RoleSprint — Turn a job target into daily proof of skill">
-  <meta property="og:description" content="Build a private role-based practice plan: learn, build with AI, verify alone, and rehearse the interview.">
+  <meta property="og:title" content="RoleSprint — Turn a job target into today's practice">
+  <meta property="og:description" content="Build a private role-based roadmap: learn, build with AI, verify alone, and rehearse the interview.">
   <meta property="og:url" content="https://www.learnbyshorts.com/role-sprint.html">
   <meta property="og:image" content="https://www.learnbyshorts.com/assets/learnbyshorts-social.png">
   <meta property="og:image:width" content="1200">
@@ -22,11 +22,11 @@
   <meta property="og:site_name" content="LearnByShorts">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="RoleSprint by LearnByShorts">
-  <meta name="twitter:description" content="A private job-to-skill practice engine for the AI era.">
+  <meta name="twitter:description" content="A private job-to-interview practice roadmap for the AI era.">
   <meta name="twitter:image" content="https://www.learnbyshorts.com/assets/learnbyshorts-social.png">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css?v=1.5.9">
-  <link rel="stylesheet" href="css/role-sprint.css?v=1.0.1">
+  <link rel="stylesheet" href="css/role-sprint.css?v=20261109-1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,7 +35,7 @@
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Any modern web browser",
     "url": "https://www.learnbyshorts.com/role-sprint.html",
-    "description": "A private role-based practice-plan generator combining learning, building with AI, independent verification, and interview drills.",
+    "description": "A private job-to-interview roadmap generator combining learning, building with AI, independent verification, evidence, and interview drills.",
     "isAccessibleForFree": true,
     "creator": {
       "@type": "Organization",
@@ -52,165 +52,405 @@
         <img src="assets/logo.svg" alt="">
         <span>LearnByShorts</span>
       </a>
-      <a class="back-link" href="index.html">Explore courses →</a>
+      <div class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#example-plan">Example</a>
+        <a href="#build-plan">Build a plan</a>
+        <a class="nav-action" href="index.html#learn">Explore paths</a>
+      </div>
     </nav>
   </header>
 
   <aside class="consent" id="analytics-consent" hidden>
-    <p>Help improve RoleSprint with privacy-limited product events. We never send your code, answers, email, scores, or exported log.</p>
+    <p>Help improve RoleSprint with privacy-limited product events. We never send your job text, code, answers, email, scores, or exported log.</p>
     <button class="allow" id="accept-analytics" type="button">Allow product analytics</button>
     <button class="decline" id="decline-analytics" type="button">No thanks</button>
   </aside>
 
   <main>
     <section class="sprint-hero">
-      <span class="eyebrow">✦ RoleSprint public beta</span>
-      <h1>Stop collecting courses. <span class="hero-accent">Prove the skill.</span></h1>
-      <p>
-        Choose the role you want. RoleSprint turns your baseline into a focused daily
-        loop: understand the idea, build with AI, verify it without AI, then defend it
-        in an interview.
-      </p>
-      <div class="loop-strip" aria-label="The RoleSprint learning loop">
-        <span>1 · Learn</span>
-        <span>2 · Build</span>
-        <span>3 · Use AI</span>
-        <span>4 · Verify alone</span>
-        <span>5 · Interview</span>
+      <div class="hero-copy">
+        <span class="eyebrow">✦ Free · private · no account</span>
+        <h1>Turn one job target into <span class="hero-accent">today’s practice.</span></h1>
+        <p>
+          RoleSprint finds the skills a technical role demands, prioritizes your gaps,
+          and gives you one focused mission at a time—plus the proof and interview drill
+          that make the learning useful.
+        </p>
+        <div class="hero-actions">
+          <a class="hero-primary" href="#build-plan">Build my roadmap →</a>
+          <a class="hero-secondary" href="#example-plan">See an example</a>
+        </div>
+        <div class="hero-facts" aria-label="RoleSprint features">
+          <span><strong>0</strong> accounts</span>
+          <span><strong>5-part</strong> daily loop</span>
+          <span><strong>14–60</strong> day plans</span>
+        </div>
+      </div>
+
+      <div class="hero-product" aria-label="Example RoleSprint mission">
+        <div class="product-window">
+          <div class="window-top">
+            <span class="window-dots" aria-hidden="true">● ● ●</span>
+            <span>BACKEND ENGINEER · WEEK 1</span>
+          </div>
+          <div class="preview-progress">
+            <div>
+              <span>Today’s mission</span>
+              <strong>API reliability under pressure</strong>
+            </div>
+            <span class="preview-day">Day 3</span>
+          </div>
+          <div class="preview-step is-done"><span>✓</span><p><strong>Learn</strong>Define the failure boundary</p></div>
+          <div class="preview-step is-current"><span>2</span><p><strong>Build</strong>Design a rate-limited endpoint</p></div>
+          <div class="preview-step"><span>3</span><p><strong>Use AI</strong>Request a skeptical critique</p></div>
+          <div class="preview-proof">
+            <span>Proof to keep</span>
+            <strong>One diagram + three defended trade-offs</strong>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="sprint-shell" aria-label="RoleSprint plan builder">
-      <form class="sprint-card builder-card" id="sprint-builder">
-        <span class="card-kicker">Your baseline</span>
-        <h2>Build my sprint</h2>
-        <p class="helper">No account required. Your plan and progress stay in this browser.</p>
-
-        <div class="field">
-          <label for="target-role">Target role</label>
-          <select id="target-role" required>
-            <option value="" disabled selected>Select a role</option>
-          </select>
-        </div>
-
-        <fieldset class="field">
-          <legend>Plan length</legend>
-          <div class="choice-row">
-            <input type="radio" name="duration" id="duration-14" value="14">
-            <label for="duration-14">14 days</label>
-            <input type="radio" name="duration" id="duration-30" value="30" checked>
-            <label for="duration-30">30 days</label>
-            <input type="radio" name="duration" id="duration-60" value="60">
-            <label for="duration-60">60 days</label>
-          </div>
-          <select id="duration-days" class="visually-hidden" aria-hidden="true" tabindex="-1">
-            <option value="14">14</option>
-            <option value="30" selected>30</option>
-            <option value="60">60</option>
-          </select>
-        </fieldset>
-
-        <div class="field">
-          <label for="minutes-per-day">Focused time: <output id="minutes-output">45 minutes</output></label>
-          <input id="minutes-per-day" type="range" min="20" max="120" step="5" value="45">
-          <div class="range-labels"><span>20 min</span><span>120 min</span></div>
-        </div>
-
-        <fieldset class="field">
-          <legend>Current confidence</legend>
-          <div class="skill-grid">
-            <div class="skill-control">
-              <label for="skill-coding">Coding</label>
-              <input id="skill-coding" name="coding" type="range" min="1" max="5" value="3">
-            </div>
-            <div class="skill-control">
-              <label for="skill-debugging">Debugging</label>
-              <input id="skill-debugging" name="debugging" type="range" min="1" max="5" value="3">
-            </div>
-            <div class="skill-control">
-              <label for="skill-system-design">System design</label>
-              <input id="skill-system-design" name="systemDesign" type="range" min="1" max="5" value="2">
-            </div>
-            <div class="skill-control">
-              <label for="skill-ai">AI collaboration</label>
-              <input id="skill-ai" name="aiFluency" type="range" min="1" max="5" value="3">
-            </div>
-            <div class="skill-control">
-              <label for="skill-communication">Communication</label>
-              <input id="skill-communication" name="communication" type="range" min="1" max="5" value="3">
-            </div>
-          </div>
-          <div class="range-labels"><span>1 · starting</span><span>5 · strong</span></div>
-        </fieldset>
-
-        <button class="primary-action" type="submit">Generate my private plan →</button>
-      </form>
-
-      <section class="sprint-card plan-card" aria-live="polite">
-        <div class="empty-state" id="plan-empty">
-          <div class="empty-orbit" aria-hidden="true">◎</div>
-          <h2>Your focused sprint, without the noise.</h2>
-          <p>Set a role and honest baseline. The engine prioritizes the gaps that matter most for that outcome.</p>
-        </div>
-
-        <div id="sprint-plan" hidden>
-          <div class="plan-topline">
-            <div>
-              <span class="card-kicker">Your adaptive plan</span>
-              <h2 id="plan-title"></h2>
-              <p class="helper" id="plan-outcome"></p>
-            </div>
-            <div class="score-badge">
-              <strong id="readiness-score">0%</strong>
-              <span>starting readiness</span>
-            </div>
-          </div>
-          <div class="focus-row" id="focus-tracks" aria-label="Priority tracks"></div>
-          <div class="progress-track" role="progressbar" aria-label="Plan completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-            <div class="progress-value" id="progress-value"></div>
-          </div>
-          <p class="progress-copy" id="progress-text"></p>
-          <div class="day-list" id="day-list" aria-label="Sprint days"></div>
-          <div class="mission" id="mission"></div>
-          <div class="plan-actions">
-            <button class="secondary-action" id="export-progress" type="button">Export my practice log</button>
-            <button class="secondary-action" id="share-plan" type="button">Copy plan link</button>
-            <button class="text-action" id="reset-plan" type="button">Reset</button>
-          </div>
-        </div>
-        <p class="status" id="sprint-status" role="status"></p>
-      </section>
+    <section class="workflow-section" id="how-it-works">
+      <div class="section-heading">
+        <span class="section-kicker">A plan you can actually follow</span>
+        <h2>From “I should prepare” to a clear next move.</h2>
+        <p>RoleSprint reduces a large interview goal into small, evidence-producing practice.</p>
+      </div>
+      <div class="workflow-grid">
+        <article>
+          <span class="workflow-number">01</span>
+          <h3>Target the role</h3>
+          <p>Choose a path. Optionally paste a job description so the browser can detect repeated skill signals.</p>
+        </article>
+        <article>
+          <span class="workflow-number">02</span>
+          <h3>Diagnose the gaps</h3>
+          <p>Rate five practical skill areas. The planner combines role importance, job signals, and your starting point.</p>
+        </article>
+        <article>
+          <span class="workflow-number">03</span>
+          <h3>Produce proof</h3>
+          <p>Complete one daily loop: learn, build, use AI critically, verify alone, and rehearse the interview.</p>
+        </article>
+      </div>
     </section>
 
-    <section class="evidence-section">
+    <section class="example-section" id="example-plan">
+      <div class="example-intro">
+        <span class="section-kicker">What you receive</span>
+        <h2>Not another title list. A working roadmap.</h2>
+        <p>Every generated plan has a daily mission, a complete weekly sequence, an explicit finish artifact, and a private progress log.</p>
+        <a href="#build-plan">Create yours in about two minutes →</a>
+      </div>
+      <div class="example-roadmap" aria-label="Example three-stage roadmap">
+        <article>
+          <span>STAGE 1 · FOUNDATION</span>
+          <h3>Expose the real gaps</h3>
+          <p>Rebuild core patterns, diagnose failures, and explain the role’s most important concepts.</p>
+          <strong>Finish with a tested implementation</strong>
+        </article>
+        <article class="is-featured">
+          <span>STAGE 2 · APPLICATION</span>
+          <h3>Build under constraints</h3>
+          <p>Use AI for alternatives and critique, while keeping decisions, tests, and verification yours.</p>
+          <strong>Finish with a decision record</strong>
+        </article>
+        <article>
+          <span>STAGE 3 · PRESSURE TEST</span>
+          <h3>Defend the work</h3>
+          <p>Time-box the problem, remove AI support, and answer skeptical interview follow-ups.</p>
+          <strong>Finish with a recorded walkthrough</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="builder-section" id="build-plan">
+      <div class="section-heading builder-heading">
+        <span class="section-kicker">Build your RoleSprint</span>
+        <h2>Tell us the target. Keep your data.</h2>
+        <p>No account required. Your plan and progress stay in this browser. No resume upload or paid AI call is required.</p>
+      </div>
+
+      <div class="sprint-shell" aria-label="RoleSprint plan builder">
+        <form class="sprint-card builder-card" id="sprint-builder">
+          <div class="form-step">
+            <span class="step-number">1</span>
+            <div>
+              <span class="card-kicker">Choose the destination</span>
+              <h3>What role are you targeting?</h3>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="target-role">Target role</label>
+            <select id="target-role" required>
+              <option value="" disabled selected>Select a role</option>
+            </select>
+            <p class="field-note" id="role-outcome">Pick the closest role. You can tune the roadmap with a job description below.</p>
+          </div>
+
+          <div class="field">
+            <label for="job-description">Job description <span class="optional">optional</span></label>
+            <textarea id="job-description" rows="5" maxlength="12000" placeholder="Paste responsibilities and qualifications—not your resume or personal information."></textarea>
+            <div class="privacy-note">
+              <span aria-hidden="true">◉</span>
+              <p><strong>Private by design.</strong> Analyzed only in this browser. The text is not saved, sent, or included in analytics.</p>
+            </div>
+            <div class="signal-summary" id="job-signal-summary" hidden>
+              <span>Signals detected</span>
+              <div id="job-signal-chips"></div>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="form-step">
+            <span class="step-number">2</span>
+            <div>
+              <span class="card-kicker">Set the pace</span>
+              <h3>What can you sustain?</h3>
+            </div>
+          </div>
+
+          <fieldset class="field">
+            <legend>Plan length</legend>
+            <div class="choice-row">
+              <input type="radio" name="duration" id="duration-14" value="14">
+              <label for="duration-14"><strong>14 days</strong><span>Quick reset</span></label>
+              <input type="radio" name="duration" id="duration-30" value="30" checked>
+              <label for="duration-30"><strong>30 days</strong><span>Interview prep</span></label>
+              <input type="radio" name="duration" id="duration-60" value="60">
+              <label for="duration-60"><strong>60 days</strong><span>Deep build</span></label>
+            </div>
+            <select id="duration-days" class="visually-hidden" aria-hidden="true" tabindex="-1">
+              <option value="14">14</option>
+              <option value="30" selected>30</option>
+              <option value="60">60</option>
+            </select>
+          </fieldset>
+
+          <div class="field">
+            <label for="minutes-per-day">Focused time <output id="minutes-output">45 min/day</output></label>
+            <input id="minutes-per-day" type="range" min="20" max="120" step="5" value="45">
+            <div class="range-labels"><span>20 min</span><span>120 min</span></div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="form-step">
+            <span class="step-number">3</span>
+            <div>
+              <span class="card-kicker">Start honestly</span>
+              <h3>Where are you today?</h3>
+            </div>
+          </div>
+          <p class="helper">This is a self-assessment, not a test. Choose the level you can demonstrate without help.</p>
+
+          <fieldset class="field confidence-field">
+            <legend class="visually-hidden">Current confidence</legend>
+            <div class="skill-grid">
+              <div class="skill-control">
+                <div><label for="skill-coding">Coding</label><output id="skill-coding-output">Can practice</output></div>
+                <input id="skill-coding" name="coding" type="range" min="1" max="5" value="3">
+              </div>
+              <div class="skill-control">
+                <div><label for="skill-debugging">Debugging</label><output id="skill-debugging-output">Can practice</output></div>
+                <input id="skill-debugging" name="debugging" type="range" min="1" max="5" value="3">
+              </div>
+              <div class="skill-control">
+                <div><label for="skill-system-design">System design</label><output id="skill-system-design-output">Learning</output></div>
+                <input id="skill-system-design" name="systemDesign" type="range" min="1" max="5" value="2">
+              </div>
+              <div class="skill-control">
+                <div><label for="skill-ai">AI collaboration</label><output id="skill-ai-output">Can practice</output></div>
+                <input id="skill-ai" name="aiFluency" type="range" min="1" max="5" value="3">
+              </div>
+              <div class="skill-control">
+                <div><label for="skill-communication">Communication</label><output id="skill-communication-output">Can practice</output></div>
+                <input id="skill-communication" name="communication" type="range" min="1" max="5" value="3">
+              </div>
+            </div>
+          </fieldset>
+
+          <button class="primary-action" type="submit">Create my private roadmap →</button>
+          <p class="submit-note">Free. No account. Progress stays on this device.</p>
+        </form>
+
+        <section class="sprint-card plan-card" aria-live="polite">
+          <div class="empty-state" id="plan-empty">
+            <div class="empty-visual" aria-hidden="true">
+              <span>01</span><span>02</span><span>03</span>
+              <i></i>
+            </div>
+            <span class="card-kicker">Your roadmap appears here</span>
+            <h2>One role. One plan. One clear task today.</h2>
+            <p>Complete the three short steps. RoleSprint will explain your priorities before asking you to begin.</p>
+            <ul>
+              <li>Today’s focused mission</li>
+              <li>Full weekly roadmap</li>
+              <li>AI critique prompts</li>
+              <li>Explicit finish artifacts</li>
+            </ul>
+          </div>
+
+          <div id="sprint-plan" hidden>
+            <div class="plan-topline">
+              <div>
+                <span class="card-kicker">Your private roadmap</span>
+                <h2 id="plan-title"></h2>
+                <p class="helper" id="plan-outcome"></p>
+              </div>
+              <div class="score-badge">
+                <strong id="readiness-score">0%</strong>
+                <span>self-assessed starting fit</span>
+              </div>
+            </div>
+
+            <div class="plan-metrics">
+              <div><span>Daily pace</span><strong id="metric-pace"></strong></div>
+              <div><span>Total focus</span><strong id="metric-hours"></strong></div>
+              <div><span>Weekly milestones</span><strong id="metric-milestones"></strong></div>
+            </div>
+
+            <div class="progress-header">
+              <span id="progress-text"></span>
+              <strong id="progress-percent">0%</strong>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="Plan completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="progress-value" id="progress-value"></div>
+            </div>
+
+            <div class="plan-tabs" role="tablist" aria-label="Roadmap views">
+              <button type="button" role="tab" aria-selected="true" aria-controls="plan-overview" id="tab-overview" data-plan-view="overview">Overview</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="plan-today" id="tab-today" data-plan-view="today">Today</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="plan-roadmap" id="tab-roadmap" data-plan-view="roadmap">Roadmap</button>
+            </div>
+
+            <section class="plan-panel" id="plan-overview" role="tabpanel" aria-labelledby="tab-overview">
+              <div class="panel-heading">
+                <div>
+                  <span class="panel-kicker">Why this plan</span>
+                  <h3>Your highest-value practice areas</h3>
+                </div>
+                <p>Priorities use the role, your self-assessment, and locally detected job signals.</p>
+              </div>
+              <div class="priority-grid" id="focus-tracks" aria-label="Priority tracks"></div>
+              <div class="coverage-contract">
+                <span class="panel-kicker">Complete practice sequence</span>
+                <h3>Every priority travels the full route.</h3>
+                <div>
+                  <p><strong>1 · Foundation</strong><span>Understand the idea and its boundaries.</span></p>
+                  <p><strong>2 · Application</strong><span>Build a concrete artifact under constraints.</span></p>
+                  <p><strong>3 · Pressure test</strong><span>Verify it alone and test failure cases.</span></p>
+                  <p><strong>4 · Interview ready</strong><span>Explain decisions and answer follow-ups.</span></p>
+                </div>
+              </div>
+              <button class="primary-action overview-start" id="start-first-mission" type="button">Start day 1 →</button>
+            </section>
+
+            <section class="plan-panel" id="plan-today" role="tabpanel" aria-labelledby="tab-today" hidden>
+              <div class="day-navigation">
+                <button id="previous-day" type="button" aria-label="Open previous day">←</button>
+                <div>
+                  <span id="active-week-label"></span>
+                  <strong id="active-day-label"></strong>
+                </div>
+                <button id="next-day" type="button" aria-label="Open next day">→</button>
+              </div>
+              <div class="mission" id="mission"></div>
+            </section>
+
+            <section class="plan-panel" id="plan-roadmap" role="tabpanel" aria-labelledby="tab-roadmap" hidden>
+              <div class="panel-heading">
+                <div>
+                  <span class="panel-kicker">The whole route</span>
+                  <h3>Weekly milestones</h3>
+                </div>
+                <p>Open any day. Completed work remains saved in this browser.</p>
+              </div>
+              <div class="roadmap-weeks" id="roadmap-weeks"></div>
+            </section>
+
+            <div class="plan-actions">
+              <button class="secondary-action" id="export-progress" type="button">Export practice log</button>
+              <button class="secondary-action" id="share-plan" type="button">Copy plan link</button>
+              <button class="text-action" id="reset-plan" type="button">Start over</button>
+            </div>
+          </div>
+          <p class="status" id="sprint-status" role="status"></p>
+        </section>
+      </div>
+    </section>
+
+    <section class="principles-section">
+      <div class="section-heading">
+        <span class="section-kicker">Designed for the AI era</span>
+        <h2>Use AI. Keep the judgment.</h2>
+      </div>
       <div class="evidence-grid">
         <article class="evidence-item">
-          <strong>AI is a collaborator, not the judge</strong>
-          <p>Every AI-assisted step is followed by an independent reconstruction, test, or source check.</p>
+          <span>01</span>
+          <strong>AI critiques; you decide</strong>
+          <p>Prompts ask for assumptions, alternatives, and tests—not an answer to paste.</p>
         </article>
         <article class="evidence-item">
-          <strong>Practice creates an artifact</strong>
-          <p>Export a private activity log that records completion without collecting your code or personal notes.</p>
+          <span>02</span>
+          <strong>Every session creates proof</strong>
+          <p>Build an artifact you can test, explain, and defend without the assistant.</p>
         </article>
         <article class="evidence-item">
-          <strong>Retention over content volume</strong>
-          <p>The product measures whether learners return and complete deliberate practice—not how many videos exist.</p>
+          <span>03</span>
+          <strong>Private by default</strong>
+          <p>No account or server profile. Your plan and completion data remain in this browser.</p>
         </article>
       </div>
       <div class="cohort-callout">
         <div>
-          <h2>Help shape the first measured cohort</h2>
-          <p>We are recruiting a small group of technical learners for a focused 30-day validation run.</p>
+          <span>EARLY LEARNER COHORT</span>
+          <h2>Want accountability, not more content?</h2>
+          <p>Join a small 30-day validation cohort and help shape the product through real practice.</p>
         </div>
-        <a href="mailto:learningbyshorts@gmail.com?subject=RoleSprint%2030-day%20cohort&body=Target%20role%3A%0AInterview%20or%20goal%20date%3A%0ATime%20available%20per%20day%3A">Join the cohort</a>
+        <a href="mailto:learningbyshorts@gmail.com?subject=RoleSprint%2030-day%20cohort&body=Target%20role%3A%0AInterview%20or%20goal%20date%3A%0ATime%20available%20per%20day%3A">Join the cohort →</a>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="section-heading">
+        <span class="section-kicker">Questions</span>
+        <h2>Know what the planner does—and doesn’t do.</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Does the job description leave my browser?</summary>
+          <p>No. RoleSprint detects a small set of technical skill phrases locally. When you create the plan, the original text is cleared; it is never saved in progress data or analytics.</p>
+        </details>
+        <details>
+          <summary>Is the starting-fit score a hiring prediction?</summary>
+          <p>No. It is a planning estimate based on your own ratings and the selected role. It helps order practice; it does not predict an interview or hiring outcome.</p>
+        </details>
+        <details>
+          <summary>Does this replace a full subject course?</summary>
+          <p>No. RoleSprint is a complete practice schedule for a target role, not a claim that a few cards teach an entire technical field. It shows what to practice, what to produce, and how to verify it from start to finish.</p>
+        </details>
+        <details>
+          <summary>Can I use RoleSprint without creating an account?</summary>
+          <p>Yes. The planner is free and anonymous. Your browser stores the generated roadmap and checked steps so you can return on the same device.</p>
+        </details>
       </div>
     </section>
   </main>
 
   <footer class="sprint-footer">
+    <a class="sprint-brand" href="index.html">
+      <img src="assets/logo.svg" alt="">
+      <span>LearnByShorts</span>
+    </a>
     <p>RoleSprint is a practice planner, not a hiring promise or certification. © 2026 LearnByShorts.</p>
+    <div><a href="privacy-policy.html">Privacy</a><a href="terms-of-service.html">Terms</a><a href="index.html#learn">Learning paths</a></div>
   </footer>
 
-  <script type="module" src="js/role-sprint.js?v=20261108-2"></script>
+  <script type="module" src="js/role-sprint.js?v=20261109-1"></script>
 </body>
 </html>

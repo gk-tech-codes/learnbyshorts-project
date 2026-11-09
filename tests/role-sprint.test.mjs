@@ -4,11 +4,14 @@ import test from 'node:test';
 
 import {
   allocateMinutes,
+  analyzeJobDescription,
   buildPlan,
   completionSummary,
+  groupPlanWeeks,
   parsePublicPlanParameters,
   publicPlanParameters,
   rankTracks,
+  roadmapPhase,
   scoreReadiness,
 } from '../frontend/js/role-sprint-core.mjs';
 
@@ -37,6 +40,8 @@ function fixtureTrack(label) {
   return {
     label,
     icon: '✓',
+    proof: `One ${label} artifact`,
+    signals: [label.toLowerCase(), `${label.toLowerCase()} signal`],
     learn: [`Learn ${label}`],
     build: [`Build ${label}`],
     verify: [`Verify ${label}`],
@@ -116,12 +121,60 @@ test('plan generation is deterministic and complete', () => {
   const second = buildPlan(input);
   assert.deepEqual(first, second);
   assert.equal(first.days.length, 30);
+  assert.equal(first.version, 2);
+  assert.equal(first.weeks.length, 5);
   assert.ok(first.days.every((day) => day.steps.length === 5));
   assert.ok(
     first.days.every(
       (day) => day.steps.reduce((sum, step) => sum + step.minutes, 0) === 45,
     ),
   );
+});
+
+test('job text is reduced to bounded skill signals without returning raw text', () => {
+  const analysis = analyzeJobDescription(
+    'We need system design, debugging, observability, and strong communication.',
+    content,
+  );
+  assert.ok(analysis.totalMatches >= 3);
+  assert.ok(analysis.emphasis.debugging > 0);
+  assert.ok(analysis.emphasis.systemDesign > 0);
+  assert.ok(analysis.emphasis.communication > 0);
+  assert.equal('text' in analysis, false);
+  assert.doesNotMatch(JSON.stringify(analysis), /We need/);
+});
+
+test('job signals can raise a matching track priority', () => {
+  const baseline = {
+    coding: 3,
+    debugging: 3,
+    systemDesign: 3,
+    aiFluency: 3,
+    communication: 3,
+  };
+  const ranked = rankTracks(baseline, role.tracks, { aiFluency: 4 });
+  assert.equal(ranked[0].track, 'aiFluency');
+  assert.equal(ranked[0].signalCount, 4);
+});
+
+test('roadmap covers all phases and groups every day once', () => {
+  assert.equal(roadmapPhase(1, 30).key, 'foundation');
+  assert.equal(roadmapPhase(12, 30).key, 'application');
+  assert.equal(roadmapPhase(25, 30).key, 'pressure-test');
+  assert.equal(roadmapPhase(30, 30).key, 'interview-ready');
+  const days = Array.from({ length: 14 }, (_, index) => ({
+    day: index + 1,
+    focusLabel: 'Coding',
+    artifact: 'One tested implementation',
+    phaseKey: roadmapPhase(index + 1, 14).key,
+    phaseLabel: roadmapPhase(index + 1, 14).label,
+    phaseSummary: roadmapPhase(index + 1, 14).summary,
+  }));
+  const weeks = groupPlanWeeks(days);
+  assert.equal(weeks.length, 2);
+  assert.deepEqual(weeks.flatMap((week) => week.dayNumbers), days.map((day) => day.day));
+  assert.match(weeks[0].phaseLabel, /Foundation/);
+  assert.match(weeks[0].milestone, /Coding/);
 });
 
 test('completion summary counts full days and minutes', () => {
@@ -196,6 +249,16 @@ test('mobile layout constrains grid cards and the hidden duration control', () =
   );
   assert.match(
     css,
-    /@media \(max-width:\s*860px\)[\s\S]*?\.sprint-shell\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);/,
+    /@media \(max-width:\s*820px\)[\s\S]*?\.sprint-shell\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);/,
   );
+});
+
+test('RoleSprint does not present incomplete proof sprints as full course recommendations', () => {
+  const html = readFileSync(
+    new URL('../frontend/role-sprint.html', import.meta.url),
+    'utf8',
+  );
+  assert.doesNotMatch(html, /course-recommendations|Recommended courses/i);
+  assert.match(html, /complete practice schedule/i);
+  assert.match(html, /not a claim that a few cards teach an entire technical field/i);
 });
